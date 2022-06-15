@@ -1,0 +1,620 @@
+// Copyright (c) 2021 Patroness, LLC. All Rights Reserved.
+
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+package sensors;
+
+service Sensors {
+  rpc TurnOnLed(Led) returns (Response);
+  rpc TurnOffLed(Led) returns (Response);
+  rpc ActivateHmiState(HmiState) returns (Response);
+  rpc DeactivateHmiState(HmiState) returns (Response);
+  rpc SetNavigationScaling(NavigationScaling) returns (Response);
+  rpc TurnOnUltrasonic(UltrasonicCtrl) returns (Response);
+  rpc TurnOffUltrasonic(UltrasonicCtrl) returns (Response);
+  rpc TurnOnRadar(RadarCtrl) returns (Response);
+  rpc TurnOffRadar(RadarCtrl) returns (Response);
+  rpc BootloadImu(ImuCtrl) returns (stream Response);
+  rpc DFGetCurrentParameters(google.protobuf.Empty) returns (Response);
+  rpc DFGetBufferedEvents(google.protobuf.Empty) returns (Response);
+  rpc DisableLuci(google.protobuf.Empty) returns (Response);
+  rpc JsOverride(RemoteJsValues) returns (Response);
+  rpc SetDriveMode(ModeCtrl) returns (Response);
+  rpc SetRampMode(RampMode) returns (Response);
+
+  rpc HmiStream(google.protobuf.Empty) returns (stream HmiStreamData);
+  rpc PressCountStream(PressRequest)
+      returns (stream PressCountStreamData);
+  rpc UltrasonicStream(google.protobuf.Empty)
+      returns (stream UltrasonicDistances);
+  rpc RawUltrasonicStream(google.protobuf.Empty)
+      returns (stream UltrasonicCurve);
+  rpc RadarStream(google.protobuf.Empty) returns (stream RadarPoints);
+  rpc RawRadarStream(google.protobuf.Empty) returns (stream RadarPoints);
+  rpc ChairSpeedStream(google.protobuf.Empty) returns (stream ChairSpeed);
+  rpc ImuStream(ImuCtrl) returns (stream ImuData);
+  rpc ChairModeStream(google.protobuf.Empty) returns (stream ChairMode);
+  rpc ChairProfileStream(google.protobuf.Empty) returns (stream ChairProfile);
+  rpc SpeedSettingStream(google.protobuf.Empty) returns (stream SpeedSetting);
+  rpc JoystickStream(google.protobuf.Empty) returns (stream Joystick);
+  rpc VirtualJoystickStream(google.protobuf.Empty)
+      returns (stream JoystickData);
+  rpc PhysicalJoystickStream(google.protobuf.Empty)
+      returns (stream JoystickData);
+  rpc ScaledJoystickStream(google.protobuf.Empty) returns (stream JoystickData);
+  rpc AhrsStream(google.protobuf.Empty) returns (stream AhrsData);
+
+  rpc RadarClosestObstaclesStream(google.protobuf.Empty)
+      returns (stream ClosestObstacles);
+  rpc UltrasonicClosestObstaclesStream(google.protobuf.Empty)
+      returns (stream ClosestObstacles);
+  rpc CameraCollisionClosestObstaclesStream(google.protobuf.Empty)
+      returns (stream ClosestObstacles);
+  rpc StepClosestObstaclesStream(google.protobuf.Empty)
+      returns (stream ClosestObstacles);
+  rpc DropoffClosestObstaclesStream(google.protobuf.Empty)
+      returns (stream ClosestObstacles);
+
+  rpc ScalingStream(google.protobuf.Empty) returns (stream NavigationScaling);
+  rpc BatteryVoltageStream(google.protobuf.Empty)
+      returns (stream BatteryVoltage);
+  rpc BatteryPercentStream(google.protobuf.Empty)
+      returns (stream BatteryPercent);
+  rpc CameraStream(google.protobuf.Empty) returns (stream CameraPoints);
+  rpc FlatCameraStream(google.protobuf.Empty) returns (stream CameraPoints2D);
+  rpc DropoffCameraStream(google.protobuf.Empty) returns (stream CameraPoints);
+  rpc GPSStream(google.protobuf.Empty) returns (stream GPSData);
+  rpc SeatPressureStream(google.protobuf.Empty) returns (stream SeatPressure);
+  rpc DFParametersChangedStream(google.protobuf.Empty)
+      returns (stream DFParameters);
+  rpc DFEventStream(google.protobuf.Empty) returns (stream DFSeatEvent);
+
+  rpc SendLogging(LoggingData) returns (Response);
+  rpc LoggingStream(google.protobuf.Empty) returns (stream LoggingData);
+  rpc StepCameraStream(google.protobuf.Empty) returns (stream CameraPoints);
+  rpc IrStream(google.protobuf.Empty) returns (stream IrFrame);
+  rpc RampAssistStream(google.protobuf.Empty) returns (stream RampAssistStates);
+  rpc DistStream(google.protobuf.Empty) returns (stream DistanceData);
+
+  rpc StartModeStream(google.protobuf.Empty) returns (stream StartModeData);
+
+  rpc AudioPlaybackRequestStream(google.protobuf.Empty)
+      returns (stream AudioPlaybackRequest);
+
+  rpc GetZoneBoundaries(google.protobuf.Empty) returns (ZoneBoundaries);
+  rpc GetBlockedZones(google.protobuf.Empty) returns (BlockedZones);
+  rpc GetJoystickRanges(google.protobuf.Empty) returns (JoystickRanges);
+
+  rpc EnableRadarFilter(RadarFilter) returns (Response) {}
+  rpc DisableRadarFilter(RadarFilter) returns (Response) {}
+
+  rpc EncoderStream(google.protobuf.Empty) returns (stream EncoderData);
+}
+
+message AudioPlaybackRequest {
+  // The playback options should match with `audio_request.h`
+  enum RequestedPlayback { ERROR_DISABLE = 0; }
+  RequestedPlayback requested_playback = 1;
+}
+
+message PressRequest {
+  bool ramp_assist = 1;
+}
+
+message ZoneBoundary {
+  repeated Point2D polygon = 1;
+  repeated Point2D critical_point = 2;
+  string name = 3;
+}
+
+message ZoneBoundaries {
+  repeated ZoneBoundary zone_boundary = 1;
+}
+
+message BlockedZone {
+  repeated Point2D points = 1;
+  string sensor = 2;
+}
+
+message BlockedZones {
+  repeated BlockedZone blocked_zones = 1;
+}
+
+message JoystickRange {
+  float begin = 1;
+  float end = 2;
+}
+
+message JoystickRanges {
+  repeated JoystickRange joystick_ranges = 1;
+}
+
+message StartModeData {
+  enum StartModes {
+    UNKNOWN = 0;
+    NORMAL = 1;
+    AUTO = 2;
+    DISABLED = 3;
+  }
+  StartModes mode = 1;
+  repeated string missing_devices = 2;
+}
+
+message Response {
+  string reply = 1;
+  int32 return_code = 2;
+}
+
+message DFParameters {
+  uint32 df_timestamp = 1;
+  float target_pressure = 2;
+  float high_pressure = 3;
+  float low_pressure = 4;
+  float in_seat_pressure = 5;
+  float off_load_pressure = 6;
+  int32 usb_update_period = 7;
+  int32 cap_update_period = 8;
+}
+
+message DFSeatEvent {
+  uint32 current_timestamp = 1;
+  uint32 event_timestamp = 2;
+  enum EventGroup {
+    UNKNOWN_EVENT_GROUP = 0;
+    reserved 1 to 160;
+    PRESSURE = 161;
+    WETNESS = 162;
+    INFLATION = 163;
+  }
+  EventGroup group = 3;
+
+  enum EventType {
+    UNKNOWN_PRESSURE_EVENT_TYPE = 0;
+    reserved 1 to 17;
+    OUT_OF_SEAT = 18;
+    PRESSURE_HIGH = 19;
+    PRESSURE_LOW = 20;
+    OFFLOAD = 21;
+    PRESSURE_OK = 22;
+  }
+  EventType event_type = 4;
+}
+
+message DistanceData {
+  // Total distance the chair has traveled in meters.
+  int32 distance = 1;
+}
+
+message SeatPressure {
+  float pressure = 1;
+}
+
+message ObstacleValue {
+  message Linear {
+    float distance = 1;
+  }
+
+  message Angular {
+    float angle = 1;
+  }
+
+  message Combo {
+    float distance = 1;
+    float angle = 2;
+  }
+
+  oneof value {
+    Linear linear = 1;
+    Angular angular = 2;
+    Combo combo = 3;
+  }
+}
+
+message ClosestObstacles {
+  ObstacleValue front = 1;
+  ObstacleValue front_left = 2;
+  ObstacleValue front_right = 3;
+  ObstacleValue left = 4;
+  ObstacleValue right = 5;
+  ObstacleValue back_left = 6;
+  ObstacleValue back_right = 7;
+  ObstacleValue back = 8;
+
+  google.protobuf.Timestamp timestamp = 9;
+}
+
+message CameraPoints {
+  repeated Point3D points = 1;
+  google.protobuf.Timestamp timestamp = 2;
+}
+
+message Point3D {
+  float x = 1;
+  float y = 2;
+  float z = 3;
+}
+
+message CameraPoints2D {
+  repeated Point2D points = 1;
+  google.protobuf.Timestamp timestamp = 2;
+}
+
+message Point2D {
+  float x = 1;
+  float y = 2;
+}
+
+message LoggingData {
+  string key = 1;
+  double value = 2;
+  int32 timestamp = 3;
+  repeated Point3D points = 4;
+}
+
+message Led {
+  enum Leds {
+    UNKNOWN = 0;
+    SYSTEM_STATUS = 1;
+    SENSOR_OK = 2;
+    SENSOR_BLOCKED = 3;
+    SENSOR_ERROR = 4;
+    WIFI_CONNECTED = 5;
+    CELL_CONNECTED = 6;
+    BLUETOOTH_CONNECTED = 7;
+  }
+  Leds led = 1;
+}
+// Note any change here should have corresponding changes made to io-msp code in
+// hmi_states.h
+message HmiState {
+  enum States {
+    SETUP_APP_PULSE = 0;
+    REACTION_TEST_WAIT = 1;
+    REACTION_TEST_GO = 2;
+    SENSOR_SYSTEM_ERROR = 3;
+    NOMINAL_OFF = 4;
+    SENSOR_SYSTEM_OVERRIDE = 5;
+    LUCI_LOADING = 6;
+    SENSOR_BLOCKED = 9;
+    SYSTEM_OK = 10;
+    STABILITY_WARNING = 11;
+    STABILITY_DANGER = 12;
+    STABILITY_TIPPED = 13;
+    SENDING_LOGS = 14;
+    WIFI_SENDING = 15;
+    WIFI_AVAILABLE = 16;
+    CELL_SENDING = 17;
+    CELL_AVAILABLE = 18;
+    USER_KEY_LOW = 19;
+    USER_KEY_PRESENT = 20;
+    NO_ACTION = 21;
+    BUTTON_PRESSED = 22;
+    UPDATE_IN_PROGRESS = 23;
+    ALL_OFF = 24;
+    FLASH_LEDS = 25;
+    CHASE_LEDS = 26;
+    TEST_USER_KEY = 27;
+    TEST_WIFI = 28;
+    TEST_CELL = 29;
+    TEST_SENSOR_OK = 30;
+    TEST_SENSOR_WARNING = 31;
+    TEST_SENSOR_ERROR = 32;
+    TEST_LUCI_BUTTON = 33;
+  }
+  States state = 1;
+}
+
+message HmiStreamData {
+  bool is_alt_override = 1;
+  enum ButtonState {
+    PRESSED = 0;
+    RELEASED = 1;
+  }
+  ButtonState button_state = 2;
+}
+
+message PressCountStreamData {
+  int32 press_count = 1;
+}
+
+message NavigationScaling {
+  float front_fb = 1;
+  float front_rl = 2;
+  float front_right_fb = 3;
+  float front_right_rl = 4;
+  float front_left_fb = 5;
+  float front_left_rl = 6;
+  float right_fb = 7;
+  float right_rl = 8;
+  float left_fb = 9;
+  float left_rl = 10;
+  float back_right_fb = 11;
+  float back_right_rl = 12;
+  float back_left_fb = 13;
+  float back_left_rl = 14;
+  float back_fb = 15;
+  float back_rl = 16;
+  uint32 max_js_scale_increase = 17;
+  uint32 max_js_scale_decrease = 18;
+  bool luci_active = 19;
+}
+
+message UltrasonicCtrl {
+  enum Board {
+    UNKNOWN = 0;
+    MPU = 1;
+    IO_B_LEFT = 2;
+    IO_B_RIGHT = 3;
+  }
+  Board board = 1;
+  int32 spi_id = 2;   // 1-5 on MPU, 0-1 on IO_B
+  int32 address = 3;  // indication of frequency, 1 is 48 and 2 is 55
+}
+
+message UltrasonicDistance {
+  enum Board {
+    UNKNOWN = 0;
+    MPU = 1;
+    IO_B_LEFT = 2;
+    IO_B_RIGHT = 3;
+  }
+  double distance = 1;
+  Board board = 2;
+  int32 spi_id = 3;
+  int32 address = 4;
+  google.protobuf.Timestamp timestamp = 5;
+  repeated Point3D arc_points = 6;
+}
+
+message UltrasonicDistances {
+  repeated UltrasonicDistance distances = 1;
+}
+
+message UltrasonicCurve {
+  enum Board {
+    UNKNOWN = 0;
+    MPU = 1;
+    IO_B_LEFT = 2;
+    IO_B_RIGHT = 3;
+  }
+  repeated int32 curve = 1;
+  Board board = 2;
+  int32 spi_id = 3;
+  int32 address = 4;
+}
+
+message RadarFilter {
+  enum Filter {
+    RANGE_CHOP = 0;
+    ORIGIN = 1;
+    FOV = 2;
+    PEAK = 3;
+    STICKY = 4;
+    EXTRA_STICKY = 5;
+    TRANSFORMS = 6;
+    ADAM = 7;
+  }
+  Filter filter = 1;
+}
+
+message RadarCtrl {
+  enum Radar {
+    UNKNOWN = 0;
+    LEFT = 1;
+    RIGHT = 2;
+    FRONT = 3;
+  }
+  Radar radar = 1;
+}
+
+message RadarPoint {
+  double x = 1;
+  double y = 2;
+  double z = 3;
+  double doppler = 4;
+  double cross_section = 5;
+}
+
+message RadarPoints {
+  enum Radar {
+    UNKNOWN = 0;
+    LEFT = 1;
+    RIGHT = 2;
+    FRONT = 3;
+  }
+  repeated RadarPoint points = 1;
+  Radar source = 2;
+  google.protobuf.Timestamp timestamp = 3;
+}
+
+message ChairSpeed {
+  double speed_m_p_s = 1;
+  google.protobuf.Timestamp timestamp = 2;
+}
+
+enum Imu {
+  UNKNOWN = 0;
+  FOOTPLATE = 1;
+  MPU = 2;
+  ALL = 3;
+}
+
+message ImuCtrl {
+  Imu imu = 1;
+}
+
+message ImuData {
+  double quaternion_x = 1;
+  double quaternion_y = 2;
+  double quaternion_z = 3;
+  double quaternion_w = 4;
+
+  double acceleration_x = 5;
+  double acceleration_y = 6;
+  double acceleration_z = 7;
+
+  double gyro_x = 8;
+  double gyro_y = 9;
+  double gyro_z = 10;
+
+  double euler_x = 11;
+  double euler_y = 12;
+  double euler_z = 13;
+
+  double accelerometer_x = 14;
+  double accelerometer_y = 15;
+  double accelerometer_z = 16;
+
+  double magnetometer_x = 17;
+  double magnetometer_y = 18;
+  double magnetometer_z = 19;
+
+  double gravity_x = 20;
+  double gravity_y = 21;
+  double gravity_z = 22;
+
+  enum CalibrationStatus {
+    NOT_CALIBRATED = 0;
+    IN_PROGRESS = 1;
+    USABLE = 2;
+    COMPLETE = 3;
+  }
+  CalibrationStatus cal_system = 23;
+  CalibrationStatus cal_gyroscope = 24;
+  CalibrationStatus cal_accelerometer = 25;
+  CalibrationStatus cal_magnetometer = 26;
+  google.protobuf.Timestamp timestamp = 27;
+
+  Imu source = 28;
+}
+
+message ChairMode {
+  bool is_drive_mode = 1;
+}
+
+message ChairProfile {
+  int32 profile = 1;
+}
+
+message SpeedSetting {
+  int32 speed_setting = 1;
+}
+
+message JoystickData {
+  int32 forward_back = 1;
+  int32 left_right = 2;
+  string joystick_zone = 3;
+  google.protobuf.Timestamp timestamp = 4;
+}
+
+message Joystick {
+  int32 forward_back = 1;
+  int32 left_right = 2;
+}
+
+message BatteryVoltage {
+  double battery_voltage = 1;
+}
+
+message BatteryPercent {
+  int32 battery_percentage = 1;
+}
+
+message GPSData {
+  enum quality_t {
+    no_fix = 0;
+    standard_gps_2d_3d = 1;
+    differential_gps = 2;
+    rtk_fixed_solution = 4;
+    rtk_float_solution = 5;
+    estimated_dr = 6;
+  }
+  int32 latitude = 1;
+  int32 longitude = 2;
+  int32 heading_of_motion = 3;
+  uint32 number_of_sv = 4;
+  uint32 hDOP = 5;
+  int32 height_above_sea = 6;
+  int32 ground_speed = 7;
+  quality_t quality = 8;
+  int32 year = 9;
+  int32 month = 10;
+  int32 day = 11;
+  int32 hour = 12;
+  int32 minute = 13;
+  int32 second = 14;
+}
+
+message EncoderData {
+  float left_angle = 1;
+  float right_angle = 2;
+  float fl_caster_degrees = 3;
+  float bl_caster_degrees = 4;
+  float fr_caster_degrees = 5;
+  float br_caster_degrees = 6;
+  google.protobuf.Timestamp timestamp = 7;
+}
+
+message Vec3 {
+  float x = 1;
+  float y = 2;
+  float z = 3;
+}
+
+message Vec4 {
+  float w = 1;
+  float x = 2;
+  float y = 3;
+  float z = 4;
+}
+
+message IrFrame {
+  bytes frame = 1;
+  int32 width = 2;
+  int32 height = 3;
+  string camera = 4;
+  int32 size = 5;
+  google.protobuf.Timestamp timestamp = 6;
+}
+
+message AhrsData {
+  Vec3 linear_velocity = 1;
+  Vec3 linear_acceleration = 2;
+  Vec3 angular_velocity = 3;
+  Vec3 angular_acceleration = 4;
+  Vec4 orientation = 5;
+  google.protobuf.Timestamp timestamp = 6;
+}
+
+message RemoteJsValues {
+  int32 forward_back = 1;
+  int32 left_right = 2;
+}
+
+// See https://patroness.atlassian.net/wiki/spaces/LS/pages/1759215628/Engaged+and+Autonomous+Requirements
+// USER mode => luci nominal operations
+// ENGAGED => Override JS values only when joystick engaged
+// AUTONOMOUS => Override Js values without joystick engaged
+enum DriveMode {
+  USER = 0;
+  ENGAGED = 1;
+  AUTONOMOUS = 2;
+}
+
+message ModeCtrl {
+  DriveMode mode = 1;
+}
+
+message RampMode {
+  bool ramp_mode = 1;
+  bool ramp_approach = 2;
+}
+
+message RampAssistStates {
+  bool state = 1;
+  bool approach = 2;
+  google.protobuf.Timestamp timestamp = 3;
+}
