@@ -10,6 +10,7 @@
 #include "ptolemy.pb.h"
 
 #include <functional>
+#include <grpc/impl/codegen/port_platform.h>
 #include <grpcpp/impl/codegen/async_generic_service.h>
 #include <grpcpp/impl/codegen/async_stream.h>
 #include <grpcpp/impl/codegen/async_unary_call.h>
@@ -545,96 +546,344 @@ class Sensors final {
     std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::sensors::EncoderData>> PrepareAsyncEncoderStream(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::sensors::EncoderData>>(PrepareAsyncEncoderStreamRaw(context, request, cq));
     }
-    class async_interface {
+    class experimental_async_interface {
      public:
-      virtual ~async_interface() {}
+      virtual ~experimental_async_interface() {}
       virtual void TurnOnLed(::grpc::ClientContext* context, const ::sensors::Led* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void TurnOnLed(::grpc::ClientContext* context, const ::sensors::Led* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void TurnOnLed(::grpc::ClientContext* context, const ::sensors::Led* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       virtual void TurnOffLed(::grpc::ClientContext* context, const ::sensors::Led* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void TurnOffLed(::grpc::ClientContext* context, const ::sensors::Led* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void TurnOffLed(::grpc::ClientContext* context, const ::sensors::Led* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       virtual void ActivateHmiState(::grpc::ClientContext* context, const ::sensors::HmiState* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void ActivateHmiState(::grpc::ClientContext* context, const ::sensors::HmiState* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void ActivateHmiState(::grpc::ClientContext* context, const ::sensors::HmiState* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       virtual void DeactivateHmiState(::grpc::ClientContext* context, const ::sensors::HmiState* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void DeactivateHmiState(::grpc::ClientContext* context, const ::sensors::HmiState* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void DeactivateHmiState(::grpc::ClientContext* context, const ::sensors::HmiState* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       virtual void SetNavigationScaling(::grpc::ClientContext* context, const ::sensors::NavigationScaling* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void SetNavigationScaling(::grpc::ClientContext* context, const ::sensors::NavigationScaling* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void SetNavigationScaling(::grpc::ClientContext* context, const ::sensors::NavigationScaling* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       virtual void TurnOnUltrasonic(::grpc::ClientContext* context, const ::sensors::UltrasonicCtrl* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void TurnOnUltrasonic(::grpc::ClientContext* context, const ::sensors::UltrasonicCtrl* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void TurnOnUltrasonic(::grpc::ClientContext* context, const ::sensors::UltrasonicCtrl* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       virtual void TurnOffUltrasonic(::grpc::ClientContext* context, const ::sensors::UltrasonicCtrl* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void TurnOffUltrasonic(::grpc::ClientContext* context, const ::sensors::UltrasonicCtrl* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void TurnOffUltrasonic(::grpc::ClientContext* context, const ::sensors::UltrasonicCtrl* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       virtual void TurnOnRadar(::grpc::ClientContext* context, const ::sensors::RadarCtrl* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void TurnOnRadar(::grpc::ClientContext* context, const ::sensors::RadarCtrl* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void TurnOnRadar(::grpc::ClientContext* context, const ::sensors::RadarCtrl* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       virtual void TurnOffRadar(::grpc::ClientContext* context, const ::sensors::RadarCtrl* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void TurnOffRadar(::grpc::ClientContext* context, const ::sensors::RadarCtrl* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void TurnOffRadar(::grpc::ClientContext* context, const ::sensors::RadarCtrl* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void BootloadImu(::grpc::ClientContext* context, const ::sensors::ImuCtrl* request, ::grpc::ClientReadReactor< ::sensors::Response>* reactor) = 0;
+      #else
+      virtual void BootloadImu(::grpc::ClientContext* context, const ::sensors::ImuCtrl* request, ::grpc::experimental::ClientReadReactor< ::sensors::Response>* reactor) = 0;
+      #endif
       virtual void DFGetCurrentParameters(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void DFGetCurrentParameters(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void DFGetCurrentParameters(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       virtual void DFGetBufferedEvents(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void DFGetBufferedEvents(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void DFGetBufferedEvents(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       virtual void DisableLuci(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void DisableLuci(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void DisableLuci(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       virtual void JsOverride(::grpc::ClientContext* context, const ::sensors::RemoteJsValues* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void JsOverride(::grpc::ClientContext* context, const ::sensors::RemoteJsValues* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void JsOverride(::grpc::ClientContext* context, const ::sensors::RemoteJsValues* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       virtual void SetDriveMode(::grpc::ClientContext* context, const ::sensors::ModeCtrl* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void SetDriveMode(::grpc::ClientContext* context, const ::sensors::ModeCtrl* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void SetDriveMode(::grpc::ClientContext* context, const ::sensors::ModeCtrl* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       virtual void SetRampMode(::grpc::ClientContext* context, const ::sensors::RampMode* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void SetRampMode(::grpc::ClientContext* context, const ::sensors::RampMode* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void SetRampMode(::grpc::ClientContext* context, const ::sensors::RampMode* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void HmiStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::HmiStreamData>* reactor) = 0;
+      #else
+      virtual void HmiStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::HmiStreamData>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void PressCountStream(::grpc::ClientContext* context, const ::sensors::PressRequest* request, ::grpc::ClientReadReactor< ::sensors::PressCountStreamData>* reactor) = 0;
+      #else
+      virtual void PressCountStream(::grpc::ClientContext* context, const ::sensors::PressRequest* request, ::grpc::experimental::ClientReadReactor< ::sensors::PressCountStreamData>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void UltrasonicStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::UltrasonicDistances>* reactor) = 0;
+      #else
+      virtual void UltrasonicStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::UltrasonicDistances>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void RawUltrasonicStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::UltrasonicCurve>* reactor) = 0;
+      #else
+      virtual void RawUltrasonicStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::UltrasonicCurve>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void RadarStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::RadarPoints>* reactor) = 0;
+      #else
+      virtual void RadarStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::RadarPoints>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void RawRadarStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::RadarPoints>* reactor) = 0;
+      #else
+      virtual void RawRadarStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::RadarPoints>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void ChairSpeedStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::ChairSpeed>* reactor) = 0;
+      #else
+      virtual void ChairSpeedStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::ChairSpeed>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void ImuStream(::grpc::ClientContext* context, const ::sensors::ImuCtrl* request, ::grpc::ClientReadReactor< ::sensors::ImuData>* reactor) = 0;
+      #else
+      virtual void ImuStream(::grpc::ClientContext* context, const ::sensors::ImuCtrl* request, ::grpc::experimental::ClientReadReactor< ::sensors::ImuData>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void ChairModeStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::ChairMode>* reactor) = 0;
+      #else
+      virtual void ChairModeStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::ChairMode>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void ChairProfileStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::ChairProfile>* reactor) = 0;
+      #else
+      virtual void ChairProfileStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::ChairProfile>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void SpeedSettingStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::SpeedSetting>* reactor) = 0;
+      #else
+      virtual void SpeedSettingStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::SpeedSetting>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void JoystickStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::Joystick>* reactor) = 0;
+      #else
+      virtual void JoystickStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::Joystick>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void VirtualJoystickStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::JoystickData>* reactor) = 0;
+      #else
+      virtual void VirtualJoystickStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::JoystickData>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void PhysicalJoystickStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::JoystickData>* reactor) = 0;
+      #else
+      virtual void PhysicalJoystickStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::JoystickData>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void ScaledJoystickStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::JoystickData>* reactor) = 0;
+      #else
+      virtual void ScaledJoystickStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::JoystickData>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void AhrsStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::AhrsData>* reactor) = 0;
+      #else
+      virtual void AhrsStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::AhrsData>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void RadarClosestObstaclesStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::ClosestObstacles>* reactor) = 0;
+      #else
+      virtual void RadarClosestObstaclesStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::ClosestObstacles>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void UltrasonicClosestObstaclesStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::ClosestObstacles>* reactor) = 0;
+      #else
+      virtual void UltrasonicClosestObstaclesStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::ClosestObstacles>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void CameraCollisionClosestObstaclesStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::ClosestObstacles>* reactor) = 0;
+      #else
+      virtual void CameraCollisionClosestObstaclesStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::ClosestObstacles>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void StepClosestObstaclesStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::ClosestObstacles>* reactor) = 0;
+      #else
+      virtual void StepClosestObstaclesStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::ClosestObstacles>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void DropoffClosestObstaclesStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::ClosestObstacles>* reactor) = 0;
+      #else
+      virtual void DropoffClosestObstaclesStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::ClosestObstacles>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void ScalingStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::NavigationScaling>* reactor) = 0;
+      #else
+      virtual void ScalingStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::NavigationScaling>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void BatteryVoltageStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::BatteryVoltage>* reactor) = 0;
+      #else
+      virtual void BatteryVoltageStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::BatteryVoltage>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void BatteryPercentStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::BatteryPercent>* reactor) = 0;
+      #else
+      virtual void BatteryPercentStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::BatteryPercent>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void CameraStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::CameraPoints>* reactor) = 0;
+      #else
+      virtual void CameraStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::CameraPoints>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void FlatCameraStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::CameraPoints2D>* reactor) = 0;
+      #else
+      virtual void FlatCameraStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::CameraPoints2D>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void DropoffCameraStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::CameraPoints>* reactor) = 0;
+      #else
+      virtual void DropoffCameraStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::CameraPoints>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GPSStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::GPSData>* reactor) = 0;
+      #else
+      virtual void GPSStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::GPSData>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void SeatPressureStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::SeatPressure>* reactor) = 0;
+      #else
+      virtual void SeatPressureStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::SeatPressure>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void DFParametersChangedStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::DFParameters>* reactor) = 0;
+      #else
+      virtual void DFParametersChangedStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::DFParameters>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void DFEventStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::DFSeatEvent>* reactor) = 0;
+      #else
+      virtual void DFEventStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::DFSeatEvent>* reactor) = 0;
+      #endif
       virtual void SendLogging(::grpc::ClientContext* context, const ::sensors::LoggingData* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void SendLogging(::grpc::ClientContext* context, const ::sensors::LoggingData* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void SendLogging(::grpc::ClientContext* context, const ::sensors::LoggingData* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void LoggingStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::LoggingData>* reactor) = 0;
+      #else
+      virtual void LoggingStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::LoggingData>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void StepCameraStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::CameraPoints>* reactor) = 0;
+      #else
+      virtual void StepCameraStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::CameraPoints>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void IrStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::IrFrame>* reactor) = 0;
+      #else
+      virtual void IrStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::IrFrame>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void RampAssistStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::RampAssistStates>* reactor) = 0;
+      #else
+      virtual void RampAssistStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::RampAssistStates>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void DistStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::DistanceData>* reactor) = 0;
+      #else
+      virtual void DistStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::DistanceData>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void StartModeStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::StartModeData>* reactor) = 0;
+      #else
+      virtual void StartModeStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::StartModeData>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void AudioPlaybackRequestStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::AudioPlaybackRequest>* reactor) = 0;
+      #else
+      virtual void AudioPlaybackRequestStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::AudioPlaybackRequest>* reactor) = 0;
+      #endif
       virtual void GetZoneBoundaries(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::ZoneBoundaries* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetZoneBoundaries(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::ZoneBoundaries* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetZoneBoundaries(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::ZoneBoundaries* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       virtual void GetBlockedZones(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::BlockedZones* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetBlockedZones(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::BlockedZones* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetBlockedZones(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::BlockedZones* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       virtual void GetJoystickRanges(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::JoystickRanges* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetJoystickRanges(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::JoystickRanges* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetJoystickRanges(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::JoystickRanges* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       virtual void EnableRadarFilter(::grpc::ClientContext* context, const ::sensors::RadarFilter* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void EnableRadarFilter(::grpc::ClientContext* context, const ::sensors::RadarFilter* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void EnableRadarFilter(::grpc::ClientContext* context, const ::sensors::RadarFilter* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       virtual void DisableRadarFilter(::grpc::ClientContext* context, const ::sensors::RadarFilter* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void DisableRadarFilter(::grpc::ClientContext* context, const ::sensors::RadarFilter* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void DisableRadarFilter(::grpc::ClientContext* context, const ::sensors::RadarFilter* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void EncoderStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::EncoderData>* reactor) = 0;
+      #else
+      virtual void EncoderStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::EncoderData>* reactor) = 0;
+      #endif
     };
-    typedef class async_interface experimental_async_interface;
-    virtual class async_interface* async() { return nullptr; }
-    class async_interface* experimental_async() { return async(); }
-   private:
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    typedef class experimental_async_interface async_interface;
+    #endif
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    async_interface* async() { return experimental_async(); }
+    #endif
+    virtual class experimental_async_interface* experimental_async() { return nullptr; }
+  private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::sensors::Response>* AsyncTurnOnLedRaw(::grpc::ClientContext* context, const ::sensors::Led& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::sensors::Response>* PrepareAsyncTurnOnLedRaw(::grpc::ClientContext* context, const ::sensors::Led& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::sensors::Response>* AsyncTurnOffLedRaw(::grpc::ClientContext* context, const ::sensors::Led& request, ::grpc::CompletionQueue* cq) = 0;
@@ -1308,102 +1557,346 @@ class Sensors final {
     std::unique_ptr< ::grpc::ClientAsyncReader< ::sensors::EncoderData>> PrepareAsyncEncoderStream(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncReader< ::sensors::EncoderData>>(PrepareAsyncEncoderStreamRaw(context, request, cq));
     }
-    class async final :
-      public StubInterface::async_interface {
+    class experimental_async final :
+      public StubInterface::experimental_async_interface {
      public:
       void TurnOnLed(::grpc::ClientContext* context, const ::sensors::Led* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void TurnOnLed(::grpc::ClientContext* context, const ::sensors::Led* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void TurnOnLed(::grpc::ClientContext* context, const ::sensors::Led* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void TurnOffLed(::grpc::ClientContext* context, const ::sensors::Led* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void TurnOffLed(::grpc::ClientContext* context, const ::sensors::Led* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void TurnOffLed(::grpc::ClientContext* context, const ::sensors::Led* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void ActivateHmiState(::grpc::ClientContext* context, const ::sensors::HmiState* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void ActivateHmiState(::grpc::ClientContext* context, const ::sensors::HmiState* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void ActivateHmiState(::grpc::ClientContext* context, const ::sensors::HmiState* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void DeactivateHmiState(::grpc::ClientContext* context, const ::sensors::HmiState* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void DeactivateHmiState(::grpc::ClientContext* context, const ::sensors::HmiState* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void DeactivateHmiState(::grpc::ClientContext* context, const ::sensors::HmiState* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void SetNavigationScaling(::grpc::ClientContext* context, const ::sensors::NavigationScaling* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void SetNavigationScaling(::grpc::ClientContext* context, const ::sensors::NavigationScaling* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void SetNavigationScaling(::grpc::ClientContext* context, const ::sensors::NavigationScaling* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void TurnOnUltrasonic(::grpc::ClientContext* context, const ::sensors::UltrasonicCtrl* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void TurnOnUltrasonic(::grpc::ClientContext* context, const ::sensors::UltrasonicCtrl* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void TurnOnUltrasonic(::grpc::ClientContext* context, const ::sensors::UltrasonicCtrl* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void TurnOffUltrasonic(::grpc::ClientContext* context, const ::sensors::UltrasonicCtrl* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void TurnOffUltrasonic(::grpc::ClientContext* context, const ::sensors::UltrasonicCtrl* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void TurnOffUltrasonic(::grpc::ClientContext* context, const ::sensors::UltrasonicCtrl* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void TurnOnRadar(::grpc::ClientContext* context, const ::sensors::RadarCtrl* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void TurnOnRadar(::grpc::ClientContext* context, const ::sensors::RadarCtrl* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void TurnOnRadar(::grpc::ClientContext* context, const ::sensors::RadarCtrl* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void TurnOffRadar(::grpc::ClientContext* context, const ::sensors::RadarCtrl* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void TurnOffRadar(::grpc::ClientContext* context, const ::sensors::RadarCtrl* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void TurnOffRadar(::grpc::ClientContext* context, const ::sensors::RadarCtrl* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void BootloadImu(::grpc::ClientContext* context, const ::sensors::ImuCtrl* request, ::grpc::ClientReadReactor< ::sensors::Response>* reactor) override;
+      #else
+      void BootloadImu(::grpc::ClientContext* context, const ::sensors::ImuCtrl* request, ::grpc::experimental::ClientReadReactor< ::sensors::Response>* reactor) override;
+      #endif
       void DFGetCurrentParameters(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void DFGetCurrentParameters(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void DFGetCurrentParameters(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void DFGetBufferedEvents(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void DFGetBufferedEvents(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void DFGetBufferedEvents(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void DisableLuci(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void DisableLuci(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void DisableLuci(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void JsOverride(::grpc::ClientContext* context, const ::sensors::RemoteJsValues* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void JsOverride(::grpc::ClientContext* context, const ::sensors::RemoteJsValues* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void JsOverride(::grpc::ClientContext* context, const ::sensors::RemoteJsValues* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void SetDriveMode(::grpc::ClientContext* context, const ::sensors::ModeCtrl* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void SetDriveMode(::grpc::ClientContext* context, const ::sensors::ModeCtrl* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void SetDriveMode(::grpc::ClientContext* context, const ::sensors::ModeCtrl* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void SetRampMode(::grpc::ClientContext* context, const ::sensors::RampMode* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void SetRampMode(::grpc::ClientContext* context, const ::sensors::RampMode* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void SetRampMode(::grpc::ClientContext* context, const ::sensors::RampMode* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void HmiStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::HmiStreamData>* reactor) override;
+      #else
+      void HmiStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::HmiStreamData>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void PressCountStream(::grpc::ClientContext* context, const ::sensors::PressRequest* request, ::grpc::ClientReadReactor< ::sensors::PressCountStreamData>* reactor) override;
+      #else
+      void PressCountStream(::grpc::ClientContext* context, const ::sensors::PressRequest* request, ::grpc::experimental::ClientReadReactor< ::sensors::PressCountStreamData>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void UltrasonicStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::UltrasonicDistances>* reactor) override;
+      #else
+      void UltrasonicStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::UltrasonicDistances>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void RawUltrasonicStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::UltrasonicCurve>* reactor) override;
+      #else
+      void RawUltrasonicStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::UltrasonicCurve>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void RadarStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::RadarPoints>* reactor) override;
+      #else
+      void RadarStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::RadarPoints>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void RawRadarStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::RadarPoints>* reactor) override;
+      #else
+      void RawRadarStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::RadarPoints>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void ChairSpeedStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::ChairSpeed>* reactor) override;
+      #else
+      void ChairSpeedStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::ChairSpeed>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void ImuStream(::grpc::ClientContext* context, const ::sensors::ImuCtrl* request, ::grpc::ClientReadReactor< ::sensors::ImuData>* reactor) override;
+      #else
+      void ImuStream(::grpc::ClientContext* context, const ::sensors::ImuCtrl* request, ::grpc::experimental::ClientReadReactor< ::sensors::ImuData>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void ChairModeStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::ChairMode>* reactor) override;
+      #else
+      void ChairModeStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::ChairMode>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void ChairProfileStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::ChairProfile>* reactor) override;
+      #else
+      void ChairProfileStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::ChairProfile>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void SpeedSettingStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::SpeedSetting>* reactor) override;
+      #else
+      void SpeedSettingStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::SpeedSetting>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void JoystickStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::Joystick>* reactor) override;
+      #else
+      void JoystickStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::Joystick>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void VirtualJoystickStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::JoystickData>* reactor) override;
+      #else
+      void VirtualJoystickStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::JoystickData>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void PhysicalJoystickStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::JoystickData>* reactor) override;
+      #else
+      void PhysicalJoystickStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::JoystickData>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void ScaledJoystickStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::JoystickData>* reactor) override;
+      #else
+      void ScaledJoystickStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::JoystickData>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void AhrsStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::AhrsData>* reactor) override;
+      #else
+      void AhrsStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::AhrsData>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void RadarClosestObstaclesStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::ClosestObstacles>* reactor) override;
+      #else
+      void RadarClosestObstaclesStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::ClosestObstacles>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void UltrasonicClosestObstaclesStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::ClosestObstacles>* reactor) override;
+      #else
+      void UltrasonicClosestObstaclesStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::ClosestObstacles>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void CameraCollisionClosestObstaclesStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::ClosestObstacles>* reactor) override;
+      #else
+      void CameraCollisionClosestObstaclesStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::ClosestObstacles>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void StepClosestObstaclesStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::ClosestObstacles>* reactor) override;
+      #else
+      void StepClosestObstaclesStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::ClosestObstacles>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void DropoffClosestObstaclesStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::ClosestObstacles>* reactor) override;
+      #else
+      void DropoffClosestObstaclesStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::ClosestObstacles>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void ScalingStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::NavigationScaling>* reactor) override;
+      #else
+      void ScalingStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::NavigationScaling>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void BatteryVoltageStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::BatteryVoltage>* reactor) override;
+      #else
+      void BatteryVoltageStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::BatteryVoltage>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void BatteryPercentStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::BatteryPercent>* reactor) override;
+      #else
+      void BatteryPercentStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::BatteryPercent>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void CameraStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::CameraPoints>* reactor) override;
+      #else
+      void CameraStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::CameraPoints>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void FlatCameraStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::CameraPoints2D>* reactor) override;
+      #else
+      void FlatCameraStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::CameraPoints2D>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void DropoffCameraStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::CameraPoints>* reactor) override;
+      #else
+      void DropoffCameraStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::CameraPoints>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GPSStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::GPSData>* reactor) override;
+      #else
+      void GPSStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::GPSData>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void SeatPressureStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::SeatPressure>* reactor) override;
+      #else
+      void SeatPressureStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::SeatPressure>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void DFParametersChangedStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::DFParameters>* reactor) override;
+      #else
+      void DFParametersChangedStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::DFParameters>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void DFEventStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::DFSeatEvent>* reactor) override;
+      #else
+      void DFEventStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::DFSeatEvent>* reactor) override;
+      #endif
       void SendLogging(::grpc::ClientContext* context, const ::sensors::LoggingData* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void SendLogging(::grpc::ClientContext* context, const ::sensors::LoggingData* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void SendLogging(::grpc::ClientContext* context, const ::sensors::LoggingData* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void LoggingStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::LoggingData>* reactor) override;
+      #else
+      void LoggingStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::LoggingData>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void StepCameraStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::CameraPoints>* reactor) override;
+      #else
+      void StepCameraStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::CameraPoints>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void IrStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::IrFrame>* reactor) override;
+      #else
+      void IrStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::IrFrame>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void RampAssistStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::RampAssistStates>* reactor) override;
+      #else
+      void RampAssistStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::RampAssistStates>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void DistStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::DistanceData>* reactor) override;
+      #else
+      void DistStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::DistanceData>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void StartModeStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::StartModeData>* reactor) override;
+      #else
+      void StartModeStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::StartModeData>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void AudioPlaybackRequestStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::AudioPlaybackRequest>* reactor) override;
+      #else
+      void AudioPlaybackRequestStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::AudioPlaybackRequest>* reactor) override;
+      #endif
       void GetZoneBoundaries(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::ZoneBoundaries* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetZoneBoundaries(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::ZoneBoundaries* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetZoneBoundaries(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::ZoneBoundaries* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void GetBlockedZones(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::BlockedZones* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetBlockedZones(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::BlockedZones* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetBlockedZones(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::BlockedZones* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void GetJoystickRanges(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::JoystickRanges* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetJoystickRanges(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::JoystickRanges* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetJoystickRanges(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::sensors::JoystickRanges* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void EnableRadarFilter(::grpc::ClientContext* context, const ::sensors::RadarFilter* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void EnableRadarFilter(::grpc::ClientContext* context, const ::sensors::RadarFilter* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void EnableRadarFilter(::grpc::ClientContext* context, const ::sensors::RadarFilter* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void DisableRadarFilter(::grpc::ClientContext* context, const ::sensors::RadarFilter* request, ::sensors::Response* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void DisableRadarFilter(::grpc::ClientContext* context, const ::sensors::RadarFilter* request, ::sensors::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void DisableRadarFilter(::grpc::ClientContext* context, const ::sensors::RadarFilter* request, ::sensors::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void EncoderStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::ClientReadReactor< ::sensors::EncoderData>* reactor) override;
+      #else
+      void EncoderStream(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::grpc::experimental::ClientReadReactor< ::sensors::EncoderData>* reactor) override;
+      #endif
      private:
       friend class Stub;
-      explicit async(Stub* stub): stub_(stub) { }
+      explicit experimental_async(Stub* stub): stub_(stub) { }
       Stub* stub() { return stub_; }
       Stub* stub_;
     };
-    class async* async() override { return &async_stub_; }
+    class experimental_async_interface* experimental_async() override { return &async_stub_; }
 
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
-    class async async_stub_{this};
+    class experimental_async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::sensors::Response>* AsyncTurnOnLedRaw(::grpc::ClientContext* context, const ::sensors::Led& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::sensors::Response>* PrepareAsyncTurnOnLedRaw(::grpc::ClientContext* context, const ::sensors::Led& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::sensors::Response>* AsyncTurnOffLedRaw(::grpc::ClientContext* context, const ::sensors::Led& request, ::grpc::CompletionQueue* cq) override;
@@ -2918,22 +3411,36 @@ class Sensors final {
   };
   typedef WithAsyncMethod_TurnOnLed<WithAsyncMethod_TurnOffLed<WithAsyncMethod_ActivateHmiState<WithAsyncMethod_DeactivateHmiState<WithAsyncMethod_SetNavigationScaling<WithAsyncMethod_TurnOnUltrasonic<WithAsyncMethod_TurnOffUltrasonic<WithAsyncMethod_TurnOnRadar<WithAsyncMethod_TurnOffRadar<WithAsyncMethod_BootloadImu<WithAsyncMethod_DFGetCurrentParameters<WithAsyncMethod_DFGetBufferedEvents<WithAsyncMethod_DisableLuci<WithAsyncMethod_JsOverride<WithAsyncMethod_SetDriveMode<WithAsyncMethod_SetRampMode<WithAsyncMethod_HmiStream<WithAsyncMethod_PressCountStream<WithAsyncMethod_UltrasonicStream<WithAsyncMethod_RawUltrasonicStream<WithAsyncMethod_RadarStream<WithAsyncMethod_RawRadarStream<WithAsyncMethod_ChairSpeedStream<WithAsyncMethod_ImuStream<WithAsyncMethod_ChairModeStream<WithAsyncMethod_ChairProfileStream<WithAsyncMethod_SpeedSettingStream<WithAsyncMethod_JoystickStream<WithAsyncMethod_VirtualJoystickStream<WithAsyncMethod_PhysicalJoystickStream<WithAsyncMethod_ScaledJoystickStream<WithAsyncMethod_AhrsStream<WithAsyncMethod_RadarClosestObstaclesStream<WithAsyncMethod_UltrasonicClosestObstaclesStream<WithAsyncMethod_CameraCollisionClosestObstaclesStream<WithAsyncMethod_StepClosestObstaclesStream<WithAsyncMethod_DropoffClosestObstaclesStream<WithAsyncMethod_ScalingStream<WithAsyncMethod_BatteryVoltageStream<WithAsyncMethod_BatteryPercentStream<WithAsyncMethod_CameraStream<WithAsyncMethod_FlatCameraStream<WithAsyncMethod_DropoffCameraStream<WithAsyncMethod_GPSStream<WithAsyncMethod_SeatPressureStream<WithAsyncMethod_DFParametersChangedStream<WithAsyncMethod_DFEventStream<WithAsyncMethod_SendLogging<WithAsyncMethod_LoggingStream<WithAsyncMethod_StepCameraStream<WithAsyncMethod_IrStream<WithAsyncMethod_RampAssistStream<WithAsyncMethod_DistStream<WithAsyncMethod_StartModeStream<WithAsyncMethod_AudioPlaybackRequestStream<WithAsyncMethod_GetZoneBoundaries<WithAsyncMethod_GetBlockedZones<WithAsyncMethod_GetJoystickRanges<WithAsyncMethod_EnableRadarFilter<WithAsyncMethod_DisableRadarFilter<WithAsyncMethod_EncoderStream<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
-  class WithCallbackMethod_TurnOnLed : public BaseClass {
+  class ExperimentalWithCallbackMethod_TurnOnLed : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_TurnOnLed() {
-      ::grpc::Service::MarkMethodCallback(0,
+    ExperimentalWithCallbackMethod_TurnOnLed() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(0,
           new ::grpc::internal::CallbackUnaryHandler< ::sensors::Led, ::sensors::Response>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::sensors::Led* request, ::sensors::Response* response) { return this->TurnOnLed(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::sensors::Led* request, ::sensors::Response* response) { return this->TurnOnLed(context, request, response); }));}
     void SetMessageAllocatorFor_TurnOnLed(
-        ::grpc::MessageAllocator< ::sensors::Led, ::sensors::Response>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::sensors::Led, ::sensors::Response>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(0);
+    #endif
       static_cast<::grpc::internal::CallbackUnaryHandler< ::sensors::Led, ::sensors::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_TurnOnLed() override {
+    ~ExperimentalWithCallbackMethod_TurnOnLed() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -2941,26 +3448,46 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* TurnOnLed(
-      ::grpc::CallbackServerContext* /*context*/, const ::sensors::Led* /*request*/, ::sensors::Response* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::sensors::Led* /*request*/, ::sensors::Response* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* TurnOnLed(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::sensors::Led* /*request*/, ::sensors::Response* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_TurnOffLed : public BaseClass {
+  class ExperimentalWithCallbackMethod_TurnOffLed : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_TurnOffLed() {
-      ::grpc::Service::MarkMethodCallback(1,
+    ExperimentalWithCallbackMethod_TurnOffLed() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(1,
           new ::grpc::internal::CallbackUnaryHandler< ::sensors::Led, ::sensors::Response>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::sensors::Led* request, ::sensors::Response* response) { return this->TurnOffLed(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::sensors::Led* request, ::sensors::Response* response) { return this->TurnOffLed(context, request, response); }));}
     void SetMessageAllocatorFor_TurnOffLed(
-        ::grpc::MessageAllocator< ::sensors::Led, ::sensors::Response>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::sensors::Led, ::sensors::Response>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
+    #endif
       static_cast<::grpc::internal::CallbackUnaryHandler< ::sensors::Led, ::sensors::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_TurnOffLed() override {
+    ~ExperimentalWithCallbackMethod_TurnOffLed() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -2968,26 +3495,46 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* TurnOffLed(
-      ::grpc::CallbackServerContext* /*context*/, const ::sensors::Led* /*request*/, ::sensors::Response* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::sensors::Led* /*request*/, ::sensors::Response* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* TurnOffLed(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::sensors::Led* /*request*/, ::sensors::Response* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_ActivateHmiState : public BaseClass {
+  class ExperimentalWithCallbackMethod_ActivateHmiState : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_ActivateHmiState() {
-      ::grpc::Service::MarkMethodCallback(2,
+    ExperimentalWithCallbackMethod_ActivateHmiState() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(2,
           new ::grpc::internal::CallbackUnaryHandler< ::sensors::HmiState, ::sensors::Response>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::sensors::HmiState* request, ::sensors::Response* response) { return this->ActivateHmiState(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::sensors::HmiState* request, ::sensors::Response* response) { return this->ActivateHmiState(context, request, response); }));}
     void SetMessageAllocatorFor_ActivateHmiState(
-        ::grpc::MessageAllocator< ::sensors::HmiState, ::sensors::Response>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::sensors::HmiState, ::sensors::Response>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(2);
+    #endif
       static_cast<::grpc::internal::CallbackUnaryHandler< ::sensors::HmiState, ::sensors::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_ActivateHmiState() override {
+    ~ExperimentalWithCallbackMethod_ActivateHmiState() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -2995,26 +3542,46 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* ActivateHmiState(
-      ::grpc::CallbackServerContext* /*context*/, const ::sensors::HmiState* /*request*/, ::sensors::Response* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::sensors::HmiState* /*request*/, ::sensors::Response* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* ActivateHmiState(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::sensors::HmiState* /*request*/, ::sensors::Response* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_DeactivateHmiState : public BaseClass {
+  class ExperimentalWithCallbackMethod_DeactivateHmiState : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_DeactivateHmiState() {
-      ::grpc::Service::MarkMethodCallback(3,
+    ExperimentalWithCallbackMethod_DeactivateHmiState() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(3,
           new ::grpc::internal::CallbackUnaryHandler< ::sensors::HmiState, ::sensors::Response>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::sensors::HmiState* request, ::sensors::Response* response) { return this->DeactivateHmiState(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::sensors::HmiState* request, ::sensors::Response* response) { return this->DeactivateHmiState(context, request, response); }));}
     void SetMessageAllocatorFor_DeactivateHmiState(
-        ::grpc::MessageAllocator< ::sensors::HmiState, ::sensors::Response>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::sensors::HmiState, ::sensors::Response>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(3);
+    #endif
       static_cast<::grpc::internal::CallbackUnaryHandler< ::sensors::HmiState, ::sensors::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_DeactivateHmiState() override {
+    ~ExperimentalWithCallbackMethod_DeactivateHmiState() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3022,26 +3589,46 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DeactivateHmiState(
-      ::grpc::CallbackServerContext* /*context*/, const ::sensors::HmiState* /*request*/, ::sensors::Response* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::sensors::HmiState* /*request*/, ::sensors::Response* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* DeactivateHmiState(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::sensors::HmiState* /*request*/, ::sensors::Response* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_SetNavigationScaling : public BaseClass {
+  class ExperimentalWithCallbackMethod_SetNavigationScaling : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_SetNavigationScaling() {
-      ::grpc::Service::MarkMethodCallback(4,
+    ExperimentalWithCallbackMethod_SetNavigationScaling() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(4,
           new ::grpc::internal::CallbackUnaryHandler< ::sensors::NavigationScaling, ::sensors::Response>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::sensors::NavigationScaling* request, ::sensors::Response* response) { return this->SetNavigationScaling(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::sensors::NavigationScaling* request, ::sensors::Response* response) { return this->SetNavigationScaling(context, request, response); }));}
     void SetMessageAllocatorFor_SetNavigationScaling(
-        ::grpc::MessageAllocator< ::sensors::NavigationScaling, ::sensors::Response>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::sensors::NavigationScaling, ::sensors::Response>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(4);
+    #endif
       static_cast<::grpc::internal::CallbackUnaryHandler< ::sensors::NavigationScaling, ::sensors::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_SetNavigationScaling() override {
+    ~ExperimentalWithCallbackMethod_SetNavigationScaling() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3049,26 +3636,46 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* SetNavigationScaling(
-      ::grpc::CallbackServerContext* /*context*/, const ::sensors::NavigationScaling* /*request*/, ::sensors::Response* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::sensors::NavigationScaling* /*request*/, ::sensors::Response* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* SetNavigationScaling(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::sensors::NavigationScaling* /*request*/, ::sensors::Response* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_TurnOnUltrasonic : public BaseClass {
+  class ExperimentalWithCallbackMethod_TurnOnUltrasonic : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_TurnOnUltrasonic() {
-      ::grpc::Service::MarkMethodCallback(5,
+    ExperimentalWithCallbackMethod_TurnOnUltrasonic() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(5,
           new ::grpc::internal::CallbackUnaryHandler< ::sensors::UltrasonicCtrl, ::sensors::Response>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::sensors::UltrasonicCtrl* request, ::sensors::Response* response) { return this->TurnOnUltrasonic(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::sensors::UltrasonicCtrl* request, ::sensors::Response* response) { return this->TurnOnUltrasonic(context, request, response); }));}
     void SetMessageAllocatorFor_TurnOnUltrasonic(
-        ::grpc::MessageAllocator< ::sensors::UltrasonicCtrl, ::sensors::Response>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::sensors::UltrasonicCtrl, ::sensors::Response>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(5);
+    #endif
       static_cast<::grpc::internal::CallbackUnaryHandler< ::sensors::UltrasonicCtrl, ::sensors::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_TurnOnUltrasonic() override {
+    ~ExperimentalWithCallbackMethod_TurnOnUltrasonic() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3076,26 +3683,46 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* TurnOnUltrasonic(
-      ::grpc::CallbackServerContext* /*context*/, const ::sensors::UltrasonicCtrl* /*request*/, ::sensors::Response* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::sensors::UltrasonicCtrl* /*request*/, ::sensors::Response* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* TurnOnUltrasonic(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::sensors::UltrasonicCtrl* /*request*/, ::sensors::Response* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_TurnOffUltrasonic : public BaseClass {
+  class ExperimentalWithCallbackMethod_TurnOffUltrasonic : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_TurnOffUltrasonic() {
-      ::grpc::Service::MarkMethodCallback(6,
+    ExperimentalWithCallbackMethod_TurnOffUltrasonic() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(6,
           new ::grpc::internal::CallbackUnaryHandler< ::sensors::UltrasonicCtrl, ::sensors::Response>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::sensors::UltrasonicCtrl* request, ::sensors::Response* response) { return this->TurnOffUltrasonic(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::sensors::UltrasonicCtrl* request, ::sensors::Response* response) { return this->TurnOffUltrasonic(context, request, response); }));}
     void SetMessageAllocatorFor_TurnOffUltrasonic(
-        ::grpc::MessageAllocator< ::sensors::UltrasonicCtrl, ::sensors::Response>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::sensors::UltrasonicCtrl, ::sensors::Response>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(6);
+    #endif
       static_cast<::grpc::internal::CallbackUnaryHandler< ::sensors::UltrasonicCtrl, ::sensors::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_TurnOffUltrasonic() override {
+    ~ExperimentalWithCallbackMethod_TurnOffUltrasonic() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3103,26 +3730,46 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* TurnOffUltrasonic(
-      ::grpc::CallbackServerContext* /*context*/, const ::sensors::UltrasonicCtrl* /*request*/, ::sensors::Response* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::sensors::UltrasonicCtrl* /*request*/, ::sensors::Response* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* TurnOffUltrasonic(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::sensors::UltrasonicCtrl* /*request*/, ::sensors::Response* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_TurnOnRadar : public BaseClass {
+  class ExperimentalWithCallbackMethod_TurnOnRadar : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_TurnOnRadar() {
-      ::grpc::Service::MarkMethodCallback(7,
+    ExperimentalWithCallbackMethod_TurnOnRadar() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(7,
           new ::grpc::internal::CallbackUnaryHandler< ::sensors::RadarCtrl, ::sensors::Response>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::sensors::RadarCtrl* request, ::sensors::Response* response) { return this->TurnOnRadar(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::sensors::RadarCtrl* request, ::sensors::Response* response) { return this->TurnOnRadar(context, request, response); }));}
     void SetMessageAllocatorFor_TurnOnRadar(
-        ::grpc::MessageAllocator< ::sensors::RadarCtrl, ::sensors::Response>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::sensors::RadarCtrl, ::sensors::Response>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(7);
+    #endif
       static_cast<::grpc::internal::CallbackUnaryHandler< ::sensors::RadarCtrl, ::sensors::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_TurnOnRadar() override {
+    ~ExperimentalWithCallbackMethod_TurnOnRadar() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3130,26 +3777,46 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* TurnOnRadar(
-      ::grpc::CallbackServerContext* /*context*/, const ::sensors::RadarCtrl* /*request*/, ::sensors::Response* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::sensors::RadarCtrl* /*request*/, ::sensors::Response* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* TurnOnRadar(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::sensors::RadarCtrl* /*request*/, ::sensors::Response* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_TurnOffRadar : public BaseClass {
+  class ExperimentalWithCallbackMethod_TurnOffRadar : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_TurnOffRadar() {
-      ::grpc::Service::MarkMethodCallback(8,
+    ExperimentalWithCallbackMethod_TurnOffRadar() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(8,
           new ::grpc::internal::CallbackUnaryHandler< ::sensors::RadarCtrl, ::sensors::Response>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::sensors::RadarCtrl* request, ::sensors::Response* response) { return this->TurnOffRadar(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::sensors::RadarCtrl* request, ::sensors::Response* response) { return this->TurnOffRadar(context, request, response); }));}
     void SetMessageAllocatorFor_TurnOffRadar(
-        ::grpc::MessageAllocator< ::sensors::RadarCtrl, ::sensors::Response>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::sensors::RadarCtrl, ::sensors::Response>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(8);
+    #endif
       static_cast<::grpc::internal::CallbackUnaryHandler< ::sensors::RadarCtrl, ::sensors::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_TurnOffRadar() override {
+    ~ExperimentalWithCallbackMethod_TurnOffRadar() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3157,21 +3824,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* TurnOffRadar(
-      ::grpc::CallbackServerContext* /*context*/, const ::sensors::RadarCtrl* /*request*/, ::sensors::Response* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::sensors::RadarCtrl* /*request*/, ::sensors::Response* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* TurnOffRadar(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::sensors::RadarCtrl* /*request*/, ::sensors::Response* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_BootloadImu : public BaseClass {
+  class ExperimentalWithCallbackMethod_BootloadImu : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_BootloadImu() {
-      ::grpc::Service::MarkMethodCallback(9,
+    ExperimentalWithCallbackMethod_BootloadImu() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(9,
           new ::grpc::internal::CallbackServerStreamingHandler< ::sensors::ImuCtrl, ::sensors::Response>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::sensors::ImuCtrl* request) { return this->BootloadImu(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::sensors::ImuCtrl* request) { return this->BootloadImu(context, request); }));
     }
-    ~WithCallbackMethod_BootloadImu() override {
+    ~ExperimentalWithCallbackMethod_BootloadImu() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3179,26 +3862,46 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::Response>* BootloadImu(
-      ::grpc::CallbackServerContext* /*context*/, const ::sensors::ImuCtrl* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::sensors::ImuCtrl* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::Response>* BootloadImu(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::sensors::ImuCtrl* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_DFGetCurrentParameters : public BaseClass {
+  class ExperimentalWithCallbackMethod_DFGetCurrentParameters : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_DFGetCurrentParameters() {
-      ::grpc::Service::MarkMethodCallback(10,
+    ExperimentalWithCallbackMethod_DFGetCurrentParameters() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(10,
           new ::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::sensors::Response>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request, ::sensors::Response* response) { return this->DFGetCurrentParameters(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request, ::sensors::Response* response) { return this->DFGetCurrentParameters(context, request, response); }));}
     void SetMessageAllocatorFor_DFGetCurrentParameters(
-        ::grpc::MessageAllocator< ::google::protobuf::Empty, ::sensors::Response>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::google::protobuf::Empty, ::sensors::Response>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(10);
+    #endif
       static_cast<::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::sensors::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_DFGetCurrentParameters() override {
+    ~ExperimentalWithCallbackMethod_DFGetCurrentParameters() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3206,26 +3909,46 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DFGetCurrentParameters(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::sensors::Response* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::sensors::Response* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* DFGetCurrentParameters(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::sensors::Response* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_DFGetBufferedEvents : public BaseClass {
+  class ExperimentalWithCallbackMethod_DFGetBufferedEvents : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_DFGetBufferedEvents() {
-      ::grpc::Service::MarkMethodCallback(11,
+    ExperimentalWithCallbackMethod_DFGetBufferedEvents() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(11,
           new ::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::sensors::Response>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request, ::sensors::Response* response) { return this->DFGetBufferedEvents(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request, ::sensors::Response* response) { return this->DFGetBufferedEvents(context, request, response); }));}
     void SetMessageAllocatorFor_DFGetBufferedEvents(
-        ::grpc::MessageAllocator< ::google::protobuf::Empty, ::sensors::Response>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::google::protobuf::Empty, ::sensors::Response>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(11);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(11);
+    #endif
       static_cast<::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::sensors::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_DFGetBufferedEvents() override {
+    ~ExperimentalWithCallbackMethod_DFGetBufferedEvents() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3233,26 +3956,46 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DFGetBufferedEvents(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::sensors::Response* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::sensors::Response* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* DFGetBufferedEvents(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::sensors::Response* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_DisableLuci : public BaseClass {
+  class ExperimentalWithCallbackMethod_DisableLuci : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_DisableLuci() {
-      ::grpc::Service::MarkMethodCallback(12,
+    ExperimentalWithCallbackMethod_DisableLuci() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(12,
           new ::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::sensors::Response>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request, ::sensors::Response* response) { return this->DisableLuci(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request, ::sensors::Response* response) { return this->DisableLuci(context, request, response); }));}
     void SetMessageAllocatorFor_DisableLuci(
-        ::grpc::MessageAllocator< ::google::protobuf::Empty, ::sensors::Response>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::google::protobuf::Empty, ::sensors::Response>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(12);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(12);
+    #endif
       static_cast<::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::sensors::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_DisableLuci() override {
+    ~ExperimentalWithCallbackMethod_DisableLuci() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3260,26 +4003,46 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DisableLuci(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::sensors::Response* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::sensors::Response* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* DisableLuci(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::sensors::Response* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_JsOverride : public BaseClass {
+  class ExperimentalWithCallbackMethod_JsOverride : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_JsOverride() {
-      ::grpc::Service::MarkMethodCallback(13,
+    ExperimentalWithCallbackMethod_JsOverride() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(13,
           new ::grpc::internal::CallbackUnaryHandler< ::sensors::RemoteJsValues, ::sensors::Response>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::sensors::RemoteJsValues* request, ::sensors::Response* response) { return this->JsOverride(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::sensors::RemoteJsValues* request, ::sensors::Response* response) { return this->JsOverride(context, request, response); }));}
     void SetMessageAllocatorFor_JsOverride(
-        ::grpc::MessageAllocator< ::sensors::RemoteJsValues, ::sensors::Response>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::sensors::RemoteJsValues, ::sensors::Response>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(13);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(13);
+    #endif
       static_cast<::grpc::internal::CallbackUnaryHandler< ::sensors::RemoteJsValues, ::sensors::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_JsOverride() override {
+    ~ExperimentalWithCallbackMethod_JsOverride() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3287,26 +4050,46 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* JsOverride(
-      ::grpc::CallbackServerContext* /*context*/, const ::sensors::RemoteJsValues* /*request*/, ::sensors::Response* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::sensors::RemoteJsValues* /*request*/, ::sensors::Response* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* JsOverride(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::sensors::RemoteJsValues* /*request*/, ::sensors::Response* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_SetDriveMode : public BaseClass {
+  class ExperimentalWithCallbackMethod_SetDriveMode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_SetDriveMode() {
-      ::grpc::Service::MarkMethodCallback(14,
+    ExperimentalWithCallbackMethod_SetDriveMode() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(14,
           new ::grpc::internal::CallbackUnaryHandler< ::sensors::ModeCtrl, ::sensors::Response>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::sensors::ModeCtrl* request, ::sensors::Response* response) { return this->SetDriveMode(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::sensors::ModeCtrl* request, ::sensors::Response* response) { return this->SetDriveMode(context, request, response); }));}
     void SetMessageAllocatorFor_SetDriveMode(
-        ::grpc::MessageAllocator< ::sensors::ModeCtrl, ::sensors::Response>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::sensors::ModeCtrl, ::sensors::Response>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(14);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(14);
+    #endif
       static_cast<::grpc::internal::CallbackUnaryHandler< ::sensors::ModeCtrl, ::sensors::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_SetDriveMode() override {
+    ~ExperimentalWithCallbackMethod_SetDriveMode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3314,26 +4097,46 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* SetDriveMode(
-      ::grpc::CallbackServerContext* /*context*/, const ::sensors::ModeCtrl* /*request*/, ::sensors::Response* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::sensors::ModeCtrl* /*request*/, ::sensors::Response* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* SetDriveMode(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::sensors::ModeCtrl* /*request*/, ::sensors::Response* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_SetRampMode : public BaseClass {
+  class ExperimentalWithCallbackMethod_SetRampMode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_SetRampMode() {
-      ::grpc::Service::MarkMethodCallback(15,
+    ExperimentalWithCallbackMethod_SetRampMode() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(15,
           new ::grpc::internal::CallbackUnaryHandler< ::sensors::RampMode, ::sensors::Response>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::sensors::RampMode* request, ::sensors::Response* response) { return this->SetRampMode(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::sensors::RampMode* request, ::sensors::Response* response) { return this->SetRampMode(context, request, response); }));}
     void SetMessageAllocatorFor_SetRampMode(
-        ::grpc::MessageAllocator< ::sensors::RampMode, ::sensors::Response>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::sensors::RampMode, ::sensors::Response>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(15);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(15);
+    #endif
       static_cast<::grpc::internal::CallbackUnaryHandler< ::sensors::RampMode, ::sensors::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_SetRampMode() override {
+    ~ExperimentalWithCallbackMethod_SetRampMode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3341,21 +4144,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* SetRampMode(
-      ::grpc::CallbackServerContext* /*context*/, const ::sensors::RampMode* /*request*/, ::sensors::Response* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::sensors::RampMode* /*request*/, ::sensors::Response* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* SetRampMode(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::sensors::RampMode* /*request*/, ::sensors::Response* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_HmiStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_HmiStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_HmiStream() {
-      ::grpc::Service::MarkMethodCallback(16,
+    ExperimentalWithCallbackMethod_HmiStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(16,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::HmiStreamData>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->HmiStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->HmiStream(context, request); }));
     }
-    ~WithCallbackMethod_HmiStream() override {
+    ~ExperimentalWithCallbackMethod_HmiStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3363,21 +4182,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::HmiStreamData>* HmiStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::HmiStreamData>* HmiStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_PressCountStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_PressCountStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_PressCountStream() {
-      ::grpc::Service::MarkMethodCallback(17,
+    ExperimentalWithCallbackMethod_PressCountStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(17,
           new ::grpc::internal::CallbackServerStreamingHandler< ::sensors::PressRequest, ::sensors::PressCountStreamData>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::sensors::PressRequest* request) { return this->PressCountStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::sensors::PressRequest* request) { return this->PressCountStream(context, request); }));
     }
-    ~WithCallbackMethod_PressCountStream() override {
+    ~ExperimentalWithCallbackMethod_PressCountStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3385,21 +4220,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::PressCountStreamData>* PressCountStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::sensors::PressRequest* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::sensors::PressRequest* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::PressCountStreamData>* PressCountStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::sensors::PressRequest* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_UltrasonicStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_UltrasonicStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_UltrasonicStream() {
-      ::grpc::Service::MarkMethodCallback(18,
+    ExperimentalWithCallbackMethod_UltrasonicStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(18,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::UltrasonicDistances>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->UltrasonicStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->UltrasonicStream(context, request); }));
     }
-    ~WithCallbackMethod_UltrasonicStream() override {
+    ~ExperimentalWithCallbackMethod_UltrasonicStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3407,21 +4258,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::UltrasonicDistances>* UltrasonicStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::UltrasonicDistances>* UltrasonicStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_RawUltrasonicStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_RawUltrasonicStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_RawUltrasonicStream() {
-      ::grpc::Service::MarkMethodCallback(19,
+    ExperimentalWithCallbackMethod_RawUltrasonicStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(19,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::UltrasonicCurve>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->RawUltrasonicStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->RawUltrasonicStream(context, request); }));
     }
-    ~WithCallbackMethod_RawUltrasonicStream() override {
+    ~ExperimentalWithCallbackMethod_RawUltrasonicStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3429,21 +4296,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::UltrasonicCurve>* RawUltrasonicStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::UltrasonicCurve>* RawUltrasonicStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_RadarStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_RadarStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_RadarStream() {
-      ::grpc::Service::MarkMethodCallback(20,
+    ExperimentalWithCallbackMethod_RadarStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(20,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::RadarPoints>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->RadarStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->RadarStream(context, request); }));
     }
-    ~WithCallbackMethod_RadarStream() override {
+    ~ExperimentalWithCallbackMethod_RadarStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3451,21 +4334,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::RadarPoints>* RadarStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::RadarPoints>* RadarStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_RawRadarStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_RawRadarStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_RawRadarStream() {
-      ::grpc::Service::MarkMethodCallback(21,
+    ExperimentalWithCallbackMethod_RawRadarStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(21,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::RadarPoints>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->RawRadarStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->RawRadarStream(context, request); }));
     }
-    ~WithCallbackMethod_RawRadarStream() override {
+    ~ExperimentalWithCallbackMethod_RawRadarStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3473,21 +4372,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::RadarPoints>* RawRadarStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::RadarPoints>* RawRadarStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_ChairSpeedStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_ChairSpeedStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_ChairSpeedStream() {
-      ::grpc::Service::MarkMethodCallback(22,
+    ExperimentalWithCallbackMethod_ChairSpeedStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(22,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::ChairSpeed>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->ChairSpeedStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->ChairSpeedStream(context, request); }));
     }
-    ~WithCallbackMethod_ChairSpeedStream() override {
+    ~ExperimentalWithCallbackMethod_ChairSpeedStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3495,21 +4410,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::ChairSpeed>* ChairSpeedStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::ChairSpeed>* ChairSpeedStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_ImuStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_ImuStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_ImuStream() {
-      ::grpc::Service::MarkMethodCallback(23,
+    ExperimentalWithCallbackMethod_ImuStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(23,
           new ::grpc::internal::CallbackServerStreamingHandler< ::sensors::ImuCtrl, ::sensors::ImuData>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::sensors::ImuCtrl* request) { return this->ImuStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::sensors::ImuCtrl* request) { return this->ImuStream(context, request); }));
     }
-    ~WithCallbackMethod_ImuStream() override {
+    ~ExperimentalWithCallbackMethod_ImuStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3517,21 +4448,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::ImuData>* ImuStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::sensors::ImuCtrl* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::sensors::ImuCtrl* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::ImuData>* ImuStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::sensors::ImuCtrl* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_ChairModeStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_ChairModeStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_ChairModeStream() {
-      ::grpc::Service::MarkMethodCallback(24,
+    ExperimentalWithCallbackMethod_ChairModeStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(24,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::ChairMode>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->ChairModeStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->ChairModeStream(context, request); }));
     }
-    ~WithCallbackMethod_ChairModeStream() override {
+    ~ExperimentalWithCallbackMethod_ChairModeStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3539,21 +4486,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::ChairMode>* ChairModeStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::ChairMode>* ChairModeStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_ChairProfileStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_ChairProfileStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_ChairProfileStream() {
-      ::grpc::Service::MarkMethodCallback(25,
+    ExperimentalWithCallbackMethod_ChairProfileStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(25,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::ChairProfile>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->ChairProfileStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->ChairProfileStream(context, request); }));
     }
-    ~WithCallbackMethod_ChairProfileStream() override {
+    ~ExperimentalWithCallbackMethod_ChairProfileStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3561,21 +4524,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::ChairProfile>* ChairProfileStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::ChairProfile>* ChairProfileStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_SpeedSettingStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_SpeedSettingStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_SpeedSettingStream() {
-      ::grpc::Service::MarkMethodCallback(26,
+    ExperimentalWithCallbackMethod_SpeedSettingStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(26,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::SpeedSetting>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->SpeedSettingStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->SpeedSettingStream(context, request); }));
     }
-    ~WithCallbackMethod_SpeedSettingStream() override {
+    ~ExperimentalWithCallbackMethod_SpeedSettingStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3583,21 +4562,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::SpeedSetting>* SpeedSettingStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::SpeedSetting>* SpeedSettingStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_JoystickStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_JoystickStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_JoystickStream() {
-      ::grpc::Service::MarkMethodCallback(27,
+    ExperimentalWithCallbackMethod_JoystickStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(27,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::Joystick>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->JoystickStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->JoystickStream(context, request); }));
     }
-    ~WithCallbackMethod_JoystickStream() override {
+    ~ExperimentalWithCallbackMethod_JoystickStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3605,21 +4600,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::Joystick>* JoystickStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::Joystick>* JoystickStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_VirtualJoystickStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_VirtualJoystickStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_VirtualJoystickStream() {
-      ::grpc::Service::MarkMethodCallback(28,
+    ExperimentalWithCallbackMethod_VirtualJoystickStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(28,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::JoystickData>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->VirtualJoystickStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->VirtualJoystickStream(context, request); }));
     }
-    ~WithCallbackMethod_VirtualJoystickStream() override {
+    ~ExperimentalWithCallbackMethod_VirtualJoystickStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3627,21 +4638,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::JoystickData>* VirtualJoystickStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::JoystickData>* VirtualJoystickStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_PhysicalJoystickStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_PhysicalJoystickStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_PhysicalJoystickStream() {
-      ::grpc::Service::MarkMethodCallback(29,
+    ExperimentalWithCallbackMethod_PhysicalJoystickStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(29,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::JoystickData>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->PhysicalJoystickStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->PhysicalJoystickStream(context, request); }));
     }
-    ~WithCallbackMethod_PhysicalJoystickStream() override {
+    ~ExperimentalWithCallbackMethod_PhysicalJoystickStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3649,21 +4676,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::JoystickData>* PhysicalJoystickStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::JoystickData>* PhysicalJoystickStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_ScaledJoystickStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_ScaledJoystickStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_ScaledJoystickStream() {
-      ::grpc::Service::MarkMethodCallback(30,
+    ExperimentalWithCallbackMethod_ScaledJoystickStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(30,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::JoystickData>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->ScaledJoystickStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->ScaledJoystickStream(context, request); }));
     }
-    ~WithCallbackMethod_ScaledJoystickStream() override {
+    ~ExperimentalWithCallbackMethod_ScaledJoystickStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3671,21 +4714,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::JoystickData>* ScaledJoystickStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::JoystickData>* ScaledJoystickStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_AhrsStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_AhrsStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_AhrsStream() {
-      ::grpc::Service::MarkMethodCallback(31,
+    ExperimentalWithCallbackMethod_AhrsStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(31,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::AhrsData>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->AhrsStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->AhrsStream(context, request); }));
     }
-    ~WithCallbackMethod_AhrsStream() override {
+    ~ExperimentalWithCallbackMethod_AhrsStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3693,21 +4752,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::AhrsData>* AhrsStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::AhrsData>* AhrsStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_RadarClosestObstaclesStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_RadarClosestObstaclesStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_RadarClosestObstaclesStream() {
-      ::grpc::Service::MarkMethodCallback(32,
+    ExperimentalWithCallbackMethod_RadarClosestObstaclesStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(32,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::ClosestObstacles>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->RadarClosestObstaclesStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->RadarClosestObstaclesStream(context, request); }));
     }
-    ~WithCallbackMethod_RadarClosestObstaclesStream() override {
+    ~ExperimentalWithCallbackMethod_RadarClosestObstaclesStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3715,21 +4790,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::ClosestObstacles>* RadarClosestObstaclesStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::ClosestObstacles>* RadarClosestObstaclesStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_UltrasonicClosestObstaclesStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_UltrasonicClosestObstaclesStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_UltrasonicClosestObstaclesStream() {
-      ::grpc::Service::MarkMethodCallback(33,
+    ExperimentalWithCallbackMethod_UltrasonicClosestObstaclesStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(33,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::ClosestObstacles>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->UltrasonicClosestObstaclesStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->UltrasonicClosestObstaclesStream(context, request); }));
     }
-    ~WithCallbackMethod_UltrasonicClosestObstaclesStream() override {
+    ~ExperimentalWithCallbackMethod_UltrasonicClosestObstaclesStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3737,21 +4828,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::ClosestObstacles>* UltrasonicClosestObstaclesStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::ClosestObstacles>* UltrasonicClosestObstaclesStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_CameraCollisionClosestObstaclesStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_CameraCollisionClosestObstaclesStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_CameraCollisionClosestObstaclesStream() {
-      ::grpc::Service::MarkMethodCallback(34,
+    ExperimentalWithCallbackMethod_CameraCollisionClosestObstaclesStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(34,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::ClosestObstacles>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->CameraCollisionClosestObstaclesStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->CameraCollisionClosestObstaclesStream(context, request); }));
     }
-    ~WithCallbackMethod_CameraCollisionClosestObstaclesStream() override {
+    ~ExperimentalWithCallbackMethod_CameraCollisionClosestObstaclesStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3759,21 +4866,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::ClosestObstacles>* CameraCollisionClosestObstaclesStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::ClosestObstacles>* CameraCollisionClosestObstaclesStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_StepClosestObstaclesStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_StepClosestObstaclesStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_StepClosestObstaclesStream() {
-      ::grpc::Service::MarkMethodCallback(35,
+    ExperimentalWithCallbackMethod_StepClosestObstaclesStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(35,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::ClosestObstacles>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->StepClosestObstaclesStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->StepClosestObstaclesStream(context, request); }));
     }
-    ~WithCallbackMethod_StepClosestObstaclesStream() override {
+    ~ExperimentalWithCallbackMethod_StepClosestObstaclesStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3781,21 +4904,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::ClosestObstacles>* StepClosestObstaclesStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::ClosestObstacles>* StepClosestObstaclesStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_DropoffClosestObstaclesStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_DropoffClosestObstaclesStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_DropoffClosestObstaclesStream() {
-      ::grpc::Service::MarkMethodCallback(36,
+    ExperimentalWithCallbackMethod_DropoffClosestObstaclesStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(36,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::ClosestObstacles>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->DropoffClosestObstaclesStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->DropoffClosestObstaclesStream(context, request); }));
     }
-    ~WithCallbackMethod_DropoffClosestObstaclesStream() override {
+    ~ExperimentalWithCallbackMethod_DropoffClosestObstaclesStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3803,21 +4942,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::ClosestObstacles>* DropoffClosestObstaclesStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::ClosestObstacles>* DropoffClosestObstaclesStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_ScalingStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_ScalingStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_ScalingStream() {
-      ::grpc::Service::MarkMethodCallback(37,
+    ExperimentalWithCallbackMethod_ScalingStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(37,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::NavigationScaling>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->ScalingStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->ScalingStream(context, request); }));
     }
-    ~WithCallbackMethod_ScalingStream() override {
+    ~ExperimentalWithCallbackMethod_ScalingStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3825,21 +4980,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::NavigationScaling>* ScalingStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::NavigationScaling>* ScalingStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_BatteryVoltageStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_BatteryVoltageStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_BatteryVoltageStream() {
-      ::grpc::Service::MarkMethodCallback(38,
+    ExperimentalWithCallbackMethod_BatteryVoltageStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(38,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::BatteryVoltage>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->BatteryVoltageStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->BatteryVoltageStream(context, request); }));
     }
-    ~WithCallbackMethod_BatteryVoltageStream() override {
+    ~ExperimentalWithCallbackMethod_BatteryVoltageStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3847,21 +5018,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::BatteryVoltage>* BatteryVoltageStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::BatteryVoltage>* BatteryVoltageStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_BatteryPercentStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_BatteryPercentStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_BatteryPercentStream() {
-      ::grpc::Service::MarkMethodCallback(39,
+    ExperimentalWithCallbackMethod_BatteryPercentStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(39,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::BatteryPercent>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->BatteryPercentStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->BatteryPercentStream(context, request); }));
     }
-    ~WithCallbackMethod_BatteryPercentStream() override {
+    ~ExperimentalWithCallbackMethod_BatteryPercentStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3869,21 +5056,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::BatteryPercent>* BatteryPercentStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::BatteryPercent>* BatteryPercentStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_CameraStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_CameraStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_CameraStream() {
-      ::grpc::Service::MarkMethodCallback(40,
+    ExperimentalWithCallbackMethod_CameraStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(40,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::CameraPoints>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->CameraStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->CameraStream(context, request); }));
     }
-    ~WithCallbackMethod_CameraStream() override {
+    ~ExperimentalWithCallbackMethod_CameraStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3891,21 +5094,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::CameraPoints>* CameraStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::CameraPoints>* CameraStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_FlatCameraStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_FlatCameraStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_FlatCameraStream() {
-      ::grpc::Service::MarkMethodCallback(41,
+    ExperimentalWithCallbackMethod_FlatCameraStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(41,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::CameraPoints2D>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->FlatCameraStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->FlatCameraStream(context, request); }));
     }
-    ~WithCallbackMethod_FlatCameraStream() override {
+    ~ExperimentalWithCallbackMethod_FlatCameraStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3913,21 +5132,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::CameraPoints2D>* FlatCameraStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::CameraPoints2D>* FlatCameraStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_DropoffCameraStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_DropoffCameraStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_DropoffCameraStream() {
-      ::grpc::Service::MarkMethodCallback(42,
+    ExperimentalWithCallbackMethod_DropoffCameraStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(42,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::CameraPoints>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->DropoffCameraStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->DropoffCameraStream(context, request); }));
     }
-    ~WithCallbackMethod_DropoffCameraStream() override {
+    ~ExperimentalWithCallbackMethod_DropoffCameraStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3935,21 +5170,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::CameraPoints>* DropoffCameraStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::CameraPoints>* DropoffCameraStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GPSStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_GPSStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GPSStream() {
-      ::grpc::Service::MarkMethodCallback(43,
+    ExperimentalWithCallbackMethod_GPSStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(43,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::GPSData>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->GPSStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->GPSStream(context, request); }));
     }
-    ~WithCallbackMethod_GPSStream() override {
+    ~ExperimentalWithCallbackMethod_GPSStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3957,21 +5208,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::GPSData>* GPSStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::GPSData>* GPSStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_SeatPressureStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_SeatPressureStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_SeatPressureStream() {
-      ::grpc::Service::MarkMethodCallback(44,
+    ExperimentalWithCallbackMethod_SeatPressureStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(44,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::SeatPressure>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->SeatPressureStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->SeatPressureStream(context, request); }));
     }
-    ~WithCallbackMethod_SeatPressureStream() override {
+    ~ExperimentalWithCallbackMethod_SeatPressureStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -3979,21 +5246,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::SeatPressure>* SeatPressureStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::SeatPressure>* SeatPressureStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_DFParametersChangedStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_DFParametersChangedStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_DFParametersChangedStream() {
-      ::grpc::Service::MarkMethodCallback(45,
+    ExperimentalWithCallbackMethod_DFParametersChangedStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(45,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::DFParameters>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->DFParametersChangedStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->DFParametersChangedStream(context, request); }));
     }
-    ~WithCallbackMethod_DFParametersChangedStream() override {
+    ~ExperimentalWithCallbackMethod_DFParametersChangedStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -4001,21 +5284,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::DFParameters>* DFParametersChangedStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::DFParameters>* DFParametersChangedStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_DFEventStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_DFEventStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_DFEventStream() {
-      ::grpc::Service::MarkMethodCallback(46,
+    ExperimentalWithCallbackMethod_DFEventStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(46,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::DFSeatEvent>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->DFEventStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->DFEventStream(context, request); }));
     }
-    ~WithCallbackMethod_DFEventStream() override {
+    ~ExperimentalWithCallbackMethod_DFEventStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -4023,26 +5322,46 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::DFSeatEvent>* DFEventStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::DFSeatEvent>* DFEventStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_SendLogging : public BaseClass {
+  class ExperimentalWithCallbackMethod_SendLogging : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_SendLogging() {
-      ::grpc::Service::MarkMethodCallback(47,
+    ExperimentalWithCallbackMethod_SendLogging() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(47,
           new ::grpc::internal::CallbackUnaryHandler< ::sensors::LoggingData, ::sensors::Response>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::sensors::LoggingData* request, ::sensors::Response* response) { return this->SendLogging(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::sensors::LoggingData* request, ::sensors::Response* response) { return this->SendLogging(context, request, response); }));}
     void SetMessageAllocatorFor_SendLogging(
-        ::grpc::MessageAllocator< ::sensors::LoggingData, ::sensors::Response>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::sensors::LoggingData, ::sensors::Response>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(47);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(47);
+    #endif
       static_cast<::grpc::internal::CallbackUnaryHandler< ::sensors::LoggingData, ::sensors::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_SendLogging() override {
+    ~ExperimentalWithCallbackMethod_SendLogging() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -4050,21 +5369,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* SendLogging(
-      ::grpc::CallbackServerContext* /*context*/, const ::sensors::LoggingData* /*request*/, ::sensors::Response* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::sensors::LoggingData* /*request*/, ::sensors::Response* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* SendLogging(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::sensors::LoggingData* /*request*/, ::sensors::Response* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_LoggingStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_LoggingStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_LoggingStream() {
-      ::grpc::Service::MarkMethodCallback(48,
+    ExperimentalWithCallbackMethod_LoggingStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(48,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::LoggingData>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->LoggingStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->LoggingStream(context, request); }));
     }
-    ~WithCallbackMethod_LoggingStream() override {
+    ~ExperimentalWithCallbackMethod_LoggingStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -4072,21 +5407,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::LoggingData>* LoggingStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::LoggingData>* LoggingStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_StepCameraStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_StepCameraStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_StepCameraStream() {
-      ::grpc::Service::MarkMethodCallback(49,
+    ExperimentalWithCallbackMethod_StepCameraStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(49,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::CameraPoints>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->StepCameraStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->StepCameraStream(context, request); }));
     }
-    ~WithCallbackMethod_StepCameraStream() override {
+    ~ExperimentalWithCallbackMethod_StepCameraStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -4094,21 +5445,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::CameraPoints>* StepCameraStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::CameraPoints>* StepCameraStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_IrStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_IrStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_IrStream() {
-      ::grpc::Service::MarkMethodCallback(50,
+    ExperimentalWithCallbackMethod_IrStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(50,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::IrFrame>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->IrStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->IrStream(context, request); }));
     }
-    ~WithCallbackMethod_IrStream() override {
+    ~ExperimentalWithCallbackMethod_IrStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -4116,21 +5483,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::IrFrame>* IrStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::IrFrame>* IrStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_RampAssistStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_RampAssistStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_RampAssistStream() {
-      ::grpc::Service::MarkMethodCallback(51,
+    ExperimentalWithCallbackMethod_RampAssistStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(51,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::RampAssistStates>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->RampAssistStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->RampAssistStream(context, request); }));
     }
-    ~WithCallbackMethod_RampAssistStream() override {
+    ~ExperimentalWithCallbackMethod_RampAssistStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -4138,21 +5521,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::RampAssistStates>* RampAssistStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::RampAssistStates>* RampAssistStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_DistStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_DistStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_DistStream() {
-      ::grpc::Service::MarkMethodCallback(52,
+    ExperimentalWithCallbackMethod_DistStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(52,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::DistanceData>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->DistStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->DistStream(context, request); }));
     }
-    ~WithCallbackMethod_DistStream() override {
+    ~ExperimentalWithCallbackMethod_DistStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -4160,21 +5559,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::DistanceData>* DistStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::DistanceData>* DistStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_StartModeStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_StartModeStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_StartModeStream() {
-      ::grpc::Service::MarkMethodCallback(53,
+    ExperimentalWithCallbackMethod_StartModeStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(53,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::StartModeData>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->StartModeStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->StartModeStream(context, request); }));
     }
-    ~WithCallbackMethod_StartModeStream() override {
+    ~ExperimentalWithCallbackMethod_StartModeStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -4182,21 +5597,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::StartModeData>* StartModeStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::StartModeData>* StartModeStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_AudioPlaybackRequestStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_AudioPlaybackRequestStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_AudioPlaybackRequestStream() {
-      ::grpc::Service::MarkMethodCallback(54,
+    ExperimentalWithCallbackMethod_AudioPlaybackRequestStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(54,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::AudioPlaybackRequest>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->AudioPlaybackRequestStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->AudioPlaybackRequestStream(context, request); }));
     }
-    ~WithCallbackMethod_AudioPlaybackRequestStream() override {
+    ~ExperimentalWithCallbackMethod_AudioPlaybackRequestStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -4204,26 +5635,46 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::AudioPlaybackRequest>* AudioPlaybackRequestStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::AudioPlaybackRequest>* AudioPlaybackRequestStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetZoneBoundaries : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetZoneBoundaries : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetZoneBoundaries() {
-      ::grpc::Service::MarkMethodCallback(55,
+    ExperimentalWithCallbackMethod_GetZoneBoundaries() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(55,
           new ::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::sensors::ZoneBoundaries>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request, ::sensors::ZoneBoundaries* response) { return this->GetZoneBoundaries(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request, ::sensors::ZoneBoundaries* response) { return this->GetZoneBoundaries(context, request, response); }));}
     void SetMessageAllocatorFor_GetZoneBoundaries(
-        ::grpc::MessageAllocator< ::google::protobuf::Empty, ::sensors::ZoneBoundaries>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::google::protobuf::Empty, ::sensors::ZoneBoundaries>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(55);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(55);
+    #endif
       static_cast<::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::sensors::ZoneBoundaries>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetZoneBoundaries() override {
+    ~ExperimentalWithCallbackMethod_GetZoneBoundaries() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -4231,26 +5682,46 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetZoneBoundaries(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::sensors::ZoneBoundaries* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::sensors::ZoneBoundaries* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetZoneBoundaries(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::sensors::ZoneBoundaries* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetBlockedZones : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetBlockedZones : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetBlockedZones() {
-      ::grpc::Service::MarkMethodCallback(56,
+    ExperimentalWithCallbackMethod_GetBlockedZones() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(56,
           new ::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::sensors::BlockedZones>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request, ::sensors::BlockedZones* response) { return this->GetBlockedZones(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request, ::sensors::BlockedZones* response) { return this->GetBlockedZones(context, request, response); }));}
     void SetMessageAllocatorFor_GetBlockedZones(
-        ::grpc::MessageAllocator< ::google::protobuf::Empty, ::sensors::BlockedZones>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::google::protobuf::Empty, ::sensors::BlockedZones>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(56);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(56);
+    #endif
       static_cast<::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::sensors::BlockedZones>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetBlockedZones() override {
+    ~ExperimentalWithCallbackMethod_GetBlockedZones() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -4258,26 +5729,46 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetBlockedZones(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::sensors::BlockedZones* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::sensors::BlockedZones* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetBlockedZones(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::sensors::BlockedZones* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetJoystickRanges : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetJoystickRanges : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetJoystickRanges() {
-      ::grpc::Service::MarkMethodCallback(57,
+    ExperimentalWithCallbackMethod_GetJoystickRanges() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(57,
           new ::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::sensors::JoystickRanges>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request, ::sensors::JoystickRanges* response) { return this->GetJoystickRanges(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request, ::sensors::JoystickRanges* response) { return this->GetJoystickRanges(context, request, response); }));}
     void SetMessageAllocatorFor_GetJoystickRanges(
-        ::grpc::MessageAllocator< ::google::protobuf::Empty, ::sensors::JoystickRanges>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::google::protobuf::Empty, ::sensors::JoystickRanges>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(57);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(57);
+    #endif
       static_cast<::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::sensors::JoystickRanges>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetJoystickRanges() override {
+    ~ExperimentalWithCallbackMethod_GetJoystickRanges() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -4285,26 +5776,46 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetJoystickRanges(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::sensors::JoystickRanges* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::sensors::JoystickRanges* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetJoystickRanges(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::sensors::JoystickRanges* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_EnableRadarFilter : public BaseClass {
+  class ExperimentalWithCallbackMethod_EnableRadarFilter : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_EnableRadarFilter() {
-      ::grpc::Service::MarkMethodCallback(58,
+    ExperimentalWithCallbackMethod_EnableRadarFilter() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(58,
           new ::grpc::internal::CallbackUnaryHandler< ::sensors::RadarFilter, ::sensors::Response>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::sensors::RadarFilter* request, ::sensors::Response* response) { return this->EnableRadarFilter(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::sensors::RadarFilter* request, ::sensors::Response* response) { return this->EnableRadarFilter(context, request, response); }));}
     void SetMessageAllocatorFor_EnableRadarFilter(
-        ::grpc::MessageAllocator< ::sensors::RadarFilter, ::sensors::Response>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::sensors::RadarFilter, ::sensors::Response>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(58);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(58);
+    #endif
       static_cast<::grpc::internal::CallbackUnaryHandler< ::sensors::RadarFilter, ::sensors::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_EnableRadarFilter() override {
+    ~ExperimentalWithCallbackMethod_EnableRadarFilter() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -4312,26 +5823,46 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* EnableRadarFilter(
-      ::grpc::CallbackServerContext* /*context*/, const ::sensors::RadarFilter* /*request*/, ::sensors::Response* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::sensors::RadarFilter* /*request*/, ::sensors::Response* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* EnableRadarFilter(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::sensors::RadarFilter* /*request*/, ::sensors::Response* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_DisableRadarFilter : public BaseClass {
+  class ExperimentalWithCallbackMethod_DisableRadarFilter : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_DisableRadarFilter() {
-      ::grpc::Service::MarkMethodCallback(59,
+    ExperimentalWithCallbackMethod_DisableRadarFilter() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(59,
           new ::grpc::internal::CallbackUnaryHandler< ::sensors::RadarFilter, ::sensors::Response>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::sensors::RadarFilter* request, ::sensors::Response* response) { return this->DisableRadarFilter(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::sensors::RadarFilter* request, ::sensors::Response* response) { return this->DisableRadarFilter(context, request, response); }));}
     void SetMessageAllocatorFor_DisableRadarFilter(
-        ::grpc::MessageAllocator< ::sensors::RadarFilter, ::sensors::Response>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::sensors::RadarFilter, ::sensors::Response>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(59);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(59);
+    #endif
       static_cast<::grpc::internal::CallbackUnaryHandler< ::sensors::RadarFilter, ::sensors::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_DisableRadarFilter() override {
+    ~ExperimentalWithCallbackMethod_DisableRadarFilter() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -4339,21 +5870,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DisableRadarFilter(
-      ::grpc::CallbackServerContext* /*context*/, const ::sensors::RadarFilter* /*request*/, ::sensors::Response* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::sensors::RadarFilter* /*request*/, ::sensors::Response* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* DisableRadarFilter(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::sensors::RadarFilter* /*request*/, ::sensors::Response* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_EncoderStream : public BaseClass {
+  class ExperimentalWithCallbackMethod_EncoderStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_EncoderStream() {
-      ::grpc::Service::MarkMethodCallback(60,
+    ExperimentalWithCallbackMethod_EncoderStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(60,
           new ::grpc::internal::CallbackServerStreamingHandler< ::google::protobuf::Empty, ::sensors::EncoderData>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request) { return this->EncoderStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::google::protobuf::Empty* request) { return this->EncoderStream(context, request); }));
     }
-    ~WithCallbackMethod_EncoderStream() override {
+    ~ExperimentalWithCallbackMethod_EncoderStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -4361,11 +5908,20 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::sensors::EncoderData>* EncoderStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::sensors::EncoderData>* EncoderStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/)
+    #endif
+      { return nullptr; }
   };
-  typedef WithCallbackMethod_TurnOnLed<WithCallbackMethod_TurnOffLed<WithCallbackMethod_ActivateHmiState<WithCallbackMethod_DeactivateHmiState<WithCallbackMethod_SetNavigationScaling<WithCallbackMethod_TurnOnUltrasonic<WithCallbackMethod_TurnOffUltrasonic<WithCallbackMethod_TurnOnRadar<WithCallbackMethod_TurnOffRadar<WithCallbackMethod_BootloadImu<WithCallbackMethod_DFGetCurrentParameters<WithCallbackMethod_DFGetBufferedEvents<WithCallbackMethod_DisableLuci<WithCallbackMethod_JsOverride<WithCallbackMethod_SetDriveMode<WithCallbackMethod_SetRampMode<WithCallbackMethod_HmiStream<WithCallbackMethod_PressCountStream<WithCallbackMethod_UltrasonicStream<WithCallbackMethod_RawUltrasonicStream<WithCallbackMethod_RadarStream<WithCallbackMethod_RawRadarStream<WithCallbackMethod_ChairSpeedStream<WithCallbackMethod_ImuStream<WithCallbackMethod_ChairModeStream<WithCallbackMethod_ChairProfileStream<WithCallbackMethod_SpeedSettingStream<WithCallbackMethod_JoystickStream<WithCallbackMethod_VirtualJoystickStream<WithCallbackMethod_PhysicalJoystickStream<WithCallbackMethod_ScaledJoystickStream<WithCallbackMethod_AhrsStream<WithCallbackMethod_RadarClosestObstaclesStream<WithCallbackMethod_UltrasonicClosestObstaclesStream<WithCallbackMethod_CameraCollisionClosestObstaclesStream<WithCallbackMethod_StepClosestObstaclesStream<WithCallbackMethod_DropoffClosestObstaclesStream<WithCallbackMethod_ScalingStream<WithCallbackMethod_BatteryVoltageStream<WithCallbackMethod_BatteryPercentStream<WithCallbackMethod_CameraStream<WithCallbackMethod_FlatCameraStream<WithCallbackMethod_DropoffCameraStream<WithCallbackMethod_GPSStream<WithCallbackMethod_SeatPressureStream<WithCallbackMethod_DFParametersChangedStream<WithCallbackMethod_DFEventStream<WithCallbackMethod_SendLogging<WithCallbackMethod_LoggingStream<WithCallbackMethod_StepCameraStream<WithCallbackMethod_IrStream<WithCallbackMethod_RampAssistStream<WithCallbackMethod_DistStream<WithCallbackMethod_StartModeStream<WithCallbackMethod_AudioPlaybackRequestStream<WithCallbackMethod_GetZoneBoundaries<WithCallbackMethod_GetBlockedZones<WithCallbackMethod_GetJoystickRanges<WithCallbackMethod_EnableRadarFilter<WithCallbackMethod_DisableRadarFilter<WithCallbackMethod_EncoderStream<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
-  typedef CallbackService ExperimentalCallbackService;
+  #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+  typedef ExperimentalWithCallbackMethod_TurnOnLed<ExperimentalWithCallbackMethod_TurnOffLed<ExperimentalWithCallbackMethod_ActivateHmiState<ExperimentalWithCallbackMethod_DeactivateHmiState<ExperimentalWithCallbackMethod_SetNavigationScaling<ExperimentalWithCallbackMethod_TurnOnUltrasonic<ExperimentalWithCallbackMethod_TurnOffUltrasonic<ExperimentalWithCallbackMethod_TurnOnRadar<ExperimentalWithCallbackMethod_TurnOffRadar<ExperimentalWithCallbackMethod_BootloadImu<ExperimentalWithCallbackMethod_DFGetCurrentParameters<ExperimentalWithCallbackMethod_DFGetBufferedEvents<ExperimentalWithCallbackMethod_DisableLuci<ExperimentalWithCallbackMethod_JsOverride<ExperimentalWithCallbackMethod_SetDriveMode<ExperimentalWithCallbackMethod_SetRampMode<ExperimentalWithCallbackMethod_HmiStream<ExperimentalWithCallbackMethod_PressCountStream<ExperimentalWithCallbackMethod_UltrasonicStream<ExperimentalWithCallbackMethod_RawUltrasonicStream<ExperimentalWithCallbackMethod_RadarStream<ExperimentalWithCallbackMethod_RawRadarStream<ExperimentalWithCallbackMethod_ChairSpeedStream<ExperimentalWithCallbackMethod_ImuStream<ExperimentalWithCallbackMethod_ChairModeStream<ExperimentalWithCallbackMethod_ChairProfileStream<ExperimentalWithCallbackMethod_SpeedSettingStream<ExperimentalWithCallbackMethod_JoystickStream<ExperimentalWithCallbackMethod_VirtualJoystickStream<ExperimentalWithCallbackMethod_PhysicalJoystickStream<ExperimentalWithCallbackMethod_ScaledJoystickStream<ExperimentalWithCallbackMethod_AhrsStream<ExperimentalWithCallbackMethod_RadarClosestObstaclesStream<ExperimentalWithCallbackMethod_UltrasonicClosestObstaclesStream<ExperimentalWithCallbackMethod_CameraCollisionClosestObstaclesStream<ExperimentalWithCallbackMethod_StepClosestObstaclesStream<ExperimentalWithCallbackMethod_DropoffClosestObstaclesStream<ExperimentalWithCallbackMethod_ScalingStream<ExperimentalWithCallbackMethod_BatteryVoltageStream<ExperimentalWithCallbackMethod_BatteryPercentStream<ExperimentalWithCallbackMethod_CameraStream<ExperimentalWithCallbackMethod_FlatCameraStream<ExperimentalWithCallbackMethod_DropoffCameraStream<ExperimentalWithCallbackMethod_GPSStream<ExperimentalWithCallbackMethod_SeatPressureStream<ExperimentalWithCallbackMethod_DFParametersChangedStream<ExperimentalWithCallbackMethod_DFEventStream<ExperimentalWithCallbackMethod_SendLogging<ExperimentalWithCallbackMethod_LoggingStream<ExperimentalWithCallbackMethod_StepCameraStream<ExperimentalWithCallbackMethod_IrStream<ExperimentalWithCallbackMethod_RampAssistStream<ExperimentalWithCallbackMethod_DistStream<ExperimentalWithCallbackMethod_StartModeStream<ExperimentalWithCallbackMethod_AudioPlaybackRequestStream<ExperimentalWithCallbackMethod_GetZoneBoundaries<ExperimentalWithCallbackMethod_GetBlockedZones<ExperimentalWithCallbackMethod_GetJoystickRanges<ExperimentalWithCallbackMethod_EnableRadarFilter<ExperimentalWithCallbackMethod_DisableRadarFilter<ExperimentalWithCallbackMethod_EncoderStream<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
+  #endif
+
+  typedef ExperimentalWithCallbackMethod_TurnOnLed<ExperimentalWithCallbackMethod_TurnOffLed<ExperimentalWithCallbackMethod_ActivateHmiState<ExperimentalWithCallbackMethod_DeactivateHmiState<ExperimentalWithCallbackMethod_SetNavigationScaling<ExperimentalWithCallbackMethod_TurnOnUltrasonic<ExperimentalWithCallbackMethod_TurnOffUltrasonic<ExperimentalWithCallbackMethod_TurnOnRadar<ExperimentalWithCallbackMethod_TurnOffRadar<ExperimentalWithCallbackMethod_BootloadImu<ExperimentalWithCallbackMethod_DFGetCurrentParameters<ExperimentalWithCallbackMethod_DFGetBufferedEvents<ExperimentalWithCallbackMethod_DisableLuci<ExperimentalWithCallbackMethod_JsOverride<ExperimentalWithCallbackMethod_SetDriveMode<ExperimentalWithCallbackMethod_SetRampMode<ExperimentalWithCallbackMethod_HmiStream<ExperimentalWithCallbackMethod_PressCountStream<ExperimentalWithCallbackMethod_UltrasonicStream<ExperimentalWithCallbackMethod_RawUltrasonicStream<ExperimentalWithCallbackMethod_RadarStream<ExperimentalWithCallbackMethod_RawRadarStream<ExperimentalWithCallbackMethod_ChairSpeedStream<ExperimentalWithCallbackMethod_ImuStream<ExperimentalWithCallbackMethod_ChairModeStream<ExperimentalWithCallbackMethod_ChairProfileStream<ExperimentalWithCallbackMethod_SpeedSettingStream<ExperimentalWithCallbackMethod_JoystickStream<ExperimentalWithCallbackMethod_VirtualJoystickStream<ExperimentalWithCallbackMethod_PhysicalJoystickStream<ExperimentalWithCallbackMethod_ScaledJoystickStream<ExperimentalWithCallbackMethod_AhrsStream<ExperimentalWithCallbackMethod_RadarClosestObstaclesStream<ExperimentalWithCallbackMethod_UltrasonicClosestObstaclesStream<ExperimentalWithCallbackMethod_CameraCollisionClosestObstaclesStream<ExperimentalWithCallbackMethod_StepClosestObstaclesStream<ExperimentalWithCallbackMethod_DropoffClosestObstaclesStream<ExperimentalWithCallbackMethod_ScalingStream<ExperimentalWithCallbackMethod_BatteryVoltageStream<ExperimentalWithCallbackMethod_BatteryPercentStream<ExperimentalWithCallbackMethod_CameraStream<ExperimentalWithCallbackMethod_FlatCameraStream<ExperimentalWithCallbackMethod_DropoffCameraStream<ExperimentalWithCallbackMethod_GPSStream<ExperimentalWithCallbackMethod_SeatPressureStream<ExperimentalWithCallbackMethod_DFParametersChangedStream<ExperimentalWithCallbackMethod_DFEventStream<ExperimentalWithCallbackMethod_SendLogging<ExperimentalWithCallbackMethod_LoggingStream<ExperimentalWithCallbackMethod_StepCameraStream<ExperimentalWithCallbackMethod_IrStream<ExperimentalWithCallbackMethod_RampAssistStream<ExperimentalWithCallbackMethod_DistStream<ExperimentalWithCallbackMethod_StartModeStream<ExperimentalWithCallbackMethod_AudioPlaybackRequestStream<ExperimentalWithCallbackMethod_GetZoneBoundaries<ExperimentalWithCallbackMethod_GetBlockedZones<ExperimentalWithCallbackMethod_GetJoystickRanges<ExperimentalWithCallbackMethod_EnableRadarFilter<ExperimentalWithCallbackMethod_DisableRadarFilter<ExperimentalWithCallbackMethod_EncoderStream<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_TurnOnLed : public BaseClass {
    private:
@@ -6624,17 +8180,27 @@ class Sensors final {
     }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_TurnOnLed : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_TurnOnLed : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_TurnOnLed() {
-      ::grpc::Service::MarkMethodRawCallback(0,
+    ExperimentalWithRawCallbackMethod_TurnOnLed() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(0,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->TurnOnLed(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->TurnOnLed(context, request, response); }));
     }
-    ~WithRawCallbackMethod_TurnOnLed() override {
+    ~ExperimentalWithRawCallbackMethod_TurnOnLed() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -6642,21 +8208,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* TurnOnLed(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* TurnOnLed(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_TurnOffLed : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_TurnOffLed : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_TurnOffLed() {
-      ::grpc::Service::MarkMethodRawCallback(1,
+    ExperimentalWithRawCallbackMethod_TurnOffLed() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(1,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->TurnOffLed(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->TurnOffLed(context, request, response); }));
     }
-    ~WithRawCallbackMethod_TurnOffLed() override {
+    ~ExperimentalWithRawCallbackMethod_TurnOffLed() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -6664,21 +8246,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* TurnOffLed(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* TurnOffLed(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_ActivateHmiState : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_ActivateHmiState : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_ActivateHmiState() {
-      ::grpc::Service::MarkMethodRawCallback(2,
+    ExperimentalWithRawCallbackMethod_ActivateHmiState() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(2,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ActivateHmiState(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ActivateHmiState(context, request, response); }));
     }
-    ~WithRawCallbackMethod_ActivateHmiState() override {
+    ~ExperimentalWithRawCallbackMethod_ActivateHmiState() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -6686,21 +8284,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* ActivateHmiState(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* ActivateHmiState(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_DeactivateHmiState : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_DeactivateHmiState : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_DeactivateHmiState() {
-      ::grpc::Service::MarkMethodRawCallback(3,
+    ExperimentalWithRawCallbackMethod_DeactivateHmiState() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(3,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeactivateHmiState(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeactivateHmiState(context, request, response); }));
     }
-    ~WithRawCallbackMethod_DeactivateHmiState() override {
+    ~ExperimentalWithRawCallbackMethod_DeactivateHmiState() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -6708,21 +8322,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DeactivateHmiState(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* DeactivateHmiState(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_SetNavigationScaling : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_SetNavigationScaling : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_SetNavigationScaling() {
-      ::grpc::Service::MarkMethodRawCallback(4,
+    ExperimentalWithRawCallbackMethod_SetNavigationScaling() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(4,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetNavigationScaling(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetNavigationScaling(context, request, response); }));
     }
-    ~WithRawCallbackMethod_SetNavigationScaling() override {
+    ~ExperimentalWithRawCallbackMethod_SetNavigationScaling() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -6730,21 +8360,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* SetNavigationScaling(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* SetNavigationScaling(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_TurnOnUltrasonic : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_TurnOnUltrasonic : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_TurnOnUltrasonic() {
-      ::grpc::Service::MarkMethodRawCallback(5,
+    ExperimentalWithRawCallbackMethod_TurnOnUltrasonic() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(5,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->TurnOnUltrasonic(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->TurnOnUltrasonic(context, request, response); }));
     }
-    ~WithRawCallbackMethod_TurnOnUltrasonic() override {
+    ~ExperimentalWithRawCallbackMethod_TurnOnUltrasonic() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -6752,21 +8398,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* TurnOnUltrasonic(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* TurnOnUltrasonic(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_TurnOffUltrasonic : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_TurnOffUltrasonic : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_TurnOffUltrasonic() {
-      ::grpc::Service::MarkMethodRawCallback(6,
+    ExperimentalWithRawCallbackMethod_TurnOffUltrasonic() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(6,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->TurnOffUltrasonic(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->TurnOffUltrasonic(context, request, response); }));
     }
-    ~WithRawCallbackMethod_TurnOffUltrasonic() override {
+    ~ExperimentalWithRawCallbackMethod_TurnOffUltrasonic() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -6774,21 +8436,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* TurnOffUltrasonic(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* TurnOffUltrasonic(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_TurnOnRadar : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_TurnOnRadar : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_TurnOnRadar() {
-      ::grpc::Service::MarkMethodRawCallback(7,
+    ExperimentalWithRawCallbackMethod_TurnOnRadar() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(7,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->TurnOnRadar(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->TurnOnRadar(context, request, response); }));
     }
-    ~WithRawCallbackMethod_TurnOnRadar() override {
+    ~ExperimentalWithRawCallbackMethod_TurnOnRadar() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -6796,21 +8474,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* TurnOnRadar(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* TurnOnRadar(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_TurnOffRadar : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_TurnOffRadar : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_TurnOffRadar() {
-      ::grpc::Service::MarkMethodRawCallback(8,
+    ExperimentalWithRawCallbackMethod_TurnOffRadar() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(8,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->TurnOffRadar(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->TurnOffRadar(context, request, response); }));
     }
-    ~WithRawCallbackMethod_TurnOffRadar() override {
+    ~ExperimentalWithRawCallbackMethod_TurnOffRadar() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -6818,21 +8512,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* TurnOffRadar(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* TurnOffRadar(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_BootloadImu : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_BootloadImu : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_BootloadImu() {
-      ::grpc::Service::MarkMethodRawCallback(9,
+    ExperimentalWithRawCallbackMethod_BootloadImu() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(9,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->BootloadImu(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->BootloadImu(context, request); }));
     }
-    ~WithRawCallbackMethod_BootloadImu() override {
+    ~ExperimentalWithRawCallbackMethod_BootloadImu() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -6840,21 +8550,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* BootloadImu(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* BootloadImu(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_DFGetCurrentParameters : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_DFGetCurrentParameters : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_DFGetCurrentParameters() {
-      ::grpc::Service::MarkMethodRawCallback(10,
+    ExperimentalWithRawCallbackMethod_DFGetCurrentParameters() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(10,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DFGetCurrentParameters(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DFGetCurrentParameters(context, request, response); }));
     }
-    ~WithRawCallbackMethod_DFGetCurrentParameters() override {
+    ~ExperimentalWithRawCallbackMethod_DFGetCurrentParameters() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -6862,21 +8588,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DFGetCurrentParameters(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* DFGetCurrentParameters(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_DFGetBufferedEvents : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_DFGetBufferedEvents : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_DFGetBufferedEvents() {
-      ::grpc::Service::MarkMethodRawCallback(11,
+    ExperimentalWithRawCallbackMethod_DFGetBufferedEvents() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(11,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DFGetBufferedEvents(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DFGetBufferedEvents(context, request, response); }));
     }
-    ~WithRawCallbackMethod_DFGetBufferedEvents() override {
+    ~ExperimentalWithRawCallbackMethod_DFGetBufferedEvents() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -6884,21 +8626,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DFGetBufferedEvents(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* DFGetBufferedEvents(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_DisableLuci : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_DisableLuci : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_DisableLuci() {
-      ::grpc::Service::MarkMethodRawCallback(12,
+    ExperimentalWithRawCallbackMethod_DisableLuci() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(12,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DisableLuci(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DisableLuci(context, request, response); }));
     }
-    ~WithRawCallbackMethod_DisableLuci() override {
+    ~ExperimentalWithRawCallbackMethod_DisableLuci() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -6906,21 +8664,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DisableLuci(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* DisableLuci(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_JsOverride : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_JsOverride : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_JsOverride() {
-      ::grpc::Service::MarkMethodRawCallback(13,
+    ExperimentalWithRawCallbackMethod_JsOverride() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(13,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->JsOverride(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->JsOverride(context, request, response); }));
     }
-    ~WithRawCallbackMethod_JsOverride() override {
+    ~ExperimentalWithRawCallbackMethod_JsOverride() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -6928,21 +8702,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* JsOverride(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* JsOverride(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_SetDriveMode : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_SetDriveMode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_SetDriveMode() {
-      ::grpc::Service::MarkMethodRawCallback(14,
+    ExperimentalWithRawCallbackMethod_SetDriveMode() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(14,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetDriveMode(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetDriveMode(context, request, response); }));
     }
-    ~WithRawCallbackMethod_SetDriveMode() override {
+    ~ExperimentalWithRawCallbackMethod_SetDriveMode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -6950,21 +8740,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* SetDriveMode(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* SetDriveMode(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_SetRampMode : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_SetRampMode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_SetRampMode() {
-      ::grpc::Service::MarkMethodRawCallback(15,
+    ExperimentalWithRawCallbackMethod_SetRampMode() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(15,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetRampMode(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetRampMode(context, request, response); }));
     }
-    ~WithRawCallbackMethod_SetRampMode() override {
+    ~ExperimentalWithRawCallbackMethod_SetRampMode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -6972,21 +8778,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* SetRampMode(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* SetRampMode(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_HmiStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_HmiStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_HmiStream() {
-      ::grpc::Service::MarkMethodRawCallback(16,
+    ExperimentalWithRawCallbackMethod_HmiStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(16,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->HmiStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->HmiStream(context, request); }));
     }
-    ~WithRawCallbackMethod_HmiStream() override {
+    ~ExperimentalWithRawCallbackMethod_HmiStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -6994,21 +8816,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* HmiStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* HmiStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_PressCountStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_PressCountStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_PressCountStream() {
-      ::grpc::Service::MarkMethodRawCallback(17,
+    ExperimentalWithRawCallbackMethod_PressCountStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(17,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->PressCountStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->PressCountStream(context, request); }));
     }
-    ~WithRawCallbackMethod_PressCountStream() override {
+    ~ExperimentalWithRawCallbackMethod_PressCountStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7016,21 +8854,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* PressCountStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* PressCountStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_UltrasonicStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_UltrasonicStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_UltrasonicStream() {
-      ::grpc::Service::MarkMethodRawCallback(18,
+    ExperimentalWithRawCallbackMethod_UltrasonicStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(18,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->UltrasonicStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->UltrasonicStream(context, request); }));
     }
-    ~WithRawCallbackMethod_UltrasonicStream() override {
+    ~ExperimentalWithRawCallbackMethod_UltrasonicStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7038,21 +8892,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* UltrasonicStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* UltrasonicStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_RawUltrasonicStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_RawUltrasonicStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_RawUltrasonicStream() {
-      ::grpc::Service::MarkMethodRawCallback(19,
+    ExperimentalWithRawCallbackMethod_RawUltrasonicStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(19,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->RawUltrasonicStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->RawUltrasonicStream(context, request); }));
     }
-    ~WithRawCallbackMethod_RawUltrasonicStream() override {
+    ~ExperimentalWithRawCallbackMethod_RawUltrasonicStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7060,21 +8930,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* RawUltrasonicStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* RawUltrasonicStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_RadarStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_RadarStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_RadarStream() {
-      ::grpc::Service::MarkMethodRawCallback(20,
+    ExperimentalWithRawCallbackMethod_RadarStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(20,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->RadarStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->RadarStream(context, request); }));
     }
-    ~WithRawCallbackMethod_RadarStream() override {
+    ~ExperimentalWithRawCallbackMethod_RadarStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7082,21 +8968,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* RadarStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* RadarStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_RawRadarStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_RawRadarStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_RawRadarStream() {
-      ::grpc::Service::MarkMethodRawCallback(21,
+    ExperimentalWithRawCallbackMethod_RawRadarStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(21,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->RawRadarStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->RawRadarStream(context, request); }));
     }
-    ~WithRawCallbackMethod_RawRadarStream() override {
+    ~ExperimentalWithRawCallbackMethod_RawRadarStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7104,21 +9006,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* RawRadarStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* RawRadarStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_ChairSpeedStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_ChairSpeedStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_ChairSpeedStream() {
-      ::grpc::Service::MarkMethodRawCallback(22,
+    ExperimentalWithRawCallbackMethod_ChairSpeedStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(22,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->ChairSpeedStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->ChairSpeedStream(context, request); }));
     }
-    ~WithRawCallbackMethod_ChairSpeedStream() override {
+    ~ExperimentalWithRawCallbackMethod_ChairSpeedStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7126,21 +9044,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* ChairSpeedStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* ChairSpeedStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_ImuStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_ImuStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_ImuStream() {
-      ::grpc::Service::MarkMethodRawCallback(23,
+    ExperimentalWithRawCallbackMethod_ImuStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(23,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->ImuStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->ImuStream(context, request); }));
     }
-    ~WithRawCallbackMethod_ImuStream() override {
+    ~ExperimentalWithRawCallbackMethod_ImuStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7148,21 +9082,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* ImuStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* ImuStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_ChairModeStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_ChairModeStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_ChairModeStream() {
-      ::grpc::Service::MarkMethodRawCallback(24,
+    ExperimentalWithRawCallbackMethod_ChairModeStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(24,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->ChairModeStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->ChairModeStream(context, request); }));
     }
-    ~WithRawCallbackMethod_ChairModeStream() override {
+    ~ExperimentalWithRawCallbackMethod_ChairModeStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7170,21 +9120,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* ChairModeStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* ChairModeStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_ChairProfileStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_ChairProfileStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_ChairProfileStream() {
-      ::grpc::Service::MarkMethodRawCallback(25,
+    ExperimentalWithRawCallbackMethod_ChairProfileStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(25,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->ChairProfileStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->ChairProfileStream(context, request); }));
     }
-    ~WithRawCallbackMethod_ChairProfileStream() override {
+    ~ExperimentalWithRawCallbackMethod_ChairProfileStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7192,21 +9158,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* ChairProfileStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* ChairProfileStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_SpeedSettingStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_SpeedSettingStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_SpeedSettingStream() {
-      ::grpc::Service::MarkMethodRawCallback(26,
+    ExperimentalWithRawCallbackMethod_SpeedSettingStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(26,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->SpeedSettingStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->SpeedSettingStream(context, request); }));
     }
-    ~WithRawCallbackMethod_SpeedSettingStream() override {
+    ~ExperimentalWithRawCallbackMethod_SpeedSettingStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7214,21 +9196,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* SpeedSettingStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* SpeedSettingStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_JoystickStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_JoystickStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_JoystickStream() {
-      ::grpc::Service::MarkMethodRawCallback(27,
+    ExperimentalWithRawCallbackMethod_JoystickStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(27,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->JoystickStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->JoystickStream(context, request); }));
     }
-    ~WithRawCallbackMethod_JoystickStream() override {
+    ~ExperimentalWithRawCallbackMethod_JoystickStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7236,21 +9234,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* JoystickStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* JoystickStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_VirtualJoystickStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_VirtualJoystickStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_VirtualJoystickStream() {
-      ::grpc::Service::MarkMethodRawCallback(28,
+    ExperimentalWithRawCallbackMethod_VirtualJoystickStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(28,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->VirtualJoystickStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->VirtualJoystickStream(context, request); }));
     }
-    ~WithRawCallbackMethod_VirtualJoystickStream() override {
+    ~ExperimentalWithRawCallbackMethod_VirtualJoystickStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7258,21 +9272,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* VirtualJoystickStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* VirtualJoystickStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_PhysicalJoystickStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_PhysicalJoystickStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_PhysicalJoystickStream() {
-      ::grpc::Service::MarkMethodRawCallback(29,
+    ExperimentalWithRawCallbackMethod_PhysicalJoystickStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(29,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->PhysicalJoystickStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->PhysicalJoystickStream(context, request); }));
     }
-    ~WithRawCallbackMethod_PhysicalJoystickStream() override {
+    ~ExperimentalWithRawCallbackMethod_PhysicalJoystickStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7280,21 +9310,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* PhysicalJoystickStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* PhysicalJoystickStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_ScaledJoystickStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_ScaledJoystickStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_ScaledJoystickStream() {
-      ::grpc::Service::MarkMethodRawCallback(30,
+    ExperimentalWithRawCallbackMethod_ScaledJoystickStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(30,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->ScaledJoystickStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->ScaledJoystickStream(context, request); }));
     }
-    ~WithRawCallbackMethod_ScaledJoystickStream() override {
+    ~ExperimentalWithRawCallbackMethod_ScaledJoystickStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7302,21 +9348,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* ScaledJoystickStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* ScaledJoystickStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_AhrsStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_AhrsStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_AhrsStream() {
-      ::grpc::Service::MarkMethodRawCallback(31,
+    ExperimentalWithRawCallbackMethod_AhrsStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(31,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->AhrsStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->AhrsStream(context, request); }));
     }
-    ~WithRawCallbackMethod_AhrsStream() override {
+    ~ExperimentalWithRawCallbackMethod_AhrsStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7324,21 +9386,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* AhrsStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* AhrsStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_RadarClosestObstaclesStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_RadarClosestObstaclesStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_RadarClosestObstaclesStream() {
-      ::grpc::Service::MarkMethodRawCallback(32,
+    ExperimentalWithRawCallbackMethod_RadarClosestObstaclesStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(32,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->RadarClosestObstaclesStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->RadarClosestObstaclesStream(context, request); }));
     }
-    ~WithRawCallbackMethod_RadarClosestObstaclesStream() override {
+    ~ExperimentalWithRawCallbackMethod_RadarClosestObstaclesStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7346,21 +9424,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* RadarClosestObstaclesStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* RadarClosestObstaclesStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_UltrasonicClosestObstaclesStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_UltrasonicClosestObstaclesStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_UltrasonicClosestObstaclesStream() {
-      ::grpc::Service::MarkMethodRawCallback(33,
+    ExperimentalWithRawCallbackMethod_UltrasonicClosestObstaclesStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(33,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->UltrasonicClosestObstaclesStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->UltrasonicClosestObstaclesStream(context, request); }));
     }
-    ~WithRawCallbackMethod_UltrasonicClosestObstaclesStream() override {
+    ~ExperimentalWithRawCallbackMethod_UltrasonicClosestObstaclesStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7368,21 +9462,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* UltrasonicClosestObstaclesStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* UltrasonicClosestObstaclesStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_CameraCollisionClosestObstaclesStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_CameraCollisionClosestObstaclesStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_CameraCollisionClosestObstaclesStream() {
-      ::grpc::Service::MarkMethodRawCallback(34,
+    ExperimentalWithRawCallbackMethod_CameraCollisionClosestObstaclesStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(34,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->CameraCollisionClosestObstaclesStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->CameraCollisionClosestObstaclesStream(context, request); }));
     }
-    ~WithRawCallbackMethod_CameraCollisionClosestObstaclesStream() override {
+    ~ExperimentalWithRawCallbackMethod_CameraCollisionClosestObstaclesStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7390,21 +9500,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* CameraCollisionClosestObstaclesStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* CameraCollisionClosestObstaclesStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_StepClosestObstaclesStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_StepClosestObstaclesStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_StepClosestObstaclesStream() {
-      ::grpc::Service::MarkMethodRawCallback(35,
+    ExperimentalWithRawCallbackMethod_StepClosestObstaclesStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(35,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->StepClosestObstaclesStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->StepClosestObstaclesStream(context, request); }));
     }
-    ~WithRawCallbackMethod_StepClosestObstaclesStream() override {
+    ~ExperimentalWithRawCallbackMethod_StepClosestObstaclesStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7412,21 +9538,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* StepClosestObstaclesStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* StepClosestObstaclesStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_DropoffClosestObstaclesStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_DropoffClosestObstaclesStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_DropoffClosestObstaclesStream() {
-      ::grpc::Service::MarkMethodRawCallback(36,
+    ExperimentalWithRawCallbackMethod_DropoffClosestObstaclesStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(36,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->DropoffClosestObstaclesStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->DropoffClosestObstaclesStream(context, request); }));
     }
-    ~WithRawCallbackMethod_DropoffClosestObstaclesStream() override {
+    ~ExperimentalWithRawCallbackMethod_DropoffClosestObstaclesStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7434,21 +9576,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* DropoffClosestObstaclesStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* DropoffClosestObstaclesStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_ScalingStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_ScalingStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_ScalingStream() {
-      ::grpc::Service::MarkMethodRawCallback(37,
+    ExperimentalWithRawCallbackMethod_ScalingStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(37,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->ScalingStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->ScalingStream(context, request); }));
     }
-    ~WithRawCallbackMethod_ScalingStream() override {
+    ~ExperimentalWithRawCallbackMethod_ScalingStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7456,21 +9614,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* ScalingStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* ScalingStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_BatteryVoltageStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_BatteryVoltageStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_BatteryVoltageStream() {
-      ::grpc::Service::MarkMethodRawCallback(38,
+    ExperimentalWithRawCallbackMethod_BatteryVoltageStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(38,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->BatteryVoltageStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->BatteryVoltageStream(context, request); }));
     }
-    ~WithRawCallbackMethod_BatteryVoltageStream() override {
+    ~ExperimentalWithRawCallbackMethod_BatteryVoltageStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7478,21 +9652,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* BatteryVoltageStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* BatteryVoltageStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_BatteryPercentStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_BatteryPercentStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_BatteryPercentStream() {
-      ::grpc::Service::MarkMethodRawCallback(39,
+    ExperimentalWithRawCallbackMethod_BatteryPercentStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(39,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->BatteryPercentStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->BatteryPercentStream(context, request); }));
     }
-    ~WithRawCallbackMethod_BatteryPercentStream() override {
+    ~ExperimentalWithRawCallbackMethod_BatteryPercentStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7500,21 +9690,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* BatteryPercentStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* BatteryPercentStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_CameraStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_CameraStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_CameraStream() {
-      ::grpc::Service::MarkMethodRawCallback(40,
+    ExperimentalWithRawCallbackMethod_CameraStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(40,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->CameraStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->CameraStream(context, request); }));
     }
-    ~WithRawCallbackMethod_CameraStream() override {
+    ~ExperimentalWithRawCallbackMethod_CameraStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7522,21 +9728,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* CameraStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* CameraStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_FlatCameraStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_FlatCameraStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_FlatCameraStream() {
-      ::grpc::Service::MarkMethodRawCallback(41,
+    ExperimentalWithRawCallbackMethod_FlatCameraStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(41,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->FlatCameraStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->FlatCameraStream(context, request); }));
     }
-    ~WithRawCallbackMethod_FlatCameraStream() override {
+    ~ExperimentalWithRawCallbackMethod_FlatCameraStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7544,21 +9766,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* FlatCameraStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* FlatCameraStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_DropoffCameraStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_DropoffCameraStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_DropoffCameraStream() {
-      ::grpc::Service::MarkMethodRawCallback(42,
+    ExperimentalWithRawCallbackMethod_DropoffCameraStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(42,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->DropoffCameraStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->DropoffCameraStream(context, request); }));
     }
-    ~WithRawCallbackMethod_DropoffCameraStream() override {
+    ~ExperimentalWithRawCallbackMethod_DropoffCameraStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7566,21 +9804,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* DropoffCameraStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* DropoffCameraStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GPSStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GPSStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GPSStream() {
-      ::grpc::Service::MarkMethodRawCallback(43,
+    ExperimentalWithRawCallbackMethod_GPSStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(43,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->GPSStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->GPSStream(context, request); }));
     }
-    ~WithRawCallbackMethod_GPSStream() override {
+    ~ExperimentalWithRawCallbackMethod_GPSStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7588,21 +9842,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* GPSStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* GPSStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_SeatPressureStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_SeatPressureStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_SeatPressureStream() {
-      ::grpc::Service::MarkMethodRawCallback(44,
+    ExperimentalWithRawCallbackMethod_SeatPressureStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(44,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->SeatPressureStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->SeatPressureStream(context, request); }));
     }
-    ~WithRawCallbackMethod_SeatPressureStream() override {
+    ~ExperimentalWithRawCallbackMethod_SeatPressureStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7610,21 +9880,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* SeatPressureStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* SeatPressureStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_DFParametersChangedStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_DFParametersChangedStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_DFParametersChangedStream() {
-      ::grpc::Service::MarkMethodRawCallback(45,
+    ExperimentalWithRawCallbackMethod_DFParametersChangedStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(45,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->DFParametersChangedStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->DFParametersChangedStream(context, request); }));
     }
-    ~WithRawCallbackMethod_DFParametersChangedStream() override {
+    ~ExperimentalWithRawCallbackMethod_DFParametersChangedStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7632,21 +9918,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* DFParametersChangedStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* DFParametersChangedStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_DFEventStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_DFEventStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_DFEventStream() {
-      ::grpc::Service::MarkMethodRawCallback(46,
+    ExperimentalWithRawCallbackMethod_DFEventStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(46,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->DFEventStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->DFEventStream(context, request); }));
     }
-    ~WithRawCallbackMethod_DFEventStream() override {
+    ~ExperimentalWithRawCallbackMethod_DFEventStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7654,21 +9956,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* DFEventStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* DFEventStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_SendLogging : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_SendLogging : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_SendLogging() {
-      ::grpc::Service::MarkMethodRawCallback(47,
+    ExperimentalWithRawCallbackMethod_SendLogging() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(47,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SendLogging(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SendLogging(context, request, response); }));
     }
-    ~WithRawCallbackMethod_SendLogging() override {
+    ~ExperimentalWithRawCallbackMethod_SendLogging() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7676,21 +9994,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* SendLogging(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* SendLogging(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_LoggingStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_LoggingStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_LoggingStream() {
-      ::grpc::Service::MarkMethodRawCallback(48,
+    ExperimentalWithRawCallbackMethod_LoggingStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(48,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->LoggingStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->LoggingStream(context, request); }));
     }
-    ~WithRawCallbackMethod_LoggingStream() override {
+    ~ExperimentalWithRawCallbackMethod_LoggingStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7698,21 +10032,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* LoggingStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* LoggingStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_StepCameraStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_StepCameraStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_StepCameraStream() {
-      ::grpc::Service::MarkMethodRawCallback(49,
+    ExperimentalWithRawCallbackMethod_StepCameraStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(49,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->StepCameraStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->StepCameraStream(context, request); }));
     }
-    ~WithRawCallbackMethod_StepCameraStream() override {
+    ~ExperimentalWithRawCallbackMethod_StepCameraStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7720,21 +10070,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* StepCameraStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* StepCameraStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_IrStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_IrStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_IrStream() {
-      ::grpc::Service::MarkMethodRawCallback(50,
+    ExperimentalWithRawCallbackMethod_IrStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(50,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->IrStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->IrStream(context, request); }));
     }
-    ~WithRawCallbackMethod_IrStream() override {
+    ~ExperimentalWithRawCallbackMethod_IrStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7742,21 +10108,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* IrStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* IrStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_RampAssistStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_RampAssistStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_RampAssistStream() {
-      ::grpc::Service::MarkMethodRawCallback(51,
+    ExperimentalWithRawCallbackMethod_RampAssistStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(51,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->RampAssistStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->RampAssistStream(context, request); }));
     }
-    ~WithRawCallbackMethod_RampAssistStream() override {
+    ~ExperimentalWithRawCallbackMethod_RampAssistStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7764,21 +10146,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* RampAssistStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* RampAssistStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_DistStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_DistStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_DistStream() {
-      ::grpc::Service::MarkMethodRawCallback(52,
+    ExperimentalWithRawCallbackMethod_DistStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(52,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->DistStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->DistStream(context, request); }));
     }
-    ~WithRawCallbackMethod_DistStream() override {
+    ~ExperimentalWithRawCallbackMethod_DistStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7786,21 +10184,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* DistStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* DistStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_StartModeStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_StartModeStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_StartModeStream() {
-      ::grpc::Service::MarkMethodRawCallback(53,
+    ExperimentalWithRawCallbackMethod_StartModeStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(53,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->StartModeStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->StartModeStream(context, request); }));
     }
-    ~WithRawCallbackMethod_StartModeStream() override {
+    ~ExperimentalWithRawCallbackMethod_StartModeStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7808,21 +10222,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* StartModeStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* StartModeStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_AudioPlaybackRequestStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_AudioPlaybackRequestStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_AudioPlaybackRequestStream() {
-      ::grpc::Service::MarkMethodRawCallback(54,
+    ExperimentalWithRawCallbackMethod_AudioPlaybackRequestStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(54,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->AudioPlaybackRequestStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->AudioPlaybackRequestStream(context, request); }));
     }
-    ~WithRawCallbackMethod_AudioPlaybackRequestStream() override {
+    ~ExperimentalWithRawCallbackMethod_AudioPlaybackRequestStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7830,21 +10260,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* AudioPlaybackRequestStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* AudioPlaybackRequestStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetZoneBoundaries : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetZoneBoundaries : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetZoneBoundaries() {
-      ::grpc::Service::MarkMethodRawCallback(55,
+    ExperimentalWithRawCallbackMethod_GetZoneBoundaries() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(55,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetZoneBoundaries(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetZoneBoundaries(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetZoneBoundaries() override {
+    ~ExperimentalWithRawCallbackMethod_GetZoneBoundaries() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7852,21 +10298,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetZoneBoundaries(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetZoneBoundaries(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetBlockedZones : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetBlockedZones : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetBlockedZones() {
-      ::grpc::Service::MarkMethodRawCallback(56,
+    ExperimentalWithRawCallbackMethod_GetBlockedZones() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(56,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetBlockedZones(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetBlockedZones(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetBlockedZones() override {
+    ~ExperimentalWithRawCallbackMethod_GetBlockedZones() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7874,21 +10336,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetBlockedZones(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetBlockedZones(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetJoystickRanges : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetJoystickRanges : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetJoystickRanges() {
-      ::grpc::Service::MarkMethodRawCallback(57,
+    ExperimentalWithRawCallbackMethod_GetJoystickRanges() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(57,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetJoystickRanges(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetJoystickRanges(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetJoystickRanges() override {
+    ~ExperimentalWithRawCallbackMethod_GetJoystickRanges() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7896,21 +10374,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetJoystickRanges(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetJoystickRanges(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_EnableRadarFilter : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_EnableRadarFilter : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_EnableRadarFilter() {
-      ::grpc::Service::MarkMethodRawCallback(58,
+    ExperimentalWithRawCallbackMethod_EnableRadarFilter() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(58,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->EnableRadarFilter(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->EnableRadarFilter(context, request, response); }));
     }
-    ~WithRawCallbackMethod_EnableRadarFilter() override {
+    ~ExperimentalWithRawCallbackMethod_EnableRadarFilter() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7918,21 +10412,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* EnableRadarFilter(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* EnableRadarFilter(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_DisableRadarFilter : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_DisableRadarFilter : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_DisableRadarFilter() {
-      ::grpc::Service::MarkMethodRawCallback(59,
+    ExperimentalWithRawCallbackMethod_DisableRadarFilter() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(59,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DisableRadarFilter(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DisableRadarFilter(context, request, response); }));
     }
-    ~WithRawCallbackMethod_DisableRadarFilter() override {
+    ~ExperimentalWithRawCallbackMethod_DisableRadarFilter() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7940,21 +10450,37 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DisableRadarFilter(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* DisableRadarFilter(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_EncoderStream : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_EncoderStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_EncoderStream() {
-      ::grpc::Service::MarkMethodRawCallback(60,
+    ExperimentalWithRawCallbackMethod_EncoderStream() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(60,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->EncoderStream(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->EncoderStream(context, request); }));
     }
-    ~WithRawCallbackMethod_EncoderStream() override {
+    ~ExperimentalWithRawCallbackMethod_EncoderStream() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -7962,8 +10488,14 @@ class Sensors final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* EncoderStream(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* EncoderStream(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_TurnOnLed : public BaseClass {

@@ -472,7 +472,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT UltrasonicDistancesDefaultTypeI
 constexpr UltrasonicCurve::UltrasonicCurve(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : curve_()
-  , _curve_cached_byte_size_(0)
+  , _curve_cached_byte_size_()
   , board_(0)
 
   , spi_id_(0)
@@ -872,21 +872,18 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::AudioPlaybackRequest, requested_playback_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::sensors::PressRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::PressRequest, ramp_assist_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::sensors::ZoneBoundary, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::ZoneBoundary, polygon_),
   PROTOBUF_FIELD_OFFSET(::sensors::ZoneBoundary, critical_point_),
   PROTOBUF_FIELD_OFFSET(::sensors::ZoneBoundary, name_),
@@ -895,14 +892,12 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::ZoneBoundaries, zone_boundary_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::sensors::BlockedZone, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::BlockedZone, points_),
   PROTOBUF_FIELD_OFFSET(::sensors::BlockedZone, sensor_),
   ~0u,  // no _has_bits_
@@ -910,14 +905,12 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::BlockedZones, blocked_zones_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::sensors::JoystickRange, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::JoystickRange, begin_),
   PROTOBUF_FIELD_OFFSET(::sensors::JoystickRange, end_),
   ~0u,  // no _has_bits_
@@ -925,14 +918,12 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::JoystickRanges, joystick_ranges_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::sensors::StartModeData, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::StartModeData, mode_),
   PROTOBUF_FIELD_OFFSET(::sensors::StartModeData, missing_devices_),
   ~0u,  // no _has_bits_
@@ -940,7 +931,6 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::Response, reply_),
   PROTOBUF_FIELD_OFFSET(::sensors::Response, return_code_),
   ~0u,  // no _has_bits_
@@ -948,7 +938,6 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::DFParameters, df_timestamp_),
   PROTOBUF_FIELD_OFFSET(::sensors::DFParameters, target_pressure_),
   PROTOBUF_FIELD_OFFSET(::sensors::DFParameters, high_pressure_),
@@ -962,7 +951,6 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::DFSeatEvent, current_timestamp_),
   PROTOBUF_FIELD_OFFSET(::sensors::DFSeatEvent, event_timestamp_),
   PROTOBUF_FIELD_OFFSET(::sensors::DFSeatEvent, group_),
@@ -972,35 +960,30 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::DistanceData, distance_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::sensors::SeatPressure, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::SeatPressure, pressure_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::sensors::ObstacleValue_Linear, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::ObstacleValue_Linear, distance_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::sensors::ObstacleValue_Angular, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::ObstacleValue_Angular, angle_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::sensors::ObstacleValue_Combo, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::ObstacleValue_Combo, distance_),
   PROTOBUF_FIELD_OFFSET(::sensors::ObstacleValue_Combo, angle_),
   ~0u,  // no _has_bits_
@@ -1008,7 +991,6 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   PROTOBUF_FIELD_OFFSET(::sensors::ObstacleValue, _oneof_case_[0]),
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
   ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
   ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
@@ -1018,7 +1000,6 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::ClosestObstacles, front_),
   PROTOBUF_FIELD_OFFSET(::sensors::ClosestObstacles, front_left_),
   PROTOBUF_FIELD_OFFSET(::sensors::ClosestObstacles, front_right_),
@@ -1033,7 +1014,6 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::CameraPoints, points_),
   PROTOBUF_FIELD_OFFSET(::sensors::CameraPoints, timestamp_),
   ~0u,  // no _has_bits_
@@ -1041,7 +1021,6 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::Point3D, x_),
   PROTOBUF_FIELD_OFFSET(::sensors::Point3D, y_),
   PROTOBUF_FIELD_OFFSET(::sensors::Point3D, z_),
@@ -1050,7 +1029,6 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::CameraPoints2D, points_),
   PROTOBUF_FIELD_OFFSET(::sensors::CameraPoints2D, timestamp_),
   ~0u,  // no _has_bits_
@@ -1058,7 +1036,6 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::Point2D, x_),
   PROTOBUF_FIELD_OFFSET(::sensors::Point2D, y_),
   ~0u,  // no _has_bits_
@@ -1066,7 +1043,6 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::LoggingData, key_),
   PROTOBUF_FIELD_OFFSET(::sensors::LoggingData, value_),
   PROTOBUF_FIELD_OFFSET(::sensors::LoggingData, timestamp_),
@@ -1076,21 +1052,18 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::Led, led_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::sensors::HmiState, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::HmiState, state_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::sensors::HmiStreamData, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::HmiStreamData, is_alt_override_),
   PROTOBUF_FIELD_OFFSET(::sensors::HmiStreamData, button_state_),
   ~0u,  // no _has_bits_
@@ -1098,14 +1071,12 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::PressCountStreamData, press_count_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::sensors::NavigationScaling, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::NavigationScaling, front_fb_),
   PROTOBUF_FIELD_OFFSET(::sensors::NavigationScaling, front_rl_),
   PROTOBUF_FIELD_OFFSET(::sensors::NavigationScaling, front_right_fb_),
@@ -1130,7 +1101,6 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::UltrasonicCtrl, board_),
   PROTOBUF_FIELD_OFFSET(::sensors::UltrasonicCtrl, spi_id_),
   PROTOBUF_FIELD_OFFSET(::sensors::UltrasonicCtrl, address_),
@@ -1139,7 +1109,6 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::UltrasonicDistance, distance_),
   PROTOBUF_FIELD_OFFSET(::sensors::UltrasonicDistance, board_),
   PROTOBUF_FIELD_OFFSET(::sensors::UltrasonicDistance, spi_id_),
@@ -1151,14 +1120,12 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::UltrasonicDistances, distances_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::sensors::UltrasonicCurve, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::UltrasonicCurve, curve_),
   PROTOBUF_FIELD_OFFSET(::sensors::UltrasonicCurve, board_),
   PROTOBUF_FIELD_OFFSET(::sensors::UltrasonicCurve, spi_id_),
@@ -1168,21 +1135,18 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::RadarFilter, filter_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::sensors::RadarCtrl, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::RadarCtrl, radar_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::sensors::RadarPoint, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::RadarPoint, x_),
   PROTOBUF_FIELD_OFFSET(::sensors::RadarPoint, y_),
   PROTOBUF_FIELD_OFFSET(::sensors::RadarPoint, z_),
@@ -1193,7 +1157,6 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::RadarPoints, points_),
   PROTOBUF_FIELD_OFFSET(::sensors::RadarPoints, source_),
   PROTOBUF_FIELD_OFFSET(::sensors::RadarPoints, timestamp_),
@@ -1202,7 +1165,6 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::ChairSpeed, speed_m_p_s_),
   PROTOBUF_FIELD_OFFSET(::sensors::ChairSpeed, timestamp_),
   ~0u,  // no _has_bits_
@@ -1210,14 +1172,12 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::ImuCtrl, imu_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::sensors::ImuData, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::ImuData, quaternion_x_),
   PROTOBUF_FIELD_OFFSET(::sensors::ImuData, quaternion_y_),
   PROTOBUF_FIELD_OFFSET(::sensors::ImuData, quaternion_z_),
@@ -1251,28 +1211,24 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::ChairMode, is_drive_mode_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::sensors::ChairProfile, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::ChairProfile, profile_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::sensors::SpeedSetting, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::SpeedSetting, speed_setting_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::sensors::JoystickData, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::JoystickData, forward_back_),
   PROTOBUF_FIELD_OFFSET(::sensors::JoystickData, left_right_),
   PROTOBUF_FIELD_OFFSET(::sensors::JoystickData, joystick_zone_),
@@ -1282,7 +1238,6 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::Joystick, forward_back_),
   PROTOBUF_FIELD_OFFSET(::sensors::Joystick, left_right_),
   ~0u,  // no _has_bits_
@@ -1290,21 +1245,18 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::BatteryVoltage, battery_voltage_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::sensors::BatteryPercent, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::BatteryPercent, battery_percentage_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::sensors::GPSData, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::GPSData, latitude_),
   PROTOBUF_FIELD_OFFSET(::sensors::GPSData, longitude_),
   PROTOBUF_FIELD_OFFSET(::sensors::GPSData, heading_of_motion_),
@@ -1324,7 +1276,6 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::EncoderData, left_angle_),
   PROTOBUF_FIELD_OFFSET(::sensors::EncoderData, right_angle_),
   PROTOBUF_FIELD_OFFSET(::sensors::EncoderData, fl_caster_degrees_),
@@ -1337,7 +1288,6 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::Vec3, x_),
   PROTOBUF_FIELD_OFFSET(::sensors::Vec3, y_),
   PROTOBUF_FIELD_OFFSET(::sensors::Vec3, z_),
@@ -1346,7 +1296,6 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::Vec4, w_),
   PROTOBUF_FIELD_OFFSET(::sensors::Vec4, x_),
   PROTOBUF_FIELD_OFFSET(::sensors::Vec4, y_),
@@ -1356,7 +1305,6 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::IrFrame, frame_),
   PROTOBUF_FIELD_OFFSET(::sensors::IrFrame, width_),
   PROTOBUF_FIELD_OFFSET(::sensors::IrFrame, height_),
@@ -1368,7 +1316,6 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::AhrsData, linear_velocity_),
   PROTOBUF_FIELD_OFFSET(::sensors::AhrsData, linear_acceleration_),
   PROTOBUF_FIELD_OFFSET(::sensors::AhrsData, angular_velocity_),
@@ -1380,7 +1327,6 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::RemoteJsValues, forward_back_),
   PROTOBUF_FIELD_OFFSET(::sensors::RemoteJsValues, left_right_),
   ~0u,  // no _has_bits_
@@ -1388,14 +1334,12 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::ModeCtrl, mode_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::sensors::RampMode, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::RampMode, ramp_mode_),
   PROTOBUF_FIELD_OFFSET(::sensors::RampMode, ramp_approach_),
   ~0u,  // no _has_bits_
@@ -1403,69 +1347,68 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ptolemy_2eproto::offsets[] PRO
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::sensors::RampAssistStates, state_),
   PROTOBUF_FIELD_OFFSET(::sensors::RampAssistStates, approach_),
   PROTOBUF_FIELD_OFFSET(::sensors::RampAssistStates, timestamp_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, -1, sizeof(::sensors::AudioPlaybackRequest)},
-  { 7, -1, -1, sizeof(::sensors::PressRequest)},
-  { 14, -1, -1, sizeof(::sensors::ZoneBoundary)},
-  { 23, -1, -1, sizeof(::sensors::ZoneBoundaries)},
-  { 30, -1, -1, sizeof(::sensors::BlockedZone)},
-  { 38, -1, -1, sizeof(::sensors::BlockedZones)},
-  { 45, -1, -1, sizeof(::sensors::JoystickRange)},
-  { 53, -1, -1, sizeof(::sensors::JoystickRanges)},
-  { 60, -1, -1, sizeof(::sensors::StartModeData)},
-  { 68, -1, -1, sizeof(::sensors::Response)},
-  { 76, -1, -1, sizeof(::sensors::DFParameters)},
-  { 90, -1, -1, sizeof(::sensors::DFSeatEvent)},
-  { 100, -1, -1, sizeof(::sensors::DistanceData)},
-  { 107, -1, -1, sizeof(::sensors::SeatPressure)},
-  { 114, -1, -1, sizeof(::sensors::ObstacleValue_Linear)},
-  { 121, -1, -1, sizeof(::sensors::ObstacleValue_Angular)},
-  { 128, -1, -1, sizeof(::sensors::ObstacleValue_Combo)},
-  { 136, -1, -1, sizeof(::sensors::ObstacleValue)},
-  { 146, -1, -1, sizeof(::sensors::ClosestObstacles)},
-  { 161, -1, -1, sizeof(::sensors::CameraPoints)},
-  { 169, -1, -1, sizeof(::sensors::Point3D)},
-  { 178, -1, -1, sizeof(::sensors::CameraPoints2D)},
-  { 186, -1, -1, sizeof(::sensors::Point2D)},
-  { 194, -1, -1, sizeof(::sensors::LoggingData)},
-  { 204, -1, -1, sizeof(::sensors::Led)},
-  { 211, -1, -1, sizeof(::sensors::HmiState)},
-  { 218, -1, -1, sizeof(::sensors::HmiStreamData)},
-  { 226, -1, -1, sizeof(::sensors::PressCountStreamData)},
-  { 233, -1, -1, sizeof(::sensors::NavigationScaling)},
-  { 258, -1, -1, sizeof(::sensors::UltrasonicCtrl)},
-  { 267, -1, -1, sizeof(::sensors::UltrasonicDistance)},
-  { 279, -1, -1, sizeof(::sensors::UltrasonicDistances)},
-  { 286, -1, -1, sizeof(::sensors::UltrasonicCurve)},
-  { 296, -1, -1, sizeof(::sensors::RadarFilter)},
-  { 303, -1, -1, sizeof(::sensors::RadarCtrl)},
-  { 310, -1, -1, sizeof(::sensors::RadarPoint)},
-  { 321, -1, -1, sizeof(::sensors::RadarPoints)},
-  { 330, -1, -1, sizeof(::sensors::ChairSpeed)},
-  { 338, -1, -1, sizeof(::sensors::ImuCtrl)},
-  { 345, -1, -1, sizeof(::sensors::ImuData)},
-  { 379, -1, -1, sizeof(::sensors::ChairMode)},
-  { 386, -1, -1, sizeof(::sensors::ChairProfile)},
-  { 393, -1, -1, sizeof(::sensors::SpeedSetting)},
-  { 400, -1, -1, sizeof(::sensors::JoystickData)},
-  { 410, -1, -1, sizeof(::sensors::Joystick)},
-  { 418, -1, -1, sizeof(::sensors::BatteryVoltage)},
-  { 425, -1, -1, sizeof(::sensors::BatteryPercent)},
-  { 432, -1, -1, sizeof(::sensors::GPSData)},
-  { 452, -1, -1, sizeof(::sensors::EncoderData)},
-  { 465, -1, -1, sizeof(::sensors::Vec3)},
-  { 474, -1, -1, sizeof(::sensors::Vec4)},
-  { 484, -1, -1, sizeof(::sensors::IrFrame)},
-  { 496, -1, -1, sizeof(::sensors::AhrsData)},
-  { 508, -1, -1, sizeof(::sensors::RemoteJsValues)},
-  { 516, -1, -1, sizeof(::sensors::ModeCtrl)},
-  { 523, -1, -1, sizeof(::sensors::RampMode)},
-  { 531, -1, -1, sizeof(::sensors::RampAssistStates)},
+  { 0, -1, sizeof(::sensors::AudioPlaybackRequest)},
+  { 6, -1, sizeof(::sensors::PressRequest)},
+  { 12, -1, sizeof(::sensors::ZoneBoundary)},
+  { 20, -1, sizeof(::sensors::ZoneBoundaries)},
+  { 26, -1, sizeof(::sensors::BlockedZone)},
+  { 33, -1, sizeof(::sensors::BlockedZones)},
+  { 39, -1, sizeof(::sensors::JoystickRange)},
+  { 46, -1, sizeof(::sensors::JoystickRanges)},
+  { 52, -1, sizeof(::sensors::StartModeData)},
+  { 59, -1, sizeof(::sensors::Response)},
+  { 66, -1, sizeof(::sensors::DFParameters)},
+  { 79, -1, sizeof(::sensors::DFSeatEvent)},
+  { 88, -1, sizeof(::sensors::DistanceData)},
+  { 94, -1, sizeof(::sensors::SeatPressure)},
+  { 100, -1, sizeof(::sensors::ObstacleValue_Linear)},
+  { 106, -1, sizeof(::sensors::ObstacleValue_Angular)},
+  { 112, -1, sizeof(::sensors::ObstacleValue_Combo)},
+  { 119, -1, sizeof(::sensors::ObstacleValue)},
+  { 128, -1, sizeof(::sensors::ClosestObstacles)},
+  { 142, -1, sizeof(::sensors::CameraPoints)},
+  { 149, -1, sizeof(::sensors::Point3D)},
+  { 157, -1, sizeof(::sensors::CameraPoints2D)},
+  { 164, -1, sizeof(::sensors::Point2D)},
+  { 171, -1, sizeof(::sensors::LoggingData)},
+  { 180, -1, sizeof(::sensors::Led)},
+  { 186, -1, sizeof(::sensors::HmiState)},
+  { 192, -1, sizeof(::sensors::HmiStreamData)},
+  { 199, -1, sizeof(::sensors::PressCountStreamData)},
+  { 205, -1, sizeof(::sensors::NavigationScaling)},
+  { 229, -1, sizeof(::sensors::UltrasonicCtrl)},
+  { 237, -1, sizeof(::sensors::UltrasonicDistance)},
+  { 248, -1, sizeof(::sensors::UltrasonicDistances)},
+  { 254, -1, sizeof(::sensors::UltrasonicCurve)},
+  { 263, -1, sizeof(::sensors::RadarFilter)},
+  { 269, -1, sizeof(::sensors::RadarCtrl)},
+  { 275, -1, sizeof(::sensors::RadarPoint)},
+  { 285, -1, sizeof(::sensors::RadarPoints)},
+  { 293, -1, sizeof(::sensors::ChairSpeed)},
+  { 300, -1, sizeof(::sensors::ImuCtrl)},
+  { 306, -1, sizeof(::sensors::ImuData)},
+  { 339, -1, sizeof(::sensors::ChairMode)},
+  { 345, -1, sizeof(::sensors::ChairProfile)},
+  { 351, -1, sizeof(::sensors::SpeedSetting)},
+  { 357, -1, sizeof(::sensors::JoystickData)},
+  { 366, -1, sizeof(::sensors::Joystick)},
+  { 373, -1, sizeof(::sensors::BatteryVoltage)},
+  { 379, -1, sizeof(::sensors::BatteryPercent)},
+  { 385, -1, sizeof(::sensors::GPSData)},
+  { 404, -1, sizeof(::sensors::EncoderData)},
+  { 416, -1, sizeof(::sensors::Vec3)},
+  { 424, -1, sizeof(::sensors::Vec4)},
+  { 433, -1, sizeof(::sensors::IrFrame)},
+  { 444, -1, sizeof(::sensors::AhrsData)},
+  { 455, -1, sizeof(::sensors::RemoteJsValues)},
+  { 462, -1, sizeof(::sensors::ModeCtrl)},
+  { 468, -1, sizeof(::sensors::RampMode)},
+  { 475, -1, sizeof(::sensors::RampAssistStates)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -2340,13 +2283,10 @@ class AudioPlaybackRequest::_Internal {
  public:
 };
 
-AudioPlaybackRequest::AudioPlaybackRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+AudioPlaybackRequest::AudioPlaybackRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.AudioPlaybackRequest)
 }
 AudioPlaybackRequest::AudioPlaybackRequest(const AudioPlaybackRequest& from)
@@ -2362,12 +2302,11 @@ requested_playback_ = 0;
 
 AudioPlaybackRequest::~AudioPlaybackRequest() {
   // @@protoc_insertion_point(destructor:sensors.AudioPlaybackRequest)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void AudioPlaybackRequest::SharedDtor() {
+void AudioPlaybackRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -2403,29 +2342,28 @@ const char* AudioPlaybackRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAM
           ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_requested_playback(static_cast<::sensors::AudioPlaybackRequest_RequestedPlayback>(val));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -2436,7 +2374,7 @@ failure:
   (void) cached_has_bits;
 
   // .sensors.AudioPlaybackRequest.RequestedPlayback requested_playback = 1;
-  if (this->_internal_requested_playback() != 0) {
+  if (this->requested_playback() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
       1, this->_internal_requested_playback(), target);
@@ -2459,37 +2397,52 @@ size_t AudioPlaybackRequest::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // .sensors.AudioPlaybackRequest.RequestedPlayback requested_playback = 1;
-  if (this->_internal_requested_playback() != 0) {
+  if (this->requested_playback() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_requested_playback());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AudioPlaybackRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    AudioPlaybackRequest::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AudioPlaybackRequest::GetClassData() const { return &_class_data_; }
-
-void AudioPlaybackRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<AudioPlaybackRequest *>(to)->MergeFrom(
-      static_cast<const AudioPlaybackRequest &>(from));
+void AudioPlaybackRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.AudioPlaybackRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const AudioPlaybackRequest* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<AudioPlaybackRequest>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.AudioPlaybackRequest)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.AudioPlaybackRequest)
+    MergeFrom(*source);
+  }
 }
-
 
 void AudioPlaybackRequest::MergeFrom(const AudioPlaybackRequest& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.AudioPlaybackRequest)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_requested_playback() != 0) {
+  if (from.requested_playback() != 0) {
     _internal_set_requested_playback(from._internal_requested_playback());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AudioPlaybackRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.AudioPlaybackRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void AudioPlaybackRequest::CopyFrom(const AudioPlaybackRequest& from) {
@@ -2521,13 +2474,10 @@ class PressRequest::_Internal {
  public:
 };
 
-PressRequest::PressRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+PressRequest::PressRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.PressRequest)
 }
 PressRequest::PressRequest(const PressRequest& from)
@@ -2543,12 +2493,11 @@ ramp_assist_ = false;
 
 PressRequest::~PressRequest() {
   // @@protoc_insertion_point(destructor:sensors.PressRequest)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void PressRequest::SharedDtor() {
+void PressRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -2583,29 +2532,28 @@ const char* PressRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
           ramp_assist_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -2616,7 +2564,7 @@ failure:
   (void) cached_has_bits;
 
   // bool ramp_assist = 1;
-  if (this->_internal_ramp_assist() != 0) {
+  if (this->ramp_assist() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_ramp_assist(), target);
   }
@@ -2638,36 +2586,51 @@ size_t PressRequest::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // bool ramp_assist = 1;
-  if (this->_internal_ramp_assist() != 0) {
+  if (this->ramp_assist() != 0) {
     total_size += 1 + 1;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PressRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    PressRequest::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PressRequest::GetClassData() const { return &_class_data_; }
-
-void PressRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<PressRequest *>(to)->MergeFrom(
-      static_cast<const PressRequest &>(from));
+void PressRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.PressRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const PressRequest* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<PressRequest>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.PressRequest)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.PressRequest)
+    MergeFrom(*source);
+  }
 }
-
 
 void PressRequest::MergeFrom(const PressRequest& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.PressRequest)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_ramp_assist() != 0) {
+  if (from.ramp_assist() != 0) {
     _internal_set_ramp_assist(from._internal_ramp_assist());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void PressRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.PressRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void PressRequest::CopyFrom(const PressRequest& from) {
@@ -2699,15 +2662,12 @@ class ZoneBoundary::_Internal {
  public:
 };
 
-ZoneBoundary::ZoneBoundary(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+ZoneBoundary::ZoneBoundary(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
   polygon_(arena),
   critical_point_(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.ZoneBoundary)
 }
 ZoneBoundary::ZoneBoundary(const ZoneBoundary& from)
@@ -2729,12 +2689,11 @@ name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlready
 
 ZoneBoundary::~ZoneBoundary() {
   // @@protoc_insertion_point(destructor:sensors.ZoneBoundary)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void ZoneBoundary::SharedDtor() {
+void ZoneBoundary::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -2777,8 +2736,7 @@ const char* ZoneBoundary::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // repeated .sensors.Point2D critical_point = 2;
       case 2:
@@ -2790,8 +2748,7 @@ const char* ZoneBoundary::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // string name = 3;
       case 3:
@@ -2800,29 +2757,28 @@ const char* ZoneBoundary::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "sensors.ZoneBoundary.name"));
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -2849,7 +2805,7 @@ failure:
   }
 
   // string name = 3;
-  if (!this->_internal_name().empty()) {
+  if (!this->name().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -2889,40 +2845,55 @@ size_t ZoneBoundary::ByteSizeLong() const {
   }
 
   // string name = 3;
-  if (!this->_internal_name().empty()) {
+  if (!this->name().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_name());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ZoneBoundary::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    ZoneBoundary::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ZoneBoundary::GetClassData() const { return &_class_data_; }
-
-void ZoneBoundary::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<ZoneBoundary *>(to)->MergeFrom(
-      static_cast<const ZoneBoundary &>(from));
+void ZoneBoundary::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.ZoneBoundary)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ZoneBoundary* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ZoneBoundary>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.ZoneBoundary)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.ZoneBoundary)
+    MergeFrom(*source);
+  }
 }
-
 
 void ZoneBoundary::MergeFrom(const ZoneBoundary& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.ZoneBoundary)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   polygon_.MergeFrom(from.polygon_);
   critical_point_.MergeFrom(from.critical_point_);
-  if (!from._internal_name().empty()) {
+  if (!from.name().empty()) {
     _internal_set_name(from._internal_name());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ZoneBoundary::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.ZoneBoundary)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void ZoneBoundary::CopyFrom(const ZoneBoundary& from) {
@@ -2938,15 +2909,13 @@ bool ZoneBoundary::IsInitialized() const {
 
 void ZoneBoundary::InternalSwap(ZoneBoundary* other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   polygon_.InternalSwap(&other->polygon_);
   critical_point_.InternalSwap(&other->critical_point_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &name_, GetArenaForAllocation(),
+      &other->name_, other->GetArenaForAllocation()
   );
 }
 
@@ -2962,14 +2931,11 @@ class ZoneBoundaries::_Internal {
  public:
 };
 
-ZoneBoundaries::ZoneBoundaries(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+ZoneBoundaries::ZoneBoundaries(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
   zone_boundary_(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.ZoneBoundaries)
 }
 ZoneBoundaries::ZoneBoundaries(const ZoneBoundaries& from)
@@ -2984,12 +2950,11 @@ void ZoneBoundaries::SharedCtor() {
 
 ZoneBoundaries::~ZoneBoundaries() {
   // @@protoc_insertion_point(destructor:sensors.ZoneBoundaries)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void ZoneBoundaries::SharedDtor() {
+void ZoneBoundaries::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -3029,29 +2994,28 @@ const char* ZoneBoundaries::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -3092,30 +3056,45 @@ size_t ZoneBoundaries::ByteSizeLong() const {
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ZoneBoundaries::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    ZoneBoundaries::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ZoneBoundaries::GetClassData() const { return &_class_data_; }
-
-void ZoneBoundaries::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<ZoneBoundaries *>(to)->MergeFrom(
-      static_cast<const ZoneBoundaries &>(from));
+void ZoneBoundaries::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.ZoneBoundaries)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ZoneBoundaries* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ZoneBoundaries>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.ZoneBoundaries)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.ZoneBoundaries)
+    MergeFrom(*source);
+  }
 }
-
 
 void ZoneBoundaries::MergeFrom(const ZoneBoundaries& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.ZoneBoundaries)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   zone_boundary_.MergeFrom(from.zone_boundary_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ZoneBoundaries::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.ZoneBoundaries)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void ZoneBoundaries::CopyFrom(const ZoneBoundaries& from) {
@@ -3147,14 +3126,11 @@ class BlockedZone::_Internal {
  public:
 };
 
-BlockedZone::BlockedZone(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+BlockedZone::BlockedZone(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
   points_(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.BlockedZone)
 }
 BlockedZone::BlockedZone(const BlockedZone& from)
@@ -3175,12 +3151,11 @@ sensor_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlrea
 
 BlockedZone::~BlockedZone() {
   // @@protoc_insertion_point(destructor:sensors.BlockedZone)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void BlockedZone::SharedDtor() {
+void BlockedZone::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   sensor_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -3222,8 +3197,7 @@ const char* BlockedZone::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // string sensor = 2;
       case 2:
@@ -3232,29 +3206,28 @@ const char* BlockedZone::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "sensors.BlockedZone.sensor"));
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -3273,7 +3246,7 @@ failure:
   }
 
   // string sensor = 2;
-  if (!this->_internal_sensor().empty()) {
+  if (!this->sensor().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_sensor().data(), static_cast<int>(this->_internal_sensor().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -3306,39 +3279,54 @@ size_t BlockedZone::ByteSizeLong() const {
   }
 
   // string sensor = 2;
-  if (!this->_internal_sensor().empty()) {
+  if (!this->sensor().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_sensor());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData BlockedZone::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    BlockedZone::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*BlockedZone::GetClassData() const { return &_class_data_; }
-
-void BlockedZone::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<BlockedZone *>(to)->MergeFrom(
-      static_cast<const BlockedZone &>(from));
+void BlockedZone::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.BlockedZone)
+  GOOGLE_DCHECK_NE(&from, this);
+  const BlockedZone* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<BlockedZone>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.BlockedZone)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.BlockedZone)
+    MergeFrom(*source);
+  }
 }
-
 
 void BlockedZone::MergeFrom(const BlockedZone& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.BlockedZone)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   points_.MergeFrom(from.points_);
-  if (!from._internal_sensor().empty()) {
+  if (!from.sensor().empty()) {
     _internal_set_sensor(from._internal_sensor());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void BlockedZone::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.BlockedZone)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void BlockedZone::CopyFrom(const BlockedZone& from) {
@@ -3354,14 +3342,12 @@ bool BlockedZone::IsInitialized() const {
 
 void BlockedZone::InternalSwap(BlockedZone* other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   points_.InternalSwap(&other->points_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      &sensor_, lhs_arena,
-      &other->sensor_, rhs_arena
+      &sensor_, GetArenaForAllocation(),
+      &other->sensor_, other->GetArenaForAllocation()
   );
 }
 
@@ -3377,14 +3363,11 @@ class BlockedZones::_Internal {
  public:
 };
 
-BlockedZones::BlockedZones(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+BlockedZones::BlockedZones(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
   blocked_zones_(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.BlockedZones)
 }
 BlockedZones::BlockedZones(const BlockedZones& from)
@@ -3399,12 +3382,11 @@ void BlockedZones::SharedCtor() {
 
 BlockedZones::~BlockedZones() {
   // @@protoc_insertion_point(destructor:sensors.BlockedZones)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void BlockedZones::SharedDtor() {
+void BlockedZones::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -3444,29 +3426,28 @@ const char* BlockedZones::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -3507,30 +3488,45 @@ size_t BlockedZones::ByteSizeLong() const {
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData BlockedZones::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    BlockedZones::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*BlockedZones::GetClassData() const { return &_class_data_; }
-
-void BlockedZones::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<BlockedZones *>(to)->MergeFrom(
-      static_cast<const BlockedZones &>(from));
+void BlockedZones::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.BlockedZones)
+  GOOGLE_DCHECK_NE(&from, this);
+  const BlockedZones* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<BlockedZones>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.BlockedZones)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.BlockedZones)
+    MergeFrom(*source);
+  }
 }
-
 
 void BlockedZones::MergeFrom(const BlockedZones& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.BlockedZones)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   blocked_zones_.MergeFrom(from.blocked_zones_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void BlockedZones::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.BlockedZones)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void BlockedZones::CopyFrom(const BlockedZones& from) {
@@ -3562,13 +3558,10 @@ class JoystickRange::_Internal {
  public:
 };
 
-JoystickRange::JoystickRange(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+JoystickRange::JoystickRange(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.JoystickRange)
 }
 JoystickRange::JoystickRange(const JoystickRange& from)
@@ -3589,12 +3582,11 @@ void JoystickRange::SharedCtor() {
 
 JoystickRange::~JoystickRange() {
   // @@protoc_insertion_point(destructor:sensors.JoystickRange)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void JoystickRange::SharedDtor() {
+void JoystickRange::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -3631,37 +3623,35 @@ const char* JoystickRange::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 13)) {
           begin_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float end = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 21)) {
           end_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -3672,13 +3662,13 @@ failure:
   (void) cached_has_bits;
 
   // float begin = 1;
-  if (!(this->_internal_begin() <= 0 && this->_internal_begin() >= 0)) {
+  if (!(this->begin() <= 0 && this->begin() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(1, this->_internal_begin(), target);
   }
 
   // float end = 2;
-  if (!(this->_internal_end() <= 0 && this->_internal_end() >= 0)) {
+  if (!(this->end() <= 0 && this->end() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(2, this->_internal_end(), target);
   }
@@ -3700,44 +3690,59 @@ size_t JoystickRange::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // float begin = 1;
-  if (!(this->_internal_begin() <= 0 && this->_internal_begin() >= 0)) {
+  if (!(this->begin() <= 0 && this->begin() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float end = 2;
-  if (!(this->_internal_end() <= 0 && this->_internal_end() >= 0)) {
+  if (!(this->end() <= 0 && this->end() >= 0)) {
     total_size += 1 + 4;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData JoystickRange::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    JoystickRange::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*JoystickRange::GetClassData() const { return &_class_data_; }
-
-void JoystickRange::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<JoystickRange *>(to)->MergeFrom(
-      static_cast<const JoystickRange &>(from));
+void JoystickRange::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.JoystickRange)
+  GOOGLE_DCHECK_NE(&from, this);
+  const JoystickRange* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<JoystickRange>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.JoystickRange)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.JoystickRange)
+    MergeFrom(*source);
+  }
 }
-
 
 void JoystickRange::MergeFrom(const JoystickRange& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.JoystickRange)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!(from._internal_begin() <= 0 && from._internal_begin() >= 0)) {
+  if (!(from.begin() <= 0 && from.begin() >= 0)) {
     _internal_set_begin(from._internal_begin());
   }
-  if (!(from._internal_end() <= 0 && from._internal_end() >= 0)) {
+  if (!(from.end() <= 0 && from.end() >= 0)) {
     _internal_set_end(from._internal_end());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void JoystickRange::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.JoystickRange)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void JoystickRange::CopyFrom(const JoystickRange& from) {
@@ -3774,14 +3779,11 @@ class JoystickRanges::_Internal {
  public:
 };
 
-JoystickRanges::JoystickRanges(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+JoystickRanges::JoystickRanges(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
   joystick_ranges_(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.JoystickRanges)
 }
 JoystickRanges::JoystickRanges(const JoystickRanges& from)
@@ -3796,12 +3798,11 @@ void JoystickRanges::SharedCtor() {
 
 JoystickRanges::~JoystickRanges() {
   // @@protoc_insertion_point(destructor:sensors.JoystickRanges)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void JoystickRanges::SharedDtor() {
+void JoystickRanges::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -3841,29 +3842,28 @@ const char* JoystickRanges::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -3904,30 +3904,45 @@ size_t JoystickRanges::ByteSizeLong() const {
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData JoystickRanges::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    JoystickRanges::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*JoystickRanges::GetClassData() const { return &_class_data_; }
-
-void JoystickRanges::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<JoystickRanges *>(to)->MergeFrom(
-      static_cast<const JoystickRanges &>(from));
+void JoystickRanges::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.JoystickRanges)
+  GOOGLE_DCHECK_NE(&from, this);
+  const JoystickRanges* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<JoystickRanges>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.JoystickRanges)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.JoystickRanges)
+    MergeFrom(*source);
+  }
 }
-
 
 void JoystickRanges::MergeFrom(const JoystickRanges& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.JoystickRanges)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   joystick_ranges_.MergeFrom(from.joystick_ranges_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void JoystickRanges::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.JoystickRanges)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void JoystickRanges::CopyFrom(const JoystickRanges& from) {
@@ -3959,14 +3974,11 @@ class StartModeData::_Internal {
  public:
 };
 
-StartModeData::StartModeData(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+StartModeData::StartModeData(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
   missing_devices_(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.StartModeData)
 }
 StartModeData::StartModeData(const StartModeData& from)
@@ -3983,12 +3995,11 @@ mode_ = 0;
 
 StartModeData::~StartModeData() {
   // @@protoc_insertion_point(destructor:sensors.StartModeData)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void StartModeData::SharedDtor() {
+void StartModeData::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -4025,8 +4036,7 @@ const char* StartModeData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_
           ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_mode(static_cast<::sensors::StartModeData_StartModes>(val));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // repeated string missing_devices = 2;
       case 2:
@@ -4040,29 +4050,28 @@ const char* StartModeData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -4073,7 +4082,7 @@ failure:
   (void) cached_has_bits;
 
   // .sensors.StartModeData.StartModes mode = 1;
-  if (this->_internal_mode() != 0) {
+  if (this->mode() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
       1, this->_internal_mode(), target);
@@ -4114,38 +4123,53 @@ size_t StartModeData::ByteSizeLong() const {
   }
 
   // .sensors.StartModeData.StartModes mode = 1;
-  if (this->_internal_mode() != 0) {
+  if (this->mode() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_mode());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData StartModeData::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    StartModeData::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*StartModeData::GetClassData() const { return &_class_data_; }
-
-void StartModeData::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<StartModeData *>(to)->MergeFrom(
-      static_cast<const StartModeData &>(from));
+void StartModeData::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.StartModeData)
+  GOOGLE_DCHECK_NE(&from, this);
+  const StartModeData* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<StartModeData>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.StartModeData)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.StartModeData)
+    MergeFrom(*source);
+  }
 }
-
 
 void StartModeData::MergeFrom(const StartModeData& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.StartModeData)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   missing_devices_.MergeFrom(from.missing_devices_);
-  if (from._internal_mode() != 0) {
+  if (from.mode() != 0) {
     _internal_set_mode(from._internal_mode());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void StartModeData::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.StartModeData)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void StartModeData::CopyFrom(const StartModeData& from) {
@@ -4178,13 +4202,10 @@ class Response::_Internal {
  public:
 };
 
-Response::Response(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+Response::Response(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.Response)
 }
 Response::Response(const Response& from)
@@ -4206,12 +4227,11 @@ return_code_ = 0;
 
 Response::~Response() {
   // @@protoc_insertion_point(destructor:sensors.Response)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void Response::SharedDtor() {
+void Response::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   reply_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -4250,37 +4270,35 @@ const char* Response::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::i
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "sensors.Response.reply"));
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // int32 return_code = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
           return_code_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -4291,7 +4309,7 @@ failure:
   (void) cached_has_bits;
 
   // string reply = 1;
-  if (!this->_internal_reply().empty()) {
+  if (!this->reply().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_reply().data(), static_cast<int>(this->_internal_reply().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -4301,7 +4319,7 @@ failure:
   }
 
   // int32 return_code = 2;
-  if (this->_internal_return_code() != 0) {
+  if (this->return_code() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_return_code(), target);
   }
@@ -4323,46 +4341,63 @@ size_t Response::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // string reply = 1;
-  if (!this->_internal_reply().empty()) {
+  if (!this->reply().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_reply());
   }
 
   // int32 return_code = 2;
-  if (this->_internal_return_code() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_return_code());
+  if (this->return_code() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_return_code());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Response::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    Response::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Response::GetClassData() const { return &_class_data_; }
-
-void Response::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<Response *>(to)->MergeFrom(
-      static_cast<const Response &>(from));
+void Response::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.Response)
+  GOOGLE_DCHECK_NE(&from, this);
+  const Response* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<Response>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.Response)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.Response)
+    MergeFrom(*source);
+  }
 }
-
 
 void Response::MergeFrom(const Response& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.Response)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_reply().empty()) {
+  if (!from.reply().empty()) {
     _internal_set_reply(from._internal_reply());
   }
-  if (from._internal_return_code() != 0) {
+  if (from.return_code() != 0) {
     _internal_set_return_code(from._internal_return_code());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Response::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.Response)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void Response::CopyFrom(const Response& from) {
@@ -4378,13 +4413,11 @@ bool Response::IsInitialized() const {
 
 void Response::InternalSwap(Response* other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      &reply_, lhs_arena,
-      &other->reply_, rhs_arena
+      &reply_, GetArenaForAllocation(),
+      &other->reply_, other->GetArenaForAllocation()
   );
   swap(return_code_, other->return_code_);
 }
@@ -4401,13 +4434,10 @@ class DFParameters::_Internal {
  public:
 };
 
-DFParameters::DFParameters(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+DFParameters::DFParameters(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.DFParameters)
 }
 DFParameters::DFParameters(const DFParameters& from)
@@ -4428,12 +4458,11 @@ void DFParameters::SharedCtor() {
 
 DFParameters::~DFParameters() {
   // @@protoc_insertion_point(destructor:sensors.DFParameters)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void DFParameters::SharedDtor() {
+void DFParameters::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -4470,85 +4499,77 @@ const char* DFParameters::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
           df_timestamp_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float target_pressure = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 21)) {
           target_pressure_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float high_pressure = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 29)) {
           high_pressure_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float low_pressure = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 37)) {
           low_pressure_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float in_seat_pressure = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 45)) {
           in_seat_pressure_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float off_load_pressure = 6;
       case 6:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 53)) {
           off_load_pressure_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // int32 usb_update_period = 7;
       case 7:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 56)) {
           usb_update_period_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // int32 cap_update_period = 8;
       case 8:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 64)) {
           cap_update_period_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -4559,49 +4580,49 @@ failure:
   (void) cached_has_bits;
 
   // uint32 df_timestamp = 1;
-  if (this->_internal_df_timestamp() != 0) {
+  if (this->df_timestamp() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(1, this->_internal_df_timestamp(), target);
   }
 
   // float target_pressure = 2;
-  if (!(this->_internal_target_pressure() <= 0 && this->_internal_target_pressure() >= 0)) {
+  if (!(this->target_pressure() <= 0 && this->target_pressure() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(2, this->_internal_target_pressure(), target);
   }
 
   // float high_pressure = 3;
-  if (!(this->_internal_high_pressure() <= 0 && this->_internal_high_pressure() >= 0)) {
+  if (!(this->high_pressure() <= 0 && this->high_pressure() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(3, this->_internal_high_pressure(), target);
   }
 
   // float low_pressure = 4;
-  if (!(this->_internal_low_pressure() <= 0 && this->_internal_low_pressure() >= 0)) {
+  if (!(this->low_pressure() <= 0 && this->low_pressure() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(4, this->_internal_low_pressure(), target);
   }
 
   // float in_seat_pressure = 5;
-  if (!(this->_internal_in_seat_pressure() <= 0 && this->_internal_in_seat_pressure() >= 0)) {
+  if (!(this->in_seat_pressure() <= 0 && this->in_seat_pressure() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(5, this->_internal_in_seat_pressure(), target);
   }
 
   // float off_load_pressure = 6;
-  if (!(this->_internal_off_load_pressure() <= 0 && this->_internal_off_load_pressure() >= 0)) {
+  if (!(this->off_load_pressure() <= 0 && this->off_load_pressure() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(6, this->_internal_off_load_pressure(), target);
   }
 
   // int32 usb_update_period = 7;
-  if (this->_internal_usb_update_period() != 0) {
+  if (this->usb_update_period() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(7, this->_internal_usb_update_period(), target);
   }
 
   // int32 cap_update_period = 8;
-  if (this->_internal_cap_update_period() != 0) {
+  if (this->cap_update_period() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(8, this->_internal_cap_update_period(), target);
   }
@@ -4623,92 +4644,113 @@ size_t DFParameters::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // uint32 df_timestamp = 1;
-  if (this->_internal_df_timestamp() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32SizePlusOne(this->_internal_df_timestamp());
+  if (this->df_timestamp() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
+        this->_internal_df_timestamp());
   }
 
   // float target_pressure = 2;
-  if (!(this->_internal_target_pressure() <= 0 && this->_internal_target_pressure() >= 0)) {
+  if (!(this->target_pressure() <= 0 && this->target_pressure() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float high_pressure = 3;
-  if (!(this->_internal_high_pressure() <= 0 && this->_internal_high_pressure() >= 0)) {
+  if (!(this->high_pressure() <= 0 && this->high_pressure() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float low_pressure = 4;
-  if (!(this->_internal_low_pressure() <= 0 && this->_internal_low_pressure() >= 0)) {
+  if (!(this->low_pressure() <= 0 && this->low_pressure() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float in_seat_pressure = 5;
-  if (!(this->_internal_in_seat_pressure() <= 0 && this->_internal_in_seat_pressure() >= 0)) {
+  if (!(this->in_seat_pressure() <= 0 && this->in_seat_pressure() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float off_load_pressure = 6;
-  if (!(this->_internal_off_load_pressure() <= 0 && this->_internal_off_load_pressure() >= 0)) {
+  if (!(this->off_load_pressure() <= 0 && this->off_load_pressure() >= 0)) {
     total_size += 1 + 4;
   }
 
   // int32 usb_update_period = 7;
-  if (this->_internal_usb_update_period() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_usb_update_period());
+  if (this->usb_update_period() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_usb_update_period());
   }
 
   // int32 cap_update_period = 8;
-  if (this->_internal_cap_update_period() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_cap_update_period());
+  if (this->cap_update_period() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_cap_update_period());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData DFParameters::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    DFParameters::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DFParameters::GetClassData() const { return &_class_data_; }
-
-void DFParameters::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<DFParameters *>(to)->MergeFrom(
-      static_cast<const DFParameters &>(from));
+void DFParameters::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.DFParameters)
+  GOOGLE_DCHECK_NE(&from, this);
+  const DFParameters* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<DFParameters>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.DFParameters)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.DFParameters)
+    MergeFrom(*source);
+  }
 }
-
 
 void DFParameters::MergeFrom(const DFParameters& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.DFParameters)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_df_timestamp() != 0) {
+  if (from.df_timestamp() != 0) {
     _internal_set_df_timestamp(from._internal_df_timestamp());
   }
-  if (!(from._internal_target_pressure() <= 0 && from._internal_target_pressure() >= 0)) {
+  if (!(from.target_pressure() <= 0 && from.target_pressure() >= 0)) {
     _internal_set_target_pressure(from._internal_target_pressure());
   }
-  if (!(from._internal_high_pressure() <= 0 && from._internal_high_pressure() >= 0)) {
+  if (!(from.high_pressure() <= 0 && from.high_pressure() >= 0)) {
     _internal_set_high_pressure(from._internal_high_pressure());
   }
-  if (!(from._internal_low_pressure() <= 0 && from._internal_low_pressure() >= 0)) {
+  if (!(from.low_pressure() <= 0 && from.low_pressure() >= 0)) {
     _internal_set_low_pressure(from._internal_low_pressure());
   }
-  if (!(from._internal_in_seat_pressure() <= 0 && from._internal_in_seat_pressure() >= 0)) {
+  if (!(from.in_seat_pressure() <= 0 && from.in_seat_pressure() >= 0)) {
     _internal_set_in_seat_pressure(from._internal_in_seat_pressure());
   }
-  if (!(from._internal_off_load_pressure() <= 0 && from._internal_off_load_pressure() >= 0)) {
+  if (!(from.off_load_pressure() <= 0 && from.off_load_pressure() >= 0)) {
     _internal_set_off_load_pressure(from._internal_off_load_pressure());
   }
-  if (from._internal_usb_update_period() != 0) {
+  if (from.usb_update_period() != 0) {
     _internal_set_usb_update_period(from._internal_usb_update_period());
   }
-  if (from._internal_cap_update_period() != 0) {
+  if (from.cap_update_period() != 0) {
     _internal_set_cap_update_period(from._internal_cap_update_period());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void DFParameters::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.DFParameters)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void DFParameters::CopyFrom(const DFParameters& from) {
@@ -4745,13 +4787,10 @@ class DFSeatEvent::_Internal {
  public:
 };
 
-DFSeatEvent::DFSeatEvent(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+DFSeatEvent::DFSeatEvent(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.DFSeatEvent)
 }
 DFSeatEvent::DFSeatEvent(const DFSeatEvent& from)
@@ -4772,12 +4811,11 @@ void DFSeatEvent::SharedCtor() {
 
 DFSeatEvent::~DFSeatEvent() {
   // @@protoc_insertion_point(destructor:sensors.DFSeatEvent)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void DFSeatEvent::SharedDtor() {
+void DFSeatEvent::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -4814,16 +4852,14 @@ const char* DFSeatEvent::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
           current_timestamp_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // uint32 event_timestamp = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
           event_timestamp_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .sensors.DFSeatEvent.EventGroup group = 3;
       case 3:
@@ -4831,8 +4867,7 @@ const char* DFSeatEvent::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
           ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_group(static_cast<::sensors::DFSeatEvent_EventGroup>(val));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .sensors.DFSeatEvent.EventType event_type = 4;
       case 4:
@@ -4840,29 +4875,28 @@ const char* DFSeatEvent::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
           ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_event_type(static_cast<::sensors::DFSeatEvent_EventType>(val));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -4873,26 +4907,26 @@ failure:
   (void) cached_has_bits;
 
   // uint32 current_timestamp = 1;
-  if (this->_internal_current_timestamp() != 0) {
+  if (this->current_timestamp() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(1, this->_internal_current_timestamp(), target);
   }
 
   // uint32 event_timestamp = 2;
-  if (this->_internal_event_timestamp() != 0) {
+  if (this->event_timestamp() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(2, this->_internal_event_timestamp(), target);
   }
 
   // .sensors.DFSeatEvent.EventGroup group = 3;
-  if (this->_internal_group() != 0) {
+  if (this->group() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
       3, this->_internal_group(), target);
   }
 
   // .sensors.DFSeatEvent.EventType event_type = 4;
-  if (this->_internal_event_type() != 0) {
+  if (this->event_type() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
       4, this->_internal_event_type(), target);
@@ -4915,62 +4949,81 @@ size_t DFSeatEvent::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // uint32 current_timestamp = 1;
-  if (this->_internal_current_timestamp() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32SizePlusOne(this->_internal_current_timestamp());
+  if (this->current_timestamp() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
+        this->_internal_current_timestamp());
   }
 
   // uint32 event_timestamp = 2;
-  if (this->_internal_event_timestamp() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32SizePlusOne(this->_internal_event_timestamp());
+  if (this->event_timestamp() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
+        this->_internal_event_timestamp());
   }
 
   // .sensors.DFSeatEvent.EventGroup group = 3;
-  if (this->_internal_group() != 0) {
+  if (this->group() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_group());
   }
 
   // .sensors.DFSeatEvent.EventType event_type = 4;
-  if (this->_internal_event_type() != 0) {
+  if (this->event_type() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_event_type());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData DFSeatEvent::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    DFSeatEvent::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DFSeatEvent::GetClassData() const { return &_class_data_; }
-
-void DFSeatEvent::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<DFSeatEvent *>(to)->MergeFrom(
-      static_cast<const DFSeatEvent &>(from));
+void DFSeatEvent::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.DFSeatEvent)
+  GOOGLE_DCHECK_NE(&from, this);
+  const DFSeatEvent* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<DFSeatEvent>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.DFSeatEvent)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.DFSeatEvent)
+    MergeFrom(*source);
+  }
 }
-
 
 void DFSeatEvent::MergeFrom(const DFSeatEvent& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.DFSeatEvent)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_current_timestamp() != 0) {
+  if (from.current_timestamp() != 0) {
     _internal_set_current_timestamp(from._internal_current_timestamp());
   }
-  if (from._internal_event_timestamp() != 0) {
+  if (from.event_timestamp() != 0) {
     _internal_set_event_timestamp(from._internal_event_timestamp());
   }
-  if (from._internal_group() != 0) {
+  if (from.group() != 0) {
     _internal_set_group(from._internal_group());
   }
-  if (from._internal_event_type() != 0) {
+  if (from.event_type() != 0) {
     _internal_set_event_type(from._internal_event_type());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void DFSeatEvent::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.DFSeatEvent)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void DFSeatEvent::CopyFrom(const DFSeatEvent& from) {
@@ -5007,13 +5060,10 @@ class DistanceData::_Internal {
  public:
 };
 
-DistanceData::DistanceData(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+DistanceData::DistanceData(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.DistanceData)
 }
 DistanceData::DistanceData(const DistanceData& from)
@@ -5029,12 +5079,11 @@ distance_ = 0;
 
 DistanceData::~DistanceData() {
   // @@protoc_insertion_point(destructor:sensors.DistanceData)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void DistanceData::SharedDtor() {
+void DistanceData::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -5069,29 +5118,28 @@ const char* DistanceData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
           distance_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -5102,7 +5150,7 @@ failure:
   (void) cached_has_bits;
 
   // int32 distance = 1;
-  if (this->_internal_distance() != 0) {
+  if (this->distance() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_distance(), target);
   }
@@ -5124,36 +5172,53 @@ size_t DistanceData::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // int32 distance = 1;
-  if (this->_internal_distance() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_distance());
+  if (this->distance() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_distance());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData DistanceData::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    DistanceData::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DistanceData::GetClassData() const { return &_class_data_; }
-
-void DistanceData::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<DistanceData *>(to)->MergeFrom(
-      static_cast<const DistanceData &>(from));
+void DistanceData::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.DistanceData)
+  GOOGLE_DCHECK_NE(&from, this);
+  const DistanceData* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<DistanceData>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.DistanceData)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.DistanceData)
+    MergeFrom(*source);
+  }
 }
-
 
 void DistanceData::MergeFrom(const DistanceData& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.DistanceData)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_distance() != 0) {
+  if (from.distance() != 0) {
     _internal_set_distance(from._internal_distance());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void DistanceData::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.DistanceData)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void DistanceData::CopyFrom(const DistanceData& from) {
@@ -5185,13 +5250,10 @@ class SeatPressure::_Internal {
  public:
 };
 
-SeatPressure::SeatPressure(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+SeatPressure::SeatPressure(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.SeatPressure)
 }
 SeatPressure::SeatPressure(const SeatPressure& from)
@@ -5207,12 +5269,11 @@ pressure_ = 0;
 
 SeatPressure::~SeatPressure() {
   // @@protoc_insertion_point(destructor:sensors.SeatPressure)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void SeatPressure::SharedDtor() {
+void SeatPressure::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -5247,29 +5308,28 @@ const char* SeatPressure::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 13)) {
           pressure_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -5280,7 +5340,7 @@ failure:
   (void) cached_has_bits;
 
   // float pressure = 1;
-  if (!(this->_internal_pressure() <= 0 && this->_internal_pressure() >= 0)) {
+  if (!(this->pressure() <= 0 && this->pressure() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(1, this->_internal_pressure(), target);
   }
@@ -5302,36 +5362,51 @@ size_t SeatPressure::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // float pressure = 1;
-  if (!(this->_internal_pressure() <= 0 && this->_internal_pressure() >= 0)) {
+  if (!(this->pressure() <= 0 && this->pressure() >= 0)) {
     total_size += 1 + 4;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SeatPressure::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    SeatPressure::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SeatPressure::GetClassData() const { return &_class_data_; }
-
-void SeatPressure::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<SeatPressure *>(to)->MergeFrom(
-      static_cast<const SeatPressure &>(from));
+void SeatPressure::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.SeatPressure)
+  GOOGLE_DCHECK_NE(&from, this);
+  const SeatPressure* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<SeatPressure>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.SeatPressure)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.SeatPressure)
+    MergeFrom(*source);
+  }
 }
-
 
 void SeatPressure::MergeFrom(const SeatPressure& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.SeatPressure)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!(from._internal_pressure() <= 0 && from._internal_pressure() >= 0)) {
+  if (!(from.pressure() <= 0 && from.pressure() >= 0)) {
     _internal_set_pressure(from._internal_pressure());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SeatPressure::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.SeatPressure)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void SeatPressure::CopyFrom(const SeatPressure& from) {
@@ -5363,13 +5438,10 @@ class ObstacleValue_Linear::_Internal {
  public:
 };
 
-ObstacleValue_Linear::ObstacleValue_Linear(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+ObstacleValue_Linear::ObstacleValue_Linear(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.ObstacleValue.Linear)
 }
 ObstacleValue_Linear::ObstacleValue_Linear(const ObstacleValue_Linear& from)
@@ -5385,12 +5457,11 @@ distance_ = 0;
 
 ObstacleValue_Linear::~ObstacleValue_Linear() {
   // @@protoc_insertion_point(destructor:sensors.ObstacleValue.Linear)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void ObstacleValue_Linear::SharedDtor() {
+void ObstacleValue_Linear::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -5425,29 +5496,28 @@ const char* ObstacleValue_Linear::_InternalParse(const char* ptr, ::PROTOBUF_NAM
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 13)) {
           distance_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -5458,7 +5528,7 @@ failure:
   (void) cached_has_bits;
 
   // float distance = 1;
-  if (!(this->_internal_distance() <= 0 && this->_internal_distance() >= 0)) {
+  if (!(this->distance() <= 0 && this->distance() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(1, this->_internal_distance(), target);
   }
@@ -5480,36 +5550,51 @@ size_t ObstacleValue_Linear::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // float distance = 1;
-  if (!(this->_internal_distance() <= 0 && this->_internal_distance() >= 0)) {
+  if (!(this->distance() <= 0 && this->distance() >= 0)) {
     total_size += 1 + 4;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ObstacleValue_Linear::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    ObstacleValue_Linear::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ObstacleValue_Linear::GetClassData() const { return &_class_data_; }
-
-void ObstacleValue_Linear::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<ObstacleValue_Linear *>(to)->MergeFrom(
-      static_cast<const ObstacleValue_Linear &>(from));
+void ObstacleValue_Linear::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.ObstacleValue.Linear)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ObstacleValue_Linear* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ObstacleValue_Linear>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.ObstacleValue.Linear)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.ObstacleValue.Linear)
+    MergeFrom(*source);
+  }
 }
-
 
 void ObstacleValue_Linear::MergeFrom(const ObstacleValue_Linear& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.ObstacleValue.Linear)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!(from._internal_distance() <= 0 && from._internal_distance() >= 0)) {
+  if (!(from.distance() <= 0 && from.distance() >= 0)) {
     _internal_set_distance(from._internal_distance());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ObstacleValue_Linear::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.ObstacleValue.Linear)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void ObstacleValue_Linear::CopyFrom(const ObstacleValue_Linear& from) {
@@ -5541,13 +5626,10 @@ class ObstacleValue_Angular::_Internal {
  public:
 };
 
-ObstacleValue_Angular::ObstacleValue_Angular(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+ObstacleValue_Angular::ObstacleValue_Angular(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.ObstacleValue.Angular)
 }
 ObstacleValue_Angular::ObstacleValue_Angular(const ObstacleValue_Angular& from)
@@ -5563,12 +5645,11 @@ angle_ = 0;
 
 ObstacleValue_Angular::~ObstacleValue_Angular() {
   // @@protoc_insertion_point(destructor:sensors.ObstacleValue.Angular)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void ObstacleValue_Angular::SharedDtor() {
+void ObstacleValue_Angular::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -5603,29 +5684,28 @@ const char* ObstacleValue_Angular::_InternalParse(const char* ptr, ::PROTOBUF_NA
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 13)) {
           angle_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -5636,7 +5716,7 @@ failure:
   (void) cached_has_bits;
 
   // float angle = 1;
-  if (!(this->_internal_angle() <= 0 && this->_internal_angle() >= 0)) {
+  if (!(this->angle() <= 0 && this->angle() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(1, this->_internal_angle(), target);
   }
@@ -5658,36 +5738,51 @@ size_t ObstacleValue_Angular::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // float angle = 1;
-  if (!(this->_internal_angle() <= 0 && this->_internal_angle() >= 0)) {
+  if (!(this->angle() <= 0 && this->angle() >= 0)) {
     total_size += 1 + 4;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ObstacleValue_Angular::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    ObstacleValue_Angular::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ObstacleValue_Angular::GetClassData() const { return &_class_data_; }
-
-void ObstacleValue_Angular::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<ObstacleValue_Angular *>(to)->MergeFrom(
-      static_cast<const ObstacleValue_Angular &>(from));
+void ObstacleValue_Angular::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.ObstacleValue.Angular)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ObstacleValue_Angular* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ObstacleValue_Angular>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.ObstacleValue.Angular)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.ObstacleValue.Angular)
+    MergeFrom(*source);
+  }
 }
-
 
 void ObstacleValue_Angular::MergeFrom(const ObstacleValue_Angular& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.ObstacleValue.Angular)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!(from._internal_angle() <= 0 && from._internal_angle() >= 0)) {
+  if (!(from.angle() <= 0 && from.angle() >= 0)) {
     _internal_set_angle(from._internal_angle());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ObstacleValue_Angular::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.ObstacleValue.Angular)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void ObstacleValue_Angular::CopyFrom(const ObstacleValue_Angular& from) {
@@ -5719,13 +5814,10 @@ class ObstacleValue_Combo::_Internal {
  public:
 };
 
-ObstacleValue_Combo::ObstacleValue_Combo(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+ObstacleValue_Combo::ObstacleValue_Combo(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.ObstacleValue.Combo)
 }
 ObstacleValue_Combo::ObstacleValue_Combo(const ObstacleValue_Combo& from)
@@ -5746,12 +5838,11 @@ void ObstacleValue_Combo::SharedCtor() {
 
 ObstacleValue_Combo::~ObstacleValue_Combo() {
   // @@protoc_insertion_point(destructor:sensors.ObstacleValue.Combo)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void ObstacleValue_Combo::SharedDtor() {
+void ObstacleValue_Combo::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -5788,37 +5879,35 @@ const char* ObstacleValue_Combo::_InternalParse(const char* ptr, ::PROTOBUF_NAME
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 13)) {
           distance_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float angle = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 21)) {
           angle_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -5829,13 +5918,13 @@ failure:
   (void) cached_has_bits;
 
   // float distance = 1;
-  if (!(this->_internal_distance() <= 0 && this->_internal_distance() >= 0)) {
+  if (!(this->distance() <= 0 && this->distance() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(1, this->_internal_distance(), target);
   }
 
   // float angle = 2;
-  if (!(this->_internal_angle() <= 0 && this->_internal_angle() >= 0)) {
+  if (!(this->angle() <= 0 && this->angle() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(2, this->_internal_angle(), target);
   }
@@ -5857,44 +5946,59 @@ size_t ObstacleValue_Combo::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // float distance = 1;
-  if (!(this->_internal_distance() <= 0 && this->_internal_distance() >= 0)) {
+  if (!(this->distance() <= 0 && this->distance() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float angle = 2;
-  if (!(this->_internal_angle() <= 0 && this->_internal_angle() >= 0)) {
+  if (!(this->angle() <= 0 && this->angle() >= 0)) {
     total_size += 1 + 4;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ObstacleValue_Combo::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    ObstacleValue_Combo::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ObstacleValue_Combo::GetClassData() const { return &_class_data_; }
-
-void ObstacleValue_Combo::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<ObstacleValue_Combo *>(to)->MergeFrom(
-      static_cast<const ObstacleValue_Combo &>(from));
+void ObstacleValue_Combo::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.ObstacleValue.Combo)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ObstacleValue_Combo* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ObstacleValue_Combo>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.ObstacleValue.Combo)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.ObstacleValue.Combo)
+    MergeFrom(*source);
+  }
 }
-
 
 void ObstacleValue_Combo::MergeFrom(const ObstacleValue_Combo& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.ObstacleValue.Combo)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!(from._internal_distance() <= 0 && from._internal_distance() >= 0)) {
+  if (!(from.distance() <= 0 && from.distance() >= 0)) {
     _internal_set_distance(from._internal_distance());
   }
-  if (!(from._internal_angle() <= 0 && from._internal_angle() >= 0)) {
+  if (!(from.angle() <= 0 && from.angle() >= 0)) {
     _internal_set_angle(from._internal_angle());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ObstacleValue_Combo::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.ObstacleValue.Combo)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void ObstacleValue_Combo::CopyFrom(const ObstacleValue_Combo& from) {
@@ -5991,13 +6095,10 @@ void ObstacleValue::set_allocated_combo(::sensors::ObstacleValue_Combo* combo) {
   }
   // @@protoc_insertion_point(field_set_allocated:sensors.ObstacleValue.combo)
 }
-ObstacleValue::ObstacleValue(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+ObstacleValue::ObstacleValue(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.ObstacleValue)
 }
 ObstacleValue::ObstacleValue(const ObstacleValue& from)
@@ -6030,12 +6131,11 @@ clear_has_value();
 
 ObstacleValue::~ObstacleValue() {
   // @@protoc_insertion_point(destructor:sensors.ObstacleValue)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void ObstacleValue::SharedDtor() {
+void ObstacleValue::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   if (has_value()) {
     clear_value();
@@ -6102,45 +6202,42 @@ const char* ObstacleValue::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_linear(), ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .sensors.ObstacleValue.Angular angular = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
           ptr = ctx->ParseMessage(_internal_mutable_angular(), ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .sensors.ObstacleValue.Combo combo = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
           ptr = ctx->ParseMessage(_internal_mutable_combo(), ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -6216,25 +6313,34 @@ size_t ObstacleValue::ByteSizeLong() const {
       break;
     }
   }
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ObstacleValue::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    ObstacleValue::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ObstacleValue::GetClassData() const { return &_class_data_; }
-
-void ObstacleValue::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<ObstacleValue *>(to)->MergeFrom(
-      static_cast<const ObstacleValue &>(from));
+void ObstacleValue::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.ObstacleValue)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ObstacleValue* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ObstacleValue>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.ObstacleValue)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.ObstacleValue)
+    MergeFrom(*source);
+  }
 }
-
 
 void ObstacleValue::MergeFrom(const ObstacleValue& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.ObstacleValue)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -6255,7 +6361,13 @@ void ObstacleValue::MergeFrom(const ObstacleValue& from) {
       break;
     }
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ObstacleValue::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.ObstacleValue)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void ObstacleValue::CopyFrom(const ObstacleValue& from) {
@@ -6294,7 +6406,7 @@ class ClosestObstacles::_Internal {
   static const ::sensors::ObstacleValue& back_left(const ClosestObstacles* msg);
   static const ::sensors::ObstacleValue& back_right(const ClosestObstacles* msg);
   static const ::sensors::ObstacleValue& back(const ClosestObstacles* msg);
-  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& timestamp(const ClosestObstacles* msg);
+  static const PROTOBUF_NAMESPACE_ID::Timestamp& timestamp(const ClosestObstacles* msg);
 };
 
 const ::sensors::ObstacleValue&
@@ -6329,7 +6441,7 @@ const ::sensors::ObstacleValue&
 ClosestObstacles::_Internal::back(const ClosestObstacles* msg) {
   return *msg->back_;
 }
-const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+const PROTOBUF_NAMESPACE_ID::Timestamp&
 ClosestObstacles::_Internal::timestamp(const ClosestObstacles* msg) {
   return *msg->timestamp_;
 }
@@ -6339,13 +6451,10 @@ void ClosestObstacles::clear_timestamp() {
   }
   timestamp_ = nullptr;
 }
-ClosestObstacles::ClosestObstacles(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+ClosestObstacles::ClosestObstacles(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.ClosestObstacles)
 }
 ClosestObstacles::ClosestObstacles(const ClosestObstacles& from)
@@ -6392,7 +6501,7 @@ ClosestObstacles::ClosestObstacles(const ClosestObstacles& from)
     back_ = nullptr;
   }
   if (from._internal_has_timestamp()) {
-    timestamp_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.timestamp_);
+    timestamp_ = new PROTOBUF_NAMESPACE_ID::Timestamp(*from.timestamp_);
   } else {
     timestamp_ = nullptr;
   }
@@ -6408,12 +6517,11 @@ void ClosestObstacles::SharedCtor() {
 
 ClosestObstacles::~ClosestObstacles() {
   // @@protoc_insertion_point(destructor:sensors.ClosestObstacles)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void ClosestObstacles::SharedDtor() {
+void ClosestObstacles::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   if (this != internal_default_instance()) delete front_;
   if (this != internal_default_instance()) delete front_left_;
@@ -6492,93 +6600,84 @@ const char* ClosestObstacles::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPA
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_front(), ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .sensors.ObstacleValue front_left = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
           ptr = ctx->ParseMessage(_internal_mutable_front_left(), ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .sensors.ObstacleValue front_right = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
           ptr = ctx->ParseMessage(_internal_mutable_front_right(), ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .sensors.ObstacleValue left = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
           ptr = ctx->ParseMessage(_internal_mutable_left(), ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .sensors.ObstacleValue right = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
           ptr = ctx->ParseMessage(_internal_mutable_right(), ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .sensors.ObstacleValue back_left = 6;
       case 6:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 50)) {
           ptr = ctx->ParseMessage(_internal_mutable_back_left(), ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .sensors.ObstacleValue back_right = 7;
       case 7:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 58)) {
           ptr = ctx->ParseMessage(_internal_mutable_back_right(), ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .sensors.ObstacleValue back = 8;
       case 8:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 66)) {
           ptr = ctx->ParseMessage(_internal_mutable_back(), ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .google.protobuf.Timestamp timestamp = 9;
       case 9:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 74)) {
           ptr = ctx->ParseMessage(_internal_mutable_timestamp(), ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -6589,7 +6688,7 @@ failure:
   (void) cached_has_bits;
 
   // .sensors.ObstacleValue front = 1;
-  if (this->_internal_has_front()) {
+  if (this->has_front()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
@@ -6597,7 +6696,7 @@ failure:
   }
 
   // .sensors.ObstacleValue front_left = 2;
-  if (this->_internal_has_front_left()) {
+  if (this->has_front_left()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
@@ -6605,7 +6704,7 @@ failure:
   }
 
   // .sensors.ObstacleValue front_right = 3;
-  if (this->_internal_has_front_right()) {
+  if (this->has_front_right()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
@@ -6613,7 +6712,7 @@ failure:
   }
 
   // .sensors.ObstacleValue left = 4;
-  if (this->_internal_has_left()) {
+  if (this->has_left()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
@@ -6621,7 +6720,7 @@ failure:
   }
 
   // .sensors.ObstacleValue right = 5;
-  if (this->_internal_has_right()) {
+  if (this->has_right()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
@@ -6629,7 +6728,7 @@ failure:
   }
 
   // .sensors.ObstacleValue back_left = 6;
-  if (this->_internal_has_back_left()) {
+  if (this->has_back_left()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
@@ -6637,7 +6736,7 @@ failure:
   }
 
   // .sensors.ObstacleValue back_right = 7;
-  if (this->_internal_has_back_right()) {
+  if (this->has_back_right()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
@@ -6645,7 +6744,7 @@ failure:
   }
 
   // .sensors.ObstacleValue back = 8;
-  if (this->_internal_has_back()) {
+  if (this->has_back()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
@@ -6653,7 +6752,7 @@ failure:
   }
 
   // .google.protobuf.Timestamp timestamp = 9;
-  if (this->_internal_has_timestamp()) {
+  if (this->has_timestamp()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
@@ -6677,118 +6776,133 @@ size_t ClosestObstacles::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // .sensors.ObstacleValue front = 1;
-  if (this->_internal_has_front()) {
+  if (this->has_front()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *front_);
   }
 
   // .sensors.ObstacleValue front_left = 2;
-  if (this->_internal_has_front_left()) {
+  if (this->has_front_left()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *front_left_);
   }
 
   // .sensors.ObstacleValue front_right = 3;
-  if (this->_internal_has_front_right()) {
+  if (this->has_front_right()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *front_right_);
   }
 
   // .sensors.ObstacleValue left = 4;
-  if (this->_internal_has_left()) {
+  if (this->has_left()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *left_);
   }
 
   // .sensors.ObstacleValue right = 5;
-  if (this->_internal_has_right()) {
+  if (this->has_right()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *right_);
   }
 
   // .sensors.ObstacleValue back_left = 6;
-  if (this->_internal_has_back_left()) {
+  if (this->has_back_left()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *back_left_);
   }
 
   // .sensors.ObstacleValue back_right = 7;
-  if (this->_internal_has_back_right()) {
+  if (this->has_back_right()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *back_right_);
   }
 
   // .sensors.ObstacleValue back = 8;
-  if (this->_internal_has_back()) {
+  if (this->has_back()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *back_);
   }
 
   // .google.protobuf.Timestamp timestamp = 9;
-  if (this->_internal_has_timestamp()) {
+  if (this->has_timestamp()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *timestamp_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ClosestObstacles::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    ClosestObstacles::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ClosestObstacles::GetClassData() const { return &_class_data_; }
-
-void ClosestObstacles::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<ClosestObstacles *>(to)->MergeFrom(
-      static_cast<const ClosestObstacles &>(from));
+void ClosestObstacles::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.ClosestObstacles)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ClosestObstacles* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ClosestObstacles>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.ClosestObstacles)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.ClosestObstacles)
+    MergeFrom(*source);
+  }
 }
-
 
 void ClosestObstacles::MergeFrom(const ClosestObstacles& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.ClosestObstacles)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_has_front()) {
+  if (from.has_front()) {
     _internal_mutable_front()->::sensors::ObstacleValue::MergeFrom(from._internal_front());
   }
-  if (from._internal_has_front_left()) {
+  if (from.has_front_left()) {
     _internal_mutable_front_left()->::sensors::ObstacleValue::MergeFrom(from._internal_front_left());
   }
-  if (from._internal_has_front_right()) {
+  if (from.has_front_right()) {
     _internal_mutable_front_right()->::sensors::ObstacleValue::MergeFrom(from._internal_front_right());
   }
-  if (from._internal_has_left()) {
+  if (from.has_left()) {
     _internal_mutable_left()->::sensors::ObstacleValue::MergeFrom(from._internal_left());
   }
-  if (from._internal_has_right()) {
+  if (from.has_right()) {
     _internal_mutable_right()->::sensors::ObstacleValue::MergeFrom(from._internal_right());
   }
-  if (from._internal_has_back_left()) {
+  if (from.has_back_left()) {
     _internal_mutable_back_left()->::sensors::ObstacleValue::MergeFrom(from._internal_back_left());
   }
-  if (from._internal_has_back_right()) {
+  if (from.has_back_right()) {
     _internal_mutable_back_right()->::sensors::ObstacleValue::MergeFrom(from._internal_back_right());
   }
-  if (from._internal_has_back()) {
+  if (from.has_back()) {
     _internal_mutable_back()->::sensors::ObstacleValue::MergeFrom(from._internal_back());
   }
-  if (from._internal_has_timestamp()) {
-    _internal_mutable_timestamp()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_timestamp());
+  if (from.has_timestamp()) {
+    _internal_mutable_timestamp()->PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_timestamp());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ClosestObstacles::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.ClosestObstacles)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void ClosestObstacles::CopyFrom(const ClosestObstacles& from) {
@@ -6823,10 +6937,10 @@ void ClosestObstacles::InternalSwap(ClosestObstacles* other) {
 
 class CameraPoints::_Internal {
  public:
-  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& timestamp(const CameraPoints* msg);
+  static const PROTOBUF_NAMESPACE_ID::Timestamp& timestamp(const CameraPoints* msg);
 };
 
-const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+const PROTOBUF_NAMESPACE_ID::Timestamp&
 CameraPoints::_Internal::timestamp(const CameraPoints* msg) {
   return *msg->timestamp_;
 }
@@ -6836,14 +6950,11 @@ void CameraPoints::clear_timestamp() {
   }
   timestamp_ = nullptr;
 }
-CameraPoints::CameraPoints(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+CameraPoints::CameraPoints(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
   points_(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.CameraPoints)
 }
 CameraPoints::CameraPoints(const CameraPoints& from)
@@ -6851,7 +6962,7 @@ CameraPoints::CameraPoints(const CameraPoints& from)
       points_(from.points_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_timestamp()) {
-    timestamp_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.timestamp_);
+    timestamp_ = new PROTOBUF_NAMESPACE_ID::Timestamp(*from.timestamp_);
   } else {
     timestamp_ = nullptr;
   }
@@ -6864,12 +6975,11 @@ timestamp_ = nullptr;
 
 CameraPoints::~CameraPoints() {
   // @@protoc_insertion_point(destructor:sensors.CameraPoints)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void CameraPoints::SharedDtor() {
+void CameraPoints::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   if (this != internal_default_instance()) delete timestamp_;
 }
@@ -6914,37 +7024,35 @@ const char* CameraPoints::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .google.protobuf.Timestamp timestamp = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
           ptr = ctx->ParseMessage(_internal_mutable_timestamp(), ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -6963,7 +7071,7 @@ failure:
   }
 
   // .google.protobuf.Timestamp timestamp = 2;
-  if (this->_internal_has_timestamp()) {
+  if (this->has_timestamp()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
@@ -6994,39 +7102,54 @@ size_t CameraPoints::ByteSizeLong() const {
   }
 
   // .google.protobuf.Timestamp timestamp = 2;
-  if (this->_internal_has_timestamp()) {
+  if (this->has_timestamp()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *timestamp_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData CameraPoints::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    CameraPoints::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*CameraPoints::GetClassData() const { return &_class_data_; }
-
-void CameraPoints::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<CameraPoints *>(to)->MergeFrom(
-      static_cast<const CameraPoints &>(from));
+void CameraPoints::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.CameraPoints)
+  GOOGLE_DCHECK_NE(&from, this);
+  const CameraPoints* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<CameraPoints>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.CameraPoints)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.CameraPoints)
+    MergeFrom(*source);
+  }
 }
-
 
 void CameraPoints::MergeFrom(const CameraPoints& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.CameraPoints)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   points_.MergeFrom(from.points_);
-  if (from._internal_has_timestamp()) {
-    _internal_mutable_timestamp()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_timestamp());
+  if (from.has_timestamp()) {
+    _internal_mutable_timestamp()->PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_timestamp());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void CameraPoints::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.CameraPoints)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void CameraPoints::CopyFrom(const CameraPoints& from) {
@@ -7059,13 +7182,10 @@ class Point3D::_Internal {
  public:
 };
 
-Point3D::Point3D(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+Point3D::Point3D(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.Point3D)
 }
 Point3D::Point3D(const Point3D& from)
@@ -7086,12 +7206,11 @@ void Point3D::SharedCtor() {
 
 Point3D::~Point3D() {
   // @@protoc_insertion_point(destructor:sensors.Point3D)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void Point3D::SharedDtor() {
+void Point3D::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -7128,45 +7247,42 @@ const char* Point3D::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::in
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 13)) {
           x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float y = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 21)) {
           y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float z = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 29)) {
           z_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -7177,19 +7293,19 @@ failure:
   (void) cached_has_bits;
 
   // float x = 1;
-  if (!(this->_internal_x() <= 0 && this->_internal_x() >= 0)) {
+  if (!(this->x() <= 0 && this->x() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(1, this->_internal_x(), target);
   }
 
   // float y = 2;
-  if (!(this->_internal_y() <= 0 && this->_internal_y() >= 0)) {
+  if (!(this->y() <= 0 && this->y() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(2, this->_internal_y(), target);
   }
 
   // float z = 3;
-  if (!(this->_internal_z() <= 0 && this->_internal_z() >= 0)) {
+  if (!(this->z() <= 0 && this->z() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(3, this->_internal_z(), target);
   }
@@ -7211,52 +7327,67 @@ size_t Point3D::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // float x = 1;
-  if (!(this->_internal_x() <= 0 && this->_internal_x() >= 0)) {
+  if (!(this->x() <= 0 && this->x() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float y = 2;
-  if (!(this->_internal_y() <= 0 && this->_internal_y() >= 0)) {
+  if (!(this->y() <= 0 && this->y() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float z = 3;
-  if (!(this->_internal_z() <= 0 && this->_internal_z() >= 0)) {
+  if (!(this->z() <= 0 && this->z() >= 0)) {
     total_size += 1 + 4;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Point3D::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    Point3D::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Point3D::GetClassData() const { return &_class_data_; }
-
-void Point3D::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<Point3D *>(to)->MergeFrom(
-      static_cast<const Point3D &>(from));
+void Point3D::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.Point3D)
+  GOOGLE_DCHECK_NE(&from, this);
+  const Point3D* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<Point3D>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.Point3D)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.Point3D)
+    MergeFrom(*source);
+  }
 }
-
 
 void Point3D::MergeFrom(const Point3D& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.Point3D)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!(from._internal_x() <= 0 && from._internal_x() >= 0)) {
+  if (!(from.x() <= 0 && from.x() >= 0)) {
     _internal_set_x(from._internal_x());
   }
-  if (!(from._internal_y() <= 0 && from._internal_y() >= 0)) {
+  if (!(from.y() <= 0 && from.y() >= 0)) {
     _internal_set_y(from._internal_y());
   }
-  if (!(from._internal_z() <= 0 && from._internal_z() >= 0)) {
+  if (!(from.z() <= 0 && from.z() >= 0)) {
     _internal_set_z(from._internal_z());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Point3D::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.Point3D)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void Point3D::CopyFrom(const Point3D& from) {
@@ -7291,10 +7422,10 @@ void Point3D::InternalSwap(Point3D* other) {
 
 class CameraPoints2D::_Internal {
  public:
-  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& timestamp(const CameraPoints2D* msg);
+  static const PROTOBUF_NAMESPACE_ID::Timestamp& timestamp(const CameraPoints2D* msg);
 };
 
-const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+const PROTOBUF_NAMESPACE_ID::Timestamp&
 CameraPoints2D::_Internal::timestamp(const CameraPoints2D* msg) {
   return *msg->timestamp_;
 }
@@ -7304,14 +7435,11 @@ void CameraPoints2D::clear_timestamp() {
   }
   timestamp_ = nullptr;
 }
-CameraPoints2D::CameraPoints2D(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+CameraPoints2D::CameraPoints2D(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
   points_(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.CameraPoints2D)
 }
 CameraPoints2D::CameraPoints2D(const CameraPoints2D& from)
@@ -7319,7 +7447,7 @@ CameraPoints2D::CameraPoints2D(const CameraPoints2D& from)
       points_(from.points_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_timestamp()) {
-    timestamp_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.timestamp_);
+    timestamp_ = new PROTOBUF_NAMESPACE_ID::Timestamp(*from.timestamp_);
   } else {
     timestamp_ = nullptr;
   }
@@ -7332,12 +7460,11 @@ timestamp_ = nullptr;
 
 CameraPoints2D::~CameraPoints2D() {
   // @@protoc_insertion_point(destructor:sensors.CameraPoints2D)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void CameraPoints2D::SharedDtor() {
+void CameraPoints2D::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   if (this != internal_default_instance()) delete timestamp_;
 }
@@ -7382,37 +7509,35 @@ const char* CameraPoints2D::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .google.protobuf.Timestamp timestamp = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
           ptr = ctx->ParseMessage(_internal_mutable_timestamp(), ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -7431,7 +7556,7 @@ failure:
   }
 
   // .google.protobuf.Timestamp timestamp = 2;
-  if (this->_internal_has_timestamp()) {
+  if (this->has_timestamp()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
@@ -7462,39 +7587,54 @@ size_t CameraPoints2D::ByteSizeLong() const {
   }
 
   // .google.protobuf.Timestamp timestamp = 2;
-  if (this->_internal_has_timestamp()) {
+  if (this->has_timestamp()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *timestamp_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData CameraPoints2D::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    CameraPoints2D::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*CameraPoints2D::GetClassData() const { return &_class_data_; }
-
-void CameraPoints2D::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<CameraPoints2D *>(to)->MergeFrom(
-      static_cast<const CameraPoints2D &>(from));
+void CameraPoints2D::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.CameraPoints2D)
+  GOOGLE_DCHECK_NE(&from, this);
+  const CameraPoints2D* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<CameraPoints2D>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.CameraPoints2D)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.CameraPoints2D)
+    MergeFrom(*source);
+  }
 }
-
 
 void CameraPoints2D::MergeFrom(const CameraPoints2D& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.CameraPoints2D)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   points_.MergeFrom(from.points_);
-  if (from._internal_has_timestamp()) {
-    _internal_mutable_timestamp()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_timestamp());
+  if (from.has_timestamp()) {
+    _internal_mutable_timestamp()->PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_timestamp());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void CameraPoints2D::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.CameraPoints2D)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void CameraPoints2D::CopyFrom(const CameraPoints2D& from) {
@@ -7527,13 +7667,10 @@ class Point2D::_Internal {
  public:
 };
 
-Point2D::Point2D(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+Point2D::Point2D(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.Point2D)
 }
 Point2D::Point2D(const Point2D& from)
@@ -7554,12 +7691,11 @@ void Point2D::SharedCtor() {
 
 Point2D::~Point2D() {
   // @@protoc_insertion_point(destructor:sensors.Point2D)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void Point2D::SharedDtor() {
+void Point2D::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -7596,37 +7732,35 @@ const char* Point2D::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::in
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 13)) {
           x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float y = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 21)) {
           y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -7637,13 +7771,13 @@ failure:
   (void) cached_has_bits;
 
   // float x = 1;
-  if (!(this->_internal_x() <= 0 && this->_internal_x() >= 0)) {
+  if (!(this->x() <= 0 && this->x() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(1, this->_internal_x(), target);
   }
 
   // float y = 2;
-  if (!(this->_internal_y() <= 0 && this->_internal_y() >= 0)) {
+  if (!(this->y() <= 0 && this->y() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(2, this->_internal_y(), target);
   }
@@ -7665,44 +7799,59 @@ size_t Point2D::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // float x = 1;
-  if (!(this->_internal_x() <= 0 && this->_internal_x() >= 0)) {
+  if (!(this->x() <= 0 && this->x() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float y = 2;
-  if (!(this->_internal_y() <= 0 && this->_internal_y() >= 0)) {
+  if (!(this->y() <= 0 && this->y() >= 0)) {
     total_size += 1 + 4;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Point2D::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    Point2D::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Point2D::GetClassData() const { return &_class_data_; }
-
-void Point2D::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<Point2D *>(to)->MergeFrom(
-      static_cast<const Point2D &>(from));
+void Point2D::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.Point2D)
+  GOOGLE_DCHECK_NE(&from, this);
+  const Point2D* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<Point2D>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.Point2D)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.Point2D)
+    MergeFrom(*source);
+  }
 }
-
 
 void Point2D::MergeFrom(const Point2D& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.Point2D)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!(from._internal_x() <= 0 && from._internal_x() >= 0)) {
+  if (!(from.x() <= 0 && from.x() >= 0)) {
     _internal_set_x(from._internal_x());
   }
-  if (!(from._internal_y() <= 0 && from._internal_y() >= 0)) {
+  if (!(from.y() <= 0 && from.y() >= 0)) {
     _internal_set_y(from._internal_y());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Point2D::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.Point2D)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void Point2D::CopyFrom(const Point2D& from) {
@@ -7739,14 +7888,11 @@ class LoggingData::_Internal {
  public:
 };
 
-LoggingData::LoggingData(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+LoggingData::LoggingData(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
   points_(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.LoggingData)
 }
 LoggingData::LoggingData(const LoggingData& from)
@@ -7774,12 +7920,11 @@ key_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyI
 
 LoggingData::~LoggingData() {
   // @@protoc_insertion_point(destructor:sensors.LoggingData)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void LoggingData::SharedDtor() {
+void LoggingData::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   key_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -7821,24 +7966,21 @@ const char* LoggingData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "sensors.LoggingData.key"));
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // double value = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 17)) {
           value_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // int32 timestamp = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
           timestamp_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // repeated .sensors.Point3D points = 4;
       case 4:
@@ -7850,29 +7992,28 @@ const char* LoggingData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<34>(ptr));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -7883,7 +8024,7 @@ failure:
   (void) cached_has_bits;
 
   // string key = 1;
-  if (!this->_internal_key().empty()) {
+  if (!this->key().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_key().data(), static_cast<int>(this->_internal_key().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -7893,13 +8034,13 @@ failure:
   }
 
   // double value = 2;
-  if (!(this->_internal_value() <= 0 && this->_internal_value() >= 0)) {
+  if (!(this->value() <= 0 && this->value() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(2, this->_internal_value(), target);
   }
 
   // int32 timestamp = 3;
-  if (this->_internal_timestamp() != 0) {
+  if (this->timestamp() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(3, this->_internal_timestamp(), target);
   }
@@ -7936,55 +8077,72 @@ size_t LoggingData::ByteSizeLong() const {
   }
 
   // string key = 1;
-  if (!this->_internal_key().empty()) {
+  if (!this->key().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_key());
   }
 
   // double value = 2;
-  if (!(this->_internal_value() <= 0 && this->_internal_value() >= 0)) {
+  if (!(this->value() <= 0 && this->value() >= 0)) {
     total_size += 1 + 8;
   }
 
   // int32 timestamp = 3;
-  if (this->_internal_timestamp() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_timestamp());
+  if (this->timestamp() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_timestamp());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData LoggingData::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    LoggingData::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*LoggingData::GetClassData() const { return &_class_data_; }
-
-void LoggingData::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<LoggingData *>(to)->MergeFrom(
-      static_cast<const LoggingData &>(from));
+void LoggingData::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.LoggingData)
+  GOOGLE_DCHECK_NE(&from, this);
+  const LoggingData* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<LoggingData>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.LoggingData)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.LoggingData)
+    MergeFrom(*source);
+  }
 }
-
 
 void LoggingData::MergeFrom(const LoggingData& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.LoggingData)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   points_.MergeFrom(from.points_);
-  if (!from._internal_key().empty()) {
+  if (!from.key().empty()) {
     _internal_set_key(from._internal_key());
   }
-  if (!(from._internal_value() <= 0 && from._internal_value() >= 0)) {
+  if (!(from.value() <= 0 && from.value() >= 0)) {
     _internal_set_value(from._internal_value());
   }
-  if (from._internal_timestamp() != 0) {
+  if (from.timestamp() != 0) {
     _internal_set_timestamp(from._internal_timestamp());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void LoggingData::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.LoggingData)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void LoggingData::CopyFrom(const LoggingData& from) {
@@ -8000,14 +8158,12 @@ bool LoggingData::IsInitialized() const {
 
 void LoggingData::InternalSwap(LoggingData* other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   points_.InternalSwap(&other->points_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      &key_, lhs_arena,
-      &other->key_, rhs_arena
+      &key_, GetArenaForAllocation(),
+      &other->key_, other->GetArenaForAllocation()
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(LoggingData, timestamp_)
@@ -8029,13 +8185,10 @@ class Led::_Internal {
  public:
 };
 
-Led::Led(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+Led::Led(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.Led)
 }
 Led::Led(const Led& from)
@@ -8051,12 +8204,11 @@ led_ = 0;
 
 Led::~Led() {
   // @@protoc_insertion_point(destructor:sensors.Led)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void Led::SharedDtor() {
+void Led::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -8092,29 +8244,28 @@ const char* Led::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::intern
           ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_led(static_cast<::sensors::Led_Leds>(val));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -8125,7 +8276,7 @@ failure:
   (void) cached_has_bits;
 
   // .sensors.Led.Leds led = 1;
-  if (this->_internal_led() != 0) {
+  if (this->led() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
       1, this->_internal_led(), target);
@@ -8148,37 +8299,52 @@ size_t Led::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // .sensors.Led.Leds led = 1;
-  if (this->_internal_led() != 0) {
+  if (this->led() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_led());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Led::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    Led::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Led::GetClassData() const { return &_class_data_; }
-
-void Led::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<Led *>(to)->MergeFrom(
-      static_cast<const Led &>(from));
+void Led::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.Led)
+  GOOGLE_DCHECK_NE(&from, this);
+  const Led* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<Led>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.Led)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.Led)
+    MergeFrom(*source);
+  }
 }
-
 
 void Led::MergeFrom(const Led& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.Led)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_led() != 0) {
+  if (from.led() != 0) {
     _internal_set_led(from._internal_led());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Led::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.Led)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void Led::CopyFrom(const Led& from) {
@@ -8210,13 +8376,10 @@ class HmiState::_Internal {
  public:
 };
 
-HmiState::HmiState(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+HmiState::HmiState(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.HmiState)
 }
 HmiState::HmiState(const HmiState& from)
@@ -8232,12 +8395,11 @@ state_ = 0;
 
 HmiState::~HmiState() {
   // @@protoc_insertion_point(destructor:sensors.HmiState)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void HmiState::SharedDtor() {
+void HmiState::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -8273,29 +8435,28 @@ const char* HmiState::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::i
           ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_state(static_cast<::sensors::HmiState_States>(val));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -8306,7 +8467,7 @@ failure:
   (void) cached_has_bits;
 
   // .sensors.HmiState.States state = 1;
-  if (this->_internal_state() != 0) {
+  if (this->state() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
       1, this->_internal_state(), target);
@@ -8329,37 +8490,52 @@ size_t HmiState::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // .sensors.HmiState.States state = 1;
-  if (this->_internal_state() != 0) {
+  if (this->state() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_state());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData HmiState::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    HmiState::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*HmiState::GetClassData() const { return &_class_data_; }
-
-void HmiState::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<HmiState *>(to)->MergeFrom(
-      static_cast<const HmiState &>(from));
+void HmiState::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.HmiState)
+  GOOGLE_DCHECK_NE(&from, this);
+  const HmiState* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<HmiState>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.HmiState)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.HmiState)
+    MergeFrom(*source);
+  }
 }
-
 
 void HmiState::MergeFrom(const HmiState& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.HmiState)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_state() != 0) {
+  if (from.state() != 0) {
     _internal_set_state(from._internal_state());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void HmiState::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.HmiState)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void HmiState::CopyFrom(const HmiState& from) {
@@ -8391,13 +8567,10 @@ class HmiStreamData::_Internal {
  public:
 };
 
-HmiStreamData::HmiStreamData(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+HmiStreamData::HmiStreamData(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.HmiStreamData)
 }
 HmiStreamData::HmiStreamData(const HmiStreamData& from)
@@ -8418,12 +8591,11 @@ void HmiStreamData::SharedCtor() {
 
 HmiStreamData::~HmiStreamData() {
   // @@protoc_insertion_point(destructor:sensors.HmiStreamData)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void HmiStreamData::SharedDtor() {
+void HmiStreamData::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -8460,8 +8632,7 @@ const char* HmiStreamData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
           is_alt_override_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .sensors.HmiStreamData.ButtonState button_state = 2;
       case 2:
@@ -8469,29 +8640,28 @@ const char* HmiStreamData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_
           ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_button_state(static_cast<::sensors::HmiStreamData_ButtonState>(val));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -8502,13 +8672,13 @@ failure:
   (void) cached_has_bits;
 
   // bool is_alt_override = 1;
-  if (this->_internal_is_alt_override() != 0) {
+  if (this->is_alt_override() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_is_alt_override(), target);
   }
 
   // .sensors.HmiStreamData.ButtonState button_state = 2;
-  if (this->_internal_button_state() != 0) {
+  if (this->button_state() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
       2, this->_internal_button_state(), target);
@@ -8531,45 +8701,60 @@ size_t HmiStreamData::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // bool is_alt_override = 1;
-  if (this->_internal_is_alt_override() != 0) {
+  if (this->is_alt_override() != 0) {
     total_size += 1 + 1;
   }
 
   // .sensors.HmiStreamData.ButtonState button_state = 2;
-  if (this->_internal_button_state() != 0) {
+  if (this->button_state() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_button_state());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData HmiStreamData::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    HmiStreamData::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*HmiStreamData::GetClassData() const { return &_class_data_; }
-
-void HmiStreamData::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<HmiStreamData *>(to)->MergeFrom(
-      static_cast<const HmiStreamData &>(from));
+void HmiStreamData::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.HmiStreamData)
+  GOOGLE_DCHECK_NE(&from, this);
+  const HmiStreamData* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<HmiStreamData>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.HmiStreamData)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.HmiStreamData)
+    MergeFrom(*source);
+  }
 }
-
 
 void HmiStreamData::MergeFrom(const HmiStreamData& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.HmiStreamData)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_is_alt_override() != 0) {
+  if (from.is_alt_override() != 0) {
     _internal_set_is_alt_override(from._internal_is_alt_override());
   }
-  if (from._internal_button_state() != 0) {
+  if (from.button_state() != 0) {
     _internal_set_button_state(from._internal_button_state());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void HmiStreamData::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.HmiStreamData)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void HmiStreamData::CopyFrom(const HmiStreamData& from) {
@@ -8606,13 +8791,10 @@ class PressCountStreamData::_Internal {
  public:
 };
 
-PressCountStreamData::PressCountStreamData(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+PressCountStreamData::PressCountStreamData(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.PressCountStreamData)
 }
 PressCountStreamData::PressCountStreamData(const PressCountStreamData& from)
@@ -8628,12 +8810,11 @@ press_count_ = 0;
 
 PressCountStreamData::~PressCountStreamData() {
   // @@protoc_insertion_point(destructor:sensors.PressCountStreamData)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void PressCountStreamData::SharedDtor() {
+void PressCountStreamData::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -8668,29 +8849,28 @@ const char* PressCountStreamData::_InternalParse(const char* ptr, ::PROTOBUF_NAM
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
           press_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -8701,7 +8881,7 @@ failure:
   (void) cached_has_bits;
 
   // int32 press_count = 1;
-  if (this->_internal_press_count() != 0) {
+  if (this->press_count() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_press_count(), target);
   }
@@ -8723,36 +8903,53 @@ size_t PressCountStreamData::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // int32 press_count = 1;
-  if (this->_internal_press_count() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_press_count());
+  if (this->press_count() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_press_count());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PressCountStreamData::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    PressCountStreamData::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PressCountStreamData::GetClassData() const { return &_class_data_; }
-
-void PressCountStreamData::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<PressCountStreamData *>(to)->MergeFrom(
-      static_cast<const PressCountStreamData &>(from));
+void PressCountStreamData::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.PressCountStreamData)
+  GOOGLE_DCHECK_NE(&from, this);
+  const PressCountStreamData* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<PressCountStreamData>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.PressCountStreamData)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.PressCountStreamData)
+    MergeFrom(*source);
+  }
 }
-
 
 void PressCountStreamData::MergeFrom(const PressCountStreamData& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.PressCountStreamData)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_press_count() != 0) {
+  if (from.press_count() != 0) {
     _internal_set_press_count(from._internal_press_count());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void PressCountStreamData::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.PressCountStreamData)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void PressCountStreamData::CopyFrom(const PressCountStreamData& from) {
@@ -8784,13 +8981,10 @@ class NavigationScaling::_Internal {
  public:
 };
 
-NavigationScaling::NavigationScaling(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+NavigationScaling::NavigationScaling(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.NavigationScaling)
 }
 NavigationScaling::NavigationScaling(const NavigationScaling& from)
@@ -8811,12 +9005,11 @@ void NavigationScaling::SharedCtor() {
 
 NavigationScaling::~NavigationScaling() {
   // @@protoc_insertion_point(destructor:sensors.NavigationScaling)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void NavigationScaling::SharedDtor() {
+void NavigationScaling::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -8853,173 +9046,154 @@ const char* NavigationScaling::_InternalParse(const char* ptr, ::PROTOBUF_NAMESP
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 13)) {
           front_fb_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float front_rl = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 21)) {
           front_rl_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float front_right_fb = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 29)) {
           front_right_fb_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float front_right_rl = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 37)) {
           front_right_rl_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float front_left_fb = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 45)) {
           front_left_fb_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float front_left_rl = 6;
       case 6:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 53)) {
           front_left_rl_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float right_fb = 7;
       case 7:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 61)) {
           right_fb_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float right_rl = 8;
       case 8:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 69)) {
           right_rl_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float left_fb = 9;
       case 9:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 77)) {
           left_fb_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float left_rl = 10;
       case 10:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 85)) {
           left_rl_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float back_right_fb = 11;
       case 11:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 93)) {
           back_right_fb_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float back_right_rl = 12;
       case 12:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 101)) {
           back_right_rl_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float back_left_fb = 13;
       case 13:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 109)) {
           back_left_fb_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float back_left_rl = 14;
       case 14:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 117)) {
           back_left_rl_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float back_fb = 15;
       case 15:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 125)) {
           back_fb_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float back_rl = 16;
       case 16:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 133)) {
           back_rl_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // uint32 max_js_scale_increase = 17;
       case 17:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 136)) {
           max_js_scale_increase_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // uint32 max_js_scale_decrease = 18;
       case 18:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 144)) {
           max_js_scale_decrease_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // bool luci_active = 19;
       case 19:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 152)) {
           luci_active_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -9030,115 +9204,115 @@ failure:
   (void) cached_has_bits;
 
   // float front_fb = 1;
-  if (!(this->_internal_front_fb() <= 0 && this->_internal_front_fb() >= 0)) {
+  if (!(this->front_fb() <= 0 && this->front_fb() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(1, this->_internal_front_fb(), target);
   }
 
   // float front_rl = 2;
-  if (!(this->_internal_front_rl() <= 0 && this->_internal_front_rl() >= 0)) {
+  if (!(this->front_rl() <= 0 && this->front_rl() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(2, this->_internal_front_rl(), target);
   }
 
   // float front_right_fb = 3;
-  if (!(this->_internal_front_right_fb() <= 0 && this->_internal_front_right_fb() >= 0)) {
+  if (!(this->front_right_fb() <= 0 && this->front_right_fb() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(3, this->_internal_front_right_fb(), target);
   }
 
   // float front_right_rl = 4;
-  if (!(this->_internal_front_right_rl() <= 0 && this->_internal_front_right_rl() >= 0)) {
+  if (!(this->front_right_rl() <= 0 && this->front_right_rl() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(4, this->_internal_front_right_rl(), target);
   }
 
   // float front_left_fb = 5;
-  if (!(this->_internal_front_left_fb() <= 0 && this->_internal_front_left_fb() >= 0)) {
+  if (!(this->front_left_fb() <= 0 && this->front_left_fb() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(5, this->_internal_front_left_fb(), target);
   }
 
   // float front_left_rl = 6;
-  if (!(this->_internal_front_left_rl() <= 0 && this->_internal_front_left_rl() >= 0)) {
+  if (!(this->front_left_rl() <= 0 && this->front_left_rl() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(6, this->_internal_front_left_rl(), target);
   }
 
   // float right_fb = 7;
-  if (!(this->_internal_right_fb() <= 0 && this->_internal_right_fb() >= 0)) {
+  if (!(this->right_fb() <= 0 && this->right_fb() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(7, this->_internal_right_fb(), target);
   }
 
   // float right_rl = 8;
-  if (!(this->_internal_right_rl() <= 0 && this->_internal_right_rl() >= 0)) {
+  if (!(this->right_rl() <= 0 && this->right_rl() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(8, this->_internal_right_rl(), target);
   }
 
   // float left_fb = 9;
-  if (!(this->_internal_left_fb() <= 0 && this->_internal_left_fb() >= 0)) {
+  if (!(this->left_fb() <= 0 && this->left_fb() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(9, this->_internal_left_fb(), target);
   }
 
   // float left_rl = 10;
-  if (!(this->_internal_left_rl() <= 0 && this->_internal_left_rl() >= 0)) {
+  if (!(this->left_rl() <= 0 && this->left_rl() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(10, this->_internal_left_rl(), target);
   }
 
   // float back_right_fb = 11;
-  if (!(this->_internal_back_right_fb() <= 0 && this->_internal_back_right_fb() >= 0)) {
+  if (!(this->back_right_fb() <= 0 && this->back_right_fb() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(11, this->_internal_back_right_fb(), target);
   }
 
   // float back_right_rl = 12;
-  if (!(this->_internal_back_right_rl() <= 0 && this->_internal_back_right_rl() >= 0)) {
+  if (!(this->back_right_rl() <= 0 && this->back_right_rl() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(12, this->_internal_back_right_rl(), target);
   }
 
   // float back_left_fb = 13;
-  if (!(this->_internal_back_left_fb() <= 0 && this->_internal_back_left_fb() >= 0)) {
+  if (!(this->back_left_fb() <= 0 && this->back_left_fb() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(13, this->_internal_back_left_fb(), target);
   }
 
   // float back_left_rl = 14;
-  if (!(this->_internal_back_left_rl() <= 0 && this->_internal_back_left_rl() >= 0)) {
+  if (!(this->back_left_rl() <= 0 && this->back_left_rl() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(14, this->_internal_back_left_rl(), target);
   }
 
   // float back_fb = 15;
-  if (!(this->_internal_back_fb() <= 0 && this->_internal_back_fb() >= 0)) {
+  if (!(this->back_fb() <= 0 && this->back_fb() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(15, this->_internal_back_fb(), target);
   }
 
   // float back_rl = 16;
-  if (!(this->_internal_back_rl() <= 0 && this->_internal_back_rl() >= 0)) {
+  if (!(this->back_rl() <= 0 && this->back_rl() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(16, this->_internal_back_rl(), target);
   }
 
   // uint32 max_js_scale_increase = 17;
-  if (this->_internal_max_js_scale_increase() != 0) {
+  if (this->max_js_scale_increase() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(17, this->_internal_max_js_scale_increase(), target);
   }
 
   // uint32 max_js_scale_decrease = 18;
-  if (this->_internal_max_js_scale_decrease() != 0) {
+  if (this->max_js_scale_decrease() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(18, this->_internal_max_js_scale_decrease(), target);
   }
 
   // bool luci_active = 19;
-  if (this->_internal_luci_active() != 0) {
+  if (this->luci_active() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(19, this->_internal_luci_active(), target);
   }
@@ -9160,184 +9334,199 @@ size_t NavigationScaling::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // float front_fb = 1;
-  if (!(this->_internal_front_fb() <= 0 && this->_internal_front_fb() >= 0)) {
+  if (!(this->front_fb() <= 0 && this->front_fb() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float front_rl = 2;
-  if (!(this->_internal_front_rl() <= 0 && this->_internal_front_rl() >= 0)) {
+  if (!(this->front_rl() <= 0 && this->front_rl() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float front_right_fb = 3;
-  if (!(this->_internal_front_right_fb() <= 0 && this->_internal_front_right_fb() >= 0)) {
+  if (!(this->front_right_fb() <= 0 && this->front_right_fb() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float front_right_rl = 4;
-  if (!(this->_internal_front_right_rl() <= 0 && this->_internal_front_right_rl() >= 0)) {
+  if (!(this->front_right_rl() <= 0 && this->front_right_rl() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float front_left_fb = 5;
-  if (!(this->_internal_front_left_fb() <= 0 && this->_internal_front_left_fb() >= 0)) {
+  if (!(this->front_left_fb() <= 0 && this->front_left_fb() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float front_left_rl = 6;
-  if (!(this->_internal_front_left_rl() <= 0 && this->_internal_front_left_rl() >= 0)) {
+  if (!(this->front_left_rl() <= 0 && this->front_left_rl() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float right_fb = 7;
-  if (!(this->_internal_right_fb() <= 0 && this->_internal_right_fb() >= 0)) {
+  if (!(this->right_fb() <= 0 && this->right_fb() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float right_rl = 8;
-  if (!(this->_internal_right_rl() <= 0 && this->_internal_right_rl() >= 0)) {
+  if (!(this->right_rl() <= 0 && this->right_rl() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float left_fb = 9;
-  if (!(this->_internal_left_fb() <= 0 && this->_internal_left_fb() >= 0)) {
+  if (!(this->left_fb() <= 0 && this->left_fb() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float left_rl = 10;
-  if (!(this->_internal_left_rl() <= 0 && this->_internal_left_rl() >= 0)) {
+  if (!(this->left_rl() <= 0 && this->left_rl() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float back_right_fb = 11;
-  if (!(this->_internal_back_right_fb() <= 0 && this->_internal_back_right_fb() >= 0)) {
+  if (!(this->back_right_fb() <= 0 && this->back_right_fb() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float back_right_rl = 12;
-  if (!(this->_internal_back_right_rl() <= 0 && this->_internal_back_right_rl() >= 0)) {
+  if (!(this->back_right_rl() <= 0 && this->back_right_rl() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float back_left_fb = 13;
-  if (!(this->_internal_back_left_fb() <= 0 && this->_internal_back_left_fb() >= 0)) {
+  if (!(this->back_left_fb() <= 0 && this->back_left_fb() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float back_left_rl = 14;
-  if (!(this->_internal_back_left_rl() <= 0 && this->_internal_back_left_rl() >= 0)) {
+  if (!(this->back_left_rl() <= 0 && this->back_left_rl() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float back_fb = 15;
-  if (!(this->_internal_back_fb() <= 0 && this->_internal_back_fb() >= 0)) {
+  if (!(this->back_fb() <= 0 && this->back_fb() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float back_rl = 16;
-  if (!(this->_internal_back_rl() <= 0 && this->_internal_back_rl() >= 0)) {
+  if (!(this->back_rl() <= 0 && this->back_rl() >= 0)) {
     total_size += 2 + 4;
   }
 
   // uint32 max_js_scale_increase = 17;
-  if (this->_internal_max_js_scale_increase() != 0) {
+  if (this->max_js_scale_increase() != 0) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
         this->_internal_max_js_scale_increase());
   }
 
   // uint32 max_js_scale_decrease = 18;
-  if (this->_internal_max_js_scale_decrease() != 0) {
+  if (this->max_js_scale_decrease() != 0) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
         this->_internal_max_js_scale_decrease());
   }
 
   // bool luci_active = 19;
-  if (this->_internal_luci_active() != 0) {
+  if (this->luci_active() != 0) {
     total_size += 2 + 1;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData NavigationScaling::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    NavigationScaling::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*NavigationScaling::GetClassData() const { return &_class_data_; }
-
-void NavigationScaling::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<NavigationScaling *>(to)->MergeFrom(
-      static_cast<const NavigationScaling &>(from));
+void NavigationScaling::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.NavigationScaling)
+  GOOGLE_DCHECK_NE(&from, this);
+  const NavigationScaling* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<NavigationScaling>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.NavigationScaling)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.NavigationScaling)
+    MergeFrom(*source);
+  }
 }
-
 
 void NavigationScaling::MergeFrom(const NavigationScaling& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.NavigationScaling)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!(from._internal_front_fb() <= 0 && from._internal_front_fb() >= 0)) {
+  if (!(from.front_fb() <= 0 && from.front_fb() >= 0)) {
     _internal_set_front_fb(from._internal_front_fb());
   }
-  if (!(from._internal_front_rl() <= 0 && from._internal_front_rl() >= 0)) {
+  if (!(from.front_rl() <= 0 && from.front_rl() >= 0)) {
     _internal_set_front_rl(from._internal_front_rl());
   }
-  if (!(from._internal_front_right_fb() <= 0 && from._internal_front_right_fb() >= 0)) {
+  if (!(from.front_right_fb() <= 0 && from.front_right_fb() >= 0)) {
     _internal_set_front_right_fb(from._internal_front_right_fb());
   }
-  if (!(from._internal_front_right_rl() <= 0 && from._internal_front_right_rl() >= 0)) {
+  if (!(from.front_right_rl() <= 0 && from.front_right_rl() >= 0)) {
     _internal_set_front_right_rl(from._internal_front_right_rl());
   }
-  if (!(from._internal_front_left_fb() <= 0 && from._internal_front_left_fb() >= 0)) {
+  if (!(from.front_left_fb() <= 0 && from.front_left_fb() >= 0)) {
     _internal_set_front_left_fb(from._internal_front_left_fb());
   }
-  if (!(from._internal_front_left_rl() <= 0 && from._internal_front_left_rl() >= 0)) {
+  if (!(from.front_left_rl() <= 0 && from.front_left_rl() >= 0)) {
     _internal_set_front_left_rl(from._internal_front_left_rl());
   }
-  if (!(from._internal_right_fb() <= 0 && from._internal_right_fb() >= 0)) {
+  if (!(from.right_fb() <= 0 && from.right_fb() >= 0)) {
     _internal_set_right_fb(from._internal_right_fb());
   }
-  if (!(from._internal_right_rl() <= 0 && from._internal_right_rl() >= 0)) {
+  if (!(from.right_rl() <= 0 && from.right_rl() >= 0)) {
     _internal_set_right_rl(from._internal_right_rl());
   }
-  if (!(from._internal_left_fb() <= 0 && from._internal_left_fb() >= 0)) {
+  if (!(from.left_fb() <= 0 && from.left_fb() >= 0)) {
     _internal_set_left_fb(from._internal_left_fb());
   }
-  if (!(from._internal_left_rl() <= 0 && from._internal_left_rl() >= 0)) {
+  if (!(from.left_rl() <= 0 && from.left_rl() >= 0)) {
     _internal_set_left_rl(from._internal_left_rl());
   }
-  if (!(from._internal_back_right_fb() <= 0 && from._internal_back_right_fb() >= 0)) {
+  if (!(from.back_right_fb() <= 0 && from.back_right_fb() >= 0)) {
     _internal_set_back_right_fb(from._internal_back_right_fb());
   }
-  if (!(from._internal_back_right_rl() <= 0 && from._internal_back_right_rl() >= 0)) {
+  if (!(from.back_right_rl() <= 0 && from.back_right_rl() >= 0)) {
     _internal_set_back_right_rl(from._internal_back_right_rl());
   }
-  if (!(from._internal_back_left_fb() <= 0 && from._internal_back_left_fb() >= 0)) {
+  if (!(from.back_left_fb() <= 0 && from.back_left_fb() >= 0)) {
     _internal_set_back_left_fb(from._internal_back_left_fb());
   }
-  if (!(from._internal_back_left_rl() <= 0 && from._internal_back_left_rl() >= 0)) {
+  if (!(from.back_left_rl() <= 0 && from.back_left_rl() >= 0)) {
     _internal_set_back_left_rl(from._internal_back_left_rl());
   }
-  if (!(from._internal_back_fb() <= 0 && from._internal_back_fb() >= 0)) {
+  if (!(from.back_fb() <= 0 && from.back_fb() >= 0)) {
     _internal_set_back_fb(from._internal_back_fb());
   }
-  if (!(from._internal_back_rl() <= 0 && from._internal_back_rl() >= 0)) {
+  if (!(from.back_rl() <= 0 && from.back_rl() >= 0)) {
     _internal_set_back_rl(from._internal_back_rl());
   }
-  if (from._internal_max_js_scale_increase() != 0) {
+  if (from.max_js_scale_increase() != 0) {
     _internal_set_max_js_scale_increase(from._internal_max_js_scale_increase());
   }
-  if (from._internal_max_js_scale_decrease() != 0) {
+  if (from.max_js_scale_decrease() != 0) {
     _internal_set_max_js_scale_decrease(from._internal_max_js_scale_decrease());
   }
-  if (from._internal_luci_active() != 0) {
+  if (from.luci_active() != 0) {
     _internal_set_luci_active(from._internal_luci_active());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void NavigationScaling::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.NavigationScaling)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void NavigationScaling::CopyFrom(const NavigationScaling& from) {
@@ -9374,13 +9563,10 @@ class UltrasonicCtrl::_Internal {
  public:
 };
 
-UltrasonicCtrl::UltrasonicCtrl(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+UltrasonicCtrl::UltrasonicCtrl(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.UltrasonicCtrl)
 }
 UltrasonicCtrl::UltrasonicCtrl(const UltrasonicCtrl& from)
@@ -9401,12 +9587,11 @@ void UltrasonicCtrl::SharedCtor() {
 
 UltrasonicCtrl::~UltrasonicCtrl() {
   // @@protoc_insertion_point(destructor:sensors.UltrasonicCtrl)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void UltrasonicCtrl::SharedDtor() {
+void UltrasonicCtrl::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -9444,45 +9629,42 @@ const char* UltrasonicCtrl::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
           ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_board(static_cast<::sensors::UltrasonicCtrl_Board>(val));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // int32 spi_id = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
           spi_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // int32 address = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
           address_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -9493,20 +9675,20 @@ failure:
   (void) cached_has_bits;
 
   // .sensors.UltrasonicCtrl.Board board = 1;
-  if (this->_internal_board() != 0) {
+  if (this->board() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
       1, this->_internal_board(), target);
   }
 
   // int32 spi_id = 2;
-  if (this->_internal_spi_id() != 0) {
+  if (this->spi_id() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_spi_id(), target);
   }
 
   // int32 address = 3;
-  if (this->_internal_address() != 0) {
+  if (this->address() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(3, this->_internal_address(), target);
   }
@@ -9528,53 +9710,72 @@ size_t UltrasonicCtrl::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // .sensors.UltrasonicCtrl.Board board = 1;
-  if (this->_internal_board() != 0) {
+  if (this->board() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_board());
   }
 
   // int32 spi_id = 2;
-  if (this->_internal_spi_id() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_spi_id());
+  if (this->spi_id() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_spi_id());
   }
 
   // int32 address = 3;
-  if (this->_internal_address() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_address());
+  if (this->address() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_address());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UltrasonicCtrl::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    UltrasonicCtrl::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UltrasonicCtrl::GetClassData() const { return &_class_data_; }
-
-void UltrasonicCtrl::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<UltrasonicCtrl *>(to)->MergeFrom(
-      static_cast<const UltrasonicCtrl &>(from));
+void UltrasonicCtrl::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.UltrasonicCtrl)
+  GOOGLE_DCHECK_NE(&from, this);
+  const UltrasonicCtrl* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<UltrasonicCtrl>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.UltrasonicCtrl)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.UltrasonicCtrl)
+    MergeFrom(*source);
+  }
 }
-
 
 void UltrasonicCtrl::MergeFrom(const UltrasonicCtrl& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.UltrasonicCtrl)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_board() != 0) {
+  if (from.board() != 0) {
     _internal_set_board(from._internal_board());
   }
-  if (from._internal_spi_id() != 0) {
+  if (from.spi_id() != 0) {
     _internal_set_spi_id(from._internal_spi_id());
   }
-  if (from._internal_address() != 0) {
+  if (from.address() != 0) {
     _internal_set_address(from._internal_address());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UltrasonicCtrl::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.UltrasonicCtrl)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void UltrasonicCtrl::CopyFrom(const UltrasonicCtrl& from) {
@@ -9609,10 +9810,10 @@ void UltrasonicCtrl::InternalSwap(UltrasonicCtrl* other) {
 
 class UltrasonicDistance::_Internal {
  public:
-  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& timestamp(const UltrasonicDistance* msg);
+  static const PROTOBUF_NAMESPACE_ID::Timestamp& timestamp(const UltrasonicDistance* msg);
 };
 
-const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+const PROTOBUF_NAMESPACE_ID::Timestamp&
 UltrasonicDistance::_Internal::timestamp(const UltrasonicDistance* msg) {
   return *msg->timestamp_;
 }
@@ -9622,14 +9823,11 @@ void UltrasonicDistance::clear_timestamp() {
   }
   timestamp_ = nullptr;
 }
-UltrasonicDistance::UltrasonicDistance(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+UltrasonicDistance::UltrasonicDistance(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
   arc_points_(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.UltrasonicDistance)
 }
 UltrasonicDistance::UltrasonicDistance(const UltrasonicDistance& from)
@@ -9637,7 +9835,7 @@ UltrasonicDistance::UltrasonicDistance(const UltrasonicDistance& from)
       arc_points_(from.arc_points_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_timestamp()) {
-    timestamp_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.timestamp_);
+    timestamp_ = new PROTOBUF_NAMESPACE_ID::Timestamp(*from.timestamp_);
   } else {
     timestamp_ = nullptr;
   }
@@ -9656,12 +9854,11 @@ void UltrasonicDistance::SharedCtor() {
 
 UltrasonicDistance::~UltrasonicDistance() {
   // @@protoc_insertion_point(destructor:sensors.UltrasonicDistance)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void UltrasonicDistance::SharedDtor() {
+void UltrasonicDistance::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   if (this != internal_default_instance()) delete timestamp_;
 }
@@ -9704,8 +9901,7 @@ const char* UltrasonicDistance::_InternalParse(const char* ptr, ::PROTOBUF_NAMES
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 9)) {
           distance_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .sensors.UltrasonicDistance.Board board = 2;
       case 2:
@@ -9713,32 +9909,28 @@ const char* UltrasonicDistance::_InternalParse(const char* ptr, ::PROTOBUF_NAMES
           ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_board(static_cast<::sensors::UltrasonicDistance_Board>(val));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // int32 spi_id = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
           spi_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // int32 address = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
           address_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .google.protobuf.Timestamp timestamp = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
           ptr = ctx->ParseMessage(_internal_mutable_timestamp(), ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // repeated .sensors.Point3D arc_points = 6;
       case 6:
@@ -9750,29 +9942,28 @@ const char* UltrasonicDistance::_InternalParse(const char* ptr, ::PROTOBUF_NAMES
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<50>(ptr));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -9783,32 +9974,32 @@ failure:
   (void) cached_has_bits;
 
   // double distance = 1;
-  if (!(this->_internal_distance() <= 0 && this->_internal_distance() >= 0)) {
+  if (!(this->distance() <= 0 && this->distance() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(1, this->_internal_distance(), target);
   }
 
   // .sensors.UltrasonicDistance.Board board = 2;
-  if (this->_internal_board() != 0) {
+  if (this->board() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
       2, this->_internal_board(), target);
   }
 
   // int32 spi_id = 3;
-  if (this->_internal_spi_id() != 0) {
+  if (this->spi_id() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(3, this->_internal_spi_id(), target);
   }
 
   // int32 address = 4;
-  if (this->_internal_address() != 0) {
+  if (this->address() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(4, this->_internal_address(), target);
   }
 
   // .google.protobuf.Timestamp timestamp = 5;
-  if (this->_internal_has_timestamp()) {
+  if (this->has_timestamp()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
@@ -9847,72 +10038,91 @@ size_t UltrasonicDistance::ByteSizeLong() const {
   }
 
   // .google.protobuf.Timestamp timestamp = 5;
-  if (this->_internal_has_timestamp()) {
+  if (this->has_timestamp()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *timestamp_);
   }
 
   // double distance = 1;
-  if (!(this->_internal_distance() <= 0 && this->_internal_distance() >= 0)) {
+  if (!(this->distance() <= 0 && this->distance() >= 0)) {
     total_size += 1 + 8;
   }
 
   // .sensors.UltrasonicDistance.Board board = 2;
-  if (this->_internal_board() != 0) {
+  if (this->board() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_board());
   }
 
   // int32 spi_id = 3;
-  if (this->_internal_spi_id() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_spi_id());
+  if (this->spi_id() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_spi_id());
   }
 
   // int32 address = 4;
-  if (this->_internal_address() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_address());
+  if (this->address() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_address());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UltrasonicDistance::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    UltrasonicDistance::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UltrasonicDistance::GetClassData() const { return &_class_data_; }
-
-void UltrasonicDistance::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<UltrasonicDistance *>(to)->MergeFrom(
-      static_cast<const UltrasonicDistance &>(from));
+void UltrasonicDistance::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.UltrasonicDistance)
+  GOOGLE_DCHECK_NE(&from, this);
+  const UltrasonicDistance* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<UltrasonicDistance>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.UltrasonicDistance)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.UltrasonicDistance)
+    MergeFrom(*source);
+  }
 }
-
 
 void UltrasonicDistance::MergeFrom(const UltrasonicDistance& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.UltrasonicDistance)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   arc_points_.MergeFrom(from.arc_points_);
-  if (from._internal_has_timestamp()) {
-    _internal_mutable_timestamp()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_timestamp());
+  if (from.has_timestamp()) {
+    _internal_mutable_timestamp()->PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_timestamp());
   }
-  if (!(from._internal_distance() <= 0 && from._internal_distance() >= 0)) {
+  if (!(from.distance() <= 0 && from.distance() >= 0)) {
     _internal_set_distance(from._internal_distance());
   }
-  if (from._internal_board() != 0) {
+  if (from.board() != 0) {
     _internal_set_board(from._internal_board());
   }
-  if (from._internal_spi_id() != 0) {
+  if (from.spi_id() != 0) {
     _internal_set_spi_id(from._internal_spi_id());
   }
-  if (from._internal_address() != 0) {
+  if (from.address() != 0) {
     _internal_set_address(from._internal_address());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UltrasonicDistance::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.UltrasonicDistance)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void UltrasonicDistance::CopyFrom(const UltrasonicDistance& from) {
@@ -9950,14 +10160,11 @@ class UltrasonicDistances::_Internal {
  public:
 };
 
-UltrasonicDistances::UltrasonicDistances(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+UltrasonicDistances::UltrasonicDistances(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
   distances_(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.UltrasonicDistances)
 }
 UltrasonicDistances::UltrasonicDistances(const UltrasonicDistances& from)
@@ -9972,12 +10179,11 @@ void UltrasonicDistances::SharedCtor() {
 
 UltrasonicDistances::~UltrasonicDistances() {
   // @@protoc_insertion_point(destructor:sensors.UltrasonicDistances)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void UltrasonicDistances::SharedDtor() {
+void UltrasonicDistances::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -10017,29 +10223,28 @@ const char* UltrasonicDistances::_InternalParse(const char* ptr, ::PROTOBUF_NAME
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -10080,30 +10285,45 @@ size_t UltrasonicDistances::ByteSizeLong() const {
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UltrasonicDistances::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    UltrasonicDistances::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UltrasonicDistances::GetClassData() const { return &_class_data_; }
-
-void UltrasonicDistances::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<UltrasonicDistances *>(to)->MergeFrom(
-      static_cast<const UltrasonicDistances &>(from));
+void UltrasonicDistances::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.UltrasonicDistances)
+  GOOGLE_DCHECK_NE(&from, this);
+  const UltrasonicDistances* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<UltrasonicDistances>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.UltrasonicDistances)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.UltrasonicDistances)
+    MergeFrom(*source);
+  }
 }
-
 
 void UltrasonicDistances::MergeFrom(const UltrasonicDistances& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.UltrasonicDistances)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   distances_.MergeFrom(from.distances_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UltrasonicDistances::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.UltrasonicDistances)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void UltrasonicDistances::CopyFrom(const UltrasonicDistances& from) {
@@ -10135,14 +10355,11 @@ class UltrasonicCurve::_Internal {
  public:
 };
 
-UltrasonicCurve::UltrasonicCurve(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+UltrasonicCurve::UltrasonicCurve(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
   curve_(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.UltrasonicCurve)
 }
 UltrasonicCurve::UltrasonicCurve(const UltrasonicCurve& from)
@@ -10164,12 +10381,11 @@ void UltrasonicCurve::SharedCtor() {
 
 UltrasonicCurve::~UltrasonicCurve() {
   // @@protoc_insertion_point(destructor:sensors.UltrasonicCurve)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void UltrasonicCurve::SharedDtor() {
+void UltrasonicCurve::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -10210,8 +10426,7 @@ const char* UltrasonicCurve::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPAC
         } else if (static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8) {
           _internal_add_curve(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .sensors.UltrasonicCurve.Board board = 2;
       case 2:
@@ -10219,45 +10434,42 @@ const char* UltrasonicCurve::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPAC
           ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_board(static_cast<::sensors::UltrasonicCurve_Board>(val));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // int32 spi_id = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
           spi_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // int32 address = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
           address_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -10277,20 +10489,20 @@ failure:
   }
 
   // .sensors.UltrasonicCurve.Board board = 2;
-  if (this->_internal_board() != 0) {
+  if (this->board() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
       2, this->_internal_board(), target);
   }
 
   // int32 spi_id = 3;
-  if (this->_internal_spi_id() != 0) {
+  if (this->spi_id() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(3, this->_internal_spi_id(), target);
   }
 
   // int32 address = 4;
-  if (this->_internal_address() != 0) {
+  if (this->address() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(4, this->_internal_address(), target);
   }
@@ -10327,54 +10539,73 @@ size_t UltrasonicCurve::ByteSizeLong() const {
   }
 
   // .sensors.UltrasonicCurve.Board board = 2;
-  if (this->_internal_board() != 0) {
+  if (this->board() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_board());
   }
 
   // int32 spi_id = 3;
-  if (this->_internal_spi_id() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_spi_id());
+  if (this->spi_id() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_spi_id());
   }
 
   // int32 address = 4;
-  if (this->_internal_address() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_address());
+  if (this->address() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_address());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UltrasonicCurve::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    UltrasonicCurve::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UltrasonicCurve::GetClassData() const { return &_class_data_; }
-
-void UltrasonicCurve::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<UltrasonicCurve *>(to)->MergeFrom(
-      static_cast<const UltrasonicCurve &>(from));
+void UltrasonicCurve::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.UltrasonicCurve)
+  GOOGLE_DCHECK_NE(&from, this);
+  const UltrasonicCurve* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<UltrasonicCurve>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.UltrasonicCurve)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.UltrasonicCurve)
+    MergeFrom(*source);
+  }
 }
-
 
 void UltrasonicCurve::MergeFrom(const UltrasonicCurve& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.UltrasonicCurve)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   curve_.MergeFrom(from.curve_);
-  if (from._internal_board() != 0) {
+  if (from.board() != 0) {
     _internal_set_board(from._internal_board());
   }
-  if (from._internal_spi_id() != 0) {
+  if (from.spi_id() != 0) {
     _internal_set_spi_id(from._internal_spi_id());
   }
-  if (from._internal_address() != 0) {
+  if (from.address() != 0) {
     _internal_set_address(from._internal_address());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UltrasonicCurve::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.UltrasonicCurve)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void UltrasonicCurve::CopyFrom(const UltrasonicCurve& from) {
@@ -10412,13 +10643,10 @@ class RadarFilter::_Internal {
  public:
 };
 
-RadarFilter::RadarFilter(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+RadarFilter::RadarFilter(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.RadarFilter)
 }
 RadarFilter::RadarFilter(const RadarFilter& from)
@@ -10434,12 +10662,11 @@ filter_ = 0;
 
 RadarFilter::~RadarFilter() {
   // @@protoc_insertion_point(destructor:sensors.RadarFilter)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void RadarFilter::SharedDtor() {
+void RadarFilter::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -10475,29 +10702,28 @@ const char* RadarFilter::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
           ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_filter(static_cast<::sensors::RadarFilter_Filter>(val));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -10508,7 +10734,7 @@ failure:
   (void) cached_has_bits;
 
   // .sensors.RadarFilter.Filter filter = 1;
-  if (this->_internal_filter() != 0) {
+  if (this->filter() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
       1, this->_internal_filter(), target);
@@ -10531,37 +10757,52 @@ size_t RadarFilter::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // .sensors.RadarFilter.Filter filter = 1;
-  if (this->_internal_filter() != 0) {
+  if (this->filter() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_filter());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData RadarFilter::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    RadarFilter::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RadarFilter::GetClassData() const { return &_class_data_; }
-
-void RadarFilter::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<RadarFilter *>(to)->MergeFrom(
-      static_cast<const RadarFilter &>(from));
+void RadarFilter::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.RadarFilter)
+  GOOGLE_DCHECK_NE(&from, this);
+  const RadarFilter* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<RadarFilter>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.RadarFilter)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.RadarFilter)
+    MergeFrom(*source);
+  }
 }
-
 
 void RadarFilter::MergeFrom(const RadarFilter& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.RadarFilter)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_filter() != 0) {
+  if (from.filter() != 0) {
     _internal_set_filter(from._internal_filter());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void RadarFilter::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.RadarFilter)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void RadarFilter::CopyFrom(const RadarFilter& from) {
@@ -10593,13 +10834,10 @@ class RadarCtrl::_Internal {
  public:
 };
 
-RadarCtrl::RadarCtrl(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+RadarCtrl::RadarCtrl(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.RadarCtrl)
 }
 RadarCtrl::RadarCtrl(const RadarCtrl& from)
@@ -10615,12 +10853,11 @@ radar_ = 0;
 
 RadarCtrl::~RadarCtrl() {
   // @@protoc_insertion_point(destructor:sensors.RadarCtrl)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void RadarCtrl::SharedDtor() {
+void RadarCtrl::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -10656,29 +10893,28 @@ const char* RadarCtrl::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::
           ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_radar(static_cast<::sensors::RadarCtrl_Radar>(val));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -10689,7 +10925,7 @@ failure:
   (void) cached_has_bits;
 
   // .sensors.RadarCtrl.Radar radar = 1;
-  if (this->_internal_radar() != 0) {
+  if (this->radar() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
       1, this->_internal_radar(), target);
@@ -10712,37 +10948,52 @@ size_t RadarCtrl::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // .sensors.RadarCtrl.Radar radar = 1;
-  if (this->_internal_radar() != 0) {
+  if (this->radar() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_radar());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData RadarCtrl::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    RadarCtrl::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RadarCtrl::GetClassData() const { return &_class_data_; }
-
-void RadarCtrl::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<RadarCtrl *>(to)->MergeFrom(
-      static_cast<const RadarCtrl &>(from));
+void RadarCtrl::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.RadarCtrl)
+  GOOGLE_DCHECK_NE(&from, this);
+  const RadarCtrl* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<RadarCtrl>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.RadarCtrl)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.RadarCtrl)
+    MergeFrom(*source);
+  }
 }
-
 
 void RadarCtrl::MergeFrom(const RadarCtrl& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.RadarCtrl)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_radar() != 0) {
+  if (from.radar() != 0) {
     _internal_set_radar(from._internal_radar());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void RadarCtrl::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.RadarCtrl)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void RadarCtrl::CopyFrom(const RadarCtrl& from) {
@@ -10774,13 +11025,10 @@ class RadarPoint::_Internal {
  public:
 };
 
-RadarPoint::RadarPoint(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+RadarPoint::RadarPoint(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.RadarPoint)
 }
 RadarPoint::RadarPoint(const RadarPoint& from)
@@ -10801,12 +11049,11 @@ void RadarPoint::SharedCtor() {
 
 RadarPoint::~RadarPoint() {
   // @@protoc_insertion_point(destructor:sensors.RadarPoint)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void RadarPoint::SharedDtor() {
+void RadarPoint::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -10843,61 +11090,56 @@ const char* RadarPoint::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 9)) {
           x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // double y = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 17)) {
           y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // double z = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 25)) {
           z_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // double doppler = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 33)) {
           doppler_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // double cross_section = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 41)) {
           cross_section_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -10908,31 +11150,31 @@ failure:
   (void) cached_has_bits;
 
   // double x = 1;
-  if (!(this->_internal_x() <= 0 && this->_internal_x() >= 0)) {
+  if (!(this->x() <= 0 && this->x() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(1, this->_internal_x(), target);
   }
 
   // double y = 2;
-  if (!(this->_internal_y() <= 0 && this->_internal_y() >= 0)) {
+  if (!(this->y() <= 0 && this->y() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(2, this->_internal_y(), target);
   }
 
   // double z = 3;
-  if (!(this->_internal_z() <= 0 && this->_internal_z() >= 0)) {
+  if (!(this->z() <= 0 && this->z() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(3, this->_internal_z(), target);
   }
 
   // double doppler = 4;
-  if (!(this->_internal_doppler() <= 0 && this->_internal_doppler() >= 0)) {
+  if (!(this->doppler() <= 0 && this->doppler() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(4, this->_internal_doppler(), target);
   }
 
   // double cross_section = 5;
-  if (!(this->_internal_cross_section() <= 0 && this->_internal_cross_section() >= 0)) {
+  if (!(this->cross_section() <= 0 && this->cross_section() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(5, this->_internal_cross_section(), target);
   }
@@ -10954,68 +11196,83 @@ size_t RadarPoint::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // double x = 1;
-  if (!(this->_internal_x() <= 0 && this->_internal_x() >= 0)) {
+  if (!(this->x() <= 0 && this->x() >= 0)) {
     total_size += 1 + 8;
   }
 
   // double y = 2;
-  if (!(this->_internal_y() <= 0 && this->_internal_y() >= 0)) {
+  if (!(this->y() <= 0 && this->y() >= 0)) {
     total_size += 1 + 8;
   }
 
   // double z = 3;
-  if (!(this->_internal_z() <= 0 && this->_internal_z() >= 0)) {
+  if (!(this->z() <= 0 && this->z() >= 0)) {
     total_size += 1 + 8;
   }
 
   // double doppler = 4;
-  if (!(this->_internal_doppler() <= 0 && this->_internal_doppler() >= 0)) {
+  if (!(this->doppler() <= 0 && this->doppler() >= 0)) {
     total_size += 1 + 8;
   }
 
   // double cross_section = 5;
-  if (!(this->_internal_cross_section() <= 0 && this->_internal_cross_section() >= 0)) {
+  if (!(this->cross_section() <= 0 && this->cross_section() >= 0)) {
     total_size += 1 + 8;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData RadarPoint::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    RadarPoint::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RadarPoint::GetClassData() const { return &_class_data_; }
-
-void RadarPoint::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<RadarPoint *>(to)->MergeFrom(
-      static_cast<const RadarPoint &>(from));
+void RadarPoint::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.RadarPoint)
+  GOOGLE_DCHECK_NE(&from, this);
+  const RadarPoint* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<RadarPoint>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.RadarPoint)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.RadarPoint)
+    MergeFrom(*source);
+  }
 }
-
 
 void RadarPoint::MergeFrom(const RadarPoint& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.RadarPoint)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!(from._internal_x() <= 0 && from._internal_x() >= 0)) {
+  if (!(from.x() <= 0 && from.x() >= 0)) {
     _internal_set_x(from._internal_x());
   }
-  if (!(from._internal_y() <= 0 && from._internal_y() >= 0)) {
+  if (!(from.y() <= 0 && from.y() >= 0)) {
     _internal_set_y(from._internal_y());
   }
-  if (!(from._internal_z() <= 0 && from._internal_z() >= 0)) {
+  if (!(from.z() <= 0 && from.z() >= 0)) {
     _internal_set_z(from._internal_z());
   }
-  if (!(from._internal_doppler() <= 0 && from._internal_doppler() >= 0)) {
+  if (!(from.doppler() <= 0 && from.doppler() >= 0)) {
     _internal_set_doppler(from._internal_doppler());
   }
-  if (!(from._internal_cross_section() <= 0 && from._internal_cross_section() >= 0)) {
+  if (!(from.cross_section() <= 0 && from.cross_section() >= 0)) {
     _internal_set_cross_section(from._internal_cross_section());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void RadarPoint::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.RadarPoint)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void RadarPoint::CopyFrom(const RadarPoint& from) {
@@ -11050,10 +11307,10 @@ void RadarPoint::InternalSwap(RadarPoint* other) {
 
 class RadarPoints::_Internal {
  public:
-  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& timestamp(const RadarPoints* msg);
+  static const PROTOBUF_NAMESPACE_ID::Timestamp& timestamp(const RadarPoints* msg);
 };
 
-const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+const PROTOBUF_NAMESPACE_ID::Timestamp&
 RadarPoints::_Internal::timestamp(const RadarPoints* msg) {
   return *msg->timestamp_;
 }
@@ -11063,14 +11320,11 @@ void RadarPoints::clear_timestamp() {
   }
   timestamp_ = nullptr;
 }
-RadarPoints::RadarPoints(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+RadarPoints::RadarPoints(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
   points_(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.RadarPoints)
 }
 RadarPoints::RadarPoints(const RadarPoints& from)
@@ -11078,7 +11332,7 @@ RadarPoints::RadarPoints(const RadarPoints& from)
       points_(from.points_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_timestamp()) {
-    timestamp_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.timestamp_);
+    timestamp_ = new PROTOBUF_NAMESPACE_ID::Timestamp(*from.timestamp_);
   } else {
     timestamp_ = nullptr;
   }
@@ -11095,12 +11349,11 @@ void RadarPoints::SharedCtor() {
 
 RadarPoints::~RadarPoints() {
   // @@protoc_insertion_point(destructor:sensors.RadarPoints)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void RadarPoints::SharedDtor() {
+void RadarPoints::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   if (this != internal_default_instance()) delete timestamp_;
 }
@@ -11146,8 +11399,7 @@ const char* RadarPoints::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .sensors.RadarPoints.Radar source = 2;
       case 2:
@@ -11155,37 +11407,35 @@ const char* RadarPoints::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
           ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_source(static_cast<::sensors::RadarPoints_Radar>(val));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .google.protobuf.Timestamp timestamp = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
           ptr = ctx->ParseMessage(_internal_mutable_timestamp(), ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -11204,14 +11454,14 @@ failure:
   }
 
   // .sensors.RadarPoints.Radar source = 2;
-  if (this->_internal_source() != 0) {
+  if (this->source() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
       2, this->_internal_source(), target);
   }
 
   // .google.protobuf.Timestamp timestamp = 3;
-  if (this->_internal_has_timestamp()) {
+  if (this->has_timestamp()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
@@ -11242,48 +11492,63 @@ size_t RadarPoints::ByteSizeLong() const {
   }
 
   // .google.protobuf.Timestamp timestamp = 3;
-  if (this->_internal_has_timestamp()) {
+  if (this->has_timestamp()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *timestamp_);
   }
 
   // .sensors.RadarPoints.Radar source = 2;
-  if (this->_internal_source() != 0) {
+  if (this->source() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_source());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData RadarPoints::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    RadarPoints::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RadarPoints::GetClassData() const { return &_class_data_; }
-
-void RadarPoints::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<RadarPoints *>(to)->MergeFrom(
-      static_cast<const RadarPoints &>(from));
+void RadarPoints::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.RadarPoints)
+  GOOGLE_DCHECK_NE(&from, this);
+  const RadarPoints* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<RadarPoints>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.RadarPoints)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.RadarPoints)
+    MergeFrom(*source);
+  }
 }
-
 
 void RadarPoints::MergeFrom(const RadarPoints& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.RadarPoints)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   points_.MergeFrom(from.points_);
-  if (from._internal_has_timestamp()) {
-    _internal_mutable_timestamp()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_timestamp());
+  if (from.has_timestamp()) {
+    _internal_mutable_timestamp()->PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_timestamp());
   }
-  if (from._internal_source() != 0) {
+  if (from.source() != 0) {
     _internal_set_source(from._internal_source());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void RadarPoints::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.RadarPoints)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void RadarPoints::CopyFrom(const RadarPoints& from) {
@@ -11319,10 +11584,10 @@ void RadarPoints::InternalSwap(RadarPoints* other) {
 
 class ChairSpeed::_Internal {
  public:
-  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& timestamp(const ChairSpeed* msg);
+  static const PROTOBUF_NAMESPACE_ID::Timestamp& timestamp(const ChairSpeed* msg);
 };
 
-const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+const PROTOBUF_NAMESPACE_ID::Timestamp&
 ChairSpeed::_Internal::timestamp(const ChairSpeed* msg) {
   return *msg->timestamp_;
 }
@@ -11332,20 +11597,17 @@ void ChairSpeed::clear_timestamp() {
   }
   timestamp_ = nullptr;
 }
-ChairSpeed::ChairSpeed(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+ChairSpeed::ChairSpeed(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.ChairSpeed)
 }
 ChairSpeed::ChairSpeed(const ChairSpeed& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_timestamp()) {
-    timestamp_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.timestamp_);
+    timestamp_ = new PROTOBUF_NAMESPACE_ID::Timestamp(*from.timestamp_);
   } else {
     timestamp_ = nullptr;
   }
@@ -11362,12 +11624,11 @@ void ChairSpeed::SharedCtor() {
 
 ChairSpeed::~ChairSpeed() {
   // @@protoc_insertion_point(destructor:sensors.ChairSpeed)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void ChairSpeed::SharedDtor() {
+void ChairSpeed::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   if (this != internal_default_instance()) delete timestamp_;
 }
@@ -11407,37 +11668,35 @@ const char* ChairSpeed::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 9)) {
           speed_m_p_s_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .google.protobuf.Timestamp timestamp = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
           ptr = ctx->ParseMessage(_internal_mutable_timestamp(), ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -11448,13 +11707,13 @@ failure:
   (void) cached_has_bits;
 
   // double speed_m_p_s = 1;
-  if (!(this->_internal_speed_m_p_s() <= 0 && this->_internal_speed_m_p_s() >= 0)) {
+  if (!(this->speed_m_p_s() <= 0 && this->speed_m_p_s() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(1, this->_internal_speed_m_p_s(), target);
   }
 
   // .google.protobuf.Timestamp timestamp = 2;
-  if (this->_internal_has_timestamp()) {
+  if (this->has_timestamp()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
@@ -11478,46 +11737,61 @@ size_t ChairSpeed::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // .google.protobuf.Timestamp timestamp = 2;
-  if (this->_internal_has_timestamp()) {
+  if (this->has_timestamp()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *timestamp_);
   }
 
   // double speed_m_p_s = 1;
-  if (!(this->_internal_speed_m_p_s() <= 0 && this->_internal_speed_m_p_s() >= 0)) {
+  if (!(this->speed_m_p_s() <= 0 && this->speed_m_p_s() >= 0)) {
     total_size += 1 + 8;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ChairSpeed::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    ChairSpeed::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ChairSpeed::GetClassData() const { return &_class_data_; }
-
-void ChairSpeed::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<ChairSpeed *>(to)->MergeFrom(
-      static_cast<const ChairSpeed &>(from));
+void ChairSpeed::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.ChairSpeed)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ChairSpeed* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ChairSpeed>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.ChairSpeed)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.ChairSpeed)
+    MergeFrom(*source);
+  }
 }
-
 
 void ChairSpeed::MergeFrom(const ChairSpeed& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.ChairSpeed)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_has_timestamp()) {
-    _internal_mutable_timestamp()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_timestamp());
+  if (from.has_timestamp()) {
+    _internal_mutable_timestamp()->PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_timestamp());
   }
-  if (!(from._internal_speed_m_p_s() <= 0 && from._internal_speed_m_p_s() >= 0)) {
+  if (!(from.speed_m_p_s() <= 0 && from.speed_m_p_s() >= 0)) {
     _internal_set_speed_m_p_s(from._internal_speed_m_p_s());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ChairSpeed::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.ChairSpeed)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void ChairSpeed::CopyFrom(const ChairSpeed& from) {
@@ -11554,13 +11828,10 @@ class ImuCtrl::_Internal {
  public:
 };
 
-ImuCtrl::ImuCtrl(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+ImuCtrl::ImuCtrl(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.ImuCtrl)
 }
 ImuCtrl::ImuCtrl(const ImuCtrl& from)
@@ -11576,12 +11847,11 @@ imu_ = 0;
 
 ImuCtrl::~ImuCtrl() {
   // @@protoc_insertion_point(destructor:sensors.ImuCtrl)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void ImuCtrl::SharedDtor() {
+void ImuCtrl::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -11617,29 +11887,28 @@ const char* ImuCtrl::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::in
           ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_imu(static_cast<::sensors::Imu>(val));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -11650,7 +11919,7 @@ failure:
   (void) cached_has_bits;
 
   // .sensors.Imu imu = 1;
-  if (this->_internal_imu() != 0) {
+  if (this->imu() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
       1, this->_internal_imu(), target);
@@ -11673,37 +11942,52 @@ size_t ImuCtrl::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // .sensors.Imu imu = 1;
-  if (this->_internal_imu() != 0) {
+  if (this->imu() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_imu());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ImuCtrl::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    ImuCtrl::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ImuCtrl::GetClassData() const { return &_class_data_; }
-
-void ImuCtrl::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<ImuCtrl *>(to)->MergeFrom(
-      static_cast<const ImuCtrl &>(from));
+void ImuCtrl::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.ImuCtrl)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ImuCtrl* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ImuCtrl>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.ImuCtrl)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.ImuCtrl)
+    MergeFrom(*source);
+  }
 }
-
 
 void ImuCtrl::MergeFrom(const ImuCtrl& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.ImuCtrl)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_imu() != 0) {
+  if (from.imu() != 0) {
     _internal_set_imu(from._internal_imu());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ImuCtrl::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.ImuCtrl)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void ImuCtrl::CopyFrom(const ImuCtrl& from) {
@@ -11733,10 +12017,10 @@ void ImuCtrl::InternalSwap(ImuCtrl* other) {
 
 class ImuData::_Internal {
  public:
-  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& timestamp(const ImuData* msg);
+  static const PROTOBUF_NAMESPACE_ID::Timestamp& timestamp(const ImuData* msg);
 };
 
-const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+const PROTOBUF_NAMESPACE_ID::Timestamp&
 ImuData::_Internal::timestamp(const ImuData* msg) {
   return *msg->timestamp_;
 }
@@ -11746,20 +12030,17 @@ void ImuData::clear_timestamp() {
   }
   timestamp_ = nullptr;
 }
-ImuData::ImuData(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+ImuData::ImuData(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.ImuData)
 }
 ImuData::ImuData(const ImuData& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_timestamp()) {
-    timestamp_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.timestamp_);
+    timestamp_ = new PROTOBUF_NAMESPACE_ID::Timestamp(*from.timestamp_);
   } else {
     timestamp_ = nullptr;
   }
@@ -11778,12 +12059,11 @@ void ImuData::SharedCtor() {
 
 ImuData::~ImuData() {
   // @@protoc_insertion_point(destructor:sensors.ImuData)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void ImuData::SharedDtor() {
+void ImuData::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   if (this != internal_default_instance()) delete timestamp_;
 }
@@ -11825,176 +12105,154 @@ const char* ImuData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::in
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 9)) {
           quaternion_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // double quaternion_y = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 17)) {
           quaternion_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // double quaternion_z = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 25)) {
           quaternion_z_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // double quaternion_w = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 33)) {
           quaternion_w_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // double acceleration_x = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 41)) {
           acceleration_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // double acceleration_y = 6;
       case 6:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 49)) {
           acceleration_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // double acceleration_z = 7;
       case 7:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 57)) {
           acceleration_z_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // double gyro_x = 8;
       case 8:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 65)) {
           gyro_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // double gyro_y = 9;
       case 9:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 73)) {
           gyro_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // double gyro_z = 10;
       case 10:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 81)) {
           gyro_z_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // double euler_x = 11;
       case 11:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 89)) {
           euler_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // double euler_y = 12;
       case 12:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 97)) {
           euler_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // double euler_z = 13;
       case 13:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 105)) {
           euler_z_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // double accelerometer_x = 14;
       case 14:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 113)) {
           accelerometer_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // double accelerometer_y = 15;
       case 15:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 121)) {
           accelerometer_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // double accelerometer_z = 16;
       case 16:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 129)) {
           accelerometer_z_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // double magnetometer_x = 17;
       case 17:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 137)) {
           magnetometer_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // double magnetometer_y = 18;
       case 18:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 145)) {
           magnetometer_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // double magnetometer_z = 19;
       case 19:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 153)) {
           magnetometer_z_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // double gravity_x = 20;
       case 20:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 161)) {
           gravity_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // double gravity_y = 21;
       case 21:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 169)) {
           gravity_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // double gravity_z = 22;
       case 22:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 177)) {
           gravity_z_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .sensors.ImuData.CalibrationStatus cal_system = 23;
       case 23:
@@ -12002,8 +12260,7 @@ const char* ImuData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::in
           ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_cal_system(static_cast<::sensors::ImuData_CalibrationStatus>(val));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .sensors.ImuData.CalibrationStatus cal_gyroscope = 24;
       case 24:
@@ -12011,8 +12268,7 @@ const char* ImuData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::in
           ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_cal_gyroscope(static_cast<::sensors::ImuData_CalibrationStatus>(val));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .sensors.ImuData.CalibrationStatus cal_accelerometer = 25;
       case 25:
@@ -12020,8 +12276,7 @@ const char* ImuData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::in
           ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_cal_accelerometer(static_cast<::sensors::ImuData_CalibrationStatus>(val));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .sensors.ImuData.CalibrationStatus cal_magnetometer = 26;
       case 26:
@@ -12029,16 +12284,14 @@ const char* ImuData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::in
           ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_cal_magnetometer(static_cast<::sensors::ImuData_CalibrationStatus>(val));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .google.protobuf.Timestamp timestamp = 27;
       case 27:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 218)) {
           ptr = ctx->ParseMessage(_internal_mutable_timestamp(), ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .sensors.Imu source = 28;
       case 28:
@@ -12046,29 +12299,28 @@ const char* ImuData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::in
           ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_source(static_cast<::sensors::Imu>(val));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -12079,167 +12331,167 @@ failure:
   (void) cached_has_bits;
 
   // double quaternion_x = 1;
-  if (!(this->_internal_quaternion_x() <= 0 && this->_internal_quaternion_x() >= 0)) {
+  if (!(this->quaternion_x() <= 0 && this->quaternion_x() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(1, this->_internal_quaternion_x(), target);
   }
 
   // double quaternion_y = 2;
-  if (!(this->_internal_quaternion_y() <= 0 && this->_internal_quaternion_y() >= 0)) {
+  if (!(this->quaternion_y() <= 0 && this->quaternion_y() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(2, this->_internal_quaternion_y(), target);
   }
 
   // double quaternion_z = 3;
-  if (!(this->_internal_quaternion_z() <= 0 && this->_internal_quaternion_z() >= 0)) {
+  if (!(this->quaternion_z() <= 0 && this->quaternion_z() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(3, this->_internal_quaternion_z(), target);
   }
 
   // double quaternion_w = 4;
-  if (!(this->_internal_quaternion_w() <= 0 && this->_internal_quaternion_w() >= 0)) {
+  if (!(this->quaternion_w() <= 0 && this->quaternion_w() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(4, this->_internal_quaternion_w(), target);
   }
 
   // double acceleration_x = 5;
-  if (!(this->_internal_acceleration_x() <= 0 && this->_internal_acceleration_x() >= 0)) {
+  if (!(this->acceleration_x() <= 0 && this->acceleration_x() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(5, this->_internal_acceleration_x(), target);
   }
 
   // double acceleration_y = 6;
-  if (!(this->_internal_acceleration_y() <= 0 && this->_internal_acceleration_y() >= 0)) {
+  if (!(this->acceleration_y() <= 0 && this->acceleration_y() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(6, this->_internal_acceleration_y(), target);
   }
 
   // double acceleration_z = 7;
-  if (!(this->_internal_acceleration_z() <= 0 && this->_internal_acceleration_z() >= 0)) {
+  if (!(this->acceleration_z() <= 0 && this->acceleration_z() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(7, this->_internal_acceleration_z(), target);
   }
 
   // double gyro_x = 8;
-  if (!(this->_internal_gyro_x() <= 0 && this->_internal_gyro_x() >= 0)) {
+  if (!(this->gyro_x() <= 0 && this->gyro_x() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(8, this->_internal_gyro_x(), target);
   }
 
   // double gyro_y = 9;
-  if (!(this->_internal_gyro_y() <= 0 && this->_internal_gyro_y() >= 0)) {
+  if (!(this->gyro_y() <= 0 && this->gyro_y() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(9, this->_internal_gyro_y(), target);
   }
 
   // double gyro_z = 10;
-  if (!(this->_internal_gyro_z() <= 0 && this->_internal_gyro_z() >= 0)) {
+  if (!(this->gyro_z() <= 0 && this->gyro_z() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(10, this->_internal_gyro_z(), target);
   }
 
   // double euler_x = 11;
-  if (!(this->_internal_euler_x() <= 0 && this->_internal_euler_x() >= 0)) {
+  if (!(this->euler_x() <= 0 && this->euler_x() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(11, this->_internal_euler_x(), target);
   }
 
   // double euler_y = 12;
-  if (!(this->_internal_euler_y() <= 0 && this->_internal_euler_y() >= 0)) {
+  if (!(this->euler_y() <= 0 && this->euler_y() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(12, this->_internal_euler_y(), target);
   }
 
   // double euler_z = 13;
-  if (!(this->_internal_euler_z() <= 0 && this->_internal_euler_z() >= 0)) {
+  if (!(this->euler_z() <= 0 && this->euler_z() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(13, this->_internal_euler_z(), target);
   }
 
   // double accelerometer_x = 14;
-  if (!(this->_internal_accelerometer_x() <= 0 && this->_internal_accelerometer_x() >= 0)) {
+  if (!(this->accelerometer_x() <= 0 && this->accelerometer_x() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(14, this->_internal_accelerometer_x(), target);
   }
 
   // double accelerometer_y = 15;
-  if (!(this->_internal_accelerometer_y() <= 0 && this->_internal_accelerometer_y() >= 0)) {
+  if (!(this->accelerometer_y() <= 0 && this->accelerometer_y() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(15, this->_internal_accelerometer_y(), target);
   }
 
   // double accelerometer_z = 16;
-  if (!(this->_internal_accelerometer_z() <= 0 && this->_internal_accelerometer_z() >= 0)) {
+  if (!(this->accelerometer_z() <= 0 && this->accelerometer_z() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(16, this->_internal_accelerometer_z(), target);
   }
 
   // double magnetometer_x = 17;
-  if (!(this->_internal_magnetometer_x() <= 0 && this->_internal_magnetometer_x() >= 0)) {
+  if (!(this->magnetometer_x() <= 0 && this->magnetometer_x() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(17, this->_internal_magnetometer_x(), target);
   }
 
   // double magnetometer_y = 18;
-  if (!(this->_internal_magnetometer_y() <= 0 && this->_internal_magnetometer_y() >= 0)) {
+  if (!(this->magnetometer_y() <= 0 && this->magnetometer_y() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(18, this->_internal_magnetometer_y(), target);
   }
 
   // double magnetometer_z = 19;
-  if (!(this->_internal_magnetometer_z() <= 0 && this->_internal_magnetometer_z() >= 0)) {
+  if (!(this->magnetometer_z() <= 0 && this->magnetometer_z() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(19, this->_internal_magnetometer_z(), target);
   }
 
   // double gravity_x = 20;
-  if (!(this->_internal_gravity_x() <= 0 && this->_internal_gravity_x() >= 0)) {
+  if (!(this->gravity_x() <= 0 && this->gravity_x() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(20, this->_internal_gravity_x(), target);
   }
 
   // double gravity_y = 21;
-  if (!(this->_internal_gravity_y() <= 0 && this->_internal_gravity_y() >= 0)) {
+  if (!(this->gravity_y() <= 0 && this->gravity_y() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(21, this->_internal_gravity_y(), target);
   }
 
   // double gravity_z = 22;
-  if (!(this->_internal_gravity_z() <= 0 && this->_internal_gravity_z() >= 0)) {
+  if (!(this->gravity_z() <= 0 && this->gravity_z() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(22, this->_internal_gravity_z(), target);
   }
 
   // .sensors.ImuData.CalibrationStatus cal_system = 23;
-  if (this->_internal_cal_system() != 0) {
+  if (this->cal_system() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
       23, this->_internal_cal_system(), target);
   }
 
   // .sensors.ImuData.CalibrationStatus cal_gyroscope = 24;
-  if (this->_internal_cal_gyroscope() != 0) {
+  if (this->cal_gyroscope() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
       24, this->_internal_cal_gyroscope(), target);
   }
 
   // .sensors.ImuData.CalibrationStatus cal_accelerometer = 25;
-  if (this->_internal_cal_accelerometer() != 0) {
+  if (this->cal_accelerometer() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
       25, this->_internal_cal_accelerometer(), target);
   }
 
   // .sensors.ImuData.CalibrationStatus cal_magnetometer = 26;
-  if (this->_internal_cal_magnetometer() != 0) {
+  if (this->cal_magnetometer() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
       26, this->_internal_cal_magnetometer(), target);
   }
 
   // .google.protobuf.Timestamp timestamp = 27;
-  if (this->_internal_has_timestamp()) {
+  if (this->has_timestamp()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
@@ -12247,7 +12499,7 @@ failure:
   }
 
   // .sensors.Imu source = 28;
-  if (this->_internal_source() != 0) {
+  if (this->source() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
       28, this->_internal_source(), target);
@@ -12270,259 +12522,274 @@ size_t ImuData::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // .google.protobuf.Timestamp timestamp = 27;
-  if (this->_internal_has_timestamp()) {
+  if (this->has_timestamp()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *timestamp_);
   }
 
   // double quaternion_x = 1;
-  if (!(this->_internal_quaternion_x() <= 0 && this->_internal_quaternion_x() >= 0)) {
+  if (!(this->quaternion_x() <= 0 && this->quaternion_x() >= 0)) {
     total_size += 1 + 8;
   }
 
   // double quaternion_y = 2;
-  if (!(this->_internal_quaternion_y() <= 0 && this->_internal_quaternion_y() >= 0)) {
+  if (!(this->quaternion_y() <= 0 && this->quaternion_y() >= 0)) {
     total_size += 1 + 8;
   }
 
   // double quaternion_z = 3;
-  if (!(this->_internal_quaternion_z() <= 0 && this->_internal_quaternion_z() >= 0)) {
+  if (!(this->quaternion_z() <= 0 && this->quaternion_z() >= 0)) {
     total_size += 1 + 8;
   }
 
   // double quaternion_w = 4;
-  if (!(this->_internal_quaternion_w() <= 0 && this->_internal_quaternion_w() >= 0)) {
+  if (!(this->quaternion_w() <= 0 && this->quaternion_w() >= 0)) {
     total_size += 1 + 8;
   }
 
   // double acceleration_x = 5;
-  if (!(this->_internal_acceleration_x() <= 0 && this->_internal_acceleration_x() >= 0)) {
+  if (!(this->acceleration_x() <= 0 && this->acceleration_x() >= 0)) {
     total_size += 1 + 8;
   }
 
   // double acceleration_y = 6;
-  if (!(this->_internal_acceleration_y() <= 0 && this->_internal_acceleration_y() >= 0)) {
+  if (!(this->acceleration_y() <= 0 && this->acceleration_y() >= 0)) {
     total_size += 1 + 8;
   }
 
   // double acceleration_z = 7;
-  if (!(this->_internal_acceleration_z() <= 0 && this->_internal_acceleration_z() >= 0)) {
+  if (!(this->acceleration_z() <= 0 && this->acceleration_z() >= 0)) {
     total_size += 1 + 8;
   }
 
   // double gyro_x = 8;
-  if (!(this->_internal_gyro_x() <= 0 && this->_internal_gyro_x() >= 0)) {
+  if (!(this->gyro_x() <= 0 && this->gyro_x() >= 0)) {
     total_size += 1 + 8;
   }
 
   // double gyro_y = 9;
-  if (!(this->_internal_gyro_y() <= 0 && this->_internal_gyro_y() >= 0)) {
+  if (!(this->gyro_y() <= 0 && this->gyro_y() >= 0)) {
     total_size += 1 + 8;
   }
 
   // double gyro_z = 10;
-  if (!(this->_internal_gyro_z() <= 0 && this->_internal_gyro_z() >= 0)) {
+  if (!(this->gyro_z() <= 0 && this->gyro_z() >= 0)) {
     total_size += 1 + 8;
   }
 
   // double euler_x = 11;
-  if (!(this->_internal_euler_x() <= 0 && this->_internal_euler_x() >= 0)) {
+  if (!(this->euler_x() <= 0 && this->euler_x() >= 0)) {
     total_size += 1 + 8;
   }
 
   // double euler_y = 12;
-  if (!(this->_internal_euler_y() <= 0 && this->_internal_euler_y() >= 0)) {
+  if (!(this->euler_y() <= 0 && this->euler_y() >= 0)) {
     total_size += 1 + 8;
   }
 
   // double euler_z = 13;
-  if (!(this->_internal_euler_z() <= 0 && this->_internal_euler_z() >= 0)) {
+  if (!(this->euler_z() <= 0 && this->euler_z() >= 0)) {
     total_size += 1 + 8;
   }
 
   // double accelerometer_x = 14;
-  if (!(this->_internal_accelerometer_x() <= 0 && this->_internal_accelerometer_x() >= 0)) {
+  if (!(this->accelerometer_x() <= 0 && this->accelerometer_x() >= 0)) {
     total_size += 1 + 8;
   }
 
   // double accelerometer_y = 15;
-  if (!(this->_internal_accelerometer_y() <= 0 && this->_internal_accelerometer_y() >= 0)) {
+  if (!(this->accelerometer_y() <= 0 && this->accelerometer_y() >= 0)) {
     total_size += 1 + 8;
   }
 
   // double accelerometer_z = 16;
-  if (!(this->_internal_accelerometer_z() <= 0 && this->_internal_accelerometer_z() >= 0)) {
+  if (!(this->accelerometer_z() <= 0 && this->accelerometer_z() >= 0)) {
     total_size += 2 + 8;
   }
 
   // double magnetometer_x = 17;
-  if (!(this->_internal_magnetometer_x() <= 0 && this->_internal_magnetometer_x() >= 0)) {
+  if (!(this->magnetometer_x() <= 0 && this->magnetometer_x() >= 0)) {
     total_size += 2 + 8;
   }
 
   // double magnetometer_y = 18;
-  if (!(this->_internal_magnetometer_y() <= 0 && this->_internal_magnetometer_y() >= 0)) {
+  if (!(this->magnetometer_y() <= 0 && this->magnetometer_y() >= 0)) {
     total_size += 2 + 8;
   }
 
   // double magnetometer_z = 19;
-  if (!(this->_internal_magnetometer_z() <= 0 && this->_internal_magnetometer_z() >= 0)) {
+  if (!(this->magnetometer_z() <= 0 && this->magnetometer_z() >= 0)) {
     total_size += 2 + 8;
   }
 
   // double gravity_x = 20;
-  if (!(this->_internal_gravity_x() <= 0 && this->_internal_gravity_x() >= 0)) {
+  if (!(this->gravity_x() <= 0 && this->gravity_x() >= 0)) {
     total_size += 2 + 8;
   }
 
   // double gravity_y = 21;
-  if (!(this->_internal_gravity_y() <= 0 && this->_internal_gravity_y() >= 0)) {
+  if (!(this->gravity_y() <= 0 && this->gravity_y() >= 0)) {
     total_size += 2 + 8;
   }
 
   // double gravity_z = 22;
-  if (!(this->_internal_gravity_z() <= 0 && this->_internal_gravity_z() >= 0)) {
+  if (!(this->gravity_z() <= 0 && this->gravity_z() >= 0)) {
     total_size += 2 + 8;
   }
 
   // .sensors.ImuData.CalibrationStatus cal_system = 23;
-  if (this->_internal_cal_system() != 0) {
+  if (this->cal_system() != 0) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_cal_system());
   }
 
   // .sensors.ImuData.CalibrationStatus cal_gyroscope = 24;
-  if (this->_internal_cal_gyroscope() != 0) {
+  if (this->cal_gyroscope() != 0) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_cal_gyroscope());
   }
 
   // .sensors.ImuData.CalibrationStatus cal_accelerometer = 25;
-  if (this->_internal_cal_accelerometer() != 0) {
+  if (this->cal_accelerometer() != 0) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_cal_accelerometer());
   }
 
   // .sensors.ImuData.CalibrationStatus cal_magnetometer = 26;
-  if (this->_internal_cal_magnetometer() != 0) {
+  if (this->cal_magnetometer() != 0) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_cal_magnetometer());
   }
 
   // .sensors.Imu source = 28;
-  if (this->_internal_source() != 0) {
+  if (this->source() != 0) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_source());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ImuData::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    ImuData::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ImuData::GetClassData() const { return &_class_data_; }
-
-void ImuData::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<ImuData *>(to)->MergeFrom(
-      static_cast<const ImuData &>(from));
+void ImuData::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.ImuData)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ImuData* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ImuData>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.ImuData)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.ImuData)
+    MergeFrom(*source);
+  }
 }
-
 
 void ImuData::MergeFrom(const ImuData& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.ImuData)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_has_timestamp()) {
-    _internal_mutable_timestamp()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_timestamp());
+  if (from.has_timestamp()) {
+    _internal_mutable_timestamp()->PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_timestamp());
   }
-  if (!(from._internal_quaternion_x() <= 0 && from._internal_quaternion_x() >= 0)) {
+  if (!(from.quaternion_x() <= 0 && from.quaternion_x() >= 0)) {
     _internal_set_quaternion_x(from._internal_quaternion_x());
   }
-  if (!(from._internal_quaternion_y() <= 0 && from._internal_quaternion_y() >= 0)) {
+  if (!(from.quaternion_y() <= 0 && from.quaternion_y() >= 0)) {
     _internal_set_quaternion_y(from._internal_quaternion_y());
   }
-  if (!(from._internal_quaternion_z() <= 0 && from._internal_quaternion_z() >= 0)) {
+  if (!(from.quaternion_z() <= 0 && from.quaternion_z() >= 0)) {
     _internal_set_quaternion_z(from._internal_quaternion_z());
   }
-  if (!(from._internal_quaternion_w() <= 0 && from._internal_quaternion_w() >= 0)) {
+  if (!(from.quaternion_w() <= 0 && from.quaternion_w() >= 0)) {
     _internal_set_quaternion_w(from._internal_quaternion_w());
   }
-  if (!(from._internal_acceleration_x() <= 0 && from._internal_acceleration_x() >= 0)) {
+  if (!(from.acceleration_x() <= 0 && from.acceleration_x() >= 0)) {
     _internal_set_acceleration_x(from._internal_acceleration_x());
   }
-  if (!(from._internal_acceleration_y() <= 0 && from._internal_acceleration_y() >= 0)) {
+  if (!(from.acceleration_y() <= 0 && from.acceleration_y() >= 0)) {
     _internal_set_acceleration_y(from._internal_acceleration_y());
   }
-  if (!(from._internal_acceleration_z() <= 0 && from._internal_acceleration_z() >= 0)) {
+  if (!(from.acceleration_z() <= 0 && from.acceleration_z() >= 0)) {
     _internal_set_acceleration_z(from._internal_acceleration_z());
   }
-  if (!(from._internal_gyro_x() <= 0 && from._internal_gyro_x() >= 0)) {
+  if (!(from.gyro_x() <= 0 && from.gyro_x() >= 0)) {
     _internal_set_gyro_x(from._internal_gyro_x());
   }
-  if (!(from._internal_gyro_y() <= 0 && from._internal_gyro_y() >= 0)) {
+  if (!(from.gyro_y() <= 0 && from.gyro_y() >= 0)) {
     _internal_set_gyro_y(from._internal_gyro_y());
   }
-  if (!(from._internal_gyro_z() <= 0 && from._internal_gyro_z() >= 0)) {
+  if (!(from.gyro_z() <= 0 && from.gyro_z() >= 0)) {
     _internal_set_gyro_z(from._internal_gyro_z());
   }
-  if (!(from._internal_euler_x() <= 0 && from._internal_euler_x() >= 0)) {
+  if (!(from.euler_x() <= 0 && from.euler_x() >= 0)) {
     _internal_set_euler_x(from._internal_euler_x());
   }
-  if (!(from._internal_euler_y() <= 0 && from._internal_euler_y() >= 0)) {
+  if (!(from.euler_y() <= 0 && from.euler_y() >= 0)) {
     _internal_set_euler_y(from._internal_euler_y());
   }
-  if (!(from._internal_euler_z() <= 0 && from._internal_euler_z() >= 0)) {
+  if (!(from.euler_z() <= 0 && from.euler_z() >= 0)) {
     _internal_set_euler_z(from._internal_euler_z());
   }
-  if (!(from._internal_accelerometer_x() <= 0 && from._internal_accelerometer_x() >= 0)) {
+  if (!(from.accelerometer_x() <= 0 && from.accelerometer_x() >= 0)) {
     _internal_set_accelerometer_x(from._internal_accelerometer_x());
   }
-  if (!(from._internal_accelerometer_y() <= 0 && from._internal_accelerometer_y() >= 0)) {
+  if (!(from.accelerometer_y() <= 0 && from.accelerometer_y() >= 0)) {
     _internal_set_accelerometer_y(from._internal_accelerometer_y());
   }
-  if (!(from._internal_accelerometer_z() <= 0 && from._internal_accelerometer_z() >= 0)) {
+  if (!(from.accelerometer_z() <= 0 && from.accelerometer_z() >= 0)) {
     _internal_set_accelerometer_z(from._internal_accelerometer_z());
   }
-  if (!(from._internal_magnetometer_x() <= 0 && from._internal_magnetometer_x() >= 0)) {
+  if (!(from.magnetometer_x() <= 0 && from.magnetometer_x() >= 0)) {
     _internal_set_magnetometer_x(from._internal_magnetometer_x());
   }
-  if (!(from._internal_magnetometer_y() <= 0 && from._internal_magnetometer_y() >= 0)) {
+  if (!(from.magnetometer_y() <= 0 && from.magnetometer_y() >= 0)) {
     _internal_set_magnetometer_y(from._internal_magnetometer_y());
   }
-  if (!(from._internal_magnetometer_z() <= 0 && from._internal_magnetometer_z() >= 0)) {
+  if (!(from.magnetometer_z() <= 0 && from.magnetometer_z() >= 0)) {
     _internal_set_magnetometer_z(from._internal_magnetometer_z());
   }
-  if (!(from._internal_gravity_x() <= 0 && from._internal_gravity_x() >= 0)) {
+  if (!(from.gravity_x() <= 0 && from.gravity_x() >= 0)) {
     _internal_set_gravity_x(from._internal_gravity_x());
   }
-  if (!(from._internal_gravity_y() <= 0 && from._internal_gravity_y() >= 0)) {
+  if (!(from.gravity_y() <= 0 && from.gravity_y() >= 0)) {
     _internal_set_gravity_y(from._internal_gravity_y());
   }
-  if (!(from._internal_gravity_z() <= 0 && from._internal_gravity_z() >= 0)) {
+  if (!(from.gravity_z() <= 0 && from.gravity_z() >= 0)) {
     _internal_set_gravity_z(from._internal_gravity_z());
   }
-  if (from._internal_cal_system() != 0) {
+  if (from.cal_system() != 0) {
     _internal_set_cal_system(from._internal_cal_system());
   }
-  if (from._internal_cal_gyroscope() != 0) {
+  if (from.cal_gyroscope() != 0) {
     _internal_set_cal_gyroscope(from._internal_cal_gyroscope());
   }
-  if (from._internal_cal_accelerometer() != 0) {
+  if (from.cal_accelerometer() != 0) {
     _internal_set_cal_accelerometer(from._internal_cal_accelerometer());
   }
-  if (from._internal_cal_magnetometer() != 0) {
+  if (from.cal_magnetometer() != 0) {
     _internal_set_cal_magnetometer(from._internal_cal_magnetometer());
   }
-  if (from._internal_source() != 0) {
+  if (from.source() != 0) {
     _internal_set_source(from._internal_source());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ImuData::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.ImuData)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void ImuData::CopyFrom(const ImuData& from) {
@@ -12559,13 +12826,10 @@ class ChairMode::_Internal {
  public:
 };
 
-ChairMode::ChairMode(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+ChairMode::ChairMode(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.ChairMode)
 }
 ChairMode::ChairMode(const ChairMode& from)
@@ -12581,12 +12845,11 @@ is_drive_mode_ = false;
 
 ChairMode::~ChairMode() {
   // @@protoc_insertion_point(destructor:sensors.ChairMode)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void ChairMode::SharedDtor() {
+void ChairMode::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -12621,29 +12884,28 @@ const char* ChairMode::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
           is_drive_mode_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -12654,7 +12916,7 @@ failure:
   (void) cached_has_bits;
 
   // bool is_drive_mode = 1;
-  if (this->_internal_is_drive_mode() != 0) {
+  if (this->is_drive_mode() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_is_drive_mode(), target);
   }
@@ -12676,36 +12938,51 @@ size_t ChairMode::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // bool is_drive_mode = 1;
-  if (this->_internal_is_drive_mode() != 0) {
+  if (this->is_drive_mode() != 0) {
     total_size += 1 + 1;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ChairMode::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    ChairMode::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ChairMode::GetClassData() const { return &_class_data_; }
-
-void ChairMode::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<ChairMode *>(to)->MergeFrom(
-      static_cast<const ChairMode &>(from));
+void ChairMode::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.ChairMode)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ChairMode* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ChairMode>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.ChairMode)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.ChairMode)
+    MergeFrom(*source);
+  }
 }
-
 
 void ChairMode::MergeFrom(const ChairMode& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.ChairMode)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_is_drive_mode() != 0) {
+  if (from.is_drive_mode() != 0) {
     _internal_set_is_drive_mode(from._internal_is_drive_mode());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ChairMode::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.ChairMode)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void ChairMode::CopyFrom(const ChairMode& from) {
@@ -12737,13 +13014,10 @@ class ChairProfile::_Internal {
  public:
 };
 
-ChairProfile::ChairProfile(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+ChairProfile::ChairProfile(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.ChairProfile)
 }
 ChairProfile::ChairProfile(const ChairProfile& from)
@@ -12759,12 +13033,11 @@ profile_ = 0;
 
 ChairProfile::~ChairProfile() {
   // @@protoc_insertion_point(destructor:sensors.ChairProfile)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void ChairProfile::SharedDtor() {
+void ChairProfile::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -12799,29 +13072,28 @@ const char* ChairProfile::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
           profile_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -12832,7 +13104,7 @@ failure:
   (void) cached_has_bits;
 
   // int32 profile = 1;
-  if (this->_internal_profile() != 0) {
+  if (this->profile() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_profile(), target);
   }
@@ -12854,36 +13126,53 @@ size_t ChairProfile::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // int32 profile = 1;
-  if (this->_internal_profile() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_profile());
+  if (this->profile() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_profile());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ChairProfile::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    ChairProfile::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ChairProfile::GetClassData() const { return &_class_data_; }
-
-void ChairProfile::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<ChairProfile *>(to)->MergeFrom(
-      static_cast<const ChairProfile &>(from));
+void ChairProfile::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.ChairProfile)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ChairProfile* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ChairProfile>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.ChairProfile)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.ChairProfile)
+    MergeFrom(*source);
+  }
 }
-
 
 void ChairProfile::MergeFrom(const ChairProfile& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.ChairProfile)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_profile() != 0) {
+  if (from.profile() != 0) {
     _internal_set_profile(from._internal_profile());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ChairProfile::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.ChairProfile)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void ChairProfile::CopyFrom(const ChairProfile& from) {
@@ -12915,13 +13204,10 @@ class SpeedSetting::_Internal {
  public:
 };
 
-SpeedSetting::SpeedSetting(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+SpeedSetting::SpeedSetting(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.SpeedSetting)
 }
 SpeedSetting::SpeedSetting(const SpeedSetting& from)
@@ -12937,12 +13223,11 @@ speed_setting_ = 0;
 
 SpeedSetting::~SpeedSetting() {
   // @@protoc_insertion_point(destructor:sensors.SpeedSetting)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void SpeedSetting::SharedDtor() {
+void SpeedSetting::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -12977,29 +13262,28 @@ const char* SpeedSetting::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
           speed_setting_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -13010,7 +13294,7 @@ failure:
   (void) cached_has_bits;
 
   // int32 speed_setting = 1;
-  if (this->_internal_speed_setting() != 0) {
+  if (this->speed_setting() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_speed_setting(), target);
   }
@@ -13032,36 +13316,53 @@ size_t SpeedSetting::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // int32 speed_setting = 1;
-  if (this->_internal_speed_setting() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_speed_setting());
+  if (this->speed_setting() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_speed_setting());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SpeedSetting::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    SpeedSetting::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SpeedSetting::GetClassData() const { return &_class_data_; }
-
-void SpeedSetting::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<SpeedSetting *>(to)->MergeFrom(
-      static_cast<const SpeedSetting &>(from));
+void SpeedSetting::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.SpeedSetting)
+  GOOGLE_DCHECK_NE(&from, this);
+  const SpeedSetting* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<SpeedSetting>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.SpeedSetting)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.SpeedSetting)
+    MergeFrom(*source);
+  }
 }
-
 
 void SpeedSetting::MergeFrom(const SpeedSetting& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.SpeedSetting)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_speed_setting() != 0) {
+  if (from.speed_setting() != 0) {
     _internal_set_speed_setting(from._internal_speed_setting());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SpeedSetting::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.SpeedSetting)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void SpeedSetting::CopyFrom(const SpeedSetting& from) {
@@ -13091,10 +13392,10 @@ void SpeedSetting::InternalSwap(SpeedSetting* other) {
 
 class JoystickData::_Internal {
  public:
-  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& timestamp(const JoystickData* msg);
+  static const PROTOBUF_NAMESPACE_ID::Timestamp& timestamp(const JoystickData* msg);
 };
 
-const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+const PROTOBUF_NAMESPACE_ID::Timestamp&
 JoystickData::_Internal::timestamp(const JoystickData* msg) {
   return *msg->timestamp_;
 }
@@ -13104,13 +13405,10 @@ void JoystickData::clear_timestamp() {
   }
   timestamp_ = nullptr;
 }
-JoystickData::JoystickData(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+JoystickData::JoystickData(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.JoystickData)
 }
 JoystickData::JoystickData(const JoystickData& from)
@@ -13122,7 +13420,7 @@ JoystickData::JoystickData(const JoystickData& from)
       GetArenaForAllocation());
   }
   if (from._internal_has_timestamp()) {
-    timestamp_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.timestamp_);
+    timestamp_ = new PROTOBUF_NAMESPACE_ID::Timestamp(*from.timestamp_);
   } else {
     timestamp_ = nullptr;
   }
@@ -13142,12 +13440,11 @@ joystick_zone_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStri
 
 JoystickData::~JoystickData() {
   // @@protoc_insertion_point(destructor:sensors.JoystickData)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void JoystickData::SharedDtor() {
+void JoystickData::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   joystick_zone_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (this != internal_default_instance()) delete timestamp_;
@@ -13191,16 +13488,14 @@ const char* JoystickData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
           forward_back_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // int32 left_right = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
           left_right_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // string joystick_zone = 3;
       case 3:
@@ -13209,37 +13504,35 @@ const char* JoystickData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "sensors.JoystickData.joystick_zone"));
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .google.protobuf.Timestamp timestamp = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
           ptr = ctx->ParseMessage(_internal_mutable_timestamp(), ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -13250,19 +13543,19 @@ failure:
   (void) cached_has_bits;
 
   // int32 forward_back = 1;
-  if (this->_internal_forward_back() != 0) {
+  if (this->forward_back() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_forward_back(), target);
   }
 
   // int32 left_right = 2;
-  if (this->_internal_left_right() != 0) {
+  if (this->left_right() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_left_right(), target);
   }
 
   // string joystick_zone = 3;
-  if (!this->_internal_joystick_zone().empty()) {
+  if (!this->joystick_zone().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_joystick_zone().data(), static_cast<int>(this->_internal_joystick_zone().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -13272,7 +13565,7 @@ failure:
   }
 
   // .google.protobuf.Timestamp timestamp = 4;
-  if (this->_internal_has_timestamp()) {
+  if (this->has_timestamp()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
@@ -13296,64 +13589,83 @@ size_t JoystickData::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // string joystick_zone = 3;
-  if (!this->_internal_joystick_zone().empty()) {
+  if (!this->joystick_zone().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_joystick_zone());
   }
 
   // .google.protobuf.Timestamp timestamp = 4;
-  if (this->_internal_has_timestamp()) {
+  if (this->has_timestamp()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *timestamp_);
   }
 
   // int32 forward_back = 1;
-  if (this->_internal_forward_back() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_forward_back());
+  if (this->forward_back() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_forward_back());
   }
 
   // int32 left_right = 2;
-  if (this->_internal_left_right() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_left_right());
+  if (this->left_right() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_left_right());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData JoystickData::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    JoystickData::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*JoystickData::GetClassData() const { return &_class_data_; }
-
-void JoystickData::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<JoystickData *>(to)->MergeFrom(
-      static_cast<const JoystickData &>(from));
+void JoystickData::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.JoystickData)
+  GOOGLE_DCHECK_NE(&from, this);
+  const JoystickData* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<JoystickData>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.JoystickData)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.JoystickData)
+    MergeFrom(*source);
+  }
 }
-
 
 void JoystickData::MergeFrom(const JoystickData& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.JoystickData)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_joystick_zone().empty()) {
+  if (!from.joystick_zone().empty()) {
     _internal_set_joystick_zone(from._internal_joystick_zone());
   }
-  if (from._internal_has_timestamp()) {
-    _internal_mutable_timestamp()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_timestamp());
+  if (from.has_timestamp()) {
+    _internal_mutable_timestamp()->PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_timestamp());
   }
-  if (from._internal_forward_back() != 0) {
+  if (from.forward_back() != 0) {
     _internal_set_forward_back(from._internal_forward_back());
   }
-  if (from._internal_left_right() != 0) {
+  if (from.left_right() != 0) {
     _internal_set_left_right(from._internal_left_right());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void JoystickData::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.JoystickData)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void JoystickData::CopyFrom(const JoystickData& from) {
@@ -13369,13 +13681,11 @@ bool JoystickData::IsInitialized() const {
 
 void JoystickData::InternalSwap(JoystickData* other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      &joystick_zone_, lhs_arena,
-      &other->joystick_zone_, rhs_arena
+      &joystick_zone_, GetArenaForAllocation(),
+      &other->joystick_zone_, other->GetArenaForAllocation()
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(JoystickData, left_right_)
@@ -13397,13 +13707,10 @@ class Joystick::_Internal {
  public:
 };
 
-Joystick::Joystick(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+Joystick::Joystick(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.Joystick)
 }
 Joystick::Joystick(const Joystick& from)
@@ -13424,12 +13731,11 @@ void Joystick::SharedCtor() {
 
 Joystick::~Joystick() {
   // @@protoc_insertion_point(destructor:sensors.Joystick)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void Joystick::SharedDtor() {
+void Joystick::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -13466,37 +13772,35 @@ const char* Joystick::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::i
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
           forward_back_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // int32 left_right = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
           left_right_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -13507,13 +13811,13 @@ failure:
   (void) cached_has_bits;
 
   // int32 forward_back = 1;
-  if (this->_internal_forward_back() != 0) {
+  if (this->forward_back() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_forward_back(), target);
   }
 
   // int32 left_right = 2;
-  if (this->_internal_left_right() != 0) {
+  if (this->left_right() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_left_right(), target);
   }
@@ -13535,44 +13839,63 @@ size_t Joystick::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // int32 forward_back = 1;
-  if (this->_internal_forward_back() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_forward_back());
+  if (this->forward_back() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_forward_back());
   }
 
   // int32 left_right = 2;
-  if (this->_internal_left_right() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_left_right());
+  if (this->left_right() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_left_right());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Joystick::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    Joystick::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Joystick::GetClassData() const { return &_class_data_; }
-
-void Joystick::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<Joystick *>(to)->MergeFrom(
-      static_cast<const Joystick &>(from));
+void Joystick::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.Joystick)
+  GOOGLE_DCHECK_NE(&from, this);
+  const Joystick* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<Joystick>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.Joystick)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.Joystick)
+    MergeFrom(*source);
+  }
 }
-
 
 void Joystick::MergeFrom(const Joystick& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.Joystick)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_forward_back() != 0) {
+  if (from.forward_back() != 0) {
     _internal_set_forward_back(from._internal_forward_back());
   }
-  if (from._internal_left_right() != 0) {
+  if (from.left_right() != 0) {
     _internal_set_left_right(from._internal_left_right());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Joystick::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.Joystick)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void Joystick::CopyFrom(const Joystick& from) {
@@ -13609,13 +13932,10 @@ class BatteryVoltage::_Internal {
  public:
 };
 
-BatteryVoltage::BatteryVoltage(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+BatteryVoltage::BatteryVoltage(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.BatteryVoltage)
 }
 BatteryVoltage::BatteryVoltage(const BatteryVoltage& from)
@@ -13631,12 +13951,11 @@ battery_voltage_ = 0;
 
 BatteryVoltage::~BatteryVoltage() {
   // @@protoc_insertion_point(destructor:sensors.BatteryVoltage)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void BatteryVoltage::SharedDtor() {
+void BatteryVoltage::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -13671,29 +13990,28 @@ const char* BatteryVoltage::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 9)) {
           battery_voltage_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -13704,7 +14022,7 @@ failure:
   (void) cached_has_bits;
 
   // double battery_voltage = 1;
-  if (!(this->_internal_battery_voltage() <= 0 && this->_internal_battery_voltage() >= 0)) {
+  if (!(this->battery_voltage() <= 0 && this->battery_voltage() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(1, this->_internal_battery_voltage(), target);
   }
@@ -13726,36 +14044,51 @@ size_t BatteryVoltage::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // double battery_voltage = 1;
-  if (!(this->_internal_battery_voltage() <= 0 && this->_internal_battery_voltage() >= 0)) {
+  if (!(this->battery_voltage() <= 0 && this->battery_voltage() >= 0)) {
     total_size += 1 + 8;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData BatteryVoltage::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    BatteryVoltage::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*BatteryVoltage::GetClassData() const { return &_class_data_; }
-
-void BatteryVoltage::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<BatteryVoltage *>(to)->MergeFrom(
-      static_cast<const BatteryVoltage &>(from));
+void BatteryVoltage::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.BatteryVoltage)
+  GOOGLE_DCHECK_NE(&from, this);
+  const BatteryVoltage* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<BatteryVoltage>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.BatteryVoltage)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.BatteryVoltage)
+    MergeFrom(*source);
+  }
 }
-
 
 void BatteryVoltage::MergeFrom(const BatteryVoltage& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.BatteryVoltage)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!(from._internal_battery_voltage() <= 0 && from._internal_battery_voltage() >= 0)) {
+  if (!(from.battery_voltage() <= 0 && from.battery_voltage() >= 0)) {
     _internal_set_battery_voltage(from._internal_battery_voltage());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void BatteryVoltage::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.BatteryVoltage)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void BatteryVoltage::CopyFrom(const BatteryVoltage& from) {
@@ -13787,13 +14120,10 @@ class BatteryPercent::_Internal {
  public:
 };
 
-BatteryPercent::BatteryPercent(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+BatteryPercent::BatteryPercent(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.BatteryPercent)
 }
 BatteryPercent::BatteryPercent(const BatteryPercent& from)
@@ -13809,12 +14139,11 @@ battery_percentage_ = 0;
 
 BatteryPercent::~BatteryPercent() {
   // @@protoc_insertion_point(destructor:sensors.BatteryPercent)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void BatteryPercent::SharedDtor() {
+void BatteryPercent::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -13849,29 +14178,28 @@ const char* BatteryPercent::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
           battery_percentage_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -13882,7 +14210,7 @@ failure:
   (void) cached_has_bits;
 
   // int32 battery_percentage = 1;
-  if (this->_internal_battery_percentage() != 0) {
+  if (this->battery_percentage() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_battery_percentage(), target);
   }
@@ -13904,36 +14232,53 @@ size_t BatteryPercent::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // int32 battery_percentage = 1;
-  if (this->_internal_battery_percentage() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_battery_percentage());
+  if (this->battery_percentage() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_battery_percentage());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData BatteryPercent::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    BatteryPercent::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*BatteryPercent::GetClassData() const { return &_class_data_; }
-
-void BatteryPercent::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<BatteryPercent *>(to)->MergeFrom(
-      static_cast<const BatteryPercent &>(from));
+void BatteryPercent::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.BatteryPercent)
+  GOOGLE_DCHECK_NE(&from, this);
+  const BatteryPercent* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<BatteryPercent>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.BatteryPercent)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.BatteryPercent)
+    MergeFrom(*source);
+  }
 }
-
 
 void BatteryPercent::MergeFrom(const BatteryPercent& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.BatteryPercent)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_battery_percentage() != 0) {
+  if (from.battery_percentage() != 0) {
     _internal_set_battery_percentage(from._internal_battery_percentage());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void BatteryPercent::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.BatteryPercent)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void BatteryPercent::CopyFrom(const BatteryPercent& from) {
@@ -13965,13 +14310,10 @@ class GPSData::_Internal {
  public:
 };
 
-GPSData::GPSData(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+GPSData::GPSData(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.GPSData)
 }
 GPSData::GPSData(const GPSData& from)
@@ -13992,12 +14334,11 @@ void GPSData::SharedCtor() {
 
 GPSData::~GPSData() {
   // @@protoc_insertion_point(destructor:sensors.GPSData)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void GPSData::SharedDtor() {
+void GPSData::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -14034,56 +14375,49 @@ const char* GPSData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::in
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
           latitude_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // int32 longitude = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
           longitude_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // int32 heading_of_motion = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
           heading_of_motion_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // uint32 number_of_sv = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
           number_of_sv_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // uint32 hDOP = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
           hdop_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // int32 height_above_sea = 6;
       case 6:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 48)) {
           height_above_sea_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // int32 ground_speed = 7;
       case 7:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 56)) {
           ground_speed_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .sensors.GPSData.quality_t quality = 8;
       case 8:
@@ -14091,77 +14425,70 @@ const char* GPSData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::in
           ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_quality(static_cast<::sensors::GPSData_quality_t>(val));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // int32 year = 9;
       case 9:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 72)) {
           year_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // int32 month = 10;
       case 10:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 80)) {
           month_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // int32 day = 11;
       case 11:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 88)) {
           day_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // int32 hour = 12;
       case 12:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 96)) {
           hour_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // int32 minute = 13;
       case 13:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 104)) {
           minute_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // int32 second = 14;
       case 14:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 112)) {
           second_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -14172,86 +14499,86 @@ failure:
   (void) cached_has_bits;
 
   // int32 latitude = 1;
-  if (this->_internal_latitude() != 0) {
+  if (this->latitude() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_latitude(), target);
   }
 
   // int32 longitude = 2;
-  if (this->_internal_longitude() != 0) {
+  if (this->longitude() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_longitude(), target);
   }
 
   // int32 heading_of_motion = 3;
-  if (this->_internal_heading_of_motion() != 0) {
+  if (this->heading_of_motion() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(3, this->_internal_heading_of_motion(), target);
   }
 
   // uint32 number_of_sv = 4;
-  if (this->_internal_number_of_sv() != 0) {
+  if (this->number_of_sv() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(4, this->_internal_number_of_sv(), target);
   }
 
   // uint32 hDOP = 5;
-  if (this->_internal_hdop() != 0) {
+  if (this->hdop() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(5, this->_internal_hdop(), target);
   }
 
   // int32 height_above_sea = 6;
-  if (this->_internal_height_above_sea() != 0) {
+  if (this->height_above_sea() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(6, this->_internal_height_above_sea(), target);
   }
 
   // int32 ground_speed = 7;
-  if (this->_internal_ground_speed() != 0) {
+  if (this->ground_speed() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(7, this->_internal_ground_speed(), target);
   }
 
   // .sensors.GPSData.quality_t quality = 8;
-  if (this->_internal_quality() != 0) {
+  if (this->quality() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
       8, this->_internal_quality(), target);
   }
 
   // int32 year = 9;
-  if (this->_internal_year() != 0) {
+  if (this->year() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(9, this->_internal_year(), target);
   }
 
   // int32 month = 10;
-  if (this->_internal_month() != 0) {
+  if (this->month() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(10, this->_internal_month(), target);
   }
 
   // int32 day = 11;
-  if (this->_internal_day() != 0) {
+  if (this->day() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(11, this->_internal_day(), target);
   }
 
   // int32 hour = 12;
-  if (this->_internal_hour() != 0) {
+  if (this->hour() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(12, this->_internal_hour(), target);
   }
 
   // int32 minute = 13;
-  if (this->_internal_minute() != 0) {
+  if (this->minute() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(13, this->_internal_minute(), target);
   }
 
   // int32 second = 14;
-  if (this->_internal_second() != 0) {
+  if (this->second() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(14, this->_internal_second(), target);
   }
@@ -14273,141 +14600,182 @@ size_t GPSData::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // int32 latitude = 1;
-  if (this->_internal_latitude() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_latitude());
+  if (this->latitude() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_latitude());
   }
 
   // int32 longitude = 2;
-  if (this->_internal_longitude() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_longitude());
+  if (this->longitude() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_longitude());
   }
 
   // int32 heading_of_motion = 3;
-  if (this->_internal_heading_of_motion() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_heading_of_motion());
+  if (this->heading_of_motion() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_heading_of_motion());
   }
 
   // uint32 number_of_sv = 4;
-  if (this->_internal_number_of_sv() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32SizePlusOne(this->_internal_number_of_sv());
+  if (this->number_of_sv() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
+        this->_internal_number_of_sv());
   }
 
   // uint32 hDOP = 5;
-  if (this->_internal_hdop() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32SizePlusOne(this->_internal_hdop());
+  if (this->hdop() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
+        this->_internal_hdop());
   }
 
   // int32 height_above_sea = 6;
-  if (this->_internal_height_above_sea() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_height_above_sea());
+  if (this->height_above_sea() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_height_above_sea());
   }
 
   // int32 ground_speed = 7;
-  if (this->_internal_ground_speed() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_ground_speed());
+  if (this->ground_speed() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_ground_speed());
   }
 
   // .sensors.GPSData.quality_t quality = 8;
-  if (this->_internal_quality() != 0) {
+  if (this->quality() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_quality());
   }
 
   // int32 year = 9;
-  if (this->_internal_year() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_year());
+  if (this->year() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_year());
   }
 
   // int32 month = 10;
-  if (this->_internal_month() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_month());
+  if (this->month() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_month());
   }
 
   // int32 day = 11;
-  if (this->_internal_day() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_day());
+  if (this->day() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_day());
   }
 
   // int32 hour = 12;
-  if (this->_internal_hour() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_hour());
+  if (this->hour() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_hour());
   }
 
   // int32 minute = 13;
-  if (this->_internal_minute() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_minute());
+  if (this->minute() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_minute());
   }
 
   // int32 second = 14;
-  if (this->_internal_second() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_second());
+  if (this->second() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_second());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GPSData::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    GPSData::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GPSData::GetClassData() const { return &_class_data_; }
-
-void GPSData::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GPSData *>(to)->MergeFrom(
-      static_cast<const GPSData &>(from));
+void GPSData::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.GPSData)
+  GOOGLE_DCHECK_NE(&from, this);
+  const GPSData* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<GPSData>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.GPSData)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.GPSData)
+    MergeFrom(*source);
+  }
 }
-
 
 void GPSData::MergeFrom(const GPSData& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.GPSData)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_latitude() != 0) {
+  if (from.latitude() != 0) {
     _internal_set_latitude(from._internal_latitude());
   }
-  if (from._internal_longitude() != 0) {
+  if (from.longitude() != 0) {
     _internal_set_longitude(from._internal_longitude());
   }
-  if (from._internal_heading_of_motion() != 0) {
+  if (from.heading_of_motion() != 0) {
     _internal_set_heading_of_motion(from._internal_heading_of_motion());
   }
-  if (from._internal_number_of_sv() != 0) {
+  if (from.number_of_sv() != 0) {
     _internal_set_number_of_sv(from._internal_number_of_sv());
   }
-  if (from._internal_hdop() != 0) {
+  if (from.hdop() != 0) {
     _internal_set_hdop(from._internal_hdop());
   }
-  if (from._internal_height_above_sea() != 0) {
+  if (from.height_above_sea() != 0) {
     _internal_set_height_above_sea(from._internal_height_above_sea());
   }
-  if (from._internal_ground_speed() != 0) {
+  if (from.ground_speed() != 0) {
     _internal_set_ground_speed(from._internal_ground_speed());
   }
-  if (from._internal_quality() != 0) {
+  if (from.quality() != 0) {
     _internal_set_quality(from._internal_quality());
   }
-  if (from._internal_year() != 0) {
+  if (from.year() != 0) {
     _internal_set_year(from._internal_year());
   }
-  if (from._internal_month() != 0) {
+  if (from.month() != 0) {
     _internal_set_month(from._internal_month());
   }
-  if (from._internal_day() != 0) {
+  if (from.day() != 0) {
     _internal_set_day(from._internal_day());
   }
-  if (from._internal_hour() != 0) {
+  if (from.hour() != 0) {
     _internal_set_hour(from._internal_hour());
   }
-  if (from._internal_minute() != 0) {
+  if (from.minute() != 0) {
     _internal_set_minute(from._internal_minute());
   }
-  if (from._internal_second() != 0) {
+  if (from.second() != 0) {
     _internal_set_second(from._internal_second());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GPSData::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.GPSData)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void GPSData::CopyFrom(const GPSData& from) {
@@ -14442,10 +14810,10 @@ void GPSData::InternalSwap(GPSData* other) {
 
 class EncoderData::_Internal {
  public:
-  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& timestamp(const EncoderData* msg);
+  static const PROTOBUF_NAMESPACE_ID::Timestamp& timestamp(const EncoderData* msg);
 };
 
-const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+const PROTOBUF_NAMESPACE_ID::Timestamp&
 EncoderData::_Internal::timestamp(const EncoderData* msg) {
   return *msg->timestamp_;
 }
@@ -14455,20 +14823,17 @@ void EncoderData::clear_timestamp() {
   }
   timestamp_ = nullptr;
 }
-EncoderData::EncoderData(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+EncoderData::EncoderData(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.EncoderData)
 }
 EncoderData::EncoderData(const EncoderData& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_timestamp()) {
-    timestamp_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.timestamp_);
+    timestamp_ = new PROTOBUF_NAMESPACE_ID::Timestamp(*from.timestamp_);
   } else {
     timestamp_ = nullptr;
   }
@@ -14487,12 +14852,11 @@ void EncoderData::SharedCtor() {
 
 EncoderData::~EncoderData() {
   // @@protoc_insertion_point(destructor:sensors.EncoderData)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void EncoderData::SharedDtor() {
+void EncoderData::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   if (this != internal_default_instance()) delete timestamp_;
 }
@@ -14534,77 +14898,70 @@ const char* EncoderData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 13)) {
           left_angle_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float right_angle = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 21)) {
           right_angle_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float fl_caster_degrees = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 29)) {
           fl_caster_degrees_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float bl_caster_degrees = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 37)) {
           bl_caster_degrees_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float fr_caster_degrees = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 45)) {
           fr_caster_degrees_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float br_caster_degrees = 6;
       case 6:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 53)) {
           br_caster_degrees_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .google.protobuf.Timestamp timestamp = 7;
       case 7:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 58)) {
           ptr = ctx->ParseMessage(_internal_mutable_timestamp(), ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -14615,43 +14972,43 @@ failure:
   (void) cached_has_bits;
 
   // float left_angle = 1;
-  if (!(this->_internal_left_angle() <= 0 && this->_internal_left_angle() >= 0)) {
+  if (!(this->left_angle() <= 0 && this->left_angle() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(1, this->_internal_left_angle(), target);
   }
 
   // float right_angle = 2;
-  if (!(this->_internal_right_angle() <= 0 && this->_internal_right_angle() >= 0)) {
+  if (!(this->right_angle() <= 0 && this->right_angle() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(2, this->_internal_right_angle(), target);
   }
 
   // float fl_caster_degrees = 3;
-  if (!(this->_internal_fl_caster_degrees() <= 0 && this->_internal_fl_caster_degrees() >= 0)) {
+  if (!(this->fl_caster_degrees() <= 0 && this->fl_caster_degrees() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(3, this->_internal_fl_caster_degrees(), target);
   }
 
   // float bl_caster_degrees = 4;
-  if (!(this->_internal_bl_caster_degrees() <= 0 && this->_internal_bl_caster_degrees() >= 0)) {
+  if (!(this->bl_caster_degrees() <= 0 && this->bl_caster_degrees() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(4, this->_internal_bl_caster_degrees(), target);
   }
 
   // float fr_caster_degrees = 5;
-  if (!(this->_internal_fr_caster_degrees() <= 0 && this->_internal_fr_caster_degrees() >= 0)) {
+  if (!(this->fr_caster_degrees() <= 0 && this->fr_caster_degrees() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(5, this->_internal_fr_caster_degrees(), target);
   }
 
   // float br_caster_degrees = 6;
-  if (!(this->_internal_br_caster_degrees() <= 0 && this->_internal_br_caster_degrees() >= 0)) {
+  if (!(this->br_caster_degrees() <= 0 && this->br_caster_degrees() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(6, this->_internal_br_caster_degrees(), target);
   }
 
   // .google.protobuf.Timestamp timestamp = 7;
-  if (this->_internal_has_timestamp()) {
+  if (this->has_timestamp()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
@@ -14675,86 +15032,101 @@ size_t EncoderData::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // .google.protobuf.Timestamp timestamp = 7;
-  if (this->_internal_has_timestamp()) {
+  if (this->has_timestamp()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *timestamp_);
   }
 
   // float left_angle = 1;
-  if (!(this->_internal_left_angle() <= 0 && this->_internal_left_angle() >= 0)) {
+  if (!(this->left_angle() <= 0 && this->left_angle() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float right_angle = 2;
-  if (!(this->_internal_right_angle() <= 0 && this->_internal_right_angle() >= 0)) {
+  if (!(this->right_angle() <= 0 && this->right_angle() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float fl_caster_degrees = 3;
-  if (!(this->_internal_fl_caster_degrees() <= 0 && this->_internal_fl_caster_degrees() >= 0)) {
+  if (!(this->fl_caster_degrees() <= 0 && this->fl_caster_degrees() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float bl_caster_degrees = 4;
-  if (!(this->_internal_bl_caster_degrees() <= 0 && this->_internal_bl_caster_degrees() >= 0)) {
+  if (!(this->bl_caster_degrees() <= 0 && this->bl_caster_degrees() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float fr_caster_degrees = 5;
-  if (!(this->_internal_fr_caster_degrees() <= 0 && this->_internal_fr_caster_degrees() >= 0)) {
+  if (!(this->fr_caster_degrees() <= 0 && this->fr_caster_degrees() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float br_caster_degrees = 6;
-  if (!(this->_internal_br_caster_degrees() <= 0 && this->_internal_br_caster_degrees() >= 0)) {
+  if (!(this->br_caster_degrees() <= 0 && this->br_caster_degrees() >= 0)) {
     total_size += 1 + 4;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData EncoderData::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    EncoderData::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*EncoderData::GetClassData() const { return &_class_data_; }
-
-void EncoderData::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<EncoderData *>(to)->MergeFrom(
-      static_cast<const EncoderData &>(from));
+void EncoderData::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.EncoderData)
+  GOOGLE_DCHECK_NE(&from, this);
+  const EncoderData* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<EncoderData>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.EncoderData)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.EncoderData)
+    MergeFrom(*source);
+  }
 }
-
 
 void EncoderData::MergeFrom(const EncoderData& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.EncoderData)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_has_timestamp()) {
-    _internal_mutable_timestamp()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_timestamp());
+  if (from.has_timestamp()) {
+    _internal_mutable_timestamp()->PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_timestamp());
   }
-  if (!(from._internal_left_angle() <= 0 && from._internal_left_angle() >= 0)) {
+  if (!(from.left_angle() <= 0 && from.left_angle() >= 0)) {
     _internal_set_left_angle(from._internal_left_angle());
   }
-  if (!(from._internal_right_angle() <= 0 && from._internal_right_angle() >= 0)) {
+  if (!(from.right_angle() <= 0 && from.right_angle() >= 0)) {
     _internal_set_right_angle(from._internal_right_angle());
   }
-  if (!(from._internal_fl_caster_degrees() <= 0 && from._internal_fl_caster_degrees() >= 0)) {
+  if (!(from.fl_caster_degrees() <= 0 && from.fl_caster_degrees() >= 0)) {
     _internal_set_fl_caster_degrees(from._internal_fl_caster_degrees());
   }
-  if (!(from._internal_bl_caster_degrees() <= 0 && from._internal_bl_caster_degrees() >= 0)) {
+  if (!(from.bl_caster_degrees() <= 0 && from.bl_caster_degrees() >= 0)) {
     _internal_set_bl_caster_degrees(from._internal_bl_caster_degrees());
   }
-  if (!(from._internal_fr_caster_degrees() <= 0 && from._internal_fr_caster_degrees() >= 0)) {
+  if (!(from.fr_caster_degrees() <= 0 && from.fr_caster_degrees() >= 0)) {
     _internal_set_fr_caster_degrees(from._internal_fr_caster_degrees());
   }
-  if (!(from._internal_br_caster_degrees() <= 0 && from._internal_br_caster_degrees() >= 0)) {
+  if (!(from.br_caster_degrees() <= 0 && from.br_caster_degrees() >= 0)) {
     _internal_set_br_caster_degrees(from._internal_br_caster_degrees());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void EncoderData::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.EncoderData)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void EncoderData::CopyFrom(const EncoderData& from) {
@@ -14791,13 +15163,10 @@ class Vec3::_Internal {
  public:
 };
 
-Vec3::Vec3(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+Vec3::Vec3(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.Vec3)
 }
 Vec3::Vec3(const Vec3& from)
@@ -14818,12 +15187,11 @@ void Vec3::SharedCtor() {
 
 Vec3::~Vec3() {
   // @@protoc_insertion_point(destructor:sensors.Vec3)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void Vec3::SharedDtor() {
+void Vec3::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -14860,45 +15228,42 @@ const char* Vec3::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inter
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 13)) {
           x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float y = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 21)) {
           y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float z = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 29)) {
           z_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -14909,19 +15274,19 @@ failure:
   (void) cached_has_bits;
 
   // float x = 1;
-  if (!(this->_internal_x() <= 0 && this->_internal_x() >= 0)) {
+  if (!(this->x() <= 0 && this->x() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(1, this->_internal_x(), target);
   }
 
   // float y = 2;
-  if (!(this->_internal_y() <= 0 && this->_internal_y() >= 0)) {
+  if (!(this->y() <= 0 && this->y() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(2, this->_internal_y(), target);
   }
 
   // float z = 3;
-  if (!(this->_internal_z() <= 0 && this->_internal_z() >= 0)) {
+  if (!(this->z() <= 0 && this->z() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(3, this->_internal_z(), target);
   }
@@ -14943,52 +15308,67 @@ size_t Vec3::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // float x = 1;
-  if (!(this->_internal_x() <= 0 && this->_internal_x() >= 0)) {
+  if (!(this->x() <= 0 && this->x() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float y = 2;
-  if (!(this->_internal_y() <= 0 && this->_internal_y() >= 0)) {
+  if (!(this->y() <= 0 && this->y() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float z = 3;
-  if (!(this->_internal_z() <= 0 && this->_internal_z() >= 0)) {
+  if (!(this->z() <= 0 && this->z() >= 0)) {
     total_size += 1 + 4;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Vec3::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    Vec3::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Vec3::GetClassData() const { return &_class_data_; }
-
-void Vec3::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<Vec3 *>(to)->MergeFrom(
-      static_cast<const Vec3 &>(from));
+void Vec3::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.Vec3)
+  GOOGLE_DCHECK_NE(&from, this);
+  const Vec3* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<Vec3>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.Vec3)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.Vec3)
+    MergeFrom(*source);
+  }
 }
-
 
 void Vec3::MergeFrom(const Vec3& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.Vec3)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!(from._internal_x() <= 0 && from._internal_x() >= 0)) {
+  if (!(from.x() <= 0 && from.x() >= 0)) {
     _internal_set_x(from._internal_x());
   }
-  if (!(from._internal_y() <= 0 && from._internal_y() >= 0)) {
+  if (!(from.y() <= 0 && from.y() >= 0)) {
     _internal_set_y(from._internal_y());
   }
-  if (!(from._internal_z() <= 0 && from._internal_z() >= 0)) {
+  if (!(from.z() <= 0 && from.z() >= 0)) {
     _internal_set_z(from._internal_z());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Vec3::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.Vec3)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void Vec3::CopyFrom(const Vec3& from) {
@@ -15025,13 +15405,10 @@ class Vec4::_Internal {
  public:
 };
 
-Vec4::Vec4(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+Vec4::Vec4(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.Vec4)
 }
 Vec4::Vec4(const Vec4& from)
@@ -15052,12 +15429,11 @@ void Vec4::SharedCtor() {
 
 Vec4::~Vec4() {
   // @@protoc_insertion_point(destructor:sensors.Vec4)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void Vec4::SharedDtor() {
+void Vec4::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -15094,53 +15470,49 @@ const char* Vec4::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inter
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 13)) {
           w_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float x = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 21)) {
           x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float y = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 29)) {
           y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // float z = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 37)) {
           z_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -15151,25 +15523,25 @@ failure:
   (void) cached_has_bits;
 
   // float w = 1;
-  if (!(this->_internal_w() <= 0 && this->_internal_w() >= 0)) {
+  if (!(this->w() <= 0 && this->w() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(1, this->_internal_w(), target);
   }
 
   // float x = 2;
-  if (!(this->_internal_x() <= 0 && this->_internal_x() >= 0)) {
+  if (!(this->x() <= 0 && this->x() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(2, this->_internal_x(), target);
   }
 
   // float y = 3;
-  if (!(this->_internal_y() <= 0 && this->_internal_y() >= 0)) {
+  if (!(this->y() <= 0 && this->y() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(3, this->_internal_y(), target);
   }
 
   // float z = 4;
-  if (!(this->_internal_z() <= 0 && this->_internal_z() >= 0)) {
+  if (!(this->z() <= 0 && this->z() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(4, this->_internal_z(), target);
   }
@@ -15191,60 +15563,75 @@ size_t Vec4::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // float w = 1;
-  if (!(this->_internal_w() <= 0 && this->_internal_w() >= 0)) {
+  if (!(this->w() <= 0 && this->w() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float x = 2;
-  if (!(this->_internal_x() <= 0 && this->_internal_x() >= 0)) {
+  if (!(this->x() <= 0 && this->x() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float y = 3;
-  if (!(this->_internal_y() <= 0 && this->_internal_y() >= 0)) {
+  if (!(this->y() <= 0 && this->y() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float z = 4;
-  if (!(this->_internal_z() <= 0 && this->_internal_z() >= 0)) {
+  if (!(this->z() <= 0 && this->z() >= 0)) {
     total_size += 1 + 4;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Vec4::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    Vec4::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Vec4::GetClassData() const { return &_class_data_; }
-
-void Vec4::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<Vec4 *>(to)->MergeFrom(
-      static_cast<const Vec4 &>(from));
+void Vec4::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.Vec4)
+  GOOGLE_DCHECK_NE(&from, this);
+  const Vec4* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<Vec4>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.Vec4)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.Vec4)
+    MergeFrom(*source);
+  }
 }
-
 
 void Vec4::MergeFrom(const Vec4& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.Vec4)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!(from._internal_w() <= 0 && from._internal_w() >= 0)) {
+  if (!(from.w() <= 0 && from.w() >= 0)) {
     _internal_set_w(from._internal_w());
   }
-  if (!(from._internal_x() <= 0 && from._internal_x() >= 0)) {
+  if (!(from.x() <= 0 && from.x() >= 0)) {
     _internal_set_x(from._internal_x());
   }
-  if (!(from._internal_y() <= 0 && from._internal_y() >= 0)) {
+  if (!(from.y() <= 0 && from.y() >= 0)) {
     _internal_set_y(from._internal_y());
   }
-  if (!(from._internal_z() <= 0 && from._internal_z() >= 0)) {
+  if (!(from.z() <= 0 && from.z() >= 0)) {
     _internal_set_z(from._internal_z());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Vec4::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.Vec4)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void Vec4::CopyFrom(const Vec4& from) {
@@ -15279,10 +15666,10 @@ void Vec4::InternalSwap(Vec4* other) {
 
 class IrFrame::_Internal {
  public:
-  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& timestamp(const IrFrame* msg);
+  static const PROTOBUF_NAMESPACE_ID::Timestamp& timestamp(const IrFrame* msg);
 };
 
-const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+const PROTOBUF_NAMESPACE_ID::Timestamp&
 IrFrame::_Internal::timestamp(const IrFrame* msg) {
   return *msg->timestamp_;
 }
@@ -15292,13 +15679,10 @@ void IrFrame::clear_timestamp() {
   }
   timestamp_ = nullptr;
 }
-IrFrame::IrFrame(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+IrFrame::IrFrame(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.IrFrame)
 }
 IrFrame::IrFrame(const IrFrame& from)
@@ -15315,7 +15699,7 @@ IrFrame::IrFrame(const IrFrame& from)
       GetArenaForAllocation());
   }
   if (from._internal_has_timestamp()) {
-    timestamp_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.timestamp_);
+    timestamp_ = new PROTOBUF_NAMESPACE_ID::Timestamp(*from.timestamp_);
   } else {
     timestamp_ = nullptr;
   }
@@ -15336,12 +15720,11 @@ camera_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlrea
 
 IrFrame::~IrFrame() {
   // @@protoc_insertion_point(destructor:sensors.IrFrame)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void IrFrame::SharedDtor() {
+void IrFrame::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   frame_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   camera_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
@@ -15388,24 +15771,21 @@ const char* IrFrame::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::in
           auto str = _internal_mutable_frame();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // int32 width = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
           width_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // int32 height = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
           height_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // string camera = 4;
       case 4:
@@ -15414,45 +15794,42 @@ const char* IrFrame::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::in
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "sensors.IrFrame.camera"));
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // int32 size = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
           size_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .google.protobuf.Timestamp timestamp = 6;
       case 6:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 50)) {
           ptr = ctx->ParseMessage(_internal_mutable_timestamp(), ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -15463,25 +15840,25 @@ failure:
   (void) cached_has_bits;
 
   // bytes frame = 1;
-  if (!this->_internal_frame().empty()) {
+  if (!this->frame().empty()) {
     target = stream->WriteBytesMaybeAliased(
         1, this->_internal_frame(), target);
   }
 
   // int32 width = 2;
-  if (this->_internal_width() != 0) {
+  if (this->width() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_width(), target);
   }
 
   // int32 height = 3;
-  if (this->_internal_height() != 0) {
+  if (this->height() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(3, this->_internal_height(), target);
   }
 
   // string camera = 4;
-  if (!this->_internal_camera().empty()) {
+  if (!this->camera().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_camera().data(), static_cast<int>(this->_internal_camera().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -15491,13 +15868,13 @@ failure:
   }
 
   // int32 size = 5;
-  if (this->_internal_size() != 0) {
+  if (this->size() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(5, this->_internal_size(), target);
   }
 
   // .google.protobuf.Timestamp timestamp = 6;
-  if (this->_internal_has_timestamp()) {
+  if (this->has_timestamp()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
@@ -15521,82 +15898,103 @@ size_t IrFrame::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // bytes frame = 1;
-  if (!this->_internal_frame().empty()) {
+  if (!this->frame().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
         this->_internal_frame());
   }
 
   // string camera = 4;
-  if (!this->_internal_camera().empty()) {
+  if (!this->camera().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_camera());
   }
 
   // .google.protobuf.Timestamp timestamp = 6;
-  if (this->_internal_has_timestamp()) {
+  if (this->has_timestamp()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *timestamp_);
   }
 
   // int32 width = 2;
-  if (this->_internal_width() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_width());
+  if (this->width() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_width());
   }
 
   // int32 height = 3;
-  if (this->_internal_height() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_height());
+  if (this->height() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_height());
   }
 
   // int32 size = 5;
-  if (this->_internal_size() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_size());
+  if (this->size() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_size());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData IrFrame::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    IrFrame::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*IrFrame::GetClassData() const { return &_class_data_; }
-
-void IrFrame::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<IrFrame *>(to)->MergeFrom(
-      static_cast<const IrFrame &>(from));
+void IrFrame::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.IrFrame)
+  GOOGLE_DCHECK_NE(&from, this);
+  const IrFrame* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<IrFrame>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.IrFrame)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.IrFrame)
+    MergeFrom(*source);
+  }
 }
-
 
 void IrFrame::MergeFrom(const IrFrame& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.IrFrame)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_frame().empty()) {
+  if (!from.frame().empty()) {
     _internal_set_frame(from._internal_frame());
   }
-  if (!from._internal_camera().empty()) {
+  if (!from.camera().empty()) {
     _internal_set_camera(from._internal_camera());
   }
-  if (from._internal_has_timestamp()) {
-    _internal_mutable_timestamp()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_timestamp());
+  if (from.has_timestamp()) {
+    _internal_mutable_timestamp()->PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_timestamp());
   }
-  if (from._internal_width() != 0) {
+  if (from.width() != 0) {
     _internal_set_width(from._internal_width());
   }
-  if (from._internal_height() != 0) {
+  if (from.height() != 0) {
     _internal_set_height(from._internal_height());
   }
-  if (from._internal_size() != 0) {
+  if (from.size() != 0) {
     _internal_set_size(from._internal_size());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void IrFrame::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.IrFrame)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void IrFrame::CopyFrom(const IrFrame& from) {
@@ -15612,18 +16010,16 @@ bool IrFrame::IsInitialized() const {
 
 void IrFrame::InternalSwap(IrFrame* other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      &frame_, lhs_arena,
-      &other->frame_, rhs_arena
+      &frame_, GetArenaForAllocation(),
+      &other->frame_, other->GetArenaForAllocation()
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      &camera_, lhs_arena,
-      &other->camera_, rhs_arena
+      &camera_, GetArenaForAllocation(),
+      &other->camera_, other->GetArenaForAllocation()
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(IrFrame, size_)
@@ -15648,7 +16044,7 @@ class AhrsData::_Internal {
   static const ::sensors::Vec3& angular_velocity(const AhrsData* msg);
   static const ::sensors::Vec3& angular_acceleration(const AhrsData* msg);
   static const ::sensors::Vec4& orientation(const AhrsData* msg);
-  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& timestamp(const AhrsData* msg);
+  static const PROTOBUF_NAMESPACE_ID::Timestamp& timestamp(const AhrsData* msg);
 };
 
 const ::sensors::Vec3&
@@ -15671,7 +16067,7 @@ const ::sensors::Vec4&
 AhrsData::_Internal::orientation(const AhrsData* msg) {
   return *msg->orientation_;
 }
-const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+const PROTOBUF_NAMESPACE_ID::Timestamp&
 AhrsData::_Internal::timestamp(const AhrsData* msg) {
   return *msg->timestamp_;
 }
@@ -15681,13 +16077,10 @@ void AhrsData::clear_timestamp() {
   }
   timestamp_ = nullptr;
 }
-AhrsData::AhrsData(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+AhrsData::AhrsData(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.AhrsData)
 }
 AhrsData::AhrsData(const AhrsData& from)
@@ -15719,7 +16112,7 @@ AhrsData::AhrsData(const AhrsData& from)
     orientation_ = nullptr;
   }
   if (from._internal_has_timestamp()) {
-    timestamp_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.timestamp_);
+    timestamp_ = new PROTOBUF_NAMESPACE_ID::Timestamp(*from.timestamp_);
   } else {
     timestamp_ = nullptr;
   }
@@ -15735,12 +16128,11 @@ void AhrsData::SharedCtor() {
 
 AhrsData::~AhrsData() {
   // @@protoc_insertion_point(destructor:sensors.AhrsData)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void AhrsData::SharedDtor() {
+void AhrsData::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   if (this != internal_default_instance()) delete linear_velocity_;
   if (this != internal_default_instance()) delete linear_acceleration_;
@@ -15804,69 +16196,63 @@ const char* AhrsData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::i
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_linear_velocity(), ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .sensors.Vec3 linear_acceleration = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
           ptr = ctx->ParseMessage(_internal_mutable_linear_acceleration(), ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .sensors.Vec3 angular_velocity = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
           ptr = ctx->ParseMessage(_internal_mutable_angular_velocity(), ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .sensors.Vec3 angular_acceleration = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
           ptr = ctx->ParseMessage(_internal_mutable_angular_acceleration(), ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .sensors.Vec4 orientation = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
           ptr = ctx->ParseMessage(_internal_mutable_orientation(), ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .google.protobuf.Timestamp timestamp = 6;
       case 6:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 50)) {
           ptr = ctx->ParseMessage(_internal_mutable_timestamp(), ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -15877,7 +16263,7 @@ failure:
   (void) cached_has_bits;
 
   // .sensors.Vec3 linear_velocity = 1;
-  if (this->_internal_has_linear_velocity()) {
+  if (this->has_linear_velocity()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
@@ -15885,7 +16271,7 @@ failure:
   }
 
   // .sensors.Vec3 linear_acceleration = 2;
-  if (this->_internal_has_linear_acceleration()) {
+  if (this->has_linear_acceleration()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
@@ -15893,7 +16279,7 @@ failure:
   }
 
   // .sensors.Vec3 angular_velocity = 3;
-  if (this->_internal_has_angular_velocity()) {
+  if (this->has_angular_velocity()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
@@ -15901,7 +16287,7 @@ failure:
   }
 
   // .sensors.Vec3 angular_acceleration = 4;
-  if (this->_internal_has_angular_acceleration()) {
+  if (this->has_angular_acceleration()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
@@ -15909,7 +16295,7 @@ failure:
   }
 
   // .sensors.Vec4 orientation = 5;
-  if (this->_internal_has_orientation()) {
+  if (this->has_orientation()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
@@ -15917,7 +16303,7 @@ failure:
   }
 
   // .google.protobuf.Timestamp timestamp = 6;
-  if (this->_internal_has_timestamp()) {
+  if (this->has_timestamp()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
@@ -15941,88 +16327,103 @@ size_t AhrsData::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // .sensors.Vec3 linear_velocity = 1;
-  if (this->_internal_has_linear_velocity()) {
+  if (this->has_linear_velocity()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *linear_velocity_);
   }
 
   // .sensors.Vec3 linear_acceleration = 2;
-  if (this->_internal_has_linear_acceleration()) {
+  if (this->has_linear_acceleration()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *linear_acceleration_);
   }
 
   // .sensors.Vec3 angular_velocity = 3;
-  if (this->_internal_has_angular_velocity()) {
+  if (this->has_angular_velocity()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *angular_velocity_);
   }
 
   // .sensors.Vec3 angular_acceleration = 4;
-  if (this->_internal_has_angular_acceleration()) {
+  if (this->has_angular_acceleration()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *angular_acceleration_);
   }
 
   // .sensors.Vec4 orientation = 5;
-  if (this->_internal_has_orientation()) {
+  if (this->has_orientation()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *orientation_);
   }
 
   // .google.protobuf.Timestamp timestamp = 6;
-  if (this->_internal_has_timestamp()) {
+  if (this->has_timestamp()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *timestamp_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AhrsData::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    AhrsData::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AhrsData::GetClassData() const { return &_class_data_; }
-
-void AhrsData::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<AhrsData *>(to)->MergeFrom(
-      static_cast<const AhrsData &>(from));
+void AhrsData::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.AhrsData)
+  GOOGLE_DCHECK_NE(&from, this);
+  const AhrsData* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<AhrsData>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.AhrsData)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.AhrsData)
+    MergeFrom(*source);
+  }
 }
-
 
 void AhrsData::MergeFrom(const AhrsData& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.AhrsData)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_has_linear_velocity()) {
+  if (from.has_linear_velocity()) {
     _internal_mutable_linear_velocity()->::sensors::Vec3::MergeFrom(from._internal_linear_velocity());
   }
-  if (from._internal_has_linear_acceleration()) {
+  if (from.has_linear_acceleration()) {
     _internal_mutable_linear_acceleration()->::sensors::Vec3::MergeFrom(from._internal_linear_acceleration());
   }
-  if (from._internal_has_angular_velocity()) {
+  if (from.has_angular_velocity()) {
     _internal_mutable_angular_velocity()->::sensors::Vec3::MergeFrom(from._internal_angular_velocity());
   }
-  if (from._internal_has_angular_acceleration()) {
+  if (from.has_angular_acceleration()) {
     _internal_mutable_angular_acceleration()->::sensors::Vec3::MergeFrom(from._internal_angular_acceleration());
   }
-  if (from._internal_has_orientation()) {
+  if (from.has_orientation()) {
     _internal_mutable_orientation()->::sensors::Vec4::MergeFrom(from._internal_orientation());
   }
-  if (from._internal_has_timestamp()) {
-    _internal_mutable_timestamp()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_timestamp());
+  if (from.has_timestamp()) {
+    _internal_mutable_timestamp()->PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_timestamp());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AhrsData::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.AhrsData)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void AhrsData::CopyFrom(const AhrsData& from) {
@@ -16059,13 +16460,10 @@ class RemoteJsValues::_Internal {
  public:
 };
 
-RemoteJsValues::RemoteJsValues(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+RemoteJsValues::RemoteJsValues(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.RemoteJsValues)
 }
 RemoteJsValues::RemoteJsValues(const RemoteJsValues& from)
@@ -16086,12 +16484,11 @@ void RemoteJsValues::SharedCtor() {
 
 RemoteJsValues::~RemoteJsValues() {
   // @@protoc_insertion_point(destructor:sensors.RemoteJsValues)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void RemoteJsValues::SharedDtor() {
+void RemoteJsValues::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -16128,37 +16525,35 @@ const char* RemoteJsValues::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
           forward_back_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // int32 left_right = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
           left_right_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -16169,13 +16564,13 @@ failure:
   (void) cached_has_bits;
 
   // int32 forward_back = 1;
-  if (this->_internal_forward_back() != 0) {
+  if (this->forward_back() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_forward_back(), target);
   }
 
   // int32 left_right = 2;
-  if (this->_internal_left_right() != 0) {
+  if (this->left_right() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_left_right(), target);
   }
@@ -16197,44 +16592,63 @@ size_t RemoteJsValues::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // int32 forward_back = 1;
-  if (this->_internal_forward_back() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_forward_back());
+  if (this->forward_back() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_forward_back());
   }
 
   // int32 left_right = 2;
-  if (this->_internal_left_right() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_left_right());
+  if (this->left_right() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_left_right());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData RemoteJsValues::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    RemoteJsValues::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RemoteJsValues::GetClassData() const { return &_class_data_; }
-
-void RemoteJsValues::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<RemoteJsValues *>(to)->MergeFrom(
-      static_cast<const RemoteJsValues &>(from));
+void RemoteJsValues::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.RemoteJsValues)
+  GOOGLE_DCHECK_NE(&from, this);
+  const RemoteJsValues* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<RemoteJsValues>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.RemoteJsValues)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.RemoteJsValues)
+    MergeFrom(*source);
+  }
 }
-
 
 void RemoteJsValues::MergeFrom(const RemoteJsValues& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.RemoteJsValues)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_forward_back() != 0) {
+  if (from.forward_back() != 0) {
     _internal_set_forward_back(from._internal_forward_back());
   }
-  if (from._internal_left_right() != 0) {
+  if (from.left_right() != 0) {
     _internal_set_left_right(from._internal_left_right());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void RemoteJsValues::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.RemoteJsValues)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void RemoteJsValues::CopyFrom(const RemoteJsValues& from) {
@@ -16271,13 +16685,10 @@ class ModeCtrl::_Internal {
  public:
 };
 
-ModeCtrl::ModeCtrl(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+ModeCtrl::ModeCtrl(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.ModeCtrl)
 }
 ModeCtrl::ModeCtrl(const ModeCtrl& from)
@@ -16293,12 +16704,11 @@ mode_ = 0;
 
 ModeCtrl::~ModeCtrl() {
   // @@protoc_insertion_point(destructor:sensors.ModeCtrl)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void ModeCtrl::SharedDtor() {
+void ModeCtrl::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -16334,29 +16744,28 @@ const char* ModeCtrl::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::i
           ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_mode(static_cast<::sensors::DriveMode>(val));
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -16367,7 +16776,7 @@ failure:
   (void) cached_has_bits;
 
   // .sensors.DriveMode mode = 1;
-  if (this->_internal_mode() != 0) {
+  if (this->mode() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
       1, this->_internal_mode(), target);
@@ -16390,37 +16799,52 @@ size_t ModeCtrl::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // .sensors.DriveMode mode = 1;
-  if (this->_internal_mode() != 0) {
+  if (this->mode() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_mode());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ModeCtrl::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    ModeCtrl::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ModeCtrl::GetClassData() const { return &_class_data_; }
-
-void ModeCtrl::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<ModeCtrl *>(to)->MergeFrom(
-      static_cast<const ModeCtrl &>(from));
+void ModeCtrl::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.ModeCtrl)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ModeCtrl* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ModeCtrl>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.ModeCtrl)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.ModeCtrl)
+    MergeFrom(*source);
+  }
 }
-
 
 void ModeCtrl::MergeFrom(const ModeCtrl& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.ModeCtrl)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_mode() != 0) {
+  if (from.mode() != 0) {
     _internal_set_mode(from._internal_mode());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ModeCtrl::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.ModeCtrl)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void ModeCtrl::CopyFrom(const ModeCtrl& from) {
@@ -16452,13 +16876,10 @@ class RampMode::_Internal {
  public:
 };
 
-RampMode::RampMode(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+RampMode::RampMode(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.RampMode)
 }
 RampMode::RampMode(const RampMode& from)
@@ -16479,12 +16900,11 @@ void RampMode::SharedCtor() {
 
 RampMode::~RampMode() {
   // @@protoc_insertion_point(destructor:sensors.RampMode)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void RampMode::SharedDtor() {
+void RampMode::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
@@ -16521,37 +16941,35 @@ const char* RampMode::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::i
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
           ramp_mode_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // bool ramp_approach = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
           ramp_approach_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -16562,13 +16980,13 @@ failure:
   (void) cached_has_bits;
 
   // bool ramp_mode = 1;
-  if (this->_internal_ramp_mode() != 0) {
+  if (this->ramp_mode() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_ramp_mode(), target);
   }
 
   // bool ramp_approach = 2;
-  if (this->_internal_ramp_approach() != 0) {
+  if (this->ramp_approach() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(2, this->_internal_ramp_approach(), target);
   }
@@ -16590,44 +17008,59 @@ size_t RampMode::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // bool ramp_mode = 1;
-  if (this->_internal_ramp_mode() != 0) {
+  if (this->ramp_mode() != 0) {
     total_size += 1 + 1;
   }
 
   // bool ramp_approach = 2;
-  if (this->_internal_ramp_approach() != 0) {
+  if (this->ramp_approach() != 0) {
     total_size += 1 + 1;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData RampMode::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    RampMode::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RampMode::GetClassData() const { return &_class_data_; }
-
-void RampMode::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<RampMode *>(to)->MergeFrom(
-      static_cast<const RampMode &>(from));
+void RampMode::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.RampMode)
+  GOOGLE_DCHECK_NE(&from, this);
+  const RampMode* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<RampMode>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.RampMode)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.RampMode)
+    MergeFrom(*source);
+  }
 }
-
 
 void RampMode::MergeFrom(const RampMode& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.RampMode)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_ramp_mode() != 0) {
+  if (from.ramp_mode() != 0) {
     _internal_set_ramp_mode(from._internal_ramp_mode());
   }
-  if (from._internal_ramp_approach() != 0) {
+  if (from.ramp_approach() != 0) {
     _internal_set_ramp_approach(from._internal_ramp_approach());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void RampMode::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.RampMode)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void RampMode::CopyFrom(const RampMode& from) {
@@ -16662,10 +17095,10 @@ void RampMode::InternalSwap(RampMode* other) {
 
 class RampAssistStates::_Internal {
  public:
-  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& timestamp(const RampAssistStates* msg);
+  static const PROTOBUF_NAMESPACE_ID::Timestamp& timestamp(const RampAssistStates* msg);
 };
 
-const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+const PROTOBUF_NAMESPACE_ID::Timestamp&
 RampAssistStates::_Internal::timestamp(const RampAssistStates* msg) {
   return *msg->timestamp_;
 }
@@ -16675,20 +17108,17 @@ void RampAssistStates::clear_timestamp() {
   }
   timestamp_ = nullptr;
 }
-RampAssistStates::RampAssistStates(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+RampAssistStates::RampAssistStates(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:sensors.RampAssistStates)
 }
 RampAssistStates::RampAssistStates(const RampAssistStates& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_timestamp()) {
-    timestamp_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.timestamp_);
+    timestamp_ = new PROTOBUF_NAMESPACE_ID::Timestamp(*from.timestamp_);
   } else {
     timestamp_ = nullptr;
   }
@@ -16707,12 +17137,11 @@ void RampAssistStates::SharedCtor() {
 
 RampAssistStates::~RampAssistStates() {
   // @@protoc_insertion_point(destructor:sensors.RampAssistStates)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void RampAssistStates::SharedDtor() {
+void RampAssistStates::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   if (this != internal_default_instance()) delete timestamp_;
 }
@@ -16754,45 +17183,42 @@ const char* RampAssistStates::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPA
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
           state_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // bool approach = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
           approach_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
       // .google.protobuf.Timestamp timestamp = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
           ptr = ctx->ParseMessage(_internal_mutable_timestamp(), ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
+        } else goto handle_unusual;
         continue;
-      default:
-        goto handle_unusual;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
     }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
   }  // while
-message_done:
+success:
   return ptr;
 failure:
   ptr = nullptr;
-  goto message_done;
+  goto success;
 #undef CHK_
 }
 
@@ -16803,19 +17229,19 @@ failure:
   (void) cached_has_bits;
 
   // bool state = 1;
-  if (this->_internal_state() != 0) {
+  if (this->state() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_state(), target);
   }
 
   // bool approach = 2;
-  if (this->_internal_approach() != 0) {
+  if (this->approach() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(2, this->_internal_approach(), target);
   }
 
   // .google.protobuf.Timestamp timestamp = 3;
-  if (this->_internal_has_timestamp()) {
+  if (this->has_timestamp()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
@@ -16839,54 +17265,69 @@ size_t RampAssistStates::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // .google.protobuf.Timestamp timestamp = 3;
-  if (this->_internal_has_timestamp()) {
+  if (this->has_timestamp()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *timestamp_);
   }
 
   // bool state = 1;
-  if (this->_internal_state() != 0) {
+  if (this->state() != 0) {
     total_size += 1 + 1;
   }
 
   // bool approach = 2;
-  if (this->_internal_approach() != 0) {
+  if (this->approach() != 0) {
     total_size += 1 + 1;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData RampAssistStates::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    RampAssistStates::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RampAssistStates::GetClassData() const { return &_class_data_; }
-
-void RampAssistStates::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<RampAssistStates *>(to)->MergeFrom(
-      static_cast<const RampAssistStates &>(from));
+void RampAssistStates::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:sensors.RampAssistStates)
+  GOOGLE_DCHECK_NE(&from, this);
+  const RampAssistStates* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<RampAssistStates>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:sensors.RampAssistStates)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:sensors.RampAssistStates)
+    MergeFrom(*source);
+  }
 }
-
 
 void RampAssistStates::MergeFrom(const RampAssistStates& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:sensors.RampAssistStates)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_has_timestamp()) {
-    _internal_mutable_timestamp()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_timestamp());
+  if (from.has_timestamp()) {
+    _internal_mutable_timestamp()->PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_timestamp());
   }
-  if (from._internal_state() != 0) {
+  if (from.state() != 0) {
     _internal_set_state(from._internal_state());
   }
-  if (from._internal_approach() != 0) {
+  if (from.approach() != 0) {
     _internal_set_approach(from._internal_approach());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void RampAssistStates::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:sensors.RampAssistStates)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void RampAssistStates::CopyFrom(const RampAssistStates& from) {
