@@ -22,13 +22,18 @@ find_package(PCL REQUIRED)
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(tf2_ros REQUIRED)
+find_package(nav_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
+find_package(std_msgs REQUIRED)
+
 
 find_package(gRPC CONFIG REQUIRED)
 # FetchContent_MakeAvailable(gRPC)
 
 find_package(OpenCV CONFIG REQUIRED)
 find_package(tf2_ros REQUIRED)
-# find_library(OpenCV NAMES OpenCV)
+find_library(OpenCV NAMES OpenCV)
 
 
 
@@ -68,7 +73,7 @@ target_link_libraries(grpc_interface_node
                     gRPC::grpc++_unsecure)
 
 ament_target_dependencies(grpc_interface_node "geometry_msgs" "rclcpp"
-   "PCL")
+   "PCL" "OpenCV" "tf2_ros" "nav_msgs" "sensor_msgs" "std_msgs")
 
 
 
