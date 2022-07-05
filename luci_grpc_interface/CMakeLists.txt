@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.8)
 project(grpc_interface)
 
 
-set(CMAKE_LIBRARY_PATH "/home/christian/.local/lib")
+# set(CMAKE_LIBRARY_PATH "/home/christian/.local/lib")
 
 # set(CMAKE_LIBRARY_PATH "/home/christian/.conan/data")
 # include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
@@ -66,7 +66,7 @@ include_directories(
 )
 
 target_include_directories(grpc_interface_node PUBLIC ./generated_code)
-target_include_directories(grpc_interface_node PUBLIC /home/christian/.local/lib)
+# target_include_directories(grpc_interface_node PUBLIC /home/christian/.local/lib)
 
 
 target_link_libraries(grpc_interface_node

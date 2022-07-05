@@ -18,7 +18,7 @@ class Interface : public rclcpp::Node
   private:
     // std::string host = "192.168.8.125";
     // std::string host = "10.1.10.115";
-    std::string host = "192.168.8.137";
+    std::string host = "localhost";
     std::string port = "50051";
 
     std::vector<std::thread> grpcThreads;
