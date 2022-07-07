@@ -1,5 +1,5 @@
 #include "client.h"
-#include "iostream"
+#include <iostream>
 #include <memory>
 
 #include <geometry_msgs/msg/twist.hpp>
@@ -18,10 +18,10 @@ class Interface : public rclcpp::Node
   private:
     // std::string host = "192.168.8.125";
     // std::string host = "10.1.10.115";
-    std::string host = "localhost";
-    std::string port = "50051";
+    // std::string host = "10.1.10.182";
+    // std::string port = "50051";
 
-    std::vector<std::thread> grpcThreads;
+    // std::vector<std::thread> grpcThreads;
 
     // std::shared_ptr<rclcpp::Node> node =
     // rclcpp::Node::make_shared("interface");
@@ -44,6 +44,9 @@ class Interface : public rclcpp::Node
     rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr odomPublisher;
     std::shared_ptr<tf2_ros::TransformBroadcaster> odomBroadcaster;
 
+    // ClientGuide* luciInterface =
+    //     new ClientGuide(grpc::CreateChannel(host + ":" + port, grpc::InsecureChannelCredentials()));
+
     Interface() : Node("interface")
     {
         subscription_ = this->create_subscription<std_msgs::msg::String>(
@@ -60,9 +63,9 @@ class Interface : public rclcpp::Node
         odomPublisher = this->create_publisher<nav_msgs::msg::Odometry>("odom", 1);
         odomBroadcaster = std::make_shared<tf2_ros::TransformBroadcaster>(this);
 
-        grpcThreads.emplace_back(&ClientGuide::readAhrsData, luciInterface);
-        grpcThreads.emplace_back(&ClientGuide::readCameraPointData, luciInterface);
-        grpcThreads.emplace_back(&ClientGuide::readEncoderData, luciInterface);
+        // grpcThreads.emplace_back(&ClientGuide::readAhrsData, luciInterface);
+        // grpcThreads.emplace_back(&ClientGuide::readCameraPointData, luciInterface);
+        // // grpcThreads.emplace_back(&ClientGuide::readEncoderData, luciInterface);
     }
 
     // rclcpp::Publisher<geometry_msgs::msg::Twist> pidPublisher =
@@ -82,8 +85,7 @@ class Interface : public rclcpp::Node
 
     rclcpp::Time currentTime, lastTime;
 
-    ClientGuide* luciInterface =
-        new ClientGuide(grpc::CreateChannel(host + ":" + port, grpc::InsecureChannelCredentials()));
+    // RCLCPP_ERROR(this->get_logger(), "connection established");
 
     // void sendJSCallback(const translator::luci_joystickConstPtr& msg);
     void sendJSCallback(const std_msgs::msg::String::SharedPtr msg);

@@ -86,7 +86,18 @@ int main(int argc, char** argv)
 
     // TODO: figure out spin rate stuff
     auto interfaceNode = std::make_shared<Interface>();
-    rclcpp::spin(interfaceNode);
+    RCLCPP_ERROR(interfaceNode->get_logger(), "Started...");
+    std::string host = "10.1.10.182";
+    std::string port = "50051";
+    std::vector<std::thread> grpcThreads;
+
+    ClientGuide* luciInterface =
+        new ClientGuide(grpc::CreateChannel(host + ":" + port, grpc::InsecureChannelCredentials()));
+
+    grpcThreads.emplace_back(&ClientGuide::readAhrsData, luciInterface);
+    grpcThreads.emplace_back(&ClientGuide::readCameraPointData, luciInterface);
+    // grpcThreads.emplace_back(&ClientGuide::readEncoderData, luciInterface);
+    // rclcpp::spin(interfaceNode);
 
     rclcpp::Rate loop_rate(20);
 
@@ -95,7 +106,7 @@ int main(int argc, char** argv)
 
     // CHECK THE POINTCLOUD TO MAKE SURE ITS RIGHT WAY UP
     // interface->luciInterface->activateAutoMode();
-    interfaceNode->luciInterface->activateUserMode();
+    luciInterface->activateUserMode();
 
     // processThreads.emplace_back(&Interface::run, interface);
 
@@ -114,46 +125,47 @@ int main(int argc, char** argv)
 
     while (rclcpp::ok())
     {
+        RCLCPP_ERROR(interfaceNode->get_logger(), "Running...");
         // interface->currentTime = ros::Time::now();
 
-        auto encoderData = interfaceNode->luciInterface->getEncoderData();
-        auto leftAngle = encoderData.leftAngle;
-        auto rightAngle = encoderData.rightAngle;
-        float encoderTimestamp = encoderData.timestamp;
+        // auto encoderData = interfaceNode->luciInterface->getEncoderData();
+        // auto leftAngle = encoderData.leftAngle;
+        // auto rightAngle = encoderData.rightAngle;
+        // float encoderTimestamp = encoderData.timestamp;
 
-        float circumfrance = 1.048;
-        float totalWheelMeters = 0.0;
+        // float circumfrance = 1.048;
+        // float totalWheelMeters = 0.0;
 
-        if (first)
-        {
-            lastLeft = leftAngle;
-            lastRight = rightAngle;
-            first = false;
-        }
+        // if (first)
+        // {
+        //     lastLeft = leftAngle;
+        //     lastRight = rightAngle;
+        //     first = false;
+        // }
 
-        auto degreesTraveledLeft = degreesTraveled(leftAngle, lastLeft, true);
-        auto degreesTraveledRight = degreesTraveled(rightAngle, lastRight, false);
+        // auto degreesTraveledLeft = degreesTraveled(leftAngle, lastLeft, true);
+        // auto degreesTraveledRight = degreesTraveled(rightAngle, lastRight, false);
 
-        // std::cout << "Degrees traveld Left: " << degreesTraveledLeft << std::endl;
+        // // std::cout << "Degrees traveld Left: " << degreesTraveledLeft << std::endl;
 
-        // Distance traveled
-        totalDegreesLeft += degreesTraveledLeft;
-        float rotationsLeft = totalDegreesLeft / 360.0;
-        float leftDistanceMeters = rotationsLeft * circumfrance;
-        lastLeft = leftAngle;
+        // // Distance traveled
+        // totalDegreesLeft += degreesTraveledLeft;
+        // float rotationsLeft = totalDegreesLeft / 360.0;
+        // float leftDistanceMeters = rotationsLeft * circumfrance;
+        // lastLeft = leftAngle;
 
-        totalDegreesRight += degreesTraveledRight;
-        float rotationsRight = totalDegreesRight / 360.0;
-        float rightDistanceMeters = rotationsRight * circumfrance;
-        lastRight = rightAngle;
+        // totalDegreesRight += degreesTraveledRight;
+        // float rotationsRight = totalDegreesRight / 360.0;
+        // float rightDistanceMeters = rotationsRight * circumfrance;
+        // lastRight = rightAngle;
 
         // totalWheelMeters = (leftDistanceMeters + rightDistanceMeters) / 2;
 
-        float leftVelocity = leftDiff.differentiate(leftDistanceMeters, encoderTimestamp);
-        float rightVelocity = rightDiff.differentiate(rightDistanceMeters, encoderTimestamp);
+        // float leftVelocity = leftDiff.differentiate(leftDistanceMeters, encoderTimestamp);
+        // float rightVelocity = rightDiff.differentiate(rightDistanceMeters, encoderTimestamp);
 
         // Point cloud processing
-        auto cameraPointData = interfaceNode->luciInterface->getCameraPointCloud();
+        auto cameraPointData = luciInterface->getCameraPointCloud();
         // auto radarPointData = interface->luciInterface->getRadarPointCloud();
         // auto ultrasonicPointData = interface->luciInterface->getUltrasonicPointCloud();
         // auto fullPointCloud = cameraPointData + radarPointData + ultrasonicPointData;
@@ -165,17 +177,20 @@ int main(int argc, char** argv)
         header.stamp = interfaceNode->currentTime;
         rosPointCloud.header = header;
         interfaceNode->sensorPublisher->publish(rosPointCloud);
-        // std::cout << "Points : " << pointData.size() << std::endl;
+        RCLCPP_ERROR(interfaceNode->get_logger(), "Points: %ld", cameraPointData.size());
+        // RCLCPP_ERROR(interfaceNode->get_logger(), std::to_string(cameraPointData.size()));
+
+        // std::cout << "Points : " << cameraPointData.size() << std::endl;
 
         // AHRS data processing
-        auto ahrsData = interfaceNode->luciInterface->getAhrsData();
+        auto ahrsData = luciInterface->getAhrsData();
 
         // Odometry for navigation / mapping
 
         // Y axis for luci is x axis in ros system, positive rotation is turning left on ros
-        float vx = ((rightVelocity + leftVelocity) / 2);
-        float vy = 0.0;
-        float vth = ((rightVelocity - leftVelocity) / 0.5334);
+        // float vx = ((rightVelocity + leftVelocity) / 2);
+        // float vy = 0.0;
+        // float vth = ((rightVelocity - leftVelocity) / 0.5334);
 
         // std::cout << "VX: " << vx << " VTH: " << vth << std::endl;
         // NOT SURE ABOUT MIXING TIME STAMPS HERE?? (ENCODER STREAM VS ROS)
@@ -187,52 +202,52 @@ int main(int argc, char** argv)
         // ahrsData.linear_velocity.y * sin(interface->th)) * dt; double deltaY =
         // (ahrsData.linear_velocity.x * sin(interface->th) + ahrsData.linear_velocity.y *
         // cos(interface->th)) * dt; double deltaTh = ahrsData.angular_velocity.z * dt;
-        double deltaX = (vx * cos(interfaceNode->th) - vy * sin(interfaceNode->th)) * dt;
-        double deltaY = (vx * sin(interfaceNode->th) + vy * cos(interfaceNode->th)) * dt;
-        double deltaTh = vth * dt;
+        // double deltaX = (vx * cos(interfaceNode->th) - vy * sin(interfaceNode->th)) * dt;
+        // double deltaY = (vx * sin(interfaceNode->th) + vy * cos(interfaceNode->th)) * dt;
+        // double deltaTh = vth * dt;
 
-        interfaceNode->x += deltaX;
-        interfaceNode->y += deltaY;
-        interfaceNode->th += deltaTh;
+        // interfaceNode->x += deltaX;
+        // interfaceNode->y += deltaY;
+        // interfaceNode->th += deltaTh;
 
         // PID loop for driving from nav
-        geometry_msgs::msg::Twist pidUpdateMsg;
-        pidUpdateMsg.linear.y = vy;
-        pidUpdateMsg.linear.x = vx;
-        pidUpdateMsg.angular.z = vth;
-        interfaceNode->pidPublisher->publish(pidUpdateMsg);
+        // geometry_msgs::msg::Twist pidUpdateMsg;
+        // pidUpdateMsg.linear.y = vy;
+        // pidUpdateMsg.linear.x = vx;
+        // pidUpdateMsg.angular.z = vth;
+        // interfaceNode->pidPublisher->publish(pidUpdateMsg);
 
-        geometry_msgs::msg::Quaternion odomQuat = createQuaternionMsgFromYaw(interfaceNode->th);
-        geometry_msgs::msg::TransformStamped odomTrans;
-        odomTrans.header.stamp = interfaceNode->currentTime;
-        odomTrans.header.frame_id = "odom";
-        odomTrans.child_frame_id = "base_link";
+        // geometry_msgs::msg::Quaternion odomQuat = createQuaternionMsgFromYaw(interfaceNode->th);
+        // geometry_msgs::msg::TransformStamped odomTrans;
+        // odomTrans.header.stamp = interfaceNode->currentTime;
+        // odomTrans.header.frame_id = "odom";
+        // odomTrans.child_frame_id = "base_link";
 
-        odomTrans.transform.translation.x = interfaceNode->x;
-        odomTrans.transform.translation.y = interfaceNode->y;
-        odomTrans.transform.translation.z = 0.0;
-        odomTrans.transform.rotation = odomQuat;
+        // odomTrans.transform.translation.x = interfaceNode->x;
+        // odomTrans.transform.translation.y = interfaceNode->y;
+        // odomTrans.transform.translation.z = 0.0;
+        // odomTrans.transform.rotation = odomQuat;
 
-        // Send transform to tf
-        interfaceNode->odomBroadcaster->sendTransform(odomTrans);
+        // // Send transform to tf
+        // interfaceNode->odomBroadcaster->sendTransform(odomTrans);
 
-        nav_msgs::msg::Odometry odom;
-        // odom.header.stamp = interface->currentTime;
-        odom.header.frame_id = "odom";
+        // nav_msgs::msg::Odometry odom;
+        // // odom.header.stamp = interface->currentTime;
+        // odom.header.frame_id = "odom";
 
-        // Set position
-        odom.pose.pose.position.x = interfaceNode->x;
-        odom.pose.pose.position.y = interfaceNode->y;
-        odom.pose.pose.position.z = 0.0;
-        odom.pose.pose.orientation = odomQuat;
+        // // Set position
+        // odom.pose.pose.position.x = interfaceNode->x;
+        // odom.pose.pose.position.y = interfaceNode->y;
+        // odom.pose.pose.position.z = 0.0;
+        // odom.pose.pose.orientation = odomQuat;
 
-        // Set Velocity
-        odom.child_frame_id = "base_link";
-        odom.twist.twist.linear.x = vx;
-        odom.twist.twist.linear.y = vy;
-        odom.twist.twist.angular.z = vth;
+        // // Set Velocity
+        // odom.child_frame_id = "base_link";
+        // odom.twist.twist.linear.x = vx;
+        // odom.twist.twist.linear.y = vy;
+        // odom.twist.twist.angular.z = vth;
 
-        interfaceNode->odomPublisher->publish(odom);
+        // interfaceNode->odomPublisher->publish(odom);
         // interface->lastTime = interface->currentTime;
 
         rclcpp::spin_some(interfaceNode);
