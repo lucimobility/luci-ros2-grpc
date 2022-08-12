@@ -1,5 +1,6 @@
 #include "../include/interface.h"
 #include "../include/differentiator.h"
+#include <luci_messages/msg/luci_joystick.h>
 
 #include <tf2/LinearMath/Quaternion.h>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.h>
@@ -13,12 +14,12 @@ std::vector<std::thread> processThreads;
 // std::endl;
 
 // void Interface::sendJSCallback(const translator::luci_joystickConstPtr& msg)
-void Interface::sendJSCallback(const std_msgs::msg::String::SharedPtr msg)
+void Interface::sendJSCallback(const luci_messages::msg::LuciJoystick::SharedPtr msg)
 {
-    // std::cout << "Recieved js val: " << msg->forwardBack << " " << msg->leftRight << std::endl;
+    std::cout << "Recieved js val: " << msg->forward_back << " " << msg->left_right << std::endl;
 
-    // this->luciInterface->sendJS(msg->forwardBack + 100, msg->leftRight + 100);
-    RCLCPP_INFO(this->get_logger(), "I heard: '%s'", msg->data.c_str());
+    this->luciInterface->sendJS(msg->forward_back + 100, msg->left_right + 100);
+    // RCLCPP_INFO(this->get_logger(), "I heard: '%s'", msg->data.c_str());
 }
 
 // Interface::Interface() : spinner(4)
@@ -82,20 +83,23 @@ auto createQuaternionMsgFromYaw(double yaw)
 int main(int argc, char** argv)
 {
 
+    std::cout << "THIS ONE" << std::endl;
+
     rclcpp::init(argc, argv);
 
     // TODO: figure out spin rate stuff
     auto interfaceNode = std::make_shared<Interface>();
     RCLCPP_ERROR(interfaceNode->get_logger(), "Started...");
-    std::string host = "10.1.10.182";
-    std::string port = "50051";
+    // std::string host = "10.1.10.182";
+    // std::string port = "50051";
     std::vector<std::thread> grpcThreads;
 
-    ClientGuide* luciInterface =
-        new ClientGuide(grpc::CreateChannel(host + ":" + port, grpc::InsecureChannelCredentials()));
+    // interfaceNode->luciInterface =
+    //     new ClientGuide(grpc::CreateChannel(host + ":" + port,
+    //     grpc::InsecureChannelCredentials()));
 
-    grpcThreads.emplace_back(&ClientGuide::readAhrsData, luciInterface);
-    grpcThreads.emplace_back(&ClientGuide::readCameraPointData, luciInterface);
+    grpcThreads.emplace_back(&ClientGuide::readAhrsData, interfaceNode->luciInterface);
+    grpcThreads.emplace_back(&ClientGuide::readCameraPointData, interfaceNode->luciInterface);
     // grpcThreads.emplace_back(&ClientGuide::readEncoderData, luciInterface);
     // rclcpp::spin(interfaceNode);
 
@@ -105,8 +109,11 @@ int main(int argc, char** argv)
     // ros::Rate rate(20);
 
     // CHECK THE POINTCLOUD TO MAKE SURE ITS RIGHT WAY UP
-    // interface->luciInterface->activateAutoMode();
-    luciInterface->activateUserMode();
+    // if (interfaceNode->luciInterface->activateAutoMode())
+    // {
+    //     std::cout << "it made it" << std::endl;
+    // };
+    // interfaceNode->luciInterface->activateUserMode();
 
     // processThreads.emplace_back(&Interface::run, interface);
 
@@ -123,9 +130,14 @@ int main(int argc, char** argv)
     // interface->currentTime = ros::Time::now();
     // interface->lastTime = ros::Time::now();
 
+    if (interfaceNode->luciInterface->activateAutoMode())
+    {
+        std::cout << "it made it" << std::endl;
+    };
+
     while (rclcpp::ok())
     {
-        RCLCPP_ERROR(interfaceNode->get_logger(), "Running...");
+        // RCLCPP_ERROR(interfaceNode->get_logger(), "Running...");
         // interface->currentTime = ros::Time::now();
 
         // auto encoderData = interfaceNode->luciInterface->getEncoderData();
@@ -165,7 +177,7 @@ int main(int argc, char** argv)
         // float rightVelocity = rightDiff.differentiate(rightDistanceMeters, encoderTimestamp);
 
         // Point cloud processing
-        auto cameraPointData = luciInterface->getCameraPointCloud();
+        auto cameraPointData = interfaceNode->luciInterface->getCameraPointCloud();
         // auto radarPointData = interface->luciInterface->getRadarPointCloud();
         // auto ultrasonicPointData = interface->luciInterface->getUltrasonicPointCloud();
         // auto fullPointCloud = cameraPointData + radarPointData + ultrasonicPointData;
@@ -177,13 +189,13 @@ int main(int argc, char** argv)
         header.stamp = interfaceNode->currentTime;
         rosPointCloud.header = header;
         interfaceNode->sensorPublisher->publish(rosPointCloud);
-        RCLCPP_ERROR(interfaceNode->get_logger(), "Points: %ld", cameraPointData.size());
+        // RCLCPP_ERROR(interfaceNode->get_logger(), "Points: %ld", cameraPointData.size());
         // RCLCPP_ERROR(interfaceNode->get_logger(), std::to_string(cameraPointData.size()));
 
         // std::cout << "Points : " << cameraPointData.size() << std::endl;
 
         // AHRS data processing
-        auto ahrsData = luciInterface->getAhrsData();
+        auto ahrsData = interfaceNode->luciInterface->getAhrsData();
 
         // Odometry for navigation / mapping
 

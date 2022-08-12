@@ -12,6 +12,8 @@ find_package(tf2_ros REQUIRED)
 find_package(nav_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(luci_messages REQUIRED)
+find_package(absl REQUIRED)
 
 
 find_package(gRPC CONFIG REQUIRED)
@@ -39,7 +41,7 @@ target_link_libraries(grpc_interface_node
                     gRPC::grpc++_unsecure)
 
 ament_target_dependencies(grpc_interface_node "geometry_msgs" "rclcpp"
-   "PCL" "OpenCV" "tf2_ros" "nav_msgs" "sensor_msgs" "std_msgs")
+   "PCL" "OpenCV" "tf2_ros" "nav_msgs" "sensor_msgs" "std_msgs" "luci_messages")
 
 target_include_directories(grpc_interface_node PUBLIC
                         ${CMAKE_CURRENT_SOURCE_DIR}/include)
