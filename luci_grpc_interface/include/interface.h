@@ -40,7 +40,7 @@ class Interface : public rclcpp::Node
     rclcpp::Subscription<luci_messages::msg::LuciJoystick>::SharedPtr subscription_;
 
   public:
-    std::string host = "10.1.10.115";
+    std::string host = "192.168.8.219"; //"192.168.8.137"; // we need to fix this
     std::string port = "50051";
 
     ClientGuide* luciInterface =

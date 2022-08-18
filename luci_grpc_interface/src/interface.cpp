@@ -7,7 +7,33 @@
 
 std::vector<std::thread> processThreads;
 
-// #include <spdlog/spdlog.h>
+#include "spdlog/sinks/stdout_color_sinks.h"
+#include <spdlog/sinks/basic_file_sink.h>
+#include <spdlog/spdlog.h>
+
+void createLogger()
+{
+    try
+    {
+        auto stdoutLogger = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
+        stdoutLogger->set_level(spdlog::level::info);
+
+        auto fileLogger =
+            std::make_shared<spdlog::sinks::basic_file_sink_mt>("RemoteDriveLog.txt", true);
+        fileLogger->set_level(spdlog::level::warn);
+
+        auto logger =
+            std::make_shared<spdlog::logger>("logger", spdlog::sinks_init_list{stdoutLogger});
+        spdlog::register_logger(logger);
+        spdlog::set_default_logger(logger);
+        spdlog::flush_every(std::chrono::seconds(1));
+        spdlog::warn("Logger Started");
+    }
+    catch (const std::system_error& e)
+    {
+        spdlog::error("{}", e.what());
+    }
+}
 
 // ClientGuide* luciInterface = new ClientGuide(grpc::CreateChannel(host + ":" + port,
 // grpc::InsecureChannelCredentials())); std::cout << "Client created at " << host << port <<
@@ -16,7 +42,7 @@ std::vector<std::thread> processThreads;
 // void Interface::sendJSCallback(const translator::luci_joystickConstPtr& msg)
 void Interface::sendJSCallback(const luci_messages::msg::LuciJoystick::SharedPtr msg)
 {
-    std::cout << "Recieved js val: " << msg->forward_back << " " << msg->left_right << std::endl;
+    spdlog::warn(" Recieved js val: {} {}", msg->forward_back, msg->left_right);
 
     this->luciInterface->sendJS(msg->forward_back + 100, msg->left_right + 100);
     // RCLCPP_INFO(this->get_logger(), "I heard: '%s'", msg->data.c_str());
@@ -82,10 +108,8 @@ auto createQuaternionMsgFromYaw(double yaw)
 
 int main(int argc, char** argv)
 {
-
-    std::cout << "THIS ONE" << std::endl;
-
     rclcpp::init(argc, argv);
+    createLogger();
 
     // TODO: figure out spin rate stuff
     auto interfaceNode = std::make_shared<Interface>();
@@ -229,9 +253,9 @@ int main(int argc, char** argv)
         // pidUpdateMsg.angular.z = vth;
         // interfaceNode->pidPublisher->publish(pidUpdateMsg);
 
-        // geometry_msgs::msg::Quaternion odomQuat = createQuaternionMsgFromYaw(interfaceNode->th);
-        // geometry_msgs::msg::TransformStamped odomTrans;
-        // odomTrans.header.stamp = interfaceNode->currentTime;
+        // geometry_msgs::msg::Quaternion odomQuat =
+        // createQuaternionMsgFromYaw(interfaceNode->th); geometry_msgs::msg::TransformStamped
+        // odomTrans; odomTrans.header.stamp = interfaceNode->currentTime;
         // odomTrans.header.frame_id = "odom";
         // odomTrans.child_frame_id = "base_link";
 

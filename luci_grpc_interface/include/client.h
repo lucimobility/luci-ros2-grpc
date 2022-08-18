@@ -330,7 +330,7 @@ class ClientGuide
         reader->Read(&response);
         while (reader->Read(&response))
         {
-            std::cout << "RECIEVED" << std::endl;
+            // std::cout << "Camera points RECEIVED" << std::endl;
             std::lock_guard<std::mutex> cameraPointLock(pclMutex);
             this->cameraPointCloud.clear();
             // Pack into pcl object
