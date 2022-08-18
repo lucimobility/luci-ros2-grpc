@@ -225,7 +225,8 @@ class ClientGuide
      */
     bool activateAutoMode()
     {
-        std::cout << "auto zone" << std::endl;
+        std::cout << "Autonomous drive mode activated - wheelchair joystick is deactivated."
+                  << std::endl;
         ClientContext context;
         Response response;
         ModeCtrl request;
