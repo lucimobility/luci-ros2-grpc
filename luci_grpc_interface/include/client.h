@@ -165,8 +165,10 @@ class ClientGuide
 
     std::condition_variable irConditionVariable;
 
-    std::chrono::time_point<std::chrono::high_resolution_clock> lastJSTime = std::chrono::high_resolution_clock::now();
-    std::chrono::time_point<std::chrono::high_resolution_clock> lastFrameTime = std::chrono::high_resolution_clock::now();
+    std::chrono::time_point<std::chrono::high_resolution_clock> lastJSTime =
+        std::chrono::high_resolution_clock::now();
+    std::chrono::time_point<std::chrono::high_resolution_clock> lastFrameTime =
+        std::chrono::high_resolution_clock::now();
 
     // Single calls over gRPC
 
@@ -223,6 +225,8 @@ class ClientGuide
      */
     bool activateAutoMode()
     {
+        std::cout << "Autonomous drive mode activated - wheelchair joystick is deactivated."
+                  << std::endl;
         ClientContext context;
         Response response;
         ModeCtrl request;
@@ -230,7 +234,7 @@ class ClientGuide
         Status status = stub_->SetDriveMode(&context, request, &response);
         if (status.ok())
         {
-            // spdlog::warn(response.reply());
+            std::cout << response.reply() << std::endl;
         }
         else
         {
@@ -261,15 +265,18 @@ class ClientGuide
         Status status = stub_->JsOverride(&context, request, &response);
         if (status.ok())
         {
-            // spdlog::info("Sending remote call... values ({} {}) status: {}", std::to_string(forwardBack), std::to_string(leftRight),
+            // spdlog::info("Sending remote call... values ({} {}) status: {}",
+            // std::to_string(forwardBack), std::to_string(leftRight),
             //  response.reply());
         }
         else
         {
-            // spdlog::error("Error communicating with server... pass in correct ip and port of chair");
+            // spdlog::error("Error communicating with server... pass in correct ip and port of
+            // chair");
             return 1;
         }
-        // spdlog::debug("SEND JS: {}", std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - lastJSTime).count());
+        // spdlog::debug("SEND JS: {}",
+        // std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - lastJSTime).count());
         lastJSTime = currentTime;
         return 0;
     }
@@ -324,7 +331,7 @@ class ClientGuide
         reader->Read(&response);
         while (reader->Read(&response))
         {
-            std::cout << "RECIEVED" << std::endl;
+            // std::cout << "Camera points RECEIVED" << std::endl;
             std::lock_guard<std::mutex> cameraPointLock(pclMutex);
             this->cameraPointCloud.clear();
             // Pack into pcl object
@@ -348,7 +355,8 @@ class ClientGuide
         ClientContext context;
         const google::protobuf::Empty request;
         UltrasonicDistances response;
-        std::unique_ptr<ClientReader<UltrasonicDistances>> reader(stub_->UltrasonicStream(&context, request));
+        std::unique_ptr<ClientReader<UltrasonicDistances>> reader(
+            stub_->UltrasonicStream(&context, request));
         reader->Read(&response);
         while (reader->Read(&response))
         {
@@ -407,7 +415,8 @@ class ClientGuide
             std::lock_guard<std::mutex> encoderLock(encoderMutex);
             this->encoderData.leftAngle = response.left_angle();
             this->encoderData.rightAngle = response.right_angle();
-            this->encoderData.timestamp = response.timestamp().seconds() + response.timestamp().nanos() / 1000000000.0;
+            this->encoderData.timestamp =
+                response.timestamp().seconds() + response.timestamp().nanos() / 1000000000.0;
         }
     }
 
@@ -441,7 +450,8 @@ class ClientGuide
             }
             else
             {
-                this->imu.deltaTimeMs = (response.timestamp().nanos() - this->imu.lastTimeNano) / 1000000;
+                this->imu.deltaTimeMs =
+                    (response.timestamp().nanos() - this->imu.lastTimeNano) / 1000000;
             }
 
             this->imu.lastTimeSec = response.timestamp().seconds();
@@ -455,7 +465,8 @@ class ClientGuide
         const google::protobuf::Empty request;
         ChairSpeed response;
 
-        std::unique_ptr<ClientReader<ChairSpeed>> reader(stub_->ChairSpeedStream(&context, request));
+        std::unique_ptr<ClientReader<ChairSpeed>> reader(
+            stub_->ChairSpeedStream(&context, request));
         reader->Read(&response);
         while (reader->Read(&response))
         {
@@ -473,7 +484,8 @@ class ClientGuide
             }
             else
             {
-                this->speedDeltaTimeMs = (response.timestamp().nanos() - this->speedLastTimeNano) / 1000000;
+                this->speedDeltaTimeMs =
+                    (response.timestamp().nanos() - this->speedLastTimeNano) / 1000000;
             }
             this->speedLastTimeSec = response.timestamp().seconds();
             this->speedLastTimeNano = response.timestamp().nanos();
@@ -536,7 +548,8 @@ class ClientGuide
     //                 remoteCamera.frameWidth = response.width();
     //                 remoteCamera.frameHeight = response.height();
 
-    //                 remoteCamera.recievedMatrix = Mat(remoteCamera.frameHeight, remoteCamera.frameWidth, CV_8UC1, bytes.data()).clone();
+    //                 remoteCamera.recievedMatrix = Mat(remoteCamera.frameHeight,
+    //                 remoteCamera.frameWidth, CV_8UC1, bytes.data()).clone();
     //                 remoteCamera.uniqueId = id;
     //                 id++;
     //                 if (id > UNIQUE_IDS)

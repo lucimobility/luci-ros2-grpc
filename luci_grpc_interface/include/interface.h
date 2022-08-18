@@ -10,6 +10,7 @@
 #include <sensor_msgs/msg/point_cloud2.hpp>
 #include <tf2_ros/transform_broadcaster.h>
 // #include <translator/luci_joystick.h>
+#include <luci_messages/msg/luci_joystick.hpp>
 #include <std_msgs/msg/string.hpp>
 using std::placeholders::_1;
 
@@ -36,22 +37,29 @@ class Interface : public rclcpp::Node
 
     // rclcpp::AsyncSpinner spinner;
 
-    rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;
+    rclcpp::Subscription<luci_messages::msg::LuciJoystick>::SharedPtr subscription_;
 
   public:
+    std::string host = "192.168.8.219"; //"192.168.8.137"; // we need to fix this
+    std::string port = "50051";
+
+    ClientGuide* luciInterface =
+        new ClientGuide(grpc::CreateChannel(host + ":" + port, grpc::InsecureChannelCredentials()));
+
     rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr sensorPublisher;
     rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr pidPublisher;
     rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr odomPublisher;
     std::shared_ptr<tf2_ros::TransformBroadcaster> odomBroadcaster;
 
     // ClientGuide* luciInterface =
-    //     new ClientGuide(grpc::CreateChannel(host + ":" + port, grpc::InsecureChannelCredentials()));
+    //     new ClientGuide(grpc::CreateChannel(host + ":" + port,
+    //     grpc::InsecureChannelCredentials()));
 
     Interface() : Node("interface")
     {
-        subscription_ = this->create_subscription<std_msgs::msg::String>(
+        subscription_ = this->create_subscription<luci_messages::msg::LuciJoystick>(
             "joystick_topic", 1,
-            [this](std_msgs::msg::String::SharedPtr msg) { sendJSCallback(msg); });
+            [this](luci_messages::msg::LuciJoystick::SharedPtr msg) { sendJSCallback(msg); });
 
         // subscription_ = this->create_subscription<sensor_msgs::msg::PointCloud2>(
         //     "/camera/depth/color/points", 10,
@@ -88,7 +96,7 @@ class Interface : public rclcpp::Node
     // RCLCPP_ERROR(this->get_logger(), "connection established");
 
     // void sendJSCallback(const translator::luci_joystickConstPtr& msg);
-    void sendJSCallback(const std_msgs::msg::String::SharedPtr msg);
+    void sendJSCallback(const luci_messages::msg::LuciJoystick::SharedPtr msg);
     void run();
     // Interface();
 
