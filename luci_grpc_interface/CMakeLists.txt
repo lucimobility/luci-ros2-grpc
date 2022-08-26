@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(grpc_interface)
+project(luci_grpc_interface)
 
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 
