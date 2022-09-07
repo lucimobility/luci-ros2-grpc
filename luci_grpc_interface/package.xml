@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="3">
-  <name>grpc_interface</name>
-  <version>0.2.0</version>
+  <name>luci_grpc_interface</name>
+  <version>0.3.0</version>
   <description>The grpc_interface package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
