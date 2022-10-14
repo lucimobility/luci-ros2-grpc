@@ -34,8 +34,8 @@ ClientGuide::ClientGuide(
       ultrasonicDataBuff(ultrasonicDataBuff), chairSpeedDataBuff(chairSpeedDataBuff)
 {
     grpcThreads.emplace_back(&ClientGuide::readJoystickPosition, this);
-    grpcThreads.emplace_back(&ClientGuide::readCameraPointData, this);
-    grpcThreads.emplace_back(&ClientGuide::readRadarPointData, this);
+    grpcThreads.emplace_back(&ClientGuide::readCameraData, this);
+    grpcThreads.emplace_back(&ClientGuide::readRadarData, this);
     grpcThreads.emplace_back(&ClientGuide::readUltrasonicData, this);
     grpcThreads.emplace_back(&ClientGuide::readChairSpeedData, this);
 }
@@ -152,7 +152,7 @@ void ClientGuide::readJoystickPosition() const
     this->joystickDataBuff->close();
 }
 
-void ClientGuide::readCameraPointData() const
+void ClientGuide::readCameraData() const
 {
     ClientContext context;
     const google::protobuf::Empty request;
@@ -204,7 +204,7 @@ void ClientGuide::readUltrasonicData() const
         this->ultrasonicDataBuff->push(ultrasonicPointCloud);
     }
 }
-void ClientGuide::readRadarPointData() const
+void ClientGuide::readRadarData() const
 {
     ClientContext context;
     const google::protobuf::Empty request;

@@ -33,10 +33,10 @@ class Interface : public rclcpp::Node
     std::shared_ptr<Luci::ROS2::DataBuffer<SystemJoystick>> joystickDataBuff =
         std::make_shared<Luci::ROS2::DataBuffer<SystemJoystick>>();
 
-    std::shared_ptr<Luci::ROS2::DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> cameraPointsDataBuff =
+    std::shared_ptr<Luci::ROS2::DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> cameraDataBuff =
         std::make_shared<Luci::ROS2::DataBuffer<pcl::PointCloud<pcl::PointXYZ>>>();
 
-    std::shared_ptr<Luci::ROS2::DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> radarPointsDataBuff =
+    std::shared_ptr<Luci::ROS2::DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> radarDataBuff =
         std::make_shared<Luci::ROS2::DataBuffer<pcl::PointCloud<pcl::PointXYZ>>>();
 
     std::shared_ptr<Luci::ROS2::DataBuffer<float>> chairSpeedDataBuff =
@@ -47,7 +47,9 @@ class Interface : public rclcpp::Node
 
     std::shared_ptr<Luci::ROS2::ClientGuide> luciInterface;
 
-    rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr sensorPublisher;
+    rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr cameraPublisher;
+    rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr radarPublisher;
+    rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr ultrasonicPublisher;
     rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr pidPublisher;
     rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr odomPublisher;
     std::shared_ptr<tf2_ros::TransformBroadcaster> odomBroadcaster;
@@ -63,8 +65,8 @@ class Interface : public rclcpp::Node
         bool connected = grpcChannel->WaitForConnected(deadline);
 
         luciInterface = std::make_shared<Luci::ROS2::ClientGuide>(
-            grpcChannel, joystickDataBuff, cameraPointsDataBuff, radarPointsDataBuff,
-            ultrasonicDataBuff, chairSpeedDataBuff);
+            grpcChannel, joystickDataBuff, cameraDataBuff, radarDataBuff, ultrasonicDataBuff,
+            chairSpeedDataBuff);
 
         subscription_ = this->create_subscription<luci_messages::msg::LuciJoystick>(
             "joystick_topic", 1,
@@ -72,7 +74,11 @@ class Interface : public rclcpp::Node
 
         pidPublisher = this->create_publisher<geometry_msgs::msg::Twist>("chair/cmd_vel", 1);
 
-        sensorPublisher = this->create_publisher<sensor_msgs::msg::PointCloud2>("cloud_in", 1);
+        cameraPublisher =
+            this->create_publisher<sensor_msgs::msg::PointCloud2>("camera_cloud_in", 1);
+        radarPublisher = this->create_publisher<sensor_msgs::msg::PointCloud2>("radar_cloud_in", 1);
+        ultrasonicPublisher =
+            this->create_publisher<sensor_msgs::msg::PointCloud2>("ultrasonic_cloud_in", 1);
         odomPublisher = this->create_publisher<nav_msgs::msg::Odometry>("odom", 1);
         odomBroadcaster = std::make_shared<tf2_ros::TransformBroadcaster>(this);
     }
