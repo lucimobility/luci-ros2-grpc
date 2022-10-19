@@ -58,26 +58,19 @@ class ClientGuide
      * @brief Construct a new Client Guide object
      *
      * @param channel
-     * @param irDataBuffLeft
-     * @param irDataBuffRight
      * @param joystickDataBuff
-     * @param ahrsDataBuff
-     * @param pressCountDataBuff
-     * @param luciOverrideDataBuff
-     * @param startModeDataBuff
-     * @param joystickOptionDataBuff
+     * @param cameraDataBuff
+     * @param radarDataBuff
+     * @param ultrasonicDataBuff
+     * @param chairSpeedDataBuff
      */
     explicit ClientGuide(
-
         std::shared_ptr<grpc::Channel> channel,
-
         std::shared_ptr<DataBuffer<SystemJoystick>> joystickDataBuff,
         std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> cameraDataBuff,
         std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> radarDataBuff,
         std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> ultrasonicDataBuff,
-        std::shared_ptr<DataBuffer<float>> chairSpeedDataBuff)
-
-        ;
+        std::shared_ptr<DataBuffer<float>> chairSpeedDataBuff);
 
     /**
      * @brief Destroy the Client Guide object
@@ -140,9 +133,28 @@ class ClientGuide
      */
     void readJoystickPosition() const;
 
-    void readRadarPointData() const;
-    void readCameraPointData() const;
+    /**
+     * @brief Read the chairs radar data
+     *
+     */
+    void readRadarData() const;
+
+    /**
+     * @brief Read the chairs camera data
+     *
+     */
+    void readCameraData() const;
+
+    /**
+     * @brief Read the chairs ultrasonic data
+     *
+     */
     void readUltrasonicData() const;
+
+    /**
+     * @brief Read the chairs speed data
+     *
+     */
     void readChairSpeedData() const;
 
   private:

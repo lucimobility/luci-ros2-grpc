@@ -80,26 +80,46 @@ int main(int argc, char** argv)
 
     while (rclcpp::ok())
     {
-        RCLCPP_ERROR(interfaceNode->get_logger(), "Running...");
+        RCLCPP_INFO(interfaceNode->get_logger(), "Running...");
 
-        // Point cloud processing
-        auto cameraPointData = interfaceNode->cameraPointsDataBuff->waitNext();
-        auto radarPointData = interfaceNode->radarPointsDataBuff->getLatest();
-        auto ultrasonicData = interfaceNode->ultrasonicDataBuff->getLatest();
+        // Camera point cloud processing
+        auto cameraData = interfaceNode->cameraDataBuff->waitNext();
+        auto cameraPointCloud = cameraData;
+        spdlog::info("Number of camera points: {}", cameraPointCloud.size());
+        sensor_msgs::msg::PointCloud2 rosCameraPointCloud;
+        pcl::toROSMsg(cameraPointCloud, rosCameraPointCloud);
+        std_msgs::msg::Header cameraHeader;
+        cameraHeader.frame_id = "base_camera";
+        cameraHeader.stamp = interfaceNode->currentTime;
+        rosCameraPointCloud.header = cameraHeader;
+        interfaceNode->cameraPublisher->publish(rosCameraPointCloud);
 
-        auto fullPointCloud = cameraPointData;
-        spdlog::error("Points: {}", fullPointCloud.size());
-        sensor_msgs::msg::PointCloud2 rosPointCloud;
-        pcl::toROSMsg(fullPointCloud, rosPointCloud);
-        std_msgs::msg::Header header;
-        header.frame_id = "base_camera";
-        header.stamp = interfaceNode->currentTime;
-        rosPointCloud.header = header;
-        interfaceNode->sensorPublisher->publish(rosPointCloud);
+        // Radar point cloud processing
+        auto radarData = interfaceNode->radarDataBuff->waitNext();
+        auto radarPointCloud = radarData;
+        spdlog::info("Number of radar points: {}", radarPointCloud.size());
+        sensor_msgs::msg::PointCloud2 rosRadarPointCloud;
+        pcl::toROSMsg(radarPointCloud, rosRadarPointCloud);
+        std_msgs::msg::Header radarHeader;
+        radarHeader.frame_id = "base_radar";
+        radarHeader.stamp = interfaceNode->currentTime;
+        rosRadarPointCloud.header = radarHeader;
+        interfaceNode->radarPublisher->publish(rosRadarPointCloud);
+
+        // Ultrasonic point cloud processing
+        auto ultrasonicData = interfaceNode->ultrasonicDataBuff->waitNext();
+        auto ultrasonicPointCloud = ultrasonicData;
+        spdlog::info("Number of ultrasonic points: {}", ultrasonicPointCloud.size());
+        sensor_msgs::msg::PointCloud2 rosUltrasonicPointCloud;
+        pcl::toROSMsg(ultrasonicPointCloud, rosUltrasonicPointCloud);
+        std_msgs::msg::Header ultrasonicHeader;
+        ultrasonicHeader.frame_id = "base_ultrasonic";
+        ultrasonicHeader.stamp = interfaceNode->currentTime;
+        rosUltrasonicPointCloud.header = ultrasonicHeader;
+        interfaceNode->ultrasonicPublisher->publish(rosUltrasonicPointCloud);
 
         rclcpp::spin_some(interfaceNode);
         loop_rate.sleep();
     }
-
     return 0;
 }
