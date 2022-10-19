@@ -35,6 +35,7 @@
 
 using sensors::CameraPoints;
 using sensors::ChairSpeed;
+using sensors::NavigationScaling;
 using sensors::RadarPoints;
 using sensors::UltrasonicDistances;
 
@@ -44,6 +45,38 @@ struct SystemJoystick
     int leftRight;
 
     SystemJoystick(int forwardBack, int leftRight) : forwardBack(forwardBack), leftRight(leftRight)
+    {
+    }
+};
+
+struct LuciScaling
+{
+    float front_fb;
+    float front_rl;
+    float front_right_fb;
+    float front_right_rl;
+    float front_left_fb;
+    float front_left_rl;
+    float right_fb;
+    float right_rl;
+    float left_fb;
+    float left_rl;
+    float back_right_fb;
+    float back_right_rl;
+    float back_left_fb;
+    float back_left_rl;
+    float back_fb;
+    float back_rl;
+
+    LuciScaling(float front_fb, float front_rl, float front_right_fb, float front_right_rl,
+                float front_left_fb, float front_left_rl, float right_fb, float right_rl,
+                float left_fb, float left_rl, float back_right_fb, float back_right_rl,
+                float back_left_fb, float back_left_rl, float back_fb, float back_rl)
+        : front_fb(front_fb), front_rl(front_rl), front_right_fb(front_right_fb),
+          front_right_rl(front_right_rl), front_left_fb(front_left_fb),
+          front_left_rl(front_left_rl), right_fb(right_fb), right_rl(right_rl), left_fb(left_fb),
+          left_rl(left_rl), back_right_fb(back_right_fb), back_right_rl(back_right_rl),
+          back_left_fb(back_left_fb), back_left_rl(back_left_rl), back_fb(back_fb), back_rl(back_rl)
     {
     }
 };
@@ -63,6 +96,7 @@ class ClientGuide
      * @param radarDataBuff
      * @param ultrasonicDataBuff
      * @param chairSpeedDataBuff
+     * @param scalingDataBuff
      */
     explicit ClientGuide(
         std::shared_ptr<grpc::Channel> channel,
@@ -70,7 +104,8 @@ class ClientGuide
         std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> cameraDataBuff,
         std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> radarDataBuff,
         std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> ultrasonicDataBuff,
-        std::shared_ptr<DataBuffer<float>> chairSpeedDataBuff);
+        std::shared_ptr<DataBuffer<float>> chairSpeedDataBuff,
+        std::shared_ptr<DataBuffer<LuciScaling>> scalingDataBuff);
 
     /**
      * @brief Destroy the Client Guide object
@@ -90,6 +125,7 @@ class ClientGuide
     std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> radarDataBuff;
     std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> ultrasonicDataBuff;
     std::shared_ptr<DataBuffer<float>> chairSpeedDataBuff;
+    std::shared_ptr<DataBuffer<LuciScaling>> scalingDataBuff;
 
     std::shared_ptr<DataBuffer<SystemJoystick>> joystickDataBuff;
 
@@ -156,6 +192,12 @@ class ClientGuide
      *
      */
     void readChairSpeedData() const;
+
+    /**
+     * @brief Read the chairs scaling data
+     *
+     */
+    void readScalingData() const;
 
   private:
     /// Threads for each endpoint

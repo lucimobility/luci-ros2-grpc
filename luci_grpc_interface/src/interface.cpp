@@ -1,7 +1,6 @@
 #include "../include/interface.h"
 #include "../include/client.h"
 #include "../include/differentiator.h"
-#include <luci_messages/msg/luci_joystick.h>
 
 #include <tf2/LinearMath/Quaternion.h>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.h>
@@ -26,7 +25,7 @@ void createLogger()
         spdlog::register_logger(logger);
         spdlog::set_default_logger(logger);
         spdlog::flush_every(std::chrono::seconds(1));
-        spdlog::warn("Logger Started");
+        spdlog::info("Logger Started");
     }
     catch (const std::system_error& e)
     {
@@ -36,14 +35,14 @@ void createLogger()
 
 void Interface::sendJSCallback(const luci_messages::msg::LuciJoystick::SharedPtr msg)
 {
-    spdlog::warn(" Recieved js val: {} {}", msg->forward_back, msg->left_right);
+    spdlog::info(" Recieved js val: {} {}", msg->forward_back, msg->left_right);
 
     this->luciInterface->sendJS(msg->forward_back + 100, msg->left_right + 100);
 }
 
 int main(int argc, char** argv)
 {
-    spdlog::error("Starting...");
+    spdlog::info("Starting...");
     rclcpp::init(argc, argv);
     createLogger();
 
@@ -56,23 +55,23 @@ int main(int argc, char** argv)
         {
         case 'a':
             host = optarg;
-            spdlog::warn("Using host: {}", host);
+            spdlog::info("Using host: {}", host);
             break;
         case 'p':
             port = optarg;
-            spdlog::warn("Using port: {}", port);
+            spdlog::info("Using port: {}", port);
             break;
         case 'h':
         default:
-            spdlog::warn("-a <host address>     The host address. Standard mode only.");
-            spdlog::warn("-p <port>             Port number. Standard mode only.");
-            spdlog::warn("-h                    Show Help.");
+            spdlog::info("-a <host address>     The host address. Standard mode only.");
+            spdlog::info("-p <port>             Port number. Standard mode only.");
+            spdlog::info("-h                    Show Help.");
             exit(0);
         }
 
     // TODO: figure out spin rate stuff
     auto interfaceNode = std::make_shared<Interface>(host, port);
-    spdlog::warn("Connection started at {}:{}", host, port);
+    spdlog::info("Connection started at {}:{}", host, port);
 
     rclcpp::Rate loop_rate(20);
 
@@ -117,6 +116,30 @@ int main(int argc, char** argv)
         ultrasonicHeader.stamp = interfaceNode->currentTime;
         rosUltrasonicPointCloud.header = ultrasonicHeader;
         interfaceNode->ultrasonicPublisher->publish(rosUltrasonicPointCloud);
+
+        // LUCI Scaling
+        auto scalingData = interfaceNode->scalingDataBuff->waitNext();
+
+        // Fill in ROS msg
+        luci_messages::msg::LuciScaling scalingMsg;
+        scalingMsg.front_fb = scalingData.front_fb;
+        scalingMsg.front_rl = scalingData.front_rl;
+        scalingMsg.front_right_fb = scalingData.front_right_fb;
+        scalingMsg.front_right_rl = scalingData.front_right_rl;
+        scalingMsg.front_left_fb = scalingData.front_left_fb;
+        scalingMsg.front_left_rl = scalingData.front_left_rl;
+        scalingMsg.right_fb = scalingData.right_fb;
+        scalingMsg.right_rl = scalingData.right_rl;
+        scalingMsg.left_fb = scalingData.left_fb;
+        scalingMsg.left_rl = scalingData.left_rl;
+        scalingMsg.back_right_fb = scalingData.back_right_fb;
+        scalingMsg.back_right_rl = scalingData.back_right_rl;
+        scalingMsg.back_left_fb = scalingData.back_left_fb;
+        scalingMsg.back_left_rl = scalingData.back_left_rl;
+        scalingMsg.back_fb = scalingData.back_fb;
+        scalingMsg.back_rl = scalingData.back_rl;
+
+        interfaceNode->scalingPublisher->publish(scalingMsg);
 
         rclcpp::spin_some(interfaceNode);
         loop_rate.sleep();
