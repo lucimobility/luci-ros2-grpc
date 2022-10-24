@@ -42,10 +42,11 @@ using sensors::UltrasonicDistances;
 
 struct SystemJoystick
 {
-    int forwardBack;
-    int leftRight;
+    int forward_back;
+    int left_right;
 
-    SystemJoystick(int forwardBack, int leftRight) : forwardBack(forwardBack), leftRight(leftRight)
+    SystemJoystick(int forward_back, int left_right)
+        : forward_back(forward_back), left_right(left_right)
     {
     }
 };

@@ -62,6 +62,7 @@ class Interface : public rclcpp::Node
     rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr pidPublisher;
     rclcpp::Publisher<luci_messages::msg::LuciZoneScaling>::SharedPtr zoneScalingPublisher;
     rclcpp::Publisher<luci_messages::msg::LuciJoystickScaling>::SharedPtr joystickScalingPublisher;
+    rclcpp::Publisher<luci_messages::msg::LuciJoystick>::SharedPtr joystickPositionPublisher;
     rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr odomPublisher;
     std::shared_ptr<tf2_ros::TransformBroadcaster> odomBroadcaster;
 
@@ -90,6 +91,9 @@ class Interface : public rclcpp::Node
 
         joystickScalingPublisher = this->create_publisher<luci_messages::msg::LuciJoystickScaling>(
             "luci_joystick_scaling", 1);
+
+        joystickPositionPublisher =
+            this->create_publisher<luci_messages::msg::LuciJoystick>("joystick_position", 1);
 
         cameraPublisher =
             this->create_publisher<sensor_msgs::msg::PointCloud2>("camera_cloud_in", 1);

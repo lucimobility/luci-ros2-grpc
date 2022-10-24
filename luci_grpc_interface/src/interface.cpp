@@ -150,6 +150,15 @@ int main(int argc, char** argv)
 
         interfaceNode->joystickScalingPublisher->publish(joystickScalingMsg);
 
+        // Joystick position
+        auto joystickPositionData = interfaceNode->joystickDataBuff->waitNext();
+
+        luci_messages::msg::LuciJoystick joystickPositionMsg;
+        joystickPositionMsg.forward_back = joystickPositionData.forward_back;
+        joystickPositionMsg.left_right = joystickPositionData.left_right;
+
+        interfaceNode->joystickPositionPublisher->publish(joystickPositionMsg);
+
         rclcpp::spin_some(interfaceNode);
         loop_rate.sleep();
     }
