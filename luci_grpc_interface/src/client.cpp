@@ -28,21 +28,21 @@ ClientGuide::ClientGuide(
     std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> cameraDataBuff,
     std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> radarDataBuff,
     std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> ultrasonicDataBuff,
-    std::shared_ptr<DataBuffer<float>> chairSpeedDataBuff,
     std::shared_ptr<DataBuffer<LuciZoneScaling>> zoneScalingDataBuff,
-    std::shared_ptr<DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff)
+    std::shared_ptr<DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff,
+    std::shared_ptr<DataBuffer<AhrsInfo>> ahrsInfoBuff)
     : stub_(sensors::Sensors::NewStub(channel)), joystickDataBuff(joystickDataBuff),
       cameraDataBuff(cameraDataBuff), radarDataBuff(radarDataBuff),
-      ultrasonicDataBuff(ultrasonicDataBuff), chairSpeedDataBuff(chairSpeedDataBuff),
-      zoneScalingDataBuff(zoneScalingDataBuff), joystickScalingDataBuff(joystickScalingDataBuff)
+      ultrasonicDataBuff(ultrasonicDataBuff), zoneScalingDataBuff(zoneScalingDataBuff),
+      joystickScalingDataBuff(joystickScalingDataBuff), ahrsInfoBuff(ahrsInfoBuff)
 {
     grpcThreads.emplace_back(&ClientGuide::readJoystickPosition, this);
     grpcThreads.emplace_back(&ClientGuide::readCameraData, this);
     grpcThreads.emplace_back(&ClientGuide::readRadarData, this);
     grpcThreads.emplace_back(&ClientGuide::readUltrasonicData, this);
-    grpcThreads.emplace_back(&ClientGuide::readChairSpeedData, this);
     grpcThreads.emplace_back(&ClientGuide::readZoneScalingData, this);
     grpcThreads.emplace_back(&ClientGuide::readJoystickScalingData, this);
+    grpcThreads.emplace_back(&ClientGuide::readAhrsData, this);
 }
 
 ClientGuide::~ClientGuide()
@@ -234,22 +234,6 @@ void ClientGuide::readRadarData() const
     }
 }
 
-void ClientGuide::readChairSpeedData() const
-{
-    ClientContext context;
-    const google::protobuf::Empty request;
-    ChairSpeed response;
-
-    std::unique_ptr<ClientReader<ChairSpeed>> reader(stub_->ChairSpeedStream(&context, request));
-    reader->Read(&response);
-
-    while (reader->Read(&response))
-    {
-        float chairSpeed = response.speed_m_p_s();
-        this->chairSpeedDataBuff->push(chairSpeed);
-    }
-}
-
 void ClientGuide::readZoneScalingData() const
 {
     ClientContext context;
@@ -289,5 +273,24 @@ void ClientGuide::readJoystickScalingData() const
                                           response.joystick_zone());
 
         this->joystickScalingDataBuff->push(scalingValues);
+    }
+}
+
+void ClientGuide::readAhrsData() const
+{
+    ClientContext context;
+    const google::protobuf::Empty request;
+    AhrsData response;
+
+    std::unique_ptr<ClientReader<AhrsData>> reader(stub_->AhrsStream(&context, request));
+    reader->Read(&response);
+
+    while (reader->Read(&response))
+    {
+        AhrsInfo ahrsInfo(response.linear_velocity().x(), response.linear_velocity().y(),
+                          response.linear_velocity().z(), response.angular_velocity().x(),
+                          response.angular_velocity().y(), response.angular_velocity().z());
+
+        this->ahrsInfoBuff->push(ahrsInfo);
     }
 }

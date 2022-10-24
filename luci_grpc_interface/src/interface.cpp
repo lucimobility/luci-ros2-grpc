@@ -35,7 +35,7 @@ void createLogger()
 
 void Interface::sendJSCallback(const luci_messages::msg::LuciJoystick::SharedPtr msg)
 {
-    spdlog::info(" Recieved js val: {} {}", msg->forward_back, msg->left_right);
+    spdlog::info(" Received js val: {} {}", msg->forward_back, msg->left_right);
 
     this->luciInterface->sendJS(msg->forward_back + 100, msg->left_right + 100);
 }
@@ -158,6 +158,35 @@ int main(int argc, char** argv)
         joystickPositionMsg.left_right = joystickPositionData.left_right;
 
         interfaceNode->joystickPositionPublisher->publish(joystickPositionMsg);
+
+        // Odometer
+        auto ahrsData = interfaceNode->ahrsInfoBuff->waitNext();
+
+        nav_msgs::msg::Odometry rosOdomMsg;
+        // Header
+        std_msgs::msg::Header odomHeader;
+        odomHeader.frame_id = "base_link";
+        odomHeader.stamp = interfaceNode->currentTime;
+        rosOdomMsg.header = odomHeader;
+        // Child frame
+        rosOdomMsg.child_frame_id = "base_link";
+        // Twist with Covariance
+        geometry_msgs::msg::TwistWithCovariance odomTwistCovariance;
+        geometry_msgs::msg::Twist odomTwist;
+        geometry_msgs::msg::Vector3 linearVelocity;
+        linearVelocity.x = ahrsData.linear_velocity_x;
+        linearVelocity.y = ahrsData.linear_velocity_y;
+        linearVelocity.z = ahrsData.linear_velocity_z;
+        odomTwist.linear = linearVelocity;
+        geometry_msgs::msg::Vector3 angularVelocity;
+        angularVelocity.x = ahrsData.angular_velocity_x;
+        angularVelocity.y = ahrsData.angular_velocity_y;
+        angularVelocity.z = ahrsData.angular_velocity_z;
+        odomTwist.angular = angularVelocity;
+        odomTwistCovariance.twist = odomTwist;
+        rosOdomMsg.twist = odomTwistCovariance;
+
+        interfaceNode->odomPublisher->publish(rosOdomMsg);
 
         rclcpp::spin_some(interfaceNode);
         loop_rate.sleep();
