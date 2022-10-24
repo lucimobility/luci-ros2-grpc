@@ -11,7 +11,9 @@
 #include <tf2_ros/transform_broadcaster.h>
 
 #include <luci_messages/msg/luci_joystick.hpp>
-#include <luci_messages/msg/luci_scaling.hpp>
+#include <luci_messages/msg/luci_joystick_scaling.hpp>
+#include <luci_messages/msg/luci_zone_scaling.hpp>
+
 #include <std_msgs/msg/string.hpp>
 #include <tf2_ros/transform_broadcaster.h>
 
@@ -37,8 +39,11 @@ class Interface : public rclcpp::Node
     std::shared_ptr<Luci::ROS2::DataBuffer<float>> chairSpeedDataBuff =
         std::make_shared<Luci::ROS2::DataBuffer<float>>();
 
-    std::shared_ptr<Luci::ROS2::DataBuffer<LuciScaling>> scalingDataBuff =
-        std::make_shared<Luci::ROS2::DataBuffer<LuciScaling>>();
+    std::shared_ptr<Luci::ROS2::DataBuffer<LuciZoneScaling>> zoneScalingDataBuff =
+        std::make_shared<Luci::ROS2::DataBuffer<LuciZoneScaling>>();
+
+    std::shared_ptr<Luci::ROS2::DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff =
+        std::make_shared<Luci::ROS2::DataBuffer<LuciJoystickScaling>>();
 
     std::shared_ptr<Luci::ROS2::DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> cameraDataBuff =
         std::make_shared<Luci::ROS2::DataBuffer<pcl::PointCloud<pcl::PointXYZ>>>();
@@ -55,7 +60,8 @@ class Interface : public rclcpp::Node
     rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr radarPublisher;
     rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr ultrasonicPublisher;
     rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr pidPublisher;
-    rclcpp::Publisher<luci_messages::msg::LuciScaling>::SharedPtr scalingPublisher;
+    rclcpp::Publisher<luci_messages::msg::LuciZoneScaling>::SharedPtr zoneScalingPublisher;
+    rclcpp::Publisher<luci_messages::msg::LuciJoystickScaling>::SharedPtr joystickScalingPublisher;
     rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr odomPublisher;
     std::shared_ptr<tf2_ros::TransformBroadcaster> odomBroadcaster;
 
@@ -71,7 +77,7 @@ class Interface : public rclcpp::Node
 
         luciInterface = std::make_shared<Luci::ROS2::ClientGuide>(
             grpcChannel, joystickDataBuff, cameraDataBuff, radarDataBuff, ultrasonicDataBuff,
-            chairSpeedDataBuff, scalingDataBuff);
+            chairSpeedDataBuff, zoneScalingDataBuff, joystickScalingDataBuff);
 
         subscription_ = this->create_subscription<luci_messages::msg::LuciJoystick>(
             "joystick_topic", 1,
@@ -79,8 +85,11 @@ class Interface : public rclcpp::Node
 
         pidPublisher = this->create_publisher<geometry_msgs::msg::Twist>("chair/cmd_vel", 1);
 
-        scalingPublisher =
-            this->create_publisher<luci_messages::msg::LuciScaling>("luci_scaling", 1);
+        zoneScalingPublisher =
+            this->create_publisher<luci_messages::msg::LuciZoneScaling>("luci_zone_scaling", 1);
+
+        joystickScalingPublisher = this->create_publisher<luci_messages::msg::LuciJoystickScaling>(
+            "luci_joystick_scaling", 1);
 
         cameraPublisher =
             this->create_publisher<sensor_msgs::msg::PointCloud2>("camera_cloud_in", 1);

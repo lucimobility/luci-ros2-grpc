@@ -117,29 +117,38 @@ int main(int argc, char** argv)
         rosUltrasonicPointCloud.header = ultrasonicHeader;
         interfaceNode->ultrasonicPublisher->publish(rosUltrasonicPointCloud);
 
-        // LUCI Scaling
-        auto scalingData = interfaceNode->scalingDataBuff->waitNext();
+        // LUCI Zone Scaling
+        auto zoneScalingData = interfaceNode->zoneScalingDataBuff->waitNext();
 
-        // Fill in ROS msg
-        luci_messages::msg::LuciScaling scalingMsg;
-        scalingMsg.front_fb = scalingData.front_fb;
-        scalingMsg.front_rl = scalingData.front_rl;
-        scalingMsg.front_right_fb = scalingData.front_right_fb;
-        scalingMsg.front_right_rl = scalingData.front_right_rl;
-        scalingMsg.front_left_fb = scalingData.front_left_fb;
-        scalingMsg.front_left_rl = scalingData.front_left_rl;
-        scalingMsg.right_fb = scalingData.right_fb;
-        scalingMsg.right_rl = scalingData.right_rl;
-        scalingMsg.left_fb = scalingData.left_fb;
-        scalingMsg.left_rl = scalingData.left_rl;
-        scalingMsg.back_right_fb = scalingData.back_right_fb;
-        scalingMsg.back_right_rl = scalingData.back_right_rl;
-        scalingMsg.back_left_fb = scalingData.back_left_fb;
-        scalingMsg.back_left_rl = scalingData.back_left_rl;
-        scalingMsg.back_fb = scalingData.back_fb;
-        scalingMsg.back_rl = scalingData.back_rl;
+        luci_messages::msg::LuciZoneScaling zoneScalingMsg;
+        zoneScalingMsg.front_fb = zoneScalingData.front_fb;
+        zoneScalingMsg.front_rl = zoneScalingData.front_rl;
+        zoneScalingMsg.front_right_fb = zoneScalingData.front_right_fb;
+        zoneScalingMsg.front_right_rl = zoneScalingData.front_right_rl;
+        zoneScalingMsg.front_left_fb = zoneScalingData.front_left_fb;
+        zoneScalingMsg.front_left_rl = zoneScalingData.front_left_rl;
+        zoneScalingMsg.right_fb = zoneScalingData.right_fb;
+        zoneScalingMsg.right_rl = zoneScalingData.right_rl;
+        zoneScalingMsg.left_fb = zoneScalingData.left_fb;
+        zoneScalingMsg.left_rl = zoneScalingData.left_rl;
+        zoneScalingMsg.back_right_fb = zoneScalingData.back_right_fb;
+        zoneScalingMsg.back_right_rl = zoneScalingData.back_right_rl;
+        zoneScalingMsg.back_left_fb = zoneScalingData.back_left_fb;
+        zoneScalingMsg.back_left_rl = zoneScalingData.back_left_rl;
+        zoneScalingMsg.back_fb = zoneScalingData.back_fb;
+        zoneScalingMsg.back_rl = zoneScalingData.back_rl;
 
-        interfaceNode->scalingPublisher->publish(scalingMsg);
+        interfaceNode->zoneScalingPublisher->publish(zoneScalingMsg);
+
+        // LUCI Joystick Scaling
+        auto joystickScalingData = interfaceNode->joystickScalingDataBuff->waitNext();
+
+        luci_messages::msg::LuciJoystickScaling joystickScalingMsg;
+        joystickScalingMsg.front_back = joystickScalingData.front_back;
+        joystickScalingMsg.left_right = joystickScalingData.left_right;
+        joystickScalingMsg.joystick_zone = joystickScalingData.joystick_zone;
+
+        interfaceNode->joystickScalingPublisher->publish(joystickScalingMsg);
 
         rclcpp::spin_some(interfaceNode);
         loop_rate.sleep();
