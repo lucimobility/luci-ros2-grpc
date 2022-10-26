@@ -1,7 +1,6 @@
 #include "../include/interface.h"
 #include "../include/client.h"
 #include "../include/differentiator.h"
-#include <luci_messages/msg/luci_joystick.h>
 
 #include <tf2/LinearMath/Quaternion.h>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.h>
@@ -26,7 +25,7 @@ void createLogger()
         spdlog::register_logger(logger);
         spdlog::set_default_logger(logger);
         spdlog::flush_every(std::chrono::seconds(1));
-        spdlog::warn("Logger Started");
+        spdlog::info("Logger Started");
     }
     catch (const std::system_error& e)
     {
@@ -36,14 +35,14 @@ void createLogger()
 
 void Interface::sendJSCallback(const luci_messages::msg::LuciJoystick::SharedPtr msg)
 {
-    spdlog::warn(" Recieved js val: {} {}", msg->forward_back, msg->left_right);
+    spdlog::info(" Recieved js val: {} {}", msg->forward_back, msg->left_right);
 
     this->luciInterface->sendJS(msg->forward_back + 100, msg->left_right + 100);
 }
 
 int main(int argc, char** argv)
 {
-    spdlog::error("Starting...");
+    spdlog::info("Starting...");
     rclcpp::init(argc, argv);
     createLogger();
 
@@ -56,23 +55,23 @@ int main(int argc, char** argv)
         {
         case 'a':
             host = optarg;
-            spdlog::warn("Using host: {}", host);
+            spdlog::info("Using host: {}", host);
             break;
         case 'p':
             port = optarg;
-            spdlog::warn("Using port: {}", port);
+            spdlog::info("Using port: {}", port);
             break;
         case 'h':
         default:
-            spdlog::warn("-a <host address>     The host address. Standard mode only.");
-            spdlog::warn("-p <port>             Port number. Standard mode only.");
-            spdlog::warn("-h                    Show Help.");
+            spdlog::info("-a <host address>     The host address. Standard mode only.");
+            spdlog::info("-p <port>             Port number. Standard mode only.");
+            spdlog::info("-h                    Show Help.");
             exit(0);
         }
 
     // TODO: figure out spin rate stuff
     auto interfaceNode = std::make_shared<Interface>(host, port);
-    spdlog::warn("Connection started at {}:{}", host, port);
+    spdlog::info("Connection started at {}:{}", host, port);
 
     rclcpp::Rate loop_rate(20);
 
@@ -117,6 +116,39 @@ int main(int argc, char** argv)
         ultrasonicHeader.stamp = interfaceNode->currentTime;
         rosUltrasonicPointCloud.header = ultrasonicHeader;
         interfaceNode->ultrasonicPublisher->publish(rosUltrasonicPointCloud);
+
+        // LUCI Zone Scaling
+        auto zoneScalingData = interfaceNode->zoneScalingDataBuff->waitNext();
+
+        luci_messages::msg::LuciZoneScaling zoneScalingMsg;
+        zoneScalingMsg.front_fb = zoneScalingData.front_fb;
+        zoneScalingMsg.front_rl = zoneScalingData.front_rl;
+        zoneScalingMsg.front_right_fb = zoneScalingData.front_right_fb;
+        zoneScalingMsg.front_right_rl = zoneScalingData.front_right_rl;
+        zoneScalingMsg.front_left_fb = zoneScalingData.front_left_fb;
+        zoneScalingMsg.front_left_rl = zoneScalingData.front_left_rl;
+        zoneScalingMsg.right_fb = zoneScalingData.right_fb;
+        zoneScalingMsg.right_rl = zoneScalingData.right_rl;
+        zoneScalingMsg.left_fb = zoneScalingData.left_fb;
+        zoneScalingMsg.left_rl = zoneScalingData.left_rl;
+        zoneScalingMsg.back_right_fb = zoneScalingData.back_right_fb;
+        zoneScalingMsg.back_right_rl = zoneScalingData.back_right_rl;
+        zoneScalingMsg.back_left_fb = zoneScalingData.back_left_fb;
+        zoneScalingMsg.back_left_rl = zoneScalingData.back_left_rl;
+        zoneScalingMsg.back_fb = zoneScalingData.back_fb;
+        zoneScalingMsg.back_rl = zoneScalingData.back_rl;
+
+        interfaceNode->zoneScalingPublisher->publish(zoneScalingMsg);
+
+        // LUCI Joystick Scaling
+        auto joystickScalingData = interfaceNode->joystickScalingDataBuff->waitNext();
+
+        luci_messages::msg::LuciJoystickScaling joystickScalingMsg;
+        joystickScalingMsg.forward_back = joystickScalingData.forward_back;
+        joystickScalingMsg.left_right = joystickScalingData.left_right;
+        joystickScalingMsg.joystick_zone = joystickScalingData.joystick_zone;
+
+        interfaceNode->joystickScalingPublisher->publish(joystickScalingMsg);
 
         rclcpp::spin_some(interfaceNode);
         loop_rate.sleep();

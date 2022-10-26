@@ -28,16 +28,21 @@ ClientGuide::ClientGuide(
     std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> cameraDataBuff,
     std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> radarDataBuff,
     std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> ultrasonicDataBuff,
-    std::shared_ptr<DataBuffer<float>> chairSpeedDataBuff)
+    std::shared_ptr<DataBuffer<float>> chairSpeedDataBuff,
+    std::shared_ptr<DataBuffer<LuciZoneScaling>> zoneScalingDataBuff,
+    std::shared_ptr<DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff)
     : stub_(sensors::Sensors::NewStub(channel)), joystickDataBuff(joystickDataBuff),
       cameraDataBuff(cameraDataBuff), radarDataBuff(radarDataBuff),
-      ultrasonicDataBuff(ultrasonicDataBuff), chairSpeedDataBuff(chairSpeedDataBuff)
+      ultrasonicDataBuff(ultrasonicDataBuff), chairSpeedDataBuff(chairSpeedDataBuff),
+      zoneScalingDataBuff(zoneScalingDataBuff), joystickScalingDataBuff(joystickScalingDataBuff)
 {
     grpcThreads.emplace_back(&ClientGuide::readJoystickPosition, this);
     grpcThreads.emplace_back(&ClientGuide::readCameraData, this);
     grpcThreads.emplace_back(&ClientGuide::readRadarData, this);
     grpcThreads.emplace_back(&ClientGuide::readUltrasonicData, this);
     grpcThreads.emplace_back(&ClientGuide::readChairSpeedData, this);
+    grpcThreads.emplace_back(&ClientGuide::readZoneScalingData, this);
+    grpcThreads.emplace_back(&ClientGuide::readJoystickScalingData, this);
 }
 
 ClientGuide::~ClientGuide()
@@ -242,5 +247,47 @@ void ClientGuide::readChairSpeedData() const
     {
         float chairSpeed = response.speed_m_p_s();
         this->chairSpeedDataBuff->push(chairSpeed);
+    }
+}
+
+void ClientGuide::readZoneScalingData() const
+{
+    ClientContext context;
+    const google::protobuf::Empty request;
+    NavigationScaling response;
+
+    std::unique_ptr<ClientReader<NavigationScaling>> reader(
+        stub_->ScalingStream(&context, request));
+    reader->Read(&response);
+
+    while (reader->Read(&response))
+    {
+        LuciZoneScaling scalingValues(
+            response.front_fb(), response.front_rl(), response.front_right_fb(),
+            response.front_right_rl(), response.front_left_fb(), response.front_left_rl(),
+            response.right_fb(), response.right_rl(), response.left_fb(), response.left_rl(),
+            response.back_right_fb(), response.back_right_rl(), response.back_left_fb(),
+            response.back_left_rl(), response.back_fb(), response.back_rl());
+
+        this->zoneScalingDataBuff->push(scalingValues);
+    }
+}
+
+void ClientGuide::readJoystickScalingData() const
+{
+    ClientContext context;
+    const google::protobuf::Empty request;
+    JoystickData response;
+
+    std::unique_ptr<ClientReader<JoystickData>> reader(
+        stub_->ScaledJoystickStream(&context, request));
+    reader->Read(&response);
+
+    while (reader->Read(&response))
+    {
+        LuciJoystickScaling scalingValues(response.forward_back(), response.left_right(),
+                                          response.joystick_zone());
+
+        this->joystickScalingDataBuff->push(scalingValues);
     }
 }
