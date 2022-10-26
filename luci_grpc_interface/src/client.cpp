@@ -285,7 +285,7 @@ void ClientGuide::readJoystickScalingData() const
 
     while (reader->Read(&response))
     {
-        LuciJoystickScaling scalingValues(response.front_back(), response.left_right(),
+        LuciJoystickScaling scalingValues(response.forward_back(), response.left_right(),
                                           response.joystick_zone());
 
         this->joystickScalingDataBuff->push(scalingValues);

@@ -144,7 +144,7 @@ int main(int argc, char** argv)
         auto joystickScalingData = interfaceNode->joystickScalingDataBuff->waitNext();
 
         luci_messages::msg::LuciJoystickScaling joystickScalingMsg;
-        joystickScalingMsg.front_back = joystickScalingData.front_back;
+        joystickScalingMsg.forward_back = joystickScalingData.forward_back;
         joystickScalingMsg.left_right = joystickScalingData.left_right;
         joystickScalingMsg.joystick_zone = joystickScalingData.joystick_zone;
 
