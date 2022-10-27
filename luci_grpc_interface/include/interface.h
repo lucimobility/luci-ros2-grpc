@@ -3,6 +3,7 @@
 #include <memory>
 
 #include <geometry_msgs/msg/twist.hpp>
+#include <geometry_msgs/msg/twist_with_covariance.hpp>
 #include <nav_msgs/msg/odometry.hpp>
 #include <pcl/filters/voxel_grid.h>
 #include <pcl_conversions/pcl_conversions.h>
@@ -36,14 +37,14 @@ class Interface : public rclcpp::Node
     std::shared_ptr<Luci::ROS2::DataBuffer<SystemJoystick>> joystickDataBuff =
         std::make_shared<Luci::ROS2::DataBuffer<SystemJoystick>>();
 
-    std::shared_ptr<Luci::ROS2::DataBuffer<float>> chairSpeedDataBuff =
-        std::make_shared<Luci::ROS2::DataBuffer<float>>();
-
     std::shared_ptr<Luci::ROS2::DataBuffer<LuciZoneScaling>> zoneScalingDataBuff =
         std::make_shared<Luci::ROS2::DataBuffer<LuciZoneScaling>>();
 
     std::shared_ptr<Luci::ROS2::DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff =
         std::make_shared<Luci::ROS2::DataBuffer<LuciJoystickScaling>>();
+
+    std::shared_ptr<Luci::ROS2::DataBuffer<AhrsInfo>> ahrsInfoBuff =
+        std::make_shared<Luci::ROS2::DataBuffer<AhrsInfo>>();
 
     std::shared_ptr<Luci::ROS2::DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> cameraDataBuff =
         std::make_shared<Luci::ROS2::DataBuffer<pcl::PointCloud<pcl::PointXYZ>>>();
@@ -78,7 +79,7 @@ class Interface : public rclcpp::Node
 
         luciInterface = std::make_shared<Luci::ROS2::ClientGuide>(
             grpcChannel, joystickDataBuff, cameraDataBuff, radarDataBuff, ultrasonicDataBuff,
-            chairSpeedDataBuff, zoneScalingDataBuff, joystickScalingDataBuff);
+            zoneScalingDataBuff, joystickScalingDataBuff, ahrsInfoBuff);
 
         subscription_ = this->create_subscription<luci_messages::msg::LuciJoystick>(
             "joystick_topic", 1,

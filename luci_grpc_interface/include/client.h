@@ -33,6 +33,7 @@
 #include <pcl/io/pcd_io.h>
 #include <pcl/point_types.h>
 
+using sensors::AhrsData;
 using sensors::CameraPoints;
 using sensors::ChairSpeed;
 using sensors::JoystickData;
@@ -95,6 +96,24 @@ struct LuciZoneScaling
     }
 };
 
+struct AhrsInfo
+{
+    float linear_velocity_x;
+    float linear_velocity_y;
+    float linear_velocity_z;
+    float angular_velocity_x;
+    float angular_velocity_y;
+    float angular_velocity_z;
+
+    AhrsInfo(float linear_velocity_x, float linear_velocity_y, float linear_velocity_z,
+             float angular_velocity_x, float angular_velocity_y, float angular_velocity_z)
+        : linear_velocity_x(linear_velocity_x), linear_velocity_y(linear_velocity_y),
+          linear_velocity_z(linear_velocity_z), angular_velocity_x(angular_velocity_x),
+          angular_velocity_y(angular_velocity_y), angular_velocity_z(angular_velocity_z)
+    {
+    }
+};
+
 namespace Luci::ROS2
 {
 
@@ -109,9 +128,9 @@ class ClientGuide
      * @param cameraDataBuff
      * @param radarDataBuff
      * @param ultrasonicDataBuff
-     * @param chairSpeedDataBuff
      * @param zoneScalingDataBuff
      * @param joystickScalingDataBuff
+     * @param ahrsInfoBuff
      */
     explicit ClientGuide(
         std::shared_ptr<grpc::Channel> channel,
@@ -119,9 +138,9 @@ class ClientGuide
         std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> cameraDataBuff,
         std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> radarDataBuff,
         std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> ultrasonicDataBuff,
-        std::shared_ptr<DataBuffer<float>> chairSpeedDataBuff,
         std::shared_ptr<DataBuffer<LuciZoneScaling>> zoneScalingDataBuff,
-        std::shared_ptr<DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff);
+        std::shared_ptr<DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff,
+        std::shared_ptr<DataBuffer<AhrsInfo>> ahrsInfoBuff);
 
     /**
      * @brief Destroy the Client Guide object
@@ -140,10 +159,10 @@ class ClientGuide
     std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> cameraDataBuff;
     std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> radarDataBuff;
     std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> ultrasonicDataBuff;
-    std::shared_ptr<DataBuffer<float>> chairSpeedDataBuff;
     std::shared_ptr<DataBuffer<LuciZoneScaling>> zoneScalingDataBuff;
     std::shared_ptr<DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff;
     std::shared_ptr<DataBuffer<SystemJoystick>> joystickDataBuff;
+    std::shared_ptr<DataBuffer<AhrsInfo>> ahrsInfoBuff;
 
     // Single calls over gRPC
 
@@ -204,12 +223,6 @@ class ClientGuide
     void readUltrasonicData() const;
 
     /**
-     * @brief Read the chairs speed data
-     *
-     */
-    void readChairSpeedData() const;
-
-    /**
      * @brief Read the chairs zone scaling data
      *
      */
@@ -220,6 +233,12 @@ class ClientGuide
      *
      */
     void readJoystickScalingData() const;
+
+    /**
+     * @brief Read the chairs AHRS data
+     *
+     */
+    void readAhrsData() const;
 
   private:
     /// Threads for each endpoint
