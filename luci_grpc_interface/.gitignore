@@ -1,0 +1,6 @@
+# Build output
+install/
+build/
+debian/
+log/
+.obj*
