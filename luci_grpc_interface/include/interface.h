@@ -26,7 +26,7 @@ constexpr auto GRPC_CHANNEL_TIMEOUT = std::chrono::seconds(5);
 class Interface : public rclcpp::Node
 {
   private:
-    rclcpp::Subscription<luci_messages::msg::LuciJoystick>::SharedPtr subscription_;
+    rclcpp::Subscription<luci_messages::msg::LuciJoystick>::SharedPtr remote_js_subscription_;
 
   public:
     std::shared_ptr<grpc::Channel> grpcChannel;
@@ -60,7 +60,6 @@ class Interface : public rclcpp::Node
     rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr cameraPublisher;
     rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr radarPublisher;
     rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr ultrasonicPublisher;
-    rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr pidPublisher;
     rclcpp::Publisher<luci_messages::msg::LuciZoneScaling>::SharedPtr zoneScalingPublisher;
     rclcpp::Publisher<luci_messages::msg::LuciJoystickScaling>::SharedPtr joystickScalingPublisher;
     rclcpp::Publisher<luci_messages::msg::LuciJoystick>::SharedPtr joystickPositionPublisher;
@@ -81,27 +80,26 @@ class Interface : public rclcpp::Node
             grpcChannel, joystickDataBuff, cameraDataBuff, radarDataBuff, ultrasonicDataBuff,
             zoneScalingDataBuff, joystickScalingDataBuff, ahrsInfoBuff);
 
-        subscription_ = this->create_subscription<luci_messages::msg::LuciJoystick>(
-            "joystick_topic", 1,
+        remote_js_subscription_ = this->create_subscription<luci_messages::msg::LuciJoystick>(
+            "luci/remote_joystick", 1,
             [this](luci_messages::msg::LuciJoystick::SharedPtr msg) { sendJSCallback(msg); });
 
-        pidPublisher = this->create_publisher<geometry_msgs::msg::Twist>("chair/cmd_vel", 1);
-
         zoneScalingPublisher =
-            this->create_publisher<luci_messages::msg::LuciZoneScaling>("luci_zone_scaling", 1);
+            this->create_publisher<luci_messages::msg::LuciZoneScaling>("luci/scaling", 1);
 
         joystickScalingPublisher = this->create_publisher<luci_messages::msg::LuciJoystickScaling>(
-            "luci_joystick_scaling", 1);
+            "luci/joystick_scaling", 1);
 
         joystickPositionPublisher =
-            this->create_publisher<luci_messages::msg::LuciJoystick>("joystick_position", 1);
+            this->create_publisher<luci_messages::msg::LuciJoystick>("luci/joystick_position", 1);
 
         cameraPublisher =
-            this->create_publisher<sensor_msgs::msg::PointCloud2>("camera_cloud_in", 1);
-        radarPublisher = this->create_publisher<sensor_msgs::msg::PointCloud2>("radar_cloud_in", 1);
+            this->create_publisher<sensor_msgs::msg::PointCloud2>("luci/camera_points", 1);
+        radarPublisher =
+            this->create_publisher<sensor_msgs::msg::PointCloud2>("luci/radar_points", 1);
         ultrasonicPublisher =
-            this->create_publisher<sensor_msgs::msg::PointCloud2>("ultrasonic_cloud_in", 1);
-        odomPublisher = this->create_publisher<nav_msgs::msg::Odometry>("odom", 1);
+            this->create_publisher<sensor_msgs::msg::PointCloud2>("luci/ultrasonic_points", 1);
+        odomPublisher = this->create_publisher<nav_msgs::msg::Odometry>("luci/odom", 1);
         odomBroadcaster = std::make_shared<tf2_ros::TransformBroadcaster>(this);
     }
 
