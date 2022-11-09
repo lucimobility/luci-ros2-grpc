@@ -35,9 +35,15 @@ void createLogger()
 
 void Interface::sendJSCallback(const luci_messages::msg::LuciJoystick::SharedPtr msg)
 {
-    spdlog::info(" Received js val: {} {}", msg->forward_back, msg->left_right);
+    spdlog::info("Received js val: {} {}", msg->forward_back, msg->left_right);
 
     this->luciInterface->sendJS(msg->forward_back + 100, msg->left_right + 100);
+}
+
+void Interface::switchLuciModeCallback(const std_msgs::msg::String::SharedPtr msg)
+{
+    spdlog::info("Received mode switch request");
+    this->luciInterface->activateAutoMode();
 }
 
 int main(int argc, char** argv)
@@ -74,8 +80,6 @@ int main(int argc, char** argv)
     spdlog::info("Connection started at {}:{}", host, port);
 
     rclcpp::Rate loop_rate(20);
-
-    interfaceNode->luciInterface->activateAutoMode();
 
     while (rclcpp::ok())
     {
