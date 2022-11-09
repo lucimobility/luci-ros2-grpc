@@ -27,6 +27,8 @@ class Interface : public rclcpp::Node
 {
   private:
     rclcpp::Subscription<luci_messages::msg::LuciJoystick>::SharedPtr remote_js_subscription_;
+    rclcpp::Subscription<std_msgs::msg::String>::SharedPtr luci_mode_switch_subscription_;
+
 
   public:
     std::shared_ptr<grpc::Channel> grpcChannel;
@@ -84,6 +86,10 @@ class Interface : public rclcpp::Node
             "luci/remote_joystick", 1,
             [this](luci_messages::msg::LuciJoystick::SharedPtr msg) { sendJSCallback(msg); });
 
+        luci_mode_switch_subscription_ = this->create_subscription<std_msgs::msg::String>(
+            "luci/drive_mode", 1,
+            [this](std_msgs::msg::String::SharedPtr msg) { switchLuciModeCallback(msg); });
+
         zoneScalingPublisher =
             this->create_publisher<luci_messages::msg::LuciZoneScaling>("luci/scaling", 1);
 
@@ -106,6 +112,8 @@ class Interface : public rclcpp::Node
     rclcpp::Time currentTime, lastTime;
 
     void sendJSCallback(const luci_messages::msg::LuciJoystick::SharedPtr msg);
+    void switchLuciModeCallback(const std_msgs::msg::String::SharedPtr msg);
+
     void run();
 
     ~Interface();
