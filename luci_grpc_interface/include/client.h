@@ -10,7 +10,7 @@
 
 #include "data_buffer.h"
 
-#include "../generated_code/client_library/ptolemy.grpc.pb.h"
+#include "../generated_code/sensors_grpc/sensors.grpc.pb.h"
 
 #include <grpc/grpc.h>
 #include <grpcpp/grpcpp.h>
@@ -229,10 +229,16 @@ class ClientGuide
     void readZoneScalingData() const;
 
     /**
-     * @brief Read the chairs joystick scaling data
+     * @brief Read the joystick position (fb, lr) of the chair's scaled joystick data
      *
      */
     void readJoystickScalingData() const;
+
+    /**
+     * @brief Read the joystick position (fb, lr) of a USB joystick/controller plugged into the
+     * chair
+     */
+    void readUsbJoystickPosition() const;
 
     /**
      * @brief Read the chairs AHRS data

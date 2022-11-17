@@ -1,5 +1,4 @@
 // Copyright (c) 2021 Patroness, LLC. All Rights Reserved.
-
 syntax = "proto3";
 
 import "google/protobuf/timestamp.proto";
@@ -17,17 +16,18 @@ service Sensors {
   rpc TurnOffUltrasonic(UltrasonicCtrl) returns (Response);
   rpc TurnOnRadar(RadarCtrl) returns (Response);
   rpc TurnOffRadar(RadarCtrl) returns (Response);
-  rpc BootloadImu(ImuCtrl) returns (stream Response);
+  rpc CollectImuCalibration(google.protobuf.Empty) returns (Response);
   rpc DFGetCurrentParameters(google.protobuf.Empty) returns (Response);
   rpc DFGetBufferedEvents(google.protobuf.Empty) returns (Response);
   rpc DisableLuci(google.protobuf.Empty) returns (Response);
   rpc JsOverride(RemoteJsValues) returns (Response);
   rpc SetDriveMode(ModeCtrl) returns (Response);
   rpc SetRampMode(RampMode) returns (Response);
+  rpc SetLuciOverride(LuciOverride) returns (Response);
+  rpc ExtPressCount(PressCountStreamData) returns (Response);
 
   rpc HmiStream(google.protobuf.Empty) returns (stream HmiStreamData);
-  rpc PressCountStream(PressRequest)
-      returns (stream PressCountStreamData);
+  rpc PressCountStream(PressRequest) returns (stream PressCountStreamData);
   rpc UltrasonicStream(google.protobuf.Empty)
       returns (stream UltrasonicDistances);
   rpc RawUltrasonicStream(google.protobuf.Empty)
@@ -46,7 +46,6 @@ service Sensors {
       returns (stream JoystickData);
   rpc ScaledJoystickStream(google.protobuf.Empty) returns (stream JoystickData);
   rpc LuciJoystickStream(google.protobuf.Empty) returns (stream JoystickData);
-
   rpc AhrsStream(google.protobuf.Empty) returns (stream AhrsData);
 
   rpc RadarClosestObstaclesStream(google.protobuf.Empty)
@@ -68,6 +67,8 @@ service Sensors {
   rpc CameraStream(google.protobuf.Empty) returns (stream CameraPoints);
   rpc FlatCameraStream(google.protobuf.Empty) returns (stream CameraPoints2D);
   rpc DropoffCameraStream(google.protobuf.Empty) returns (stream CameraPoints);
+  rpc CaneCameraStream(google.protobuf.Empty)
+      returns (stream ObjectDetection2D);
   rpc GPSStream(google.protobuf.Empty) returns (stream GPSData);
   rpc SeatPressureStream(google.protobuf.Empty) returns (stream SeatPressure);
   rpc DFParametersChangedStream(google.protobuf.Empty)
@@ -94,6 +95,21 @@ service Sensors {
   rpc DisableRadarFilter(RadarFilter) returns (Response) {}
 
   rpc EncoderStream(google.protobuf.Empty) returns (stream EncoderData);
+
+  rpc GetCalMatrix(google.protobuf.Empty) returns (CalMatrix);
+
+  rpc TestReaction(google.protobuf.Empty) returns (ReactionTestResult);
+
+  rpc LuciOverrideStream(google.protobuf.Empty) returns (stream LuciOverride);
+
+  rpc LuciLandmarkStreamPassThrough(stream LuciLandmark) returns (Response);
+
+  rpc RampInfoStreamPassThrough(stream RampInfo) returns (Response);
+
+  rpc LuciLandmarkStream(google.protobuf.Empty) returns (stream LuciLandmark);
+
+  rpc RampInfoStream(google.protobuf.Empty) returns (stream RampInfo);
+  rpc DriveModeStream(google.protobuf.Empty) returns (stream ModeCtrl);
 }
 
 message AudioPlaybackRequest {
@@ -156,9 +172,7 @@ message DFParameters {
   float high_pressure = 3;
   float low_pressure = 4;
   float in_seat_pressure = 5;
-  float off_load_pressure = 6;
-  int32 usb_update_period = 7;
-  int32 cap_update_period = 8;
+  float offload_pressure = 6;
 }
 
 message DFSeatEvent {
@@ -237,6 +251,15 @@ message Point3D {
   float x = 1;
   float y = 2;
   float z = 3;
+}
+
+message ObjectDetection2D {
+  repeated Object2D objects = 1;
+}
+
+message Object2D {
+  CameraPoints2D points = 1;
+  string label = 2;
 }
 
 message CameraPoints2D {
@@ -573,21 +596,38 @@ message Vec4 {
   float z = 4;
 }
 
-message IrFrame {
-  bytes frame = 1;
-  int32 width = 2;
-  int32 height = 3;
-  string camera = 4;
-  int32 size = 5;
-  google.protobuf.Timestamp timestamp = 6;
-}
-
 message AhrsData {
   Vec3 linear_velocity = 1;
   Vec3 linear_acceleration = 2;
   Vec3 angular_velocity = 3;
   Vec3 angular_acceleration = 4;
-  Vec4 orientation = 5;
+  Vec3 orientation = 5;
+  google.protobuf.Timestamp timestamp = 6;
+}
+
+message MatrixElement {
+  float value = 1;
+}
+
+message CalMatrix {
+  int32 rows = 1;
+  int32 columns = 2;
+  repeated MatrixElement matrix_element = 3;
+}
+
+message IrIntrinsics {
+  float fx = 1;
+  float fy = 2;
+  float ppx = 3;
+  float ppy = 4;
+}
+
+message IrFrame {
+  bytes frame = 1;
+  int32 width = 2;
+  int32 height = 3;
+  string camera = 4;
+  IrIntrinsics intrinsics = 5;
   google.protobuf.Timestamp timestamp = 6;
 }
 
@@ -596,7 +636,8 @@ message RemoteJsValues {
   int32 left_right = 2;
 }
 
-// See https://patroness.atlassian.net/wiki/spaces/LS/pages/1759215628/Engaged+and+Autonomous+Requirements
+// See
+// https://patroness.atlassian.net/wiki/spaces/LS/pages/1759215628/Engaged+and+Autonomous+Requirements
 // USER mode => luci nominal operations
 // ENGAGED => Override JS values only when joystick engaged
 // AUTONOMOUS => Override Js values without joystick engaged
@@ -611,12 +652,97 @@ message ModeCtrl {
 }
 
 message RampMode {
-  bool ramp_mode = 1;
-  bool ramp_approach = 2;
+  bool ramp_active = 1;
+  bool ramp_approach_active = 2;
 }
 
 message RampAssistStates {
-  bool state = 1;
-  bool approach = 2;
+  bool is_active = 1;
+  bool approach_active = 2;
   google.protobuf.Timestamp timestamp = 3;
+}
+
+message LuciOverride {
+  bool override_active = 1;
+}
+
+message ReactionTestResult {
+  enum TestResult {
+    OK = 0;
+    EARLY_MOVEMENT = 1;
+    TIMEOUT = 2;
+    INTERNAL_ERROR = 3;
+  }
+  TestResult result = 1;
+  float reaction_time = 2;
+}
+
+// Euler angles of landmark relative to chairs locked axis with rotation in
+// Z->Y->X order
+message LandMarkRotation {
+  float x = 1;
+  float y = 2;
+  float z = 3;
+}
+
+// Position of landmark relative to chair frame of axis, as in if y = 5 the tag
+// is 5 meters infront of the chair
+message LandMarkTranslation {
+  float x = 1;
+  float y = 2;
+  float z = 3;
+}
+// Pose of landmark relative to chair frame
+message Pose {
+  LandMarkTranslation translation = 1;
+  LandMarkRotation rotation = 2;
+}
+// In the future Luci will likely be able to identifie other landmarks in its
+// operating zone and they may trigger different behaviors for subscribed
+// services
+enum LandMark {
+  ARUCO = 0;
+  OTHER = 1;
+}
+
+message LuciLandmark {
+  LandMark type = 1;
+  // If tag is of unique type (aruco) this is the unique id
+  int32 id = 2;
+  Pose pose = 3;
+  google.protobuf.Timestamp timestamp = 4;
+}
+
+message PID {
+  float p = 1;
+  float i = 2;
+  float d = 3;
+  float goal = 4;
+  float output = 5;
+  float error = 6;
+}
+
+enum RampState {
+  approach = 0;
+  adjustment = 1;
+}
+
+message RampInfo {
+  RampState state = 1;
+  float scout_center_dist_x = 2;
+  float chair_ramp_dist_y = 3;
+  // If the chair is using virtual these will be populated
+  int32 ramp_trac_js_lr = 4;
+  int32 ramp_trac_js_fb = 5;
+
+  int32 operating_js_lr = 6;
+  int32 operating_js_fb = 7;
+
+  PID approach_forward_pid = 8;
+  PID approach_turn_pid = 9;
+  PID adjustment_forward_pid = 10;
+  PID adjustment_turn_pid = 11;
+
+  float ramp_width = 12;
+  google.protobuf.Timestamp timestamp = 13;
 }

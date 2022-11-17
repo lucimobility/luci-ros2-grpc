@@ -30,8 +30,8 @@ add_executable(grpc_interface_node
     include/differentiator.h  
     include/client.h
     include/data_buffer.h
-    ./generated_code/client_library/ptolemy.grpc.pb.cc
-    ./generated_code/client_library/ptolemy.pb.cc
+    ./generated_code/sensors_grpc/sensors.grpc.pb.cc
+    ./generated_code/sensors_grpc/sensors.pb.cc
 )
 
 include_directories(

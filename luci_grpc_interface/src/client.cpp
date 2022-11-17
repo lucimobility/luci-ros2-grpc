@@ -173,7 +173,7 @@ void ClientGuide::readUsbJoystickPosition() const
 
         this->joystickDataBuff->push(joystickValues);
     }
-    spdlog::debug("joystick data buff closed");
+    spdlog::debug("usb joystick data buff closed");
     this->joystickDataBuff->close();
 }
 
