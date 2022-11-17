@@ -52,16 +52,16 @@ struct SystemJoystick
     }
 };
 
-struct UsbJoystick
-{
-    int forward_back;
-    int left_right;
+// struct UsbJoystick
+// {
+//     int forward_back;
+//     int left_right;
 
-    LuciJoystick(int forward_back, int left_right)
-        : forward_back(forward_back), left_right(left_right)
-    {
-    }
-};
+//     LuciJoystick(int forward_back, int left_right)
+//         : forward_back(forward_back), left_right(left_right)
+//     {
+//     }
+// };
 
 struct LuciJoystickScaling
 {
@@ -152,7 +152,7 @@ class ClientGuide
         std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> ultrasonicDataBuff,
         std::shared_ptr<DataBuffer<LuciZoneScaling>> zoneScalingDataBuff,
         std::shared_ptr<DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff,
-        std::shared_ptr<DataBuffer<UsbJoystick>> usbJoystickScalingDataBuff,
+        std::shared_ptr<DataBuffer<SystemJoystick>> usbJoystickDataBuff,
         std::shared_ptr<DataBuffer<AhrsInfo>> ahrsInfoBuff);
 
     /**

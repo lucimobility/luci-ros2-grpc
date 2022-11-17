@@ -30,7 +30,7 @@ ClientGuide::ClientGuide(
     std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> ultrasonicDataBuff,
     std::shared_ptr<DataBuffer<LuciZoneScaling>> zoneScalingDataBuff,
     std::shared_ptr<DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff,
-    std::shared_ptr<DataBuffer<UsbJoystick>> usbJoystickDataBuff,
+    std::shared_ptr<DataBuffer<SystemJoystick>> usbJoystickDataBuff,
     std::shared_ptr<DataBuffer<AhrsInfo>> ahrsInfoBuff)
     : stub_(sensors::Sensors::NewStub(channel)), joystickDataBuff(joystickDataBuff),
       cameraDataBuff(cameraDataBuff), radarDataBuff(radarDataBuff),
@@ -170,7 +170,7 @@ void ClientGuide::readUsbJoystickPosition() const
 
     while (reader->Read(&response))
     {
-        UsbJoystick joystickValues(response.forward_back(), response.left_right());
+        SystemJoystick joystickValues(response.forward_back(), response.left_right());
 
         this->usbJoystickDataBuff->push(joystickValues);
     }
