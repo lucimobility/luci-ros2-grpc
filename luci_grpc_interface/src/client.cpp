@@ -157,6 +157,26 @@ void ClientGuide::readJoystickPosition() const
     this->joystickDataBuff->close();
 }
 
+void ClientGuide::readUsbJoystickPosition() const
+{
+    ClientContext context;
+    const google::protobuf::Empty request;
+    sensors::Joystick response;
+
+    std::unique_ptr<ClientReader<sensors::Joystick>> reader(
+        stub_->LuciJoystickStream(&context, request));
+    reader->Read(&response);
+
+    while (reader->Read(&response))
+    {
+        SystemJoystick joystickValues(response.forward_back(), response.left_right());
+
+        this->joystickDataBuff->push(joystickValues);
+    }
+    spdlog::debug("joystick data buff closed");
+    this->joystickDataBuff->close();
+}
+
 void ClientGuide::readCameraData() const
 {
     ClientContext context;

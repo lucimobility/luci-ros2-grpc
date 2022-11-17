@@ -45,6 +45,8 @@ service Sensors {
   rpc PhysicalJoystickStream(google.protobuf.Empty)
       returns (stream JoystickData);
   rpc ScaledJoystickStream(google.protobuf.Empty) returns (stream JoystickData);
+  rpc LuciJoystickStream(google.protobuf.Empty) returns (stream JoystickData);
+
   rpc AhrsStream(google.protobuf.Empty) returns (stream AhrsData);
 
   rpc RadarClosestObstaclesStream(google.protobuf.Empty)
