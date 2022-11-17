@@ -52,6 +52,17 @@ struct SystemJoystick
     }
 };
 
+struct UsbJoystick
+{
+    int forward_back;
+    int left_right;
+
+    LuciJoystick(int forward_back, int left_right)
+        : forward_back(forward_back), left_right(left_right)
+    {
+    }
+};
+
 struct LuciJoystickScaling
 {
     int forward_back;
@@ -130,6 +141,7 @@ class ClientGuide
      * @param ultrasonicDataBuff
      * @param zoneScalingDataBuff
      * @param joystickScalingDataBuff
+     * @param usbJoystickDataBuff
      * @param ahrsInfoBuff
      */
     explicit ClientGuide(
@@ -140,6 +152,7 @@ class ClientGuide
         std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> ultrasonicDataBuff,
         std::shared_ptr<DataBuffer<LuciZoneScaling>> zoneScalingDataBuff,
         std::shared_ptr<DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff,
+        std::shared_ptr<DataBuffer<UsbJoystick>> usbJoystickScalingDataBuff,
         std::shared_ptr<DataBuffer<AhrsInfo>> ahrsInfoBuff);
 
     /**
@@ -162,6 +175,7 @@ class ClientGuide
     std::shared_ptr<DataBuffer<LuciZoneScaling>> zoneScalingDataBuff;
     std::shared_ptr<DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff;
     std::shared_ptr<DataBuffer<SystemJoystick>> joystickDataBuff;
+    std::shared_ptr<DataBuffer<SystemJoystick>> usbJoystickDataBuff;
     std::shared_ptr<DataBuffer<AhrsInfo>> ahrsInfoBuff;
 
     // Single calls over gRPC
