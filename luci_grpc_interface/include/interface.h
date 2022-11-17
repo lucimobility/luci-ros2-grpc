@@ -38,14 +38,14 @@ class Interface : public rclcpp::Node
     std::shared_ptr<Luci::ROS2::DataBuffer<SystemJoystick>> joystickDataBuff =
         std::make_shared<Luci::ROS2::DataBuffer<SystemJoystick>>();
 
+    std::shared_ptr<Luci::ROS2::DataBuffer<SystemJoystick>> usbJoystickDataBuff =
+        std::make_shared<Luci::ROS2::DataBuffer<SystemJoystick>>();
+
     std::shared_ptr<Luci::ROS2::DataBuffer<LuciZoneScaling>> zoneScalingDataBuff =
         std::make_shared<Luci::ROS2::DataBuffer<LuciZoneScaling>>();
 
     std::shared_ptr<Luci::ROS2::DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff =
         std::make_shared<Luci::ROS2::DataBuffer<LuciJoystickScaling>>();
-
-    std::shared_ptr<Luci::ROS2::DataBuffer<UsbJoystick>> usbJoystickDataBuff =
-        std::make_shared<Luci::ROS2::DataBuffer<UsbJoystick>>();
 
     std::shared_ptr<Luci::ROS2::DataBuffer<AhrsInfo>> ahrsInfoBuff =
         std::make_shared<Luci::ROS2::DataBuffer<AhrsInfo>>();
@@ -67,7 +67,6 @@ class Interface : public rclcpp::Node
     rclcpp::Publisher<luci_messages::msg::LuciZoneScaling>::SharedPtr zoneScalingPublisher;
     rclcpp::Publisher<luci_messages::msg::LuciJoystickScaling>::SharedPtr joystickScalingPublisher;
     rclcpp::Publisher<luci_messages::msg::LuciJoystick>::SharedPtr joystickPositionPublisher;
-    rclcpp::Publisher<luci_messages::msg::LuciJoystick>::SharedPtr usbJoystickPublisher;
     rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr odomPublisher;
     std::shared_ptr<tf2_ros::TransformBroadcaster> odomBroadcaster;
 
@@ -83,7 +82,7 @@ class Interface : public rclcpp::Node
 
         luciInterface = std::make_shared<Luci::ROS2::ClientGuide>(
             grpcChannel, joystickDataBuff, cameraDataBuff, radarDataBuff, ultrasonicDataBuff,
-            zoneScalingDataBuff, joystickScalingDataBuff, ahrsInfoBuff, usbJoystickDataBuffer);
+            zoneScalingDataBuff, joystickScalingDataBuff, usbJoystickDataBuff, ahrsInfoBuff);
 
         remote_js_subscription_ = this->create_subscription<luci_messages::msg::LuciJoystick>(
             "luci/remote_joystick", 1,
@@ -101,9 +100,6 @@ class Interface : public rclcpp::Node
 
         joystickPositionPublisher =
             this->create_publisher<luci_messages::msg::LuciJoystick>("luci/joystick_position", 1);
-
-        usbJoystickPublisher = this->create_publisher<luci_messages::msg::LuciJoystick>(
-            "luci/usb_joystick_position", 1);
 
         cameraPublisher =
             this->create_publisher<sensor_msgs::msg::PointCloud2>("luci/camera_points", 1);
