@@ -15,7 +15,7 @@ You are likely to always use this node if using the LUCI SDK.
 | Currently Implemented | Topics | Subscription / Publish | Message Type | Description |
 |-----------------------|--------|----------------------|--------------|------------|
 | yes | luci/remote_joystick | subscription | luci_messages::msg::LuciJoystick | Remote joystick values used to drive the chair (FB: xxx, LR: xxx). Value Range: [-100, 100] |
-| yes | luci/drive_mode | subscription | luci_messages::msg::LuciDriveMode | Mode of chair for drive controls (Normal = user drives with joystick, Engaged = remote command drive the chair if user is holding joystick forward, Auto = remote commands drive chair no matter what user is doing) |
+| yes | luci/drive_mode | subscription | luci_messages::msg::LuciDriveMode | Mode of chair for drive controls (USER = user drives with joystick, ENGAGED = remote command drive the chair if user is holding joystick forward, AUTO = remote commands drive chair no matter what user is doing) |
 | yes | luci/joystick_position | publisher | luci_messages::msg::LuciJoystick | Joystick values of the chair (FB:xxx, LR: xxx) |
 | no | luci/chair_velocity | publisher | geometry_msgs::msg::Twist | Linear and angular velocity of the chair according to onboard AHRS **Note: “linear velocity” will be speed not velocity** |
 | coming soon | luci/all_sensor_points | publisher | sensor_msgs::msg::PointCloud2 | Full pointcloud (All LUCI sensors) |

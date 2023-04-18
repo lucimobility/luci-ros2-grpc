@@ -40,10 +40,24 @@ void Interface::sendJSCallback(const luci_messages::msg::LuciJoystick::SharedPtr
     this->luciInterface->sendJS(msg->forward_back + 100, msg->left_right + 100);
 }
 
-void Interface::switchLuciModeCallback(const std_msgs::msg::String::SharedPtr msg)
+void Interface::switchLuciModeCallback(const luci_messages::msg::LuciDriveMode::SharedPtr msg)
 {
     spdlog::info("Received mode switch request");
-    this->luciInterface->activateAutoMode();
+    switch (msg->mode)
+    {
+    case luci_messages::msg::LuciDriveMode::USER:
+        this->luciInterface->activateUserMode();
+        break;
+    case luci_messages::msg::LuciDriveMode::ENGAGED:
+        this->luciInterface->activateEngagedMode();
+        break;
+    case luci_messages::msg::LuciDriveMode::AUTO:
+        this->luciInterface->activateAutoMode();
+        break;
+    default:
+        spdlog::error("NOT A VALID MODE SELECTION");
+        break;
+    }
 }
 
 int main(int argc, char** argv)
