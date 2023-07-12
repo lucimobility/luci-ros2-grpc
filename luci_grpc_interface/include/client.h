@@ -10,7 +10,7 @@
 
 #include "data_buffer.h"
 
-#include "../generated_code/client_library/ptolemy.grpc.pb.h"
+#include "../generated_code/client_library/sensors.grpc.pb.h"
 
 #include <grpc/grpc.h>
 #include <grpcpp/grpcpp.h>
