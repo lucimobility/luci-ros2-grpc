@@ -9,12 +9,14 @@
   <license>Apache License 2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
+  <depend>pcl_conversions</depend>
   <depend>rclcpp</depend>
-  <depend>geometry_msgs</depend>
-  <depend>tf2_ros</depend>
-  <depend>nav_msgs</depend>
   <depend>sensor_msgs</depend>
-  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>tf2_ros</depend>
+  <!-- Note not including the luci_message package here as its easier to build without it needing to be in rosdep -->
+  <!-- <depend>luci_messages</depend> -->
 
   <export>
     <build_type>ament_cmake</build_type>

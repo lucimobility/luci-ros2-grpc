@@ -3,9 +3,9 @@
 
 #pragma once
 
+#include <exception>
 #include <librealsense2/rs.hpp> // Include RealSense Cross Platform API
 #include <opencv2/opencv.hpp>   // Include OpenCV API
-#include <exception>
 
 // Convert rs2::frame to cv::Mat
 cv::Mat frame_to_mat(const rs2::frame& f)
@@ -52,11 +52,8 @@ cv::Mat depth_frame_to_meters(const rs2::pipeline& pipe, const rs2::depth_frame&
 
     Mat dm = frame_to_mat(f);
     dm.convertTo(dm, CV_64F);
-    auto depth_scale = pipe.get_active_profile()
-        .get_device()
-        .first<depth_sensor>()
-        .get_depth_scale();
+    auto depth_scale =
+        pipe.get_active_profile().get_device().first<depth_sensor>().get_depth_scale();
     dm = dm * depth_scale;
     return dm;
 }
-

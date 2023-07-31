@@ -1,59 +1,26 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.16)
+# Project name must match the package name in package.xml
 project(luci_grpc_interface)
 
+# Set standards
+if(NOT CMAKE_C_STANDARD)
+  set(CMAKE_C_STANDARD 99)
+endif()
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 17)
+endif()
+
+# Set thread library
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 
-find_package(PCL REQUIRED)
-
+# Find ROS2 cmake macros
 find_package(ament_cmake REQUIRED)
-find_package(rclcpp REQUIRED)
-find_package(geometry_msgs REQUIRED)
-find_package(tf2_ros REQUIRED)
-find_package(nav_msgs REQUIRED)
-find_package(sensor_msgs REQUIRED)
-find_package(std_msgs REQUIRED)
-find_package(luci_messages REQUIRED)
-find_package(absl REQUIRED)
 
+# Add subdirs for libraries and executables
+add_subdirectory(third_party/tclap)
+add_subdirectory(sensors_grpc)
+add_subdirectory(client)
+add_subdirectory(interface)
 
-find_package(gRPC CONFIG REQUIRED)
-
-find_package(OpenCV CONFIG REQUIRED)
-find_package(tf2_ros REQUIRED)
-find_library(OpenCV NAMES OpenCV)
-
-add_executable(grpc_interface_node 
-    src/interface.cpp  
-    src/differentiator.cpp
-    src/client.cpp
-    include/interface.h
-    include/differentiator.h  
-    include/client.h
-    include/data_buffer.h
-    ./generated_code/client_library/sensors.grpc.pb.cc
-    ./generated_code/client_library/sensors.pb.cc
-)
-
-include_directories(
-    ${OpenCV_INCLUDE_DIRS}
-)
-
-target_include_directories(grpc_interface_node PUBLIC ./generated_code)
-
-target_link_libraries(grpc_interface_node
-                    gRPC::grpc++_unsecure)
-
-ament_target_dependencies(grpc_interface_node "geometry_msgs" "rclcpp"
-   "PCL" "OpenCV" "tf2_ros" "nav_msgs" "sensor_msgs" "std_msgs" "luci_messages")
-
-
-target_include_directories(grpc_interface_node PUBLIC
-                        ${CMAKE_CURRENT_SOURCE_DIR}/include)
-                        
-
-install(TARGETS
-grpc_interface_node
-    DESTINATION lib/${PROJECT_NAME}
-)
-
+# Package the ROS2 node in a ROS2 compatible way
 ament_package()
