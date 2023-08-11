@@ -9,8 +9,8 @@
 #pragma once
 
 // LUCI libraries
-#include "data_buffer.h"
 #include "common_types.h"
+#include "data_buffer.h"
 #include "sensors_grpc/sensors.grpc.pb.h"
 
 // gRPC files
@@ -64,7 +64,8 @@ class ClientGuide
         std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> ultrasonicDataBuff,
         std::shared_ptr<DataBuffer<LuciZoneScaling>> zoneScalingDataBuff,
         std::shared_ptr<DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff,
-        std::shared_ptr<DataBuffer<AhrsInfo>> ahrsInfoBuff);
+        std::shared_ptr<DataBuffer<AhrsInfo>> ahrsInfoBuff,
+        std::shared_ptr<DataBuffer<ImuData>> imuDataBuff);
 
     /**
      * @brief Destroy the Client Guide object
@@ -86,7 +87,8 @@ class ClientGuide
     std::shared_ptr<DataBuffer<LuciZoneScaling>> zoneScalingDataBuff;
     std::shared_ptr<DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff;
     std::shared_ptr<DataBuffer<SystemJoystick>> joystickDataBuff;
-    std::shared_ptr<DataBuffer<AhrsInfo>> ahrsInfoBuff;
+    std::shared_ptr<DataBuffer<AhrsInfo>> ahrsDataBuff;
+    std::shared_ptr<DataBuffer<ImuData>> imuDataBuff;
 
     // Single calls over gRPC
 
@@ -163,6 +165,12 @@ class ClientGuide
      *
      */
     void readAhrsData() const;
+
+    /**
+     * @brief Read chairs raw IMU data
+     *
+     */
+    void readImuData() const;
 
   private:
     /// Threads for each endpoint
