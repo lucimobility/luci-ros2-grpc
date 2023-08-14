@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "*.html.erb": "erb",
         "cctype": "cpp",
         "clocale": "cpp",
         "cmath": "cpp",
@@ -66,6 +67,14 @@
         "cfenv": "cpp",
         "typeindex": "cpp",
         "typeinfo": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "coroutine": "cpp",
+        "forward_list": "cpp",
+        "source_location": "cpp",
+        "numbers": "cpp",
+        "semaphore": "cpp",
+        "stop_token": "cpp"
     }
 }
