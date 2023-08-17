@@ -31,6 +31,7 @@
 
 // LUCI ROS2 libraries
 #include <luci_messages/msg/luci_drive_mode.hpp>
+#include <luci_messages/msg/luci_imu.hpp>
 #include <luci_messages/msg/luci_joystick.hpp>
 #include <luci_messages/msg/luci_joystick_scaling.hpp>
 #include <luci_messages/msg/luci_zone_scaling.hpp>
@@ -58,11 +59,13 @@ class Interface : public rclcpp::Node
         std::shared_ptr<Luci::ROS2::DataBuffer<SystemJoystick>> joystickDataBuff,
         std::shared_ptr<Luci::ROS2::DataBuffer<LuciZoneScaling>> zoneScalingDataBuff,
         std::shared_ptr<Luci::ROS2::DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff,
-        std::shared_ptr<Luci::ROS2::DataBuffer<AhrsInfo>> ahrsInfoDataBuff)
+        std::shared_ptr<Luci::ROS2::DataBuffer<AhrsInfo>> ahrsInfoDataBuff,
+        std::shared_ptr<Luci::ROS2::DataBuffer<IMUData>> imuDataBuff)
         : Node("interface"), luciInterface(luciInterface), cameraDataBuff(cameraDataBuff),
           radarDataBuff(radarDataBuff), ultrasonicDataBuff(ultrasonicDataBuff),
           joystickDataBuff(joystickDataBuff), zoneScalingDataBuff(zoneScalingDataBuff),
-          joystickScalingDataBuff(joystickScalingDataBuff), ahrsInfoDataBuff(ahrsInfoDataBuff)
+          joystickScalingDataBuff(joystickScalingDataBuff), ahrsInfoDataBuff(ahrsInfoDataBuff),
+          imuDataBuff(imuDataBuff)
     {
         /// ROS publishers (sends the LUCI gRPC data to ROS on the specified topic)
         this->cameraPublisher =
@@ -76,6 +79,8 @@ class Interface : public rclcpp::Node
 
         this->odomPublisher =
             this->create_publisher<nav_msgs::msg::Odometry>("luci/odom", QUEUE_SIZE);
+
+        this->imuPublisher = this->create_publisher<luci_messages::msg::LuciImu>("luci/imu", 1);
 
         /// ROS subscribers (takes data sent to it from other ROS nodes and sends it to LUCI over
         /// gRPC)
@@ -108,6 +113,7 @@ class Interface : public rclcpp::Node
         grpcConverters.emplace_back(&Interface::processJoystickScalingData, this);
         grpcConverters.emplace_back(&Interface::processJoystickPositionData, this);
         grpcConverters.emplace_back(&Interface::processAhrsData, this);
+        grpcConverters.emplace_back(&Interface::processImuData, this);
     }
 
     /// Destructor
@@ -122,6 +128,7 @@ class Interface : public rclcpp::Node
     rclcpp::Publisher<luci_messages::msg::LuciJoystickScaling>::SharedPtr joystickScalingPublisher;
     rclcpp::Publisher<luci_messages::msg::LuciJoystick>::SharedPtr joystickPositionPublisher;
     rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr odomPublisher;
+    rclcpp::Publisher<luci_messages::msg::LuciImu>::SharedPtr imuPublisher;
     std::shared_ptr<tf2_ros::TransformBroadcaster> odomBroadcaster =
         std::make_shared<tf2_ros::TransformBroadcaster>(this);
 
@@ -138,6 +145,7 @@ class Interface : public rclcpp::Node
     std::shared_ptr<Luci::ROS2::DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff;
     std::shared_ptr<Luci::ROS2::DataBuffer<SystemJoystick>> joystickDataBuff;
     std::shared_ptr<Luci::ROS2::DataBuffer<AhrsInfo>> ahrsInfoDataBuff;
+    std::shared_ptr<Luci::ROS2::DataBuffer<ImuData>> imuDataBuff;
 
     /// Shared pointers to subscribers (convention in ROS2)
     rclcpp::Subscription<luci_messages::msg::LuciJoystick>::SharedPtr remote_js_subscription_;
@@ -152,6 +160,7 @@ class Interface : public rclcpp::Node
     void processJoystickScalingData();
     void processJoystickPositionData();
     void processAhrsData();
+    void processImuData();
 
     /// Subscriber callback ran in main thread
     void sendJsCallback(const luci_messages::msg::LuciJoystick::SharedPtr msg);

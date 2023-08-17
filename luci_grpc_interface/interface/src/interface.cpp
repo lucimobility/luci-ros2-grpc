@@ -152,6 +152,59 @@ void Interface::processAhrsData()
     }
 }
 
+void Interface::processImuData()
+{
+    // Wait on new IMU data from gRPC and then send out conveted ROS2 message
+    while (true)
+    {
+        auto imuData = this->imuDataBuff->waitNext();
+
+        luci_messages::msg::LuciImu rosImuMsg;
+        // Header
+        std_msgs::msg::Header imuHeader;
+        imuHeader.frame_id = "base_link";
+        imuHeader.stamp = this->get_clock()->now();
+
+        rosImuMsg.header = imuHeader;
+        rosImuMsg.quaternion_x = imuData.quaternion_x;
+        rosImuMsg.quaternion_y = imuData.quaternion_y;
+        rosImuMsg.quaternion_z = imuData.quaternion_z;
+        rosImuMsg.quaternion_w = imuData.quaternion_w;
+
+        rosImuMsg.acceleration_x = imuData.acceleration_x;
+        rosImuMsg.acceleration_y = imuData.acceleration_y;
+        rosImuMsg.acceleration_z = imuData.acceleration_z;
+
+        rosImuMsg.gyro_x = imuData.gyro_x;
+        rosImuMsg.gyro_y = imuData.gyro_y;
+        rosImuMsg.gyro_z = imuData.gyro_z;
+
+        rosImuMsg.euler_x = imuData.euler_x;
+        rosImuMsg.euler_y = imuData.euler_y;
+        rosImuMsg.euler_z = imuData.euler_z;
+
+        rosImuMsg.accelerometer_x = imuData.accelerometer_x;
+        rosImuMsg.accelerometer_y = imuData.accelerometer_y;
+        rosImuMsg.accelerometer_z = imuData.accelerometer_z;
+
+        rosImuMsg.magnetometer_x = imuData.magnetometer_x;
+        rosImuMsg.magnetometer_y = imuData.magnetometer_y;
+        rosImuMsg.magnetometer_z = imuData.magnetometer_z;
+
+        rosImuMsg.gravity_x = imuData.gravity_x;
+        rosImuMsg.gravity_y = imuData.gravity_y;
+        rosImuMsg.gravity_z = imuData.gravity_z;
+
+        rosImuMsg.cal_system = imuData.cal_system;
+        rosImuMsg.cal_gyroscope = imuData.cal_gyroscope;
+        rosImuMsg.cal_accelerometer = imuData.cal_accelerometer;
+        rosImuMsg.cal_magnetometer = imuData.cal_magnetometer;
+        rosImuMsg.source = imuData.source;
+
+        this->imuPublisher->publish(rosImuMsg);
+    }
+}
+
 void Interface::sendJsCallback(const luci_messages::msg::LuciJoystick::SharedPtr msg)
 {
     // Send the remote JS values over gRPC

@@ -30,11 +30,13 @@ ClientGuide::ClientGuide(
     std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> ultrasonicDataBuff,
     std::shared_ptr<DataBuffer<LuciZoneScaling>> zoneScalingDataBuff,
     std::shared_ptr<DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff,
-    std::shared_ptr<DataBuffer<AhrsInfo>> ahrsInfoBuff)
+    std::shared_ptr<DataBuffer<AhrsInfo>> ahrsDataBuff,
+    std::shared_ptr<DataBuffer<ImuData>> imuDataBuff)
     : stub_(sensors::Sensors::NewStub(channel)), joystickDataBuff(joystickDataBuff),
       cameraDataBuff(cameraDataBuff), radarDataBuff(radarDataBuff),
       ultrasonicDataBuff(ultrasonicDataBuff), zoneScalingDataBuff(zoneScalingDataBuff),
-      joystickScalingDataBuff(joystickScalingDataBuff), ahrsInfoBuff(ahrsInfoBuff)
+      joystickScalingDataBuff(joystickScalingDataBuff), ahrsDataBuff(ahrsDataBuff),
+      imuDataBuff(imuDataBuff)
 {
     grpcThreads.emplace_back(&ClientGuide::readJoystickPosition, this);
     grpcThreads.emplace_back(&ClientGuide::readCameraData, this);
@@ -43,6 +45,7 @@ ClientGuide::ClientGuide(
     grpcThreads.emplace_back(&ClientGuide::readZoneScalingData, this);
     grpcThreads.emplace_back(&ClientGuide::readJoystickScalingData, this);
     grpcThreads.emplace_back(&ClientGuide::readAhrsData, this);
+    grpcThreads.emplace_back(&ClientGuide::readImuData, this);
 }
 
 ClientGuide::~ClientGuide()
@@ -291,6 +294,36 @@ void ClientGuide::readAhrsData() const
                           response.linear_velocity().z(), response.angular_velocity().x(),
                           response.angular_velocity().y(), response.angular_velocity().z());
 
-        this->ahrsInfoBuff->push(ahrsInfo);
+        this->ahrsDataBuff->push(ahrsInfo);
+    }
+}
+
+void ClientGuide::readIMUData() const
+{
+    ClientContext context;
+    sensors::ImuCtrl request;
+    request.set_imu(sensors::Imu::MPU);
+    sensors::ImuData response;
+
+    std::unique_ptr<ClientReader<sensors::ImuData>> reader(stub_->ImuStream(&context, request));
+    reader->Read(&response);
+
+    while (reader->Read(&response))
+    {
+        if (response.source() == sensors::Imu::MPU)
+        {
+            IMUData imuData(
+                response.quaternion_x(), response.quaternion_y(), response.quaternion_z(),
+                response.quaternion_w(), response.acceleration_x(), response.acceleration_y(),
+                response.acceleration_z(), response.gyro_x(), response.gyro_y(), response.gyro_z(),
+                response.euler_x(), response.euler_y(), response.euler_z(),
+                response.accelerometer_x(), response.accelerometer_y(), response.accelerometer_z(),
+                response.magnetometer_x(), response.magnetometer_y(), response.magnetometer_z(),
+                response.gravity_x(), response.gravity_y(), response.gravity_z(),
+                response.cal_system(), response.cal_gyroscope(), response.cal_accelerometer(),
+                response.cal_magnetometer(), 2);
+
+            this->imuDataBuff->push(imuData);
+        }
     }
 }
