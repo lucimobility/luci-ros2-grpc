@@ -1,0 +1,74 @@
+name: Create and Sign Package
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+env:
+  REPO: ${{github.event.repository.name}}
+  MESSAGE_REPO : luci-ros2-msgs  
+  # Credentials for Jfrog artifactory
+  JF_URL: ${{ secrets.JF_URL }}
+  JF_ACCESS_TOKEN: ${{ secrets.ARTIFACTORY_TOKEN}}
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    container: luci.jfrog.io/ros2-sdk-docker-local/luci-sdk-development-image:latest
+    steps:
+      #Sets up jfrog cli access for the actions
+      - uses: jfrog/setup-jfrog-cli@v3
+
+      - name: Checkout LUCI Messages Branch
+        uses: actions/checkout@v3
+        with:
+          repository: lucimobility/luci-ros2-msgs
+          ref: main
+          path: ${{env.MESSAGE_REPO}}
+          token: ${{ secrets.ACCESS_TOKEN }}
+
+      - name: Checkout GRPC Branch
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
+          path: ${{env.REPO}}
+      
+      - name: gpg import
+        id: "import"
+        uses: crazy-max/ghaction-import-gpg@v5
+        with:
+          # Sets private key to import
+          gpg_private_key: ${{ secrets.GPG_SIGNING_KEY }}
+          # Says we trust it 100%
+          trust_level: 5
+
+      # cd into the message repo and run ITS build-package script
+      - name: Build the msg package
+        run: |
+          cd ${{env.MESSAGE_REPO}}
+          ./build-package.sh 
+        shell: bash
+
+      - name: Build the gRPC package
+        run: |
+          cd ${{env.MESSAGE_REPO}}
+          source install/setup.bash
+          cd ../${{env.REPO}}/luci_grpc_interface
+          ./build-package.sh
+        shell: bash
+
+      - name: Sign the package
+        run: |
+          echo "Output [${{steps.import.outputs.keyid}}]"
+          cd ${{env.REPO}}/luci_grpc_interface
+          ./sign-package.sh
+        shell: bash
+        env:
+          KEY_ID: ${{steps.import.outputs.keyid}}
+
+      - name: Deploy the package
+        run: |
+          cd ${{env.REPO}}/luci_grpc_interface
+          ./deploy-package.sh
+        shell: bash

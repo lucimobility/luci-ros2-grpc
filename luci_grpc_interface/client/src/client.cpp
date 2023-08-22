@@ -298,7 +298,7 @@ void ClientGuide::readAhrsData() const
     }
 }
 
-void ClientGuide::readIMUData() const
+void ClientGuide::readImuData() const
 {
     ClientContext context;
     sensors::ImuCtrl request;
@@ -312,7 +312,7 @@ void ClientGuide::readIMUData() const
     {
         if (response.source() == sensors::Imu::MPU)
         {
-            IMUData imuData(
+            ImuData imuData(
                 response.quaternion_x(), response.quaternion_y(), response.quaternion_z(),
                 response.quaternion_w(), response.acceleration_x(), response.acceleration_y(),
                 response.acceleration_z(), response.gyro_x(), response.gyro_y(), response.gyro_z(),
