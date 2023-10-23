@@ -20,12 +20,13 @@ You are likely to always use this node if using the LUCI SDK.
 | no | luci/chair_velocity | publisher | geometry_msgs::msg::Twist | Linear and angular velocity of the chair according to onboard AHRS **Note: “linear velocity” will be speed not velocity** |
 | coming soon | luci/all_sensor_points | publisher | sensor_msgs::msg::PointCloud2 | Full pointcloud (All LUCI sensors) |
 | partially | luci/odom | publisher | nav_msgs::msg::Odometry | AHRS odom reading |
-|yes|luci/imu|publisher|luci_messages::msg::LuciImu|Raw IMU data from the LUCI system|
+| yes | luci/imu|publisher|luci_messages::msg::LuciImu|Raw IMU data from the LUCI system|
 | yes | luci/ultrasonic_points | publisher | sensor_msgs::msg::PointCloud2 | Ultrasonic pointcloud |
 | yes | luci/radar_points | publisher | sensor_msgs::msg::PointCloud2 | Radar pointcloud |
 | yes | luci/camera_points | publisher | sensor_msgs::msg::PointCloud2 | Camera poincloud |
 | yes | luci/scaling | publisher | luci_messages::msg::LuciScaling | Scaling percentage of each zone LUCI sees (100% => full ability to drive) |
 | yes | luci/joystick_scaling | publisher | luci_messages::msg::LuciJoystick | Scaled Joystick values of the chair (FB:xxx, LR: xxx) |
+| yes | luci/encoder | publisher | luci_messages::msg::LuciEncoders | Raw Encoder data from the LUCI system |
 | no | luci/ir_left_camera | publisher | sensor_msgs::msg::Image | Left camera’s IR frame |
 | no | luci/ir_right_camera | publisher | sensor_msgs::msg::Image | Right camera’s IR frame |
 | no | luci/ir_back_camera | publisher | sensor_msgs::msg::Image | Back camera’s IR frame |

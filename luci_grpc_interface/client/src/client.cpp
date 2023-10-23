@@ -31,12 +31,13 @@ ClientGuide::ClientGuide(
     std::shared_ptr<DataBuffer<LuciZoneScaling>> zoneScalingDataBuff,
     std::shared_ptr<DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff,
     std::shared_ptr<DataBuffer<AhrsInfo>> ahrsDataBuff,
-    std::shared_ptr<DataBuffer<ImuData>> imuDataBuff)
+    std::shared_ptr<DataBuffer<ImuData>> imuDataBuff,
+    std::shared_ptr<DataBuffer<EncoderData>> encoderDataBuff)
     : stub_(sensors::Sensors::NewStub(channel)), joystickDataBuff(joystickDataBuff),
       cameraDataBuff(cameraDataBuff), radarDataBuff(radarDataBuff),
       ultrasonicDataBuff(ultrasonicDataBuff), zoneScalingDataBuff(zoneScalingDataBuff),
       joystickScalingDataBuff(joystickScalingDataBuff), ahrsDataBuff(ahrsDataBuff),
-      imuDataBuff(imuDataBuff)
+      imuDataBuff(imuDataBuff), encoderDataBuff(encoderDataBuff)
 {
     grpcThreads.emplace_back(&ClientGuide::readJoystickPosition, this);
     grpcThreads.emplace_back(&ClientGuide::readCameraData, this);
@@ -46,6 +47,7 @@ ClientGuide::ClientGuide(
     grpcThreads.emplace_back(&ClientGuide::readJoystickScalingData, this);
     grpcThreads.emplace_back(&ClientGuide::readAhrsData, this);
     grpcThreads.emplace_back(&ClientGuide::readImuData, this);
+    grpcThreads.emplace_back(&ClientGuide::readEncoderData, this);
 }
 
 ClientGuide::~ClientGuide()
@@ -325,5 +327,25 @@ void ClientGuide::readImuData() const
 
             this->imuDataBuff->push(imuData);
         }
+    }
+}
+
+void ClientGuide::readEncoderData() const
+{
+    ClientContext context;
+    const google::protobuf::Empty request;
+    sensors::EncoderData response;
+
+    std::unique_ptr<ClientReader<sensors::EncoderData>> reader(
+        stub_->EncoderStream(&context, request));
+    reader->Read(&response);
+
+    while (reader->Read(&response))
+    {
+        EncoderData encoderData(response.left_angle(), response.right_angle(),
+                                response.fl_caster_degrees(), response.bl_caster_degrees(),
+                                response.fr_caster_degrees(), response.br_caster_degrees());
+
+        this->encoderDataBuff->push(encoderData);
     }
 }

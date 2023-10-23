@@ -64,6 +64,8 @@ int main(int argc, char* argv[])
 
     auto imuDataBuff = std::make_shared<Luci::ROS2::DataBuffer<ImuData>>();
 
+    auto encoderDataBuff = std::make_shared<Luci::ROS2::DataBuffer<EncoderData>>();
+
     auto cameraDataBuff =
         std::make_shared<Luci::ROS2::DataBuffer<pcl::PointCloud<pcl::PointXYZ>>>();
 
@@ -84,12 +86,14 @@ int main(int argc, char* argv[])
     // gRPC connection to LUCI
     auto luciInterface = std::make_shared<Luci::ROS2::ClientGuide>(
         grpcChannel, joystickDataBuff, cameraDataBuff, radarDataBuff, ultrasonicDataBuff,
-        zoneScalingDataBuff, joystickScalingDataBuff, ahrsInfoDataBuff, imuDataBuff);
+        zoneScalingDataBuff, joystickScalingDataBuff, ahrsInfoDataBuff, imuDataBuff,
+        encoderDataBuff);
 
     // ROS connection
     auto interface_node = std::make_shared<Interface>(
         luciInterface, cameraDataBuff, radarDataBuff, ultrasonicDataBuff, joystickDataBuff,
-        zoneScalingDataBuff, joystickScalingDataBuff, ahrsInfoDataBuff, imuDataBuff);
+        zoneScalingDataBuff, joystickScalingDataBuff, ahrsInfoDataBuff, imuDataBuff,
+        encoderDataBuff);
 
     executor.add_node(interface_node);
     spdlog::debug("Running grpc interface");
