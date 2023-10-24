@@ -97,7 +97,7 @@ struct AhrsInfo
 
 /**
  * @brief LUCI IMU Data
- * 
+ *
  */
 struct ImuData
 {
@@ -152,6 +152,28 @@ struct ImuData
           magnetometer_x(magnetometer_x), magnetometer_y(magnetometer_y),
           magnetometer_z(magnetometer_z), gravity_x(gravity_x), gravity_y(gravity_y),
           gravity_z(gravity_z), source(source)
+    {
+    }
+};
+
+/**
+ * @brief LUCI Encoder data
+ *
+ */
+struct EncoderData
+{
+    float left_angle;
+    float right_angle;
+    float fl_caster_degrees;
+    float bl_caster_degrees;
+    float fr_caster_degrees;
+    float br_caster_degrees;
+
+    inline EncoderData(float left_angle, float right_angle, float fl_caster_degrees,
+                    float bl_caster_degrees, float fr_caster_degrees, float br_caster_degrees)
+        : left_angle(left_angle), right_angle(right_angle), fl_caster_degrees(fl_caster_degrees),
+          bl_caster_degrees(bl_caster_degrees), fr_caster_degrees(fr_caster_degrees),
+          br_caster_degrees(br_caster_degrees)
     {
     }
 };

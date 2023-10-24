@@ -205,6 +205,33 @@ void Interface::processImuData()
     }
 }
 
+void Interface::processEncoderData()
+{
+    // Wait on new IMU data from gRPC and then send out conveted ROS2 message
+    while (true)
+    {
+        auto encoderData = this->encoderDataBuff->waitNext();
+
+        luci_messages::msg::LuciEncoders rosEncoderMsg;
+        // Header
+        std_msgs::msg::Header encoderHeader;
+        encoderHeader.frame_id = "base_link";
+        encoderHeader.stamp = this->get_clock()->now();
+
+        rosEncoderMsg.header = encoderHeader;
+
+        rosEncoderMsg.left_angle = encoderData.left_angle;
+        rosEncoderMsg.right_angle = encoderData.right_angle;
+
+        rosEncoderMsg.fl_caster_degrees = encoderData.fl_caster_degrees;
+        rosEncoderMsg.bl_caster_degrees = encoderData.bl_caster_degrees;
+        rosEncoderMsg.fr_caster_degrees = encoderData.fr_caster_degrees;
+        rosEncoderMsg.br_caster_degrees = encoderData.br_caster_degrees;
+
+        this->encoderPublisher->publish(rosEncoderMsg);
+    }
+}
+
 void Interface::sendJsCallback(const luci_messages::msg::LuciJoystick::SharedPtr msg)
 {
     // Send the remote JS values over gRPC

@@ -55,6 +55,8 @@ class ClientGuide
      * @param zoneScalingDataBuff
      * @param joystickScalingDataBuff
      * @param ahrsInfoBuff
+     * @param imuDataBuff
+     * @param encoderDataBuff
      */
     explicit ClientGuide(
         std::shared_ptr<grpc::Channel> channel,
@@ -65,7 +67,8 @@ class ClientGuide
         std::shared_ptr<DataBuffer<LuciZoneScaling>> zoneScalingDataBuff,
         std::shared_ptr<DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff,
         std::shared_ptr<DataBuffer<AhrsInfo>> ahrsInfoBuff,
-        std::shared_ptr<DataBuffer<ImuData>> imuDataBuff);
+        std::shared_ptr<DataBuffer<ImuData>> imuDataBuff,
+        std::shared_ptr<DataBuffer<EncoderData>> encoderDataBuff);
 
     /**
      * @brief Destroy the Client Guide object
@@ -89,6 +92,7 @@ class ClientGuide
     std::shared_ptr<DataBuffer<SystemJoystick>> joystickDataBuff;
     std::shared_ptr<DataBuffer<AhrsInfo>> ahrsDataBuff;
     std::shared_ptr<DataBuffer<ImuData>> imuDataBuff;
+    std::shared_ptr<DataBuffer<EncoderData>> encoderDataBuff;
 
     // Single calls over gRPC
 
@@ -171,6 +175,12 @@ class ClientGuide
      *
      */
     void readImuData() const;
+
+    /**
+     * @brief Read the chairs encoder data
+     *
+     */
+    void readEncoderData() const;
 
   private:
     /// Threads for each endpoint
