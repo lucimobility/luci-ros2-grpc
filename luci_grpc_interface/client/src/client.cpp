@@ -32,12 +32,16 @@ ClientGuide::ClientGuide(
     std::shared_ptr<DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff,
     std::shared_ptr<DataBuffer<AhrsInfo>> ahrsDataBuff,
     std::shared_ptr<DataBuffer<ImuData>> imuDataBuff,
-    std::shared_ptr<DataBuffer<EncoderData>> encoderDataBuff)
+    std::shared_ptr<DataBuffer<EncoderData>> encoderDataBuff,
+    std::shared_ptr<DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffLeft,
+    std::shared_ptr<DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffRight,
+    std::shared_ptr<DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffRear)
     : stub_(sensors::Sensors::NewStub(channel)), joystickDataBuff(joystickDataBuff),
       cameraDataBuff(cameraDataBuff), radarDataBuff(radarDataBuff),
       ultrasonicDataBuff(ultrasonicDataBuff), zoneScalingDataBuff(zoneScalingDataBuff),
       joystickScalingDataBuff(joystickScalingDataBuff), ahrsDataBuff(ahrsDataBuff),
-      imuDataBuff(imuDataBuff), encoderDataBuff(encoderDataBuff)
+      imuDataBuff(imuDataBuff), encoderDataBuff(encoderDataBuff), irDataBuffLeft(irDataBuffLeft),
+      irDataBuffRight(irDataBuffRight), irDataBuffRear(irDataBuffRear)
 {
     grpcThreads.emplace_back(&ClientGuide::readJoystickPosition, this);
     grpcThreads.emplace_back(&ClientGuide::readCameraData, this);
@@ -48,6 +52,7 @@ ClientGuide::ClientGuide(
     grpcThreads.emplace_back(&ClientGuide::readAhrsData, this);
     grpcThreads.emplace_back(&ClientGuide::readImuData, this);
     grpcThreads.emplace_back(&ClientGuide::readEncoderData, this);
+    grpcThreads.emplace_back(&ClientGuide::readIrData, this);
 }
 
 ClientGuide::~ClientGuide()
@@ -347,5 +352,38 @@ void ClientGuide::readEncoderData() const
                                 response.fr_caster_degrees(), response.br_caster_degrees());
 
         this->encoderDataBuff->push(encoderData);
+    }
+}
+
+void ClientGuide::readIrData() const
+{
+    ClientContext context;
+    const google::protobuf::Empty request;
+    sensors::IrFrame response;
+
+    std::unique_ptr<ClientReader<sensors::IrFrame>> reader(stub_->IrStream(&context, request));
+    reader->Read(&response);
+
+    while (reader->Read(&response))
+    {
+        // Make a new pointer to an array of bytes of image size
+        auto& frame = response.frame();
+        std::vector<uint8_t> bytes(frame.begin(), frame.end());
+
+        CameraIrData cameraIrData =
+            CameraIrData<WIDTH, HEIGHT>(response.width(), response.height(), bytes);
+
+        if (response.camera() == "left")
+        {
+            this->irDataBuffLeft->push(cameraIrData);
+        }
+        else if (response.camera() == "right")
+        {
+            this->irDataBuffRight->push(cameraIrData);
+        }
+        else if (response.camera() == "rear")
+        {
+            this->irDataBuffRear->push(cameraIrData);
+        }
     }
 }

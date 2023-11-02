@@ -31,14 +31,20 @@
 
 // LUCI ROS2 libraries
 #include <luci_messages/msg/luci_drive_mode.hpp>
+#include <luci_messages/msg/luci_encoders.hpp>
 #include <luci_messages/msg/luci_imu.hpp>
 #include <luci_messages/msg/luci_joystick.hpp>
 #include <luci_messages/msg/luci_joystick_scaling.hpp>
 #include <luci_messages/msg/luci_zone_scaling.hpp>
-#include <luci_messages/msg/luci_encoders.hpp>
 
 // How many messages a ROS topic should queue
 constexpr size_t QUEUE_SIZE = 1;
+
+/// Width of raw camera frames.
+constexpr auto WIDTH = 640;
+
+/// Height of raw camera frames.
+constexpr auto HEIGHT = 360;
 
 /**
  * @brief The interface node that is publicly exposed to ROS2
@@ -62,12 +68,17 @@ class Interface : public rclcpp::Node
         std::shared_ptr<Luci::ROS2::DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff,
         std::shared_ptr<Luci::ROS2::DataBuffer<AhrsInfo>> ahrsInfoDataBuff,
         std::shared_ptr<Luci::ROS2::DataBuffer<ImuData>> imuDataBuff,
-        std::shared_ptr<Luci::ROS2::DataBuffer<EncoderData>> encoderDataBuff)
+        std::shared_ptr<Luci::ROS2::DataBuffer<EncoderData>> encoderDataBuff,
+        std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffLeft,
+        std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffRight,
+        std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffRear)
         : Node("interface"), luciInterface(luciInterface), cameraDataBuff(cameraDataBuff),
           radarDataBuff(radarDataBuff), ultrasonicDataBuff(ultrasonicDataBuff),
           joystickDataBuff(joystickDataBuff), zoneScalingDataBuff(zoneScalingDataBuff),
           joystickScalingDataBuff(joystickScalingDataBuff), ahrsInfoDataBuff(ahrsInfoDataBuff),
-          imuDataBuff(imuDataBuff), encoderDataBuff(encoderDataBuff)
+          imuDataBuff(imuDataBuff), encoderDataBuff(encoderDataBuff),
+          irDataBuffLeft(irDataBuffLeft), irDataBuffRight(irDataBuffRight),
+          irDataBuffRear(irDataBuffRear)
     {
         /// ROS publishers (sends the LUCI gRPC data to ROS on the specified topic)
         this->cameraPublisher =
@@ -109,6 +120,15 @@ class Interface : public rclcpp::Node
         this->joystickPositionPublisher = this->create_publisher<luci_messages::msg::LuciJoystick>(
             "luci/joystick_position", QUEUE_SIZE);
 
+        this->irLeftPublisher =
+            this->create_publisher<sensor_msgs::msg::Image>("luci/ir_left_camera", 1);
+
+        this->irRightPublisher =
+            this->create_publisher<sensor_msgs::msg::Image>("luci/ir_right_camera", 1);
+
+        this->irRearPublisher =
+            this->create_publisher<sensor_msgs::msg::Image>("luci/ir_back_camera", 1);
+
         // TODO: clp Should the processing just be handled in the gRPC threads?
         // Spin up a single thread for every gRPC <-> ROS translation
         grpcConverters.emplace_back(&Interface::processCameraData, this);
@@ -120,6 +140,9 @@ class Interface : public rclcpp::Node
         grpcConverters.emplace_back(&Interface::processAhrsData, this);
         grpcConverters.emplace_back(&Interface::processImuData, this);
         grpcConverters.emplace_back(&Interface::processEncoderData, this);
+        grpcConverters.emplace_back(&Interface::processLeftIrData, this);
+        grpcConverters.emplace_back(&Interface::processRightIrData, this);
+        grpcConverters.emplace_back(&Interface::processRearIrData, this);
     }
 
     /// Destructor
@@ -136,6 +159,10 @@ class Interface : public rclcpp::Node
     rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr odomPublisher;
     rclcpp::Publisher<luci_messages::msg::LuciImu>::SharedPtr imuPublisher;
     rclcpp::Publisher<luci_messages::msg::LuciEncoders>::SharedPtr encoderPublisher;
+    rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr irLeftPublisher;
+    rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr irRightPublisher;
+    rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr irRearPublisher;
+
     std::shared_ptr<tf2_ros::TransformBroadcaster> odomBroadcaster =
         std::make_shared<tf2_ros::TransformBroadcaster>(this);
 
@@ -154,6 +181,9 @@ class Interface : public rclcpp::Node
     std::shared_ptr<Luci::ROS2::DataBuffer<AhrsInfo>> ahrsInfoDataBuff;
     std::shared_ptr<Luci::ROS2::DataBuffer<ImuData>> imuDataBuff;
     std::shared_ptr<Luci::ROS2::DataBuffer<EncoderData>> encoderDataBuff;
+    std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffLeft;
+    std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffRight;
+    std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffRear;
 
     /// Shared pointers to subscribers (convention in ROS2)
     rclcpp::Subscription<luci_messages::msg::LuciJoystick>::SharedPtr remote_js_subscription_;
@@ -170,6 +200,9 @@ class Interface : public rclcpp::Node
     void processAhrsData();
     void processImuData();
     void processEncoderData();
+    void processLeftIrData();
+    void processRightIrData();
+    void processRearIrData();
 
     /// Subscriber callback ran in main thread
     void sendJsCallback(const luci_messages::msg::LuciJoystick::SharedPtr msg);

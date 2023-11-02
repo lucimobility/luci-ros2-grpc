@@ -27,6 +27,6 @@ You are likely to always use this node if using the LUCI SDK.
 | yes | luci/scaling | publisher | luci_messages::msg::LuciScaling | Scaling percentage of each zone LUCI sees (100% => full ability to drive) |
 | yes | luci/joystick_scaling | publisher | luci_messages::msg::LuciJoystick | Scaled Joystick values of the chair (FB:xxx, LR: xxx) |
 | yes | luci/encoder | publisher | luci_messages::msg::LuciEncoders | Raw Encoder data from the LUCI system |
-| no | luci/ir_left_camera | publisher | sensor_msgs::msg::Image | Left camera’s IR frame |
-| no | luci/ir_right_camera | publisher | sensor_msgs::msg::Image | Right camera’s IR frame |
-| no | luci/ir_back_camera | publisher | sensor_msgs::msg::Image | Back camera’s IR frame |
+| yes | luci/ir_left_camera | publisher | sensor_msgs::msg::Image | Left camera’s IR frame |
+| yes | luci/ir_right_camera | publisher | sensor_msgs::msg::Image | Right camera’s IR frame |
+| yes | luci/ir_back_camera | publisher | sensor_msgs::msg::Image | Back camera’s IR frame |

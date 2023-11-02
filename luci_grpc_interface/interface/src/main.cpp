@@ -74,6 +74,12 @@ int main(int argc, char* argv[])
     auto ultrasonicDataBuff =
         std::make_shared<Luci::ROS2::DataBuffer<pcl::PointCloud<pcl::PointXYZ>>>();
 
+    auto irDataBuffLeft = std::make_shared<Luci::ROS2::DataBuffer<CameraIrData<WIDTH, HEIGHT>>>();
+
+    auto irDataBuffRight = std::make_shared<Luci::ROS2::DataBuffer<CameraIrData<WIDTH, HEIGHT>>>();
+
+    auto irDataBuffRear = std::make_shared<Luci::ROS2::DataBuffer<CameraIrData<WIDTH, HEIGHT>>>();
+
     auto grpcChannel =
         grpc::CreateChannel(fmt::format("{}:{}", host, port), grpc::InsecureChannelCredentials());
     bool connected = grpcChannel->WaitForConnected(deadline);
@@ -87,13 +93,13 @@ int main(int argc, char* argv[])
     auto luciInterface = std::make_shared<Luci::ROS2::ClientGuide>(
         grpcChannel, joystickDataBuff, cameraDataBuff, radarDataBuff, ultrasonicDataBuff,
         zoneScalingDataBuff, joystickScalingDataBuff, ahrsInfoDataBuff, imuDataBuff,
-        encoderDataBuff);
+        encoderDataBuff, irDataBuffLeft, irDataBuffRight, irDataBuffRear);
 
     // ROS connection
     auto interface_node = std::make_shared<Interface>(
         luciInterface, cameraDataBuff, radarDataBuff, ultrasonicDataBuff, joystickDataBuff,
         zoneScalingDataBuff, joystickScalingDataBuff, ahrsInfoDataBuff, imuDataBuff,
-        encoderDataBuff);
+        encoderDataBuff, irDataBuffLeft, irDataBuffRight, irDataBuffRear);
 
     executor.add_node(interface_node);
     spdlog::debug("Running grpc interface");

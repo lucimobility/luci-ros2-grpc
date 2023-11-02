@@ -41,6 +41,12 @@ using sensors::UltrasonicDistances;
 namespace Luci::ROS2
 {
 
+/// Width of raw camera frames.
+constexpr auto WIDTH = 640;
+
+/// Height of raw camera frames.
+constexpr auto HEIGHT = 360;
+
 class ClientGuide
 {
   public:
@@ -57,6 +63,9 @@ class ClientGuide
      * @param ahrsInfoBuff
      * @param imuDataBuff
      * @param encoderDataBuff
+     * @param irDataBuffLeft
+     * @param irDataBuffRight
+     * @param irDataBuffRear
      */
     explicit ClientGuide(
         std::shared_ptr<grpc::Channel> channel,
@@ -68,7 +77,10 @@ class ClientGuide
         std::shared_ptr<DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff,
         std::shared_ptr<DataBuffer<AhrsInfo>> ahrsInfoBuff,
         std::shared_ptr<DataBuffer<ImuData>> imuDataBuff,
-        std::shared_ptr<DataBuffer<EncoderData>> encoderDataBuff);
+        std::shared_ptr<DataBuffer<EncoderData>> encoderDataBuff,
+        std::shared_ptr<DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffLeft,
+        std::shared_ptr<DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffRight,
+        std::shared_ptr<DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffRear);
 
     /**
      * @brief Destroy the Client Guide object
@@ -93,6 +105,9 @@ class ClientGuide
     std::shared_ptr<DataBuffer<AhrsInfo>> ahrsDataBuff;
     std::shared_ptr<DataBuffer<ImuData>> imuDataBuff;
     std::shared_ptr<DataBuffer<EncoderData>> encoderDataBuff;
+    std::shared_ptr<DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffLeft;
+    std::shared_ptr<DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffRight;
+    std::shared_ptr<DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffRear;
 
     // Single calls over gRPC
 
@@ -181,6 +196,12 @@ class ClientGuide
      *
      */
     void readEncoderData() const;
+
+    /**
+     * @brief Read the chairs ir frame data
+     *
+     */
+    void readIrData() const;
 
   private:
     /// Threads for each endpoint

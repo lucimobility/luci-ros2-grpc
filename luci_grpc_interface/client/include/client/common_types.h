@@ -8,6 +8,7 @@
  */
 #pragma once
 #include <string>
+#include <vector>
 
 /**
  * @brief LUCI joystick
@@ -170,10 +171,28 @@ struct EncoderData
     float br_caster_degrees;
 
     inline EncoderData(float left_angle, float right_angle, float fl_caster_degrees,
-                    float bl_caster_degrees, float fr_caster_degrees, float br_caster_degrees)
+                       float bl_caster_degrees, float fr_caster_degrees, float br_caster_degrees)
         : left_angle(left_angle), right_angle(right_angle), fl_caster_degrees(fl_caster_degrees),
           bl_caster_degrees(bl_caster_degrees), fr_caster_degrees(fr_caster_degrees),
           br_caster_degrees(br_caster_degrees)
+    {
+    }
+};
+
+/**
+ * @brief Luci Ir Camera Data
+ *
+ * @tparam Width
+ * @tparam Height
+ */
+template <int32_t Width, int32_t Height> struct CameraIrData
+{
+    int width;
+    int height;
+    std::vector<uint8_t> data;
+
+    inline CameraIrData(int width, int height, std::vector<uint8_t> data)
+        : width(width), height(height), data(data)
     {
     }
 };
