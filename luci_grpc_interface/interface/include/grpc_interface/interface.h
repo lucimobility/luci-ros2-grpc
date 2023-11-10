@@ -204,6 +204,9 @@ class Interface : public rclcpp::Node
     void processRightIrData();
     void processRearIrData();
 
+    /// Update the IR frame rate
+    void updateIrFrameRate(int rate);
+
     /// Subscriber callback ran in main thread
     void sendJsCallback(const luci_messages::msg::LuciJoystick::SharedPtr msg);
     void switchLuciModeCallback(const luci_messages::msg::LuciDriveMode::SharedPtr msg);

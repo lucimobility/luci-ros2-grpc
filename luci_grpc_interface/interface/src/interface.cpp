@@ -341,3 +341,10 @@ void Interface::switchLuciModeCallback(const luci_messages::msg::LuciDriveMode::
         break;
     }
 }
+
+void Interface::updateIrFrameRate(int rate)
+{
+    // Send the new rate request over gRPC to LUCI
+    spdlog::debug("Received rate val: {}", rate);
+    this->luciInterface->updateFrameRate(rate);
+}

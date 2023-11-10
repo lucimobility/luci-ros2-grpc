@@ -66,6 +66,8 @@ class ClientGuide
      * @param irDataBuffLeft
      * @param irDataBuffRight
      * @param irDataBuffRear
+    * @param initialFrameRate
+
      */
     explicit ClientGuide(
         std::shared_ptr<grpc::Channel> channel,
@@ -80,7 +82,8 @@ class ClientGuide
         std::shared_ptr<DataBuffer<EncoderData>> encoderDataBuff,
         std::shared_ptr<DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffLeft,
         std::shared_ptr<DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffRight,
-        std::shared_ptr<DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffRear);
+        std::shared_ptr<DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffRear,
+        int initialFrameRate);
 
     /**
      * @brief Destroy the Client Guide object
@@ -108,6 +111,9 @@ class ClientGuide
     std::shared_ptr<DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffLeft;
     std::shared_ptr<DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffRight;
     std::shared_ptr<DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffRear;
+
+    /// Data Buffer for thread safe updates to the IR frame a given client is getting sent
+    DataBuffer<int> irFrameRateDataBuff;
 
     // Single calls over gRPC
 
@@ -140,6 +146,16 @@ class ClientGuide
      * @return int success code (0-success, 1-failure)
      */
     int sendJS(int forwardBack, int leftRight);
+
+    /**
+     * @brief Updates the IR frame rate while a stream is already active. This is used by clients
+     * like ramp assist to change frame rate through out the applications life time.
+     *
+     * @param rate new rate in FPS (2 = 2 IR frames sent per second)
+     * @note The rate selected is not guaranteed to be exactly what is received as the max fps is 15
+     * requested rate that are not a clean multiple will be rounded.
+     */
+    void updateFrameRate(int rate);
 
     // Readers
 
@@ -198,10 +214,12 @@ class ClientGuide
     void readEncoderData() const;
 
     /**
-     * @brief Read the chairs ir frame data
+     * @brief Read the IR frame from both front cameras.
+     * To add additional cameras, make sure it is being streamed on luci-sensors.
      *
+     * @param initialRate The rate used at client connection start. Defaults to 1.
      */
-    void readIrData() const;
+    void readIrFrame(int initialRate = 1);
 
   private:
     /// Threads for each endpoint
