@@ -179,20 +179,42 @@ struct EncoderData
     }
 };
 
+struct CameraIntrinsics
+{
+    float fx;
+    float fy;
+    float ppx;
+    float ppy;
+
+    inline CameraIntrinsics(float fx, float fy, float ppx, float ppy)
+        : fx(fx), fy(fy), ppx(ppx), ppy(ppy)
+    {
+    }
+};
+
+struct CameraTransform
+{
+    std::vector<float> rotation;
+    std::vector<float> translation;
+};
+
 /**
  * @brief Luci Ir Camera Data
  *
- * @tparam Width
- * @tparam Height
  */
-template <int32_t Width, int32_t Height> struct CameraIrData
+struct CameraIrData
 {
     int width;
     int height;
+    CameraIntrinsics intrinsics;
+    CameraTransform transform;
     std::vector<uint8_t> data;
+    int rotationType;
 
-    inline CameraIrData(int width, int height, std::vector<uint8_t> data)
-        : width(width), height(height), data(data)
+    inline CameraIrData(int width, int height, CameraIntrinsics intrinsics,
+                        CameraTransform transform, int rotationType, std::vector<uint8_t> data)
+        : width(width), height(height), intrinsics(intrinsics), transform(transform),
+          rotationType(rotationType), data(data)
     {
     }
 };

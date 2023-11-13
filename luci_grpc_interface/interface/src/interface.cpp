@@ -240,12 +240,16 @@ void Interface::processLeftIrData()
         auto leftIrData = this->irDataBuffLeft->waitNext();
 
         sensor_msgs::msg::Image rosIrMsg;
+        luci_messages::msg::LuciCameraInfo cameraInfoMsg;
+
         // Header
         std_msgs::msg::Header irHeader;
         irHeader.frame_id = "left_camera";
         irHeader.stamp = this->get_clock()->now();
 
         rosIrMsg.header = irHeader;
+        cameraInfoMsg.header = irHeader;
+        cameraInfoMsg.type = leftIrData.rotationType;
 
         rosIrMsg.height = leftIrData.height;
         rosIrMsg.width = leftIrData.width;
@@ -255,7 +259,18 @@ void Interface::processLeftIrData()
         rosIrMsg.encoding = "mono8";
         rosIrMsg.step = leftIrData.width * sizeof(uint8_t);
 
+        cameraInfoMsg.intrinsics = {leftIrData.intrinsics.fx, leftIrData.intrinsics.fy,
+                                    leftIrData.intrinsics.ppx, leftIrData.intrinsics.ppy};
+
+        cameraInfoMsg.translation = {leftIrData.transform.translation[0],
+                                     leftIrData.transform.translation[1],
+                                     leftIrData.transform.translation[2]};
+        cameraInfoMsg.rotation = {leftIrData.transform.rotation[0],
+                                  leftIrData.transform.rotation[1],
+                                  leftIrData.transform.rotation[2]};
+
         this->irLeftPublisher->publish(rosIrMsg);
+        this->leftCameraInfoPublisher->publish(cameraInfoMsg);
     }
 }
 
@@ -267,12 +282,16 @@ void Interface::processRightIrData()
         auto rightIrData = this->irDataBuffRight->waitNext();
 
         sensor_msgs::msg::Image rosIrMsg;
+        luci_messages::msg::LuciCameraInfo cameraInfoMsg;
+
         // Header
         std_msgs::msg::Header irHeader;
         irHeader.frame_id = "right_camera";
         irHeader.stamp = this->get_clock()->now();
 
         rosIrMsg.header = irHeader;
+        cameraInfoMsg.header = irHeader;
+        cameraInfoMsg.type = rightIrData.rotationType;
 
         rosIrMsg.height = rightIrData.height;
         rosIrMsg.width = rightIrData.width;
@@ -282,7 +301,18 @@ void Interface::processRightIrData()
         rosIrMsg.encoding = "mono8";
         rosIrMsg.step = rightIrData.width * sizeof(uint8_t);
 
+        cameraInfoMsg.intrinsics = {rightIrData.intrinsics.fx, rightIrData.intrinsics.fy,
+                                    rightIrData.intrinsics.ppx, rightIrData.intrinsics.ppy};
+
+        cameraInfoMsg.translation = {rightIrData.transform.translation[0],
+                                     rightIrData.transform.translation[1],
+                                     rightIrData.transform.translation[2]};
+        cameraInfoMsg.rotation = {rightIrData.transform.rotation[0],
+                                  rightIrData.transform.rotation[1],
+                                  rightIrData.transform.rotation[2]};
+
         this->irRightPublisher->publish(rosIrMsg);
+        this->rightCameraInfoPublisher->publish(cameraInfoMsg);
     }
 }
 
@@ -294,12 +324,16 @@ void Interface::processRearIrData()
         auto rearIrData = this->irDataBuffRear->waitNext();
 
         sensor_msgs::msg::Image rosIrMsg;
+        luci_messages::msg::LuciCameraInfo cameraInfoMsg;
+
         // Header
         std_msgs::msg::Header irHeader;
         irHeader.frame_id = "rear_camera";
         irHeader.stamp = this->get_clock()->now();
 
         rosIrMsg.header = irHeader;
+        cameraInfoMsg.header = irHeader;
+        cameraInfoMsg.type = rearIrData.rotationType;
 
         rosIrMsg.height = rearIrData.height;
         rosIrMsg.width = rearIrData.width;
@@ -309,7 +343,18 @@ void Interface::processRearIrData()
         rosIrMsg.encoding = "mono8";
         rosIrMsg.step = rearIrData.width * sizeof(uint8_t);
 
+        cameraInfoMsg.intrinsics = {rearIrData.intrinsics.fx, rearIrData.intrinsics.fy,
+                                    rearIrData.intrinsics.ppx, rearIrData.intrinsics.ppy};
+
+        cameraInfoMsg.translation = {rearIrData.transform.translation[0],
+                                     rearIrData.transform.translation[1],
+                                     rearIrData.transform.translation[2]};
+        cameraInfoMsg.rotation = {rearIrData.transform.rotation[0],
+                                  rearIrData.transform.rotation[1],
+                                  rearIrData.transform.rotation[2]};
+
         this->irRearPublisher->publish(rosIrMsg);
+        this->rearCameraInfoPublisher->publish(cameraInfoMsg);
     }
 }
 

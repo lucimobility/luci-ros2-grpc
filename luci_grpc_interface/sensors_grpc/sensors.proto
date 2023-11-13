@@ -24,6 +24,7 @@ service Sensors {
   rpc DisableLuci(google.protobuf.Empty) returns (Response);
   rpc ResetMpu(google.protobuf.Empty) returns (Response);
   rpc JsOverride(RemoteJsValues) returns (Response);
+  rpc SendJoystickRecording(JoystickRecording) returns (google.protobuf.Empty);
   rpc SetDriveMode(ModeCtrl) returns (Response);
   rpc RampUiPassThrough(RampMode) returns (Response);
   rpc SetLuciOverride(LuciOverride) returns (Response);
@@ -93,6 +94,7 @@ service Sensors {
       returns (stream DFParameters);
   rpc DFEventStream(google.protobuf.Empty) returns (stream DFSeatEvent);
 
+  rpc SendControlInfo(ControlInfo) returns (google.protobuf.Empty);
   rpc SendLogging(LoggingData) returns (Response);
   rpc LoggingStream(google.protobuf.Empty) returns (stream LoggingData);
   rpc StepCameraStream(google.protobuf.Empty) returns (stream CameraPoints);
@@ -284,6 +286,26 @@ message CameraPoints2D {
 message Point2D {
   float x = 1;
   float y = 2;
+}
+
+message PidVals {
+  float k_p = 1;
+  float k_i = 2;
+  float k_d = 3;
+  float output_val = 4;
+  float sensor_reading = 5;
+  float error = 6;
+  float derivative_error = 7;
+  float integral_error = 8;
+  google.protobuf.Timestamp timestamp = 9;
+}
+
+message ZoneControlVals {
+  map<string, PidVals> info = 1;
+}
+
+message ControlInfo {
+  map<string, ZoneControlVals> info = 1;
 }
 
 message LoggingData {
@@ -549,6 +571,17 @@ message JoystickData {
   google.protobuf.Timestamp timestamp = 4;
 }
 
+message JoystickRecord {
+  int32 drive_fb = 1;
+  int32 drive_rl = 2;
+  int32 phys_fb = 3;
+  int32 phys_rl = 4;
+  int32 count = 5;
+}
+message JoystickRecording {
+  repeated JoystickRecord record = 1;
+}
+
 message BatteryVoltage {
   double battery_voltage = 1;
 }
@@ -636,8 +669,13 @@ message IrFrame {
   int32 width = 2;
   int32 height = 3;
   string camera = 4;
-  IrIntrinsics intrinsics = 5;
+  CameraMetaData meta_data = 5;
   google.protobuf.Timestamp timestamp = 6;
+}
+
+message CameraMetaData {
+  IrIntrinsics intrinsics = 2;
+  Pose transformation = 3;
 }
 
 message RemoteJsValues {
@@ -654,6 +692,7 @@ enum DriveMode {
   USER = 0;
   ENGAGED = 1;
   AUTONOMOUS = 2;
+  PLAYBACK = 3;
 }
 
 message ModeCtrl {
@@ -704,26 +743,41 @@ message ReactionTestResult {
   float reaction_time = 2;
 }
 
-// Euler angles of landmark relative to chairs locked axis with rotation in
-// Z->Y->X order
-message LandMarkRotation {
+message QuaternionRotation {
+  float x = 1;
+  float y = 2;
+  float z = 3;
+  float w = 4;
+}
+
+// This is a general rotation message that can be used for Euler or Quaternion units. 
+// This is not to be used directly but rather in a Pose message. Depending on the "Type" set
+// in the Pose message defines how to treat the x,y,z elements and if the w element should 
+// be ignored.
+message Rotation {
+  float x = 1;
+  float y = 2;
+  float z = 3;
+  float w = 4;
+}
+
+message Translation {
   float x = 1;
   float y = 2;
   float z = 3;
 }
 
-// Position of landmark relative to chair frame of axis, as in if y = 5 the tag
-// is 5 meters infront of the chair
-message LandMarkTranslation {
-  float x = 1;
-  float y = 2;
-  float z = 3;
-}
-// Pose of landmark relative to chair frame
 message Pose {
-  LandMarkTranslation translation = 1;
-  LandMarkRotation rotation = 2;
+  enum Type {
+    RADIAN = 0;
+    DEGREE = 1;
+    QUATERNION = 2;
+  }
+  Type type = 1;
+  Translation translation = 2;
+  Rotation rotation = 3;
 }
+
 // In the future Luci will likely be able to identifie other landmarks in its
 // operating zone and they may trigger different behaviors for subscribed
 // services
