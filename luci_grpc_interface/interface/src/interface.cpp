@@ -207,7 +207,7 @@ void Interface::processImuData()
 
 void Interface::processEncoderData()
 {
-    // Wait on new IMU data from gRPC and then send out conveted ROS2 message
+    // Wait on new Encoder data from gRPC and then send out conveted ROS2 message
     while (true)
     {
         auto encoderData = this->encoderDataBuff->waitNext();
@@ -229,6 +229,87 @@ void Interface::processEncoderData()
         rosEncoderMsg.br_caster_degrees = encoderData.br_caster_degrees;
 
         this->encoderPublisher->publish(rosEncoderMsg);
+    }
+}
+
+void Interface::processLeftIrData()
+{
+    // Wait on new left ir data from gRPC and then send out conveted ROS2 message
+    while (true)
+    {
+        auto leftIrData = this->irDataBuffLeft->waitNext();
+
+        sensor_msgs::msg::Image rosIrMsg;
+        // Header
+        std_msgs::msg::Header irHeader;
+        irHeader.frame_id = "left_camera";
+        irHeader.stamp = this->get_clock()->now();
+
+        rosIrMsg.header = irHeader;
+
+        rosIrMsg.height = leftIrData.height;
+        rosIrMsg.width = leftIrData.width;
+
+        rosIrMsg.data = leftIrData.data;
+
+        rosIrMsg.encoding = "mono8";
+        rosIrMsg.step = leftIrData.width * sizeof(uint8_t);
+
+        this->irLeftPublisher->publish(rosIrMsg);
+    }
+}
+
+void Interface::processRightIrData()
+{
+    // Wait on new right ir data from gRPC and then send out conveted ROS2 message
+    while (true)
+    {
+        auto rightIrData = this->irDataBuffRight->waitNext();
+
+        sensor_msgs::msg::Image rosIrMsg;
+        // Header
+        std_msgs::msg::Header irHeader;
+        irHeader.frame_id = "right_camera";
+        irHeader.stamp = this->get_clock()->now();
+
+        rosIrMsg.header = irHeader;
+
+        rosIrMsg.height = rightIrData.height;
+        rosIrMsg.width = rightIrData.width;
+
+        rosIrMsg.data = rightIrData.data;
+
+        rosIrMsg.encoding = "mono8";
+        rosIrMsg.step = rightIrData.width * sizeof(uint8_t);
+
+        this->irRightPublisher->publish(rosIrMsg);
+    }
+}
+
+void Interface::processRearIrData()
+{
+    // Wait on new rear ir data from gRPC and then send out conveted ROS2 message
+    while (true)
+    {
+        auto rearIrData = this->irDataBuffRear->waitNext();
+
+        sensor_msgs::msg::Image rosIrMsg;
+        // Header
+        std_msgs::msg::Header irHeader;
+        irHeader.frame_id = "rear_camera";
+        irHeader.stamp = this->get_clock()->now();
+
+        rosIrMsg.header = irHeader;
+
+        rosIrMsg.height = rearIrData.height;
+        rosIrMsg.width = rearIrData.width;
+
+        rosIrMsg.data = rearIrData.data;
+
+        rosIrMsg.encoding = "mono8";
+        rosIrMsg.step = rearIrData.width * sizeof(uint8_t);
+
+        this->irRearPublisher->publish(rosIrMsg);
     }
 }
 
@@ -259,4 +340,11 @@ void Interface::switchLuciModeCallback(const luci_messages::msg::LuciDriveMode::
         spdlog::error("NOT A VALID MODE SELECTION");
         break;
     }
+}
+
+void Interface::updateIrFrameRate(int rate)
+{
+    // Send the new rate request over gRPC to LUCI
+    spdlog::debug("Received rate val: {}", rate);
+    this->luciInterface->updateFrameRate(rate);
 }

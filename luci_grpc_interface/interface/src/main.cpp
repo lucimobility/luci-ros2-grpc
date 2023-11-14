@@ -35,9 +35,14 @@ int main(int argc, char* argv[])
     TCLAP::ValueArg<std::string> portArg("p", "gRPC-port", "Port number. gRPC mode only.", false,
                                          "50051", "string");
 
+    // Command to pass in camera frame rate in gRPC mode
+    TCLAP::ValueArg<int> rateArg("f", "frame-rate", "IR Frame Rate gRPC mode only.", false, 0,
+                                 "int");
+
     // Add the value arguments to the command line parser
     cmd.add(hostArg);
     cmd.add(portArg);
+    cmd.add(rateArg);
 
     // Parse the argv array.
     cmd.parse(argc, argv);
@@ -45,6 +50,7 @@ int main(int argc, char* argv[])
     // Set the host and port values (if not set defaults used)
     host = hostArg.getValue();
     port = portArg.getValue();
+    int frameRate = rateArg.getValue();
 
     // Initialize ROS stack and executor, Note: all argument parsing is handled externally by tclap
     rclcpp::init(0, nullptr);
@@ -74,6 +80,12 @@ int main(int argc, char* argv[])
     auto ultrasonicDataBuff =
         std::make_shared<Luci::ROS2::DataBuffer<pcl::PointCloud<pcl::PointXYZ>>>();
 
+    auto irDataBuffLeft = std::make_shared<Luci::ROS2::DataBuffer<CameraIrData<WIDTH, HEIGHT>>>();
+
+    auto irDataBuffRight = std::make_shared<Luci::ROS2::DataBuffer<CameraIrData<WIDTH, HEIGHT>>>();
+
+    auto irDataBuffRear = std::make_shared<Luci::ROS2::DataBuffer<CameraIrData<WIDTH, HEIGHT>>>();
+
     auto grpcChannel =
         grpc::CreateChannel(fmt::format("{}:{}", host, port), grpc::InsecureChannelCredentials());
     bool connected = grpcChannel->WaitForConnected(deadline);
@@ -87,13 +99,13 @@ int main(int argc, char* argv[])
     auto luciInterface = std::make_shared<Luci::ROS2::ClientGuide>(
         grpcChannel, joystickDataBuff, cameraDataBuff, radarDataBuff, ultrasonicDataBuff,
         zoneScalingDataBuff, joystickScalingDataBuff, ahrsInfoDataBuff, imuDataBuff,
-        encoderDataBuff);
+        encoderDataBuff, irDataBuffLeft, irDataBuffRight, irDataBuffRear, frameRate);
 
     // ROS connection
     auto interface_node = std::make_shared<Interface>(
         luciInterface, cameraDataBuff, radarDataBuff, ultrasonicDataBuff, joystickDataBuff,
         zoneScalingDataBuff, joystickScalingDataBuff, ahrsInfoDataBuff, imuDataBuff,
-        encoderDataBuff);
+        encoderDataBuff, irDataBuffLeft, irDataBuffRight, irDataBuffRear);
 
     executor.add_node(interface_node);
     spdlog::debug("Running grpc interface");

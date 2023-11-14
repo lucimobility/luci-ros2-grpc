@@ -42,10 +42,9 @@ service Sensors {
   rpc HoldEStop(google.protobuf.Empty) returns (Response);
   rpc ReleaseEStop(google.protobuf.Empty) returns (Response);
   rpc ResetChairChanges(google.protobuf.Empty) returns (Response);
-  rpc RemindRampUser(google.protobuf.Empty) returns (Response);
 
   rpc HmiStream(google.protobuf.Empty) returns (stream HmiStreamData);
-  rpc PressCountStream(PressRequest) returns (stream PressCountStreamData);
+  rpc PressCountStream(google.protobuf.Empty) returns (stream PressCountStreamData);
   rpc UltrasonicStream(google.protobuf.Empty)
       returns (stream UltrasonicDistances);
   rpc RawUltrasonicStream(google.protobuf.Empty)
@@ -57,13 +56,13 @@ service Sensors {
   rpc ChairModeStream(google.protobuf.Empty) returns (stream ChairMode);
   rpc ChairProfileStream(google.protobuf.Empty) returns (stream ChairProfile);
   rpc SpeedSettingStream(google.protobuf.Empty) returns (stream SpeedSetting);
-  rpc JoystickStream(google.protobuf.Empty) returns (stream Joystick);
+  rpc JoystickStream(google.protobuf.Empty) returns (stream JoystickData);
   rpc VirtualJoystickStream(google.protobuf.Empty)
       returns (stream JoystickData);
   rpc PhysicalJoystickStream(google.protobuf.Empty)
       returns (stream JoystickData);
   rpc ScaledJoystickStream(google.protobuf.Empty) returns (stream JoystickData);
-  rpc LuciJoystickStream(google.protobuf.Empty) returns (stream JoystickData);
+  rpc RemoteJoystickStream(google.protobuf.Empty) returns (stream JoystickData);
   rpc AhrsStream(google.protobuf.Empty) returns (stream AhrsData);
 
   rpc RadarClosestObstaclesStream(google.protobuf.Empty)
@@ -97,14 +96,12 @@ service Sensors {
   rpc SendLogging(LoggingData) returns (Response);
   rpc LoggingStream(google.protobuf.Empty) returns (stream LoggingData);
   rpc StepCameraStream(google.protobuf.Empty) returns (stream CameraPoints);
-  rpc IrStream(google.protobuf.Empty) returns (stream IrFrame);
+  rpc IrStream(stream FrameRate) returns (stream IrFrame);
   rpc RampAssistStream(google.protobuf.Empty) returns (stream RampMode);
+  rpc RampCanceledStream(google.protobuf.Empty) returns (stream RampCanceled);
   rpc DistStream(google.protobuf.Empty) returns (stream DistanceData);
 
   rpc StartModeStream(google.protobuf.Empty) returns (stream StartModeData);
-
-  rpc AudioPlaybackRequestStream(google.protobuf.Empty)
-      returns (stream AudioPlaybackRequest);
 
   rpc GetZoneBoundaries(google.protobuf.Empty) returns (ZoneBoundaries);
   rpc GetBlockedZones(google.protobuf.Empty) returns (BlockedZones);
@@ -137,19 +134,6 @@ service Sensors {
       returns (stream google.protobuf.BoolValue);
   rpc EngagedFeaturesAllowedStream(google.protobuf.Empty)
       returns (stream google.protobuf.BoolValue);
-}
-
-message AudioPlaybackRequest {
-  // The playback options should match with `audio_request.h`
-  enum RequestedPlayback {
-    ERROR_DISABLE = 0;
-    RAMP_REMINDER = 2;
-  }
-  RequestedPlayback requested_playback = 1;
-}
-
-message PressRequest {
-  bool ramp_assist = 1;
 }
 
 message ZoneBoundary {
@@ -395,7 +379,6 @@ message NavigationScaling {
   float back_rl = 16;
   uint32 max_js_scale_increase = 17;
   uint32 max_js_scale_decrease = 18;
-  bool luci_active = 19;
 }
 
 message UltrasonicCtrl {
@@ -566,11 +549,6 @@ message JoystickData {
   google.protobuf.Timestamp timestamp = 4;
 }
 
-message Joystick {
-  int32 forward_back = 1;
-  int32 left_right = 2;
-}
-
 message BatteryVoltage {
   double battery_voltage = 1;
 }
@@ -689,9 +667,13 @@ enum RampState {
 }
 
 message RampMode {
-  RampState state = 1;
+  bool ramp_active = 1;
   bool override_dropoff = 2;
   google.protobuf.Timestamp timestamp = 3;
+}
+
+message RampCanceled {
+  bool ramp_canceled = 1;
 }
 
 enum SensorsEvent {
@@ -769,7 +751,7 @@ message PID {
 
 message RampInfo {
   RampState state = 1;
-  float scout_center_dist_x = 2;
+  float extremity_center_dist_x = 2;
   float chair_ramp_dist_y = 3;
   // If the chair is using virtual these will be populated
   int32 ramp_trac_js_lr = 4;
@@ -812,4 +794,8 @@ message CanFrame {
   Destination destination = 1;
   uint32 id = 2;
   repeated uint32 data = 3;
+}
+
+message FrameRate {
+  uint32 rate = 1;
 }

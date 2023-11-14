@@ -7,12 +7,16 @@
 
 #include "client/client.h"
 
+using namespace std::chrono_literals;
 using grpc::Channel;
 using grpc::ClientContext;
 using grpc::ClientReader;
+using grpc::ClientReaderWriter;
 using grpc::ClientWriter;
 using grpc::Status;
+
 using Luci::ROS2::ClientGuide;
+
 using sensors::DriveMode;
 using sensors::ModeCtrl;
 using sensors::RampMode;
@@ -32,12 +36,16 @@ ClientGuide::ClientGuide(
     std::shared_ptr<DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff,
     std::shared_ptr<DataBuffer<AhrsInfo>> ahrsDataBuff,
     std::shared_ptr<DataBuffer<ImuData>> imuDataBuff,
-    std::shared_ptr<DataBuffer<EncoderData>> encoderDataBuff)
+    std::shared_ptr<DataBuffer<EncoderData>> encoderDataBuff,
+    std::shared_ptr<DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffLeft,
+    std::shared_ptr<DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffRight,
+    std::shared_ptr<DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffRear, int initialFrameRate)
     : stub_(sensors::Sensors::NewStub(channel)), joystickDataBuff(joystickDataBuff),
       cameraDataBuff(cameraDataBuff), radarDataBuff(radarDataBuff),
       ultrasonicDataBuff(ultrasonicDataBuff), zoneScalingDataBuff(zoneScalingDataBuff),
       joystickScalingDataBuff(joystickScalingDataBuff), ahrsDataBuff(ahrsDataBuff),
-      imuDataBuff(imuDataBuff), encoderDataBuff(encoderDataBuff)
+      imuDataBuff(imuDataBuff), encoderDataBuff(encoderDataBuff), irDataBuffLeft(irDataBuffLeft),
+      irDataBuffRight(irDataBuffRight), irDataBuffRear(irDataBuffRear)
 {
     grpcThreads.emplace_back(&ClientGuide::readJoystickPosition, this);
     grpcThreads.emplace_back(&ClientGuide::readCameraData, this);
@@ -48,6 +56,7 @@ ClientGuide::ClientGuide(
     grpcThreads.emplace_back(&ClientGuide::readAhrsData, this);
     grpcThreads.emplace_back(&ClientGuide::readImuData, this);
     grpcThreads.emplace_back(&ClientGuide::readEncoderData, this);
+    grpcThreads.emplace_back(&ClientGuide::readIrFrame, this, initialFrameRate);
 }
 
 ClientGuide::~ClientGuide()
@@ -146,9 +155,9 @@ void ClientGuide::readJoystickPosition() const
 {
     ClientContext context;
     const google::protobuf::Empty request;
-    sensors::Joystick response;
+    sensors::JoystickData response;
 
-    std::unique_ptr<ClientReader<sensors::Joystick>> reader(
+    std::unique_ptr<ClientReader<sensors::JoystickData>> reader(
         stub_->JoystickStream(&context, request));
     reader->Read(&response);
 
@@ -348,4 +357,93 @@ void ClientGuide::readEncoderData() const
 
         this->encoderDataBuff->push(encoderData);
     }
+}
+
+void ClientGuide::updateFrameRate(int rate) { this->irFrameRateDataBuff.push(rate); }
+
+void ClientGuide::readIrFrame(int initialRate)
+{
+    ClientContext context;
+    sensors::IrFrame response;
+
+    // Set up a bidirectional stream
+    std::unique_ptr<ClientReaderWriter<sensors::FrameRate, sensors::IrFrame>> stream(
+        stub_->IrStream(&context));
+
+    // Send the inital requested rate
+    sensors::FrameRate requestedRate;
+    requestedRate.set_rate(initialRate);
+    if (!stream->Write(requestedRate))
+    {
+        spdlog::error("Failed to set initial rate");
+        return;
+    }
+
+    // Flag to signal the rate publisher to close down
+    std::atomic_bool shutdown = false;
+    // Thread for updating frame rate during execution of stream
+    std::thread rateReaderPublisher(
+        [&stream, &shutdown, this]()
+        {
+            sensors::FrameRate requestedRate;
+
+            // Spin forever waiting for a new message on the rate data buff indicating a new
+            // requested rate unless shutdown flag is set to true
+            std::chrono::milliseconds threadWaitTime = 100ms;
+            while (!shutdown)
+            {
+                // Wait for new data or threadWaitTime (ms) to pass. The timeout here is for
+                // terminating the thread if the stream is closed.
+                auto updateRateOpt = this->irFrameRateDataBuff.waitNext(threadWaitTime);
+                if (updateRateOpt.has_value())
+                {
+                    auto updateRate = *updateRateOpt;
+                    requestedRate.set_rate(updateRate);
+
+                    // Based on how the writer below works the new rate will only take into effect
+                    // once a frame has been set from the old rate. So at most the frame rate will
+                    // need to wait 1 second before changing
+                    spdlog::debug("IR Rate Sending: {}", requestedRate.rate());
+
+                    if (!stream->Write(requestedRate))
+                    {
+                        break;
+                    }
+                }
+            }
+        });
+
+    // Reading IR frame
+    while (stream->Read(&response) && (response.frame().size() > 0))
+    {
+        // Make a new pointer to an array of bytes of image size
+        auto& frame = response.frame();
+
+        std::vector<uint8_t> bytes(frame.begin(), frame.end());
+        CameraIrData cameraIrData =
+            CameraIrData<WIDTH, HEIGHT>(response.width(), response.height(), bytes);
+        {
+            if (response.camera() == "left")
+            {
+                this->irDataBuffLeft->push(cameraIrData);
+            }
+            else if (response.camera() == "right")
+            {
+                this->irDataBuffRight->push(cameraIrData);
+            }
+            else if (response.camera() == "rear")
+            {
+                this->irDataBuffRear->push(cameraIrData);
+            }
+        }
+        spdlog::debug("IR MESSAGE SIZE: {}", response.ByteSizeLong());
+    }
+    spdlog::debug("IR data buff closed");
+    this->irDataBuffLeft->close();
+    this->irDataBuffRight->close();
+    this->irDataBuffRear->close();
+
+    // When the stream goes down sets the atomic to terminate this thread
+    shutdown = true;
+    rateReaderPublisher.join();
 }
