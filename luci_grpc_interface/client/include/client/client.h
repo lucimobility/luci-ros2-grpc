@@ -37,6 +37,7 @@ using sensors::JoystickData;
 using sensors::NavigationScaling;
 using sensors::RadarPoints;
 using sensors::UltrasonicDistances;
+using sensors::CameraMetaData;
 
 namespace Luci::ROS2
 {
@@ -80,9 +81,9 @@ class ClientGuide
         std::shared_ptr<DataBuffer<AhrsInfo>> ahrsInfoBuff,
         std::shared_ptr<DataBuffer<ImuData>> imuDataBuff,
         std::shared_ptr<DataBuffer<EncoderData>> encoderDataBuff,
-        std::shared_ptr<DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffLeft,
-        std::shared_ptr<DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffRight,
-        std::shared_ptr<DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffRear,
+        std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffLeft,
+        std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffRight,
+        std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffRear,
         int initialFrameRate);
 
     /**
@@ -108,9 +109,9 @@ class ClientGuide
     std::shared_ptr<DataBuffer<AhrsInfo>> ahrsDataBuff;
     std::shared_ptr<DataBuffer<ImuData>> imuDataBuff;
     std::shared_ptr<DataBuffer<EncoderData>> encoderDataBuff;
-    std::shared_ptr<DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffLeft;
-    std::shared_ptr<DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffRight;
-    std::shared_ptr<DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffRear;
+    std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffLeft;
+    std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffRight;
+    std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffRear;
 
     /// Data Buffer for thread safe updates to the IR frame a given client is getting sent
     DataBuffer<int> irFrameRateDataBuff;

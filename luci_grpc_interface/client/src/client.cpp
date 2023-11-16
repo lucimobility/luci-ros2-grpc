@@ -37,9 +37,9 @@ ClientGuide::ClientGuide(
     std::shared_ptr<DataBuffer<AhrsInfo>> ahrsDataBuff,
     std::shared_ptr<DataBuffer<ImuData>> imuDataBuff,
     std::shared_ptr<DataBuffer<EncoderData>> encoderDataBuff,
-    std::shared_ptr<DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffLeft,
-    std::shared_ptr<DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffRight,
-    std::shared_ptr<DataBuffer<CameraIrData<WIDTH, HEIGHT>>> irDataBuffRear, int initialFrameRate)
+    std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffLeft,
+    std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffRight,
+    std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffRear, int initialFrameRate)
     : stub_(sensors::Sensors::NewStub(channel)), joystickDataBuff(joystickDataBuff),
       cameraDataBuff(cameraDataBuff), radarDataBuff(radarDataBuff),
       ultrasonicDataBuff(ultrasonicDataBuff), zoneScalingDataBuff(zoneScalingDataBuff),
@@ -420,8 +420,43 @@ void ClientGuide::readIrFrame(int initialRate)
         auto& frame = response.frame();
 
         std::vector<uint8_t> bytes(frame.begin(), frame.end());
+        sensors::CameraMetaData metaData = response.meta_data();
+
+        CameraIntrinsics intrinsics =
+            CameraIntrinsics(metaData.intrinsics().fx(), metaData.intrinsics().fy(),
+                             metaData.intrinsics().ppx(), metaData.intrinsics().ppy());
+        CameraTransform transform = CameraTransform();
+
+        // Translation in meters
+        transform.translation.push_back(metaData.transformation().translation().x());
+        transform.translation.push_back(metaData.transformation().translation().y());
+        transform.translation.push_back(metaData.transformation().translation().z());
+
+        // Rotation in Radians
+        transform.rotation.push_back(metaData.transformation().rotation().x());
+        transform.rotation.push_back(metaData.transformation().rotation().y());
+        transform.rotation.push_back(metaData.transformation().rotation().z());
+
+        int type = 0;
+        switch (metaData.transformation().type())
+        {
+        case sensors::Pose::RADIAN:
+            type = 0;
+            break;
+        case sensors::Pose::DEGREE:
+            type = 1;
+            break;
+        case sensors::Pose::QUATERNION:
+            type = 2;
+            break;
+
+        default:
+            spdlog::error("IR rotation type not valid defaulting to radians");
+            break;
+        }
+
         CameraIrData cameraIrData =
-            CameraIrData<WIDTH, HEIGHT>(response.width(), response.height(), bytes);
+            CameraIrData(response.width(), response.height(), intrinsics, transform, type, bytes);
         {
             if (response.camera() == "left")
             {
@@ -436,6 +471,7 @@ void ClientGuide::readIrFrame(int initialRate)
                 this->irDataBuffRear->push(cameraIrData);
             }
         }
+
         spdlog::debug("IR MESSAGE SIZE: {}", response.ByteSizeLong());
     }
     spdlog::debug("IR data buff closed");
