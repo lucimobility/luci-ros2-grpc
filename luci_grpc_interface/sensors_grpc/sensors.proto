@@ -82,7 +82,7 @@ service Sensors {
       returns (stream BatteryVoltage);
   rpc BatteryPercentStream(google.protobuf.Empty)
       returns (stream BatteryPercent);
-  rpc RawCameraStream(google.protobuf.Empty) returns (stream CameraPoints);
+  rpc DecimatedCameraStream(google.protobuf.Empty) returns (stream CameraPoints);
   rpc CameraStream(google.protobuf.Empty) returns (stream CameraPoints);
   rpc FlatCameraStream(google.protobuf.Empty) returns (stream CameraPoints2D);
   rpc DropoffCameraStream(google.protobuf.Empty) returns (stream CameraPoints);

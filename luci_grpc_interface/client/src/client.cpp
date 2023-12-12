@@ -177,7 +177,8 @@ void ClientGuide::readCameraData() const
     const google::protobuf::Empty request;
     CameraPoints response;
 
-    std::unique_ptr<ClientReader<CameraPoints>> reader(stub_->RawCameraStream(&context, request));
+    std::unique_ptr<ClientReader<CameraPoints>> reader(
+        stub_->DecimatedCameraStream(&context, request));
     reader->Read(&response);
 
     while (reader->Read(&response))
