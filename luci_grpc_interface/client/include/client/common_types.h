@@ -18,20 +18,9 @@ struct SystemJoystick
 {
     int forward_back;
     int left_right;
-
-    inline SystemJoystick(int forward_back, int left_right)
-        : forward_back(forward_back), left_right(left_right)
-    {
-    }
-};
-
-struct LuciJoystickScaling
-{
-    int forward_back;
-    int left_right;
     std::string joystick_zone;
 
-    inline LuciJoystickScaling(int forward_back, int left_right, std::string joystick_zone)
+    inline SystemJoystick(int forward_back, int left_right, std::string joystick_zone)
         : forward_back(forward_back), left_right(left_right), joystick_zone(joystick_zone)
     {
     }

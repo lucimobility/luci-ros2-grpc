@@ -64,7 +64,7 @@ int main(int argc, char* argv[])
 
     auto zoneScalingDataBuff = std::make_shared<Luci::ROS2::DataBuffer<LuciZoneScaling>>();
 
-    auto joystickScalingDataBuff = std::make_shared<Luci::ROS2::DataBuffer<LuciJoystickScaling>>();
+    auto joystickScalingDataBuff = std::make_shared<Luci::ROS2::DataBuffer<SystemJoystick>>();
 
     auto ahrsInfoDataBuff = std::make_shared<Luci::ROS2::DataBuffer<AhrsInfo>>();
 
