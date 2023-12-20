@@ -113,6 +113,7 @@ void Interface::processJoystickPositionData()
         luci_messages::msg::LuciJoystick joystickPositionMsg;
         joystickPositionMsg.forward_back = joystickPositionData.forward_back;
         joystickPositionMsg.left_right = joystickPositionData.left_right;
+        joystickPositionMsg.joystick_zone = joystickPositionData.joystick_zone;
         this->joystickPositionPublisher->publish(joystickPositionMsg);
     }
 }

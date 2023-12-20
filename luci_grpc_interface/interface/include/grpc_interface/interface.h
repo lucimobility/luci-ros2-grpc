@@ -67,7 +67,7 @@ class Interface : public rclcpp::Node
         std::shared_ptr<Luci::ROS2::DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> ultrasonicDataBuff,
         std::shared_ptr<Luci::ROS2::DataBuffer<SystemJoystick>> joystickDataBuff,
         std::shared_ptr<Luci::ROS2::DataBuffer<LuciZoneScaling>> zoneScalingDataBuff,
-        std::shared_ptr<Luci::ROS2::DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff,
+        std::shared_ptr<Luci::ROS2::DataBuffer<SystemJoystick>> joystickScalingDataBuff,
         std::shared_ptr<Luci::ROS2::DataBuffer<AhrsInfo>> ahrsInfoDataBuff,
         std::shared_ptr<Luci::ROS2::DataBuffer<ImuData>> imuDataBuff,
         std::shared_ptr<Luci::ROS2::DataBuffer<EncoderData>> encoderDataBuff,
@@ -191,7 +191,7 @@ class Interface : public rclcpp::Node
     std::shared_ptr<Luci::ROS2::DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> radarDataBuff;
     std::shared_ptr<Luci::ROS2::DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> ultrasonicDataBuff;
     std::shared_ptr<Luci::ROS2::DataBuffer<LuciZoneScaling>> zoneScalingDataBuff;
-    std::shared_ptr<Luci::ROS2::DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff;
+    std::shared_ptr<Luci::ROS2::DataBuffer<SystemJoystick>> joystickScalingDataBuff;
     std::shared_ptr<Luci::ROS2::DataBuffer<SystemJoystick>> joystickDataBuff;
     std::shared_ptr<Luci::ROS2::DataBuffer<AhrsInfo>> ahrsInfoDataBuff;
     std::shared_ptr<Luci::ROS2::DataBuffer<ImuData>> imuDataBuff;

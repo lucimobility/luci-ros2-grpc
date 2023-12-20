@@ -33,7 +33,7 @@ ClientGuide::ClientGuide(
     std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> radarDataBuff,
     std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> ultrasonicDataBuff,
     std::shared_ptr<DataBuffer<LuciZoneScaling>> zoneScalingDataBuff,
-    std::shared_ptr<DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff,
+    std::shared_ptr<DataBuffer<SystemJoystick>> joystickScalingDataBuff,
     std::shared_ptr<DataBuffer<AhrsInfo>> ahrsDataBuff,
     std::shared_ptr<DataBuffer<ImuData>> imuDataBuff,
     std::shared_ptr<DataBuffer<EncoderData>> encoderDataBuff,
@@ -163,7 +163,8 @@ void ClientGuide::readJoystickPosition() const
 
     while (reader->Read(&response))
     {
-        SystemJoystick joystickValues(response.forward_back(), response.left_right());
+        SystemJoystick joystickValues(response.forward_back(), response.left_right(),
+                                      response.joystick_zone());
 
         this->joystickDataBuff->push(joystickValues);
     }
@@ -284,7 +285,7 @@ void ClientGuide::readJoystickScalingData() const
 
     while (reader->Read(&response))
     {
-        LuciJoystickScaling scalingValues(response.forward_back(), response.left_right(),
+        SystemJoystick scalingValues(response.forward_back(), response.left_right(),
                                           response.joystick_zone());
 
         this->joystickScalingDataBuff->push(scalingValues);
