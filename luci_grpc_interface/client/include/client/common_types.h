@@ -158,12 +158,13 @@ struct EncoderData
     float bl_caster_degrees;
     float fr_caster_degrees;
     float br_caster_degrees;
+    int edge_timestamp;
 
     inline EncoderData(float left_angle, float right_angle, float fl_caster_degrees,
-                       float bl_caster_degrees, float fr_caster_degrees, float br_caster_degrees)
+                       float bl_caster_degrees, float fr_caster_degrees, float br_caster_degrees, int edge_timestamp)
         : left_angle(left_angle), right_angle(right_angle), fl_caster_degrees(fl_caster_degrees),
           bl_caster_degrees(bl_caster_degrees), fr_caster_degrees(fr_caster_degrees),
-          br_caster_degrees(br_caster_degrees)
+          br_caster_degrees(br_caster_degrees), edge_timestamp(edge_timestamp)
     {
     }
 };

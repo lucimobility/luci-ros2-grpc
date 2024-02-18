@@ -229,6 +229,8 @@ void Interface::processEncoderData()
         rosEncoderMsg.fr_caster_degrees = encoderData.fr_caster_degrees;
         rosEncoderMsg.br_caster_degrees = encoderData.br_caster_degrees;
 
+        rosEncoderMsg.edge_timestamp = encoderData.edge_timestamp;
+
         this->encoderPublisher->publish(rosEncoderMsg);
     }
 }

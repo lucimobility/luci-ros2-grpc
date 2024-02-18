@@ -45,7 +45,8 @@ service Sensors {
   rpc ResetChairChanges(google.protobuf.Empty) returns (Response);
 
   rpc HmiStream(google.protobuf.Empty) returns (stream HmiStreamData);
-  rpc PressCountStream(google.protobuf.Empty) returns (stream PressCountStreamData);
+  rpc PressCountStream(google.protobuf.Empty)
+      returns (stream PressCountStreamData);
   rpc UltrasonicStream(google.protobuf.Empty)
       returns (stream UltrasonicDistances);
   rpc RawUltrasonicStream(google.protobuf.Empty)
@@ -82,7 +83,8 @@ service Sensors {
       returns (stream BatteryVoltage);
   rpc BatteryPercentStream(google.protobuf.Empty)
       returns (stream BatteryPercent);
-  rpc DecimatedCameraStream(google.protobuf.Empty) returns (stream CameraPoints);
+  rpc DecimatedCameraStream(google.protobuf.Empty)
+      returns (stream CameraPoints);
   rpc CameraStream(google.protobuf.Empty) returns (stream CameraPoints);
   rpc FlatCameraStream(google.protobuf.Empty) returns (stream CameraPoints2D);
   rpc DropoffCameraStream(google.protobuf.Empty) returns (stream CameraPoints);
@@ -447,6 +449,10 @@ message UltrasonicCurve {
   int32 address = 4;
 }
 
+message TelemetryFloatList {
+  repeated float values = 1;
+}
+
 message RadarFilter {
   enum Filter {
     RANGE_CHOP = 0;
@@ -622,7 +628,8 @@ message EncoderData {
   float bl_caster_degrees = 4;
   float fr_caster_degrees = 5;
   float br_caster_degrees = 6;
-  google.protobuf.Timestamp timestamp = 7;
+  uint32 edge_timestamp = 7;
+  google.protobuf.Timestamp timestamp = 8;
 }
 
 message Vec3 {
@@ -708,7 +715,8 @@ enum RampState {
 message RampMode {
   bool ramp_active = 1;
   bool override_dropoff = 2;
-  google.protobuf.Timestamp timestamp = 3;
+  bool backwards_traversal = 3;
+  google.protobuf.Timestamp timestamp = 4;
 }
 
 message RampCanceled {
@@ -750,10 +758,10 @@ message QuaternionRotation {
   float w = 4;
 }
 
-// This is a general rotation message that can be used for Euler or Quaternion units. 
-// This is not to be used directly but rather in a Pose message. Depending on the "Type" set
-// in the Pose message defines how to treat the x,y,z elements and if the w element should 
-// be ignored.
+// This is a general rotation message that can be used for Euler or Quaternion
+// units. This is not to be used directly but rather in a Pose message.
+// Depending on the "Type" set in the Pose message defines how to treat the
+// x,y,z elements and if the w element should be ignored.
 message Rotation {
   float x = 1;
   float y = 2;
