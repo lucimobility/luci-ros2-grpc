@@ -286,7 +286,7 @@ void ClientGuide::readJoystickScalingData() const
     while (reader->Read(&response))
     {
         SystemJoystick scalingValues(response.forward_back(), response.left_right(),
-                                          response.joystick_zone());
+                                     response.joystick_zone());
 
         this->joystickScalingDataBuff->push(scalingValues);
     }
@@ -355,7 +355,8 @@ void ClientGuide::readEncoderData() const
     {
         EncoderData encoderData(response.left_angle(), response.right_angle(),
                                 response.fl_caster_degrees(), response.bl_caster_degrees(),
-                                response.fr_caster_degrees(), response.br_caster_degrees());
+                                response.fr_caster_degrees(), response.br_caster_degrees(),
+                                response.edge_timestamp());
 
         this->encoderDataBuff->push(encoderData);
     }
