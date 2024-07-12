@@ -22,255 +22,33 @@ import "google/protobuf/wrappers.proto";
 package sensors;
 
 service Sensors {
-  rpc TurnOnLed(Led) returns (Response);
-  rpc TurnOffLed(Led) returns (Response);
-  rpc ActivateHmiState(HmiState) returns (Response);
-  rpc DeactivateHmiState(HmiState) returns (Response);
-  rpc SetNavigationScaling(NavigationScaling) returns (Response);
-  rpc TurnOnUltrasonic(UltrasonicCtrl) returns (Response);
-  rpc TurnOffUltrasonic(UltrasonicCtrl) returns (Response);
-  rpc TurnOnRadar(RadarCtrl) returns (Response);
-  rpc TurnOffRadar(RadarCtrl) returns (Response);
-  rpc CollectImuCalibration(google.protobuf.Empty) returns (Response);
-  rpc DFGetCurrentParameters(google.protobuf.Empty) returns (Response);
-  rpc DFGetBufferedEvents(google.protobuf.Empty) returns (Response);
-  rpc DisableLuci(google.protobuf.Empty) returns (Response);
-  rpc ResetMpu(google.protobuf.Empty) returns (Response);
-  rpc JsOverride(RemoteJsValues) returns (Response);
-  rpc SendJoystickRecording(JoystickRecording) returns (google.protobuf.Empty);
-  rpc SetDriveMode(ModeCtrl) returns (Response);
-  rpc RampUiPassThrough(RampMode) returns (Response);
-  rpc SetLuciOverride(LuciOverride) returns (Response);
-  rpc ExtPressCount(PressCountStreamData) returns (Response);
-  rpc HsmEvent(LuciSensorsEvent) returns (Response);
-  rpc SendRawCanFrame(CanFrame) returns (Response);
-  rpc NextChairProfile(google.protobuf.Empty) returns (Response);
-  rpc PreviousChairProfile(google.protobuf.Empty) returns (Response);
-  rpc SetChairSpeedSetting(SpeedSetting) returns (Response);
-  rpc IncrementChairSpeedSetting(google.protobuf.Empty) returns (Response);
-  rpc DecrementChairSpeedSetting(google.protobuf.Empty) returns (Response);
-  rpc ToggleHeadlights(google.protobuf.Empty) returns (Response);
-  rpc ToggleLeftBlinker(google.protobuf.Empty) returns (Response);
-  rpc ToggleRightBlinker(google.protobuf.Empty) returns (Response);
-  rpc ToggleHazards(google.protobuf.Empty) returns (Response);
-  rpc HoldEStop(google.protobuf.Empty) returns (Response);
-  rpc ReleaseEStop(google.protobuf.Empty) returns (Response);
-  rpc ResetChairChanges(google.protobuf.Empty) returns (Response);
 
-  rpc HmiStream(google.protobuf.Empty) returns (stream HmiStreamData);
-  rpc PressCountStream(google.protobuf.Empty)
-      returns (stream PressCountStreamData);
+  rpc JsOverride(RemoteJsValues) returns (Response); //
+  rpc SetDriveMode(ModeCtrl) returns (Response); //
   rpc UltrasonicStream(google.protobuf.Empty)
-      returns (stream UltrasonicDistances);
-  rpc RawUltrasonicStream(google.protobuf.Empty)
-      returns (stream UltrasonicCurve);
-  rpc RadarStream(google.protobuf.Empty) returns (stream RadarPoints);
-  rpc RawRadarStream(google.protobuf.Empty) returns (stream RadarPoints);
-  rpc ChairSpeedStream(google.protobuf.Empty) returns (stream ChairSpeed);
-  rpc ImuStream(ImuCtrl) returns (stream ImuData);
-  rpc ChairModeStream(google.protobuf.Empty) returns (stream ChairMode);
-  rpc ChairProfileStream(google.protobuf.Empty) returns (stream ChairProfile);
-  rpc SpeedSettingStream(google.protobuf.Empty) returns (stream SpeedSetting);
-  rpc JoystickStream(google.protobuf.Empty) returns (stream JoystickData);
-  rpc VirtualJoystickStream(google.protobuf.Empty)
-      returns (stream JoystickData);
-  rpc PhysicalJoystickStream(google.protobuf.Empty)
-      returns (stream JoystickData);
-  rpc ScaledJoystickStream(google.protobuf.Empty) returns (stream JoystickData);
-  rpc RemoteJoystickStream(google.protobuf.Empty) returns (stream JoystickData);
-  rpc AhrsStream(google.protobuf.Empty) returns (stream AhrsData);
+      returns (stream UltrasonicDistances); //
 
-  rpc RadarClosestObstaclesStream(google.protobuf.Empty)
-      returns (stream ClosestObstacles);
-  rpc UltrasonicClosestObstaclesStream(google.protobuf.Empty)
-      returns (stream ClosestObstacles);
-  rpc CameraCollisionClosestObstaclesStream(google.protobuf.Empty)
-      returns (stream ClosestObstacles);
-  rpc StepClosestObstaclesStream(google.protobuf.Empty)
-      returns (stream ClosestObstacles);
-  rpc DropoffClosestObstaclesStream(google.protobuf.Empty)
-      returns (stream ClosestObstacles);
+  rpc RadarStream(google.protobuf.Empty) returns (stream RadarPoints); //
+  rpc ImuStream(ImuCtrl) returns (stream ImuData); //
+  rpc JoystickStream(google.protobuf.Empty) returns (stream JoystickData); //
 
-  rpc ScalingStream(google.protobuf.Empty) returns (stream NavigationScaling);
-  rpc BatteryVoltageStream(google.protobuf.Empty)
-      returns (stream BatteryVoltage);
-  rpc BatteryPercentStream(google.protobuf.Empty)
-      returns (stream BatteryPercent);
+
+  rpc ScaledJoystickStream(google.protobuf.Empty) returns (stream JoystickData); //
+  rpc AhrsStream(google.protobuf.Empty) returns (stream AhrsData); //
+
+  rpc ScalingStream(google.protobuf.Empty) returns (stream NavigationScaling); //
+
   rpc DecimatedCameraStream(google.protobuf.Empty)
-      returns (stream CameraPoints);
-  rpc CameraStream(google.protobuf.Empty) returns (stream CameraPoints);
-  rpc FlatCameraStream(google.protobuf.Empty) returns (stream CameraPoints2D);
-  rpc DropoffCameraStream(google.protobuf.Empty) returns (stream CameraPoints);
-  rpc CaneCameraStream(google.protobuf.Empty)
-      returns (stream ObjectDetection2D);
-  rpc GPSStream(google.protobuf.Empty) returns (stream GPSData);
-  rpc SeatPressureStream(google.protobuf.Empty) returns (stream SeatPressure);
-  rpc DFParametersChangedStream(google.protobuf.Empty)
-      returns (stream DFParameters);
-  rpc DFEventStream(google.protobuf.Empty) returns (stream DFSeatEvent);
+      returns (stream CameraPoints); //
 
-  rpc SendControlInfo(ControlInfo) returns (google.protobuf.Empty);
-  rpc SendLogging(LoggingData) returns (Response);
-  rpc LoggingStream(google.protobuf.Empty) returns (stream LoggingData);
-  rpc StepCameraStream(google.protobuf.Empty) returns (stream CameraPoints);
-  rpc IrStream(stream FrameRate) returns (stream IrFrame);
-  rpc RampAssistStream(google.protobuf.Empty) returns (stream RampMode);
-  rpc RampCanceledStream(google.protobuf.Empty) returns (stream RampCanceled);
-  rpc DistStream(google.protobuf.Empty) returns (stream DistanceData);
+  rpc IrStream(stream FrameRate) returns (stream IrFrame); //
 
-  rpc StartModeStream(google.protobuf.Empty) returns (stream StartModeData);
-
-  rpc GetZoneBoundaries(google.protobuf.Empty) returns (ZoneBoundaries);
-  rpc GetBlockedZones(google.protobuf.Empty) returns (BlockedZones);
-  rpc GetJoystickRanges(google.protobuf.Empty) returns (JoystickRanges);
-
-  rpc EnableRadarFilter(RadarFilter) returns (Response) {}
-  rpc DisableRadarFilter(RadarFilter) returns (Response) {}
-
-  rpc EncoderStream(google.protobuf.Empty) returns (stream EncoderData);
-
-  rpc GetCalMatrix(google.protobuf.Empty) returns (CalMatrix);
-
-  rpc TestReaction(google.protobuf.Empty) returns (ReactionTestResult);
-
-  rpc LuciOverrideStream(google.protobuf.Empty) returns (stream LuciOverride);
-
-  rpc LuciLandmarkStreamPassThrough(stream LuciLandmark) returns (Response);
-
-  rpc RampInfoStreamPassThrough(stream RampInfo) returns (Response);
-
-  rpc LuciLandmarkStream(google.protobuf.Empty) returns (stream LuciLandmark);
-
-  rpc RampInfoStream(google.protobuf.Empty) returns (stream RampInfo);
-  rpc DriveModeStream(google.protobuf.Empty) returns (stream ModeCtrl);
-
-  rpc SensorHealthStream(google.protobuf.Empty)
-      returns (stream SensorHealthState);
-
-  rpc EnableSetupToolStream(google.protobuf.Empty)
-      returns (stream google.protobuf.BoolValue);
-  rpc EngagedFeaturesAllowedStream(google.protobuf.Empty)
-      returns (stream google.protobuf.BoolValue);
-}
-
-message ZoneBoundary {
-  repeated Point2D polygon = 1;
-  repeated Point2D critical_point = 2;
-  string name = 3;
-}
-
-message ZoneBoundaries {
-  repeated ZoneBoundary zone_boundary = 1;
-}
-
-message BlockedZone {
-  repeated Point2D points = 1;
-  string sensor = 2;
-}
-
-message BlockedZones {
-  repeated BlockedZone blocked_zones = 1;
-}
-
-message JoystickRange {
-  float begin = 1;
-  float end = 2;
-}
-
-message JoystickRanges {
-  repeated JoystickRange joystick_ranges = 1;
-}
-
-message StartModeData {
-  enum StartModes {
-    UNKNOWN = 0;
-    NORMAL = 1;
-    AUTO = 2;
-    DISABLED = 3;
-  }
-  StartModes mode = 1;
-  repeated string missing_devices = 2;
+  rpc EncoderStream(google.protobuf.Empty) returns (stream EncoderData); //
 }
 
 message Response {
   string reply = 1;
   int32 return_code = 2;
-}
-
-message DFParameters {
-  uint32 df_timestamp = 1;
-  float target_pressure = 2;
-  float high_pressure = 3;
-  float low_pressure = 4;
-  float in_seat_pressure = 5;
-  float offload_pressure = 6;
-}
-
-message DFSeatEvent {
-  uint32 current_timestamp = 1;
-  uint32 event_timestamp = 2;
-  enum EventGroup {
-    UNKNOWN_EVENT_GROUP = 0;
-    reserved 1 to 160;
-    PRESSURE = 161;
-    WETNESS = 162;
-    INFLATION = 163;
-  }
-  EventGroup group = 3;
-
-  enum EventType {
-    UNKNOWN_PRESSURE_EVENT_TYPE = 0;
-    reserved 1 to 17;
-    OUT_OF_SEAT = 18;
-    PRESSURE_HIGH = 19;
-    PRESSURE_LOW = 20;
-    OFFLOAD = 21;
-    PRESSURE_OK = 22;
-  }
-  EventType event_type = 4;
-}
-
-message DistanceData {
-  // Total distance the chair has traveled in meters.
-  int32 distance = 1;
-}
-
-message SeatPressure {
-  float pressure = 1;
-}
-
-message ObstacleValue {
-  message Linear {
-    float distance = 1;
-  }
-
-  message Angular {
-    float angle = 1;
-  }
-
-  message Combo {
-    float distance = 1;
-    float angle = 2;
-  }
-
-  oneof value {
-    Linear linear = 1;
-    Angular angular = 2;
-    Combo combo = 3;
-  }
-}
-
-message ClosestObstacles {
-  ObstacleValue front = 1;
-  ObstacleValue front_left = 2;
-  ObstacleValue front_right = 3;
-  ObstacleValue left = 4;
-  ObstacleValue right = 5;
-  ObstacleValue back_left = 6;
-  ObstacleValue back_right = 7;
-  ObstacleValue back = 8;
-
-  google.protobuf.Timestamp timestamp = 9;
 }
 
 message CameraPoints {
@@ -284,117 +62,9 @@ message Point3D {
   float z = 3;
 }
 
-message ObjectDetection2D {
-  repeated Object2D objects = 1;
-}
-
-message Object2D {
-  CameraPoints2D points = 1;
-  string label = 2;
-}
-
-message CameraPoints2D {
-  repeated Point2D points = 1;
-  google.protobuf.Timestamp timestamp = 2;
-}
-
 message Point2D {
   float x = 1;
   float y = 2;
-}
-
-message PidVals {
-  float k_p = 1;
-  float k_i = 2;
-  float k_d = 3;
-  float output_val = 4;
-  float sensor_reading = 5;
-  float error = 6;
-  float derivative_error = 7;
-  float integral_error = 8;
-  google.protobuf.Timestamp timestamp = 9;
-}
-
-message ZoneControlVals {
-  map<string, PidVals> info = 1;
-}
-
-message ControlInfo {
-  map<string, ZoneControlVals> info = 1;
-}
-
-message LoggingData {
-  string key = 1;
-  double value = 2;
-  int32 timestamp = 3;
-  repeated Point3D points = 4;
-}
-
-message Led {
-  enum Leds {
-    UNKNOWN = 0;
-    SYSTEM_STATUS = 1;
-    SENSOR_OK = 2;
-    SENSOR_BLOCKED = 3;
-    SENSOR_ERROR = 4;
-    WIFI_CONNECTED = 5;
-    CELL_CONNECTED = 6;
-    BLUETOOTH_CONNECTED = 7;
-  }
-  Leds led = 1;
-}
-// Note any change here should have corresponding changes made to io-msp code in
-// hmi_states.h
-message HmiState {
-  enum States {
-    SETUP_APP_PULSE = 0;
-    REACTION_TEST_WAIT = 1;
-    REACTION_TEST_GO = 2;
-    SENSOR_SYSTEM_ERROR = 3;
-    NOMINAL_OFF = 4;
-    SENSOR_SYSTEM_OVERRIDE = 5;
-    LUCI_LOADING = 6;
-    SENSOR_BLOCKED = 9;
-    SYSTEM_OK = 10;
-    STABILITY_WARNING = 11;
-    STABILITY_DANGER = 12;
-    STABILITY_TIPPED = 13;
-    SENDING_LOGS = 14;
-    WIFI_SENDING = 15;
-    WIFI_AVAILABLE = 16;
-    CELL_SENDING = 17;
-    CELL_AVAILABLE = 18;
-    USER_KEY_LOW = 19;
-    USER_KEY_PRESENT = 20;
-    NO_ACTION = 21;
-    BUTTON_PRESSED = 22;
-    UPDATE_IN_PROGRESS = 23;
-    ALL_OFF = 24;
-    FLASH_LEDS = 25;
-    CHASE_LEDS = 26;
-    TEST_USER_KEY = 27;
-    TEST_WIFI = 28;
-    TEST_CELL = 29;
-    TEST_SENSOR_OK = 30;
-    TEST_SENSOR_WARNING = 31;
-    TEST_SENSOR_ERROR = 32;
-    TEST_LUCI_BUTTON = 33;
-    CHECKING_FOR_UPDATE = 34;
-  }
-  States state = 1;
-}
-
-message HmiStreamData {
-  bool is_alt_override = 1;
-  enum ButtonState {
-    PRESSED = 0;
-    RELEASED = 1;
-  }
-  ButtonState button_state = 2;
-}
-
-message PressCountStreamData {
-  int32 press_count = 1;
 }
 
 message NavigationScaling {
@@ -418,18 +88,6 @@ message NavigationScaling {
   uint32 max_js_scale_decrease = 18;
 }
 
-message UltrasonicCtrl {
-  enum Board {
-    UNKNOWN = 0;
-    MPU = 1;
-    IO_B_LEFT = 2;
-    IO_B_RIGHT = 3;
-  }
-  Board board = 1;
-  int32 spi_id = 2;   // 1-5 on MPU, 0-1 on IO_B
-  int32 address = 3;  // indication of frequency, 1 is 48 and 2 is 55
-}
-
 message UltrasonicDistance {
   enum Board {
     UNKNOWN = 0;
@@ -447,47 +105,6 @@ message UltrasonicDistance {
 
 message UltrasonicDistances {
   repeated UltrasonicDistance distances = 1;
-}
-
-message UltrasonicCurve {
-  enum Board {
-    UNKNOWN = 0;
-    MPU = 1;
-    IO_B_LEFT = 2;
-    IO_B_RIGHT = 3;
-  }
-  repeated int32 curve = 1;
-  Board board = 2;
-  int32 spi_id = 3;
-  int32 address = 4;
-}
-
-message TelemetryFloatList {
-  repeated float values = 1;
-}
-
-message RadarFilter {
-  enum Filter {
-    RANGE_CHOP = 0;
-    ORIGIN = 1;
-    FOV = 2;
-    PEAK = 3;
-    STICKY = 4;
-    EXTRA_STICKY = 5;
-    TRANSFORMS = 6;
-    ADAM = 7;
-  }
-  Filter filter = 1;
-}
-
-message RadarCtrl {
-  enum Radar {
-    UNKNOWN = 0;
-    LEFT = 1;
-    RIGHT = 2;
-    FRONT = 3;
-  }
-  Radar radar = 1;
 }
 
 message RadarPoint {
@@ -508,11 +125,6 @@ message RadarPoints {
   repeated RadarPoint points = 1;
   Radar source = 2;
   google.protobuf.Timestamp timestamp = 3;
-}
-
-message ChairSpeed {
-  double speed_m_p_s = 1;
-  google.protobuf.Timestamp timestamp = 2;
 }
 
 enum Imu {
@@ -571,67 +183,11 @@ message ImuData {
   Imu source = 28;
 }
 
-message ChairMode {
-  bool is_drive_mode = 1;
-}
-
-message ChairProfile {
-  int32 profile = 1;
-}
-
-message SpeedSetting {
-  uint32 speed_setting = 1;
-}
-
 message JoystickData {
   int32 forward_back = 1;
   int32 left_right = 2;
   string joystick_zone = 3;
   google.protobuf.Timestamp timestamp = 4;
-}
-
-message JoystickRecord {
-  int32 drive_fb = 1;
-  int32 drive_rl = 2;
-  int32 phys_fb = 3;
-  int32 phys_rl = 4;
-  int32 count = 5;
-}
-message JoystickRecording {
-  repeated JoystickRecord record = 1;
-}
-
-message BatteryVoltage {
-  double battery_voltage = 1;
-}
-
-message BatteryPercent {
-  int32 battery_percentage = 1;
-}
-
-message GPSData {
-  enum quality_t {
-    no_fix = 0;
-    standard_gps_2d_3d = 1;
-    differential_gps = 2;
-    rtk_fixed_solution = 4;
-    rtk_float_solution = 5;
-    estimated_dr = 6;
-  }
-  int32 latitude = 1;
-  int32 longitude = 2;
-  int32 heading_of_motion = 3;
-  uint32 number_of_sv = 4;
-  uint32 hDOP = 5;
-  int32 height_above_sea = 6;
-  int32 ground_speed = 7;
-  quality_t quality = 8;
-  int32 year = 9;
-  int32 month = 10;
-  int32 day = 11;
-  int32 hour = 12;
-  int32 minute = 13;
-  int32 second = 14;
 }
 
 message EncoderData {
@@ -667,101 +223,11 @@ message AhrsData {
   google.protobuf.Timestamp timestamp = 6;
 }
 
-message MatrixElement {
-  float value = 1;
-}
-
-message CalMatrix {
-  int32 rows = 1;
-  int32 columns = 2;
-  repeated MatrixElement matrix_element = 3;
-}
-
 message IrIntrinsics {
   float fx = 1;
   float fy = 2;
   float ppx = 3;
   float ppy = 4;
-}
-
-message IrFrame {
-  bytes frame = 1;
-  int32 width = 2;
-  int32 height = 3;
-  string camera = 4;
-  CameraMetaData meta_data = 5;
-  google.protobuf.Timestamp timestamp = 6;
-}
-
-message CameraMetaData {
-  IrIntrinsics intrinsics = 2;
-  Pose transformation = 3;
-}
-
-message RemoteJsValues {
-  int32 forward_back = 1;
-  int32 left_right = 2;
-}
-
-// See
-// https://patroness.atlassian.net/wiki/spaces/LS/pages/1759215628/Engaged+and+Autonomous+Requirements
-// USER mode => luci nominal operations
-// ENGAGED => Override JS values only when joystick engaged
-// AUTONOMOUS => Override Js values without joystick engaged
-enum DriveMode {
-  USER = 0;
-  ENGAGED = 1;
-  AUTONOMOUS = 2;
-  PLAYBACK = 3;
-}
-
-message ModeCtrl {
-  DriveMode mode = 1;
-}
-
-enum RampState {
-  APPROACH = 0;
-  ADJUSTMENT = 1;
-  NONE = 2;
-}
-
-message RampMode {
-  bool ramp_active = 1;
-  bool override_dropoff = 2;
-  bool backwards_traversal = 3;
-  google.protobuf.Timestamp timestamp = 4;
-}
-
-message RampCanceled {
-  bool ramp_canceled = 1;
-}
-
-enum SensorsEvent {
-  EnableSafeRemoteDrive = 0;
-  DisableSafeRemoteDrive = 1;
-  EnableRamp = 2;
-  DisableRamp = 3;
-  EnableUnsafeRemoteDrive = 4;
-  DisableUnsafeRemoteDrive = 5;
-}
-
-message LuciSensorsEvent {
-  SensorsEvent event = 1;
-}
-
-message LuciOverride {
-  bool override_active = 1;
-}
-
-message ReactionTestResult {
-  enum TestResult {
-    OK = 0;
-    EARLY_MOVEMENT = 1;
-    TIMEOUT = 2;
-    INTERNAL_ERROR = 3;
-  }
-  TestResult result = 1;
-  float reaction_time = 2;
 }
 
 message QuaternionRotation {
@@ -799,76 +265,50 @@ message Pose {
   Rotation rotation = 3;
 }
 
-// In the future Luci will likely be able to identifie other landmarks in its
-// operating zone and they may trigger different behaviors for subscribed
-// services
-enum LandMark {
-  ARUCO = 0;
-  OTHER = 1;
+
+message CameraMetaData {
+  IrIntrinsics intrinsics = 2;
+  Pose transformation = 3;
 }
 
-message LuciLandmark {
-  LandMark type = 1;
-  // If tag is of unique type (aruco) this is the unique id
-  int32 id = 2;
-  Pose pose = 3;
+message IrFrame {
+  bytes frame = 1;
+  int32 width = 2;
+  int32 height = 3;
+  string camera = 4;
+  CameraMetaData meta_data = 5;
+  google.protobuf.Timestamp timestamp = 6;
+}
+
+message RemoteJsValues {
+  int32 forward_back = 1;
+  int32 left_right = 2;
+}
+
+// USER mode => luci nominal operations
+// ENGAGED => Override JS values only when joystick engaged
+// AUTONOMOUS => Override Js values without joystick engaged
+enum DriveMode {
+  USER = 0;
+  ENGAGED = 1;
+  AUTONOMOUS = 2;
+  PLAYBACK = 3;
+}
+
+message ModeCtrl {
+  DriveMode mode = 1;
+}
+
+message ChairSpeed {
+  double speed_m_p_s = 1;
+  google.protobuf.Timestamp timestamp = 2;
+}
+
+message RampMode {
+  bool ramp_active = 1;
+  bool override_dropoff = 2;
+  bool backwards_traversal = 3;
   google.protobuf.Timestamp timestamp = 4;
-}
-
-message PID {
-  float p = 1;
-  float i = 2;
-  float d = 3;
-  float goal = 4;
-  float output = 5;
-  float error = 6;
-}
-
-message RampInfo {
-  RampState state = 1;
-  float extremity_center_dist_x = 2;
-  float chair_ramp_dist_y = 3;
-  // If the chair is using virtual these will be populated
-  int32 ramp_trac_js_lr = 4;
-  int32 ramp_trac_js_fb = 5;
-
-  int32 operating_js_lr = 6;
-  int32 operating_js_fb = 7;
-
-  PID approach_forward_pid = 8;
-  PID approach_turn_pid = 9;
-  PID adjustment_forward_pid = 10;
-  PID adjustment_turn_pid = 11;
-
-  float ramp_width = 12;
-  float ramp_linear_velocity = 13;
-  google.protobuf.Timestamp timestamp = 14;
-}
-
-message SensorHealthData {
-  enum HealthState {
-    HEALTHY = 0;
-    WARNING = 1;
-    ERROR = 2;
-  }
-  HealthState state = 1;
-  string info = 2;
-  google.protobuf.Timestamp timestamp = 3;
-}
-
-message SensorHealthState {
-  map<string, SensorHealthData> sensor_health = 1;
-}
-
-message CanFrame {
-  enum Destination {
-    JSM = 0;
-    PM = 1;
-    BOTH = 2;
-  }
-  Destination destination = 1;
-  uint32 id = 2;
-  repeated uint32 data = 3;
 }
 
 message FrameRate {
