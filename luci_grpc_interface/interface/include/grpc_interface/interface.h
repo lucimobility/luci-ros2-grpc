@@ -3,7 +3,19 @@
  * @brief The public interface that is exposed to ROS2
  * @date 2023-08-10
  *
- * @copyright Copyright (c) 2023 LUCI Mobility, Inc. All Rights Reserved.
+ * @copyright Copyright 2024 LUCI Mobility, Inc
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 // TODO: clp If you change the QoS make sure you update the docs to say what subscriber calls are
@@ -30,14 +42,13 @@
 #include <tf2_ros/transform_broadcaster.h>
 
 // LUCI ROS2 libraries
+#include <luci_messages/msg/luci_camera_info.hpp>
 #include <luci_messages/msg/luci_drive_mode.hpp>
 #include <luci_messages/msg/luci_encoders.hpp>
 #include <luci_messages/msg/luci_imu.hpp>
 #include <luci_messages/msg/luci_joystick.hpp>
 #include <luci_messages/msg/luci_joystick_scaling.hpp>
 #include <luci_messages/msg/luci_zone_scaling.hpp>
-#include <luci_messages/msg/luci_camera_info.hpp>
-
 
 // How many messages a ROS topic should queue
 constexpr size_t QUEUE_SIZE = 1;
@@ -95,7 +106,8 @@ class Interface : public rclcpp::Node
         this->odomPublisher =
             this->create_publisher<nav_msgs::msg::Odometry>("luci/odom", QUEUE_SIZE);
 
-        this->imuPublisher = this->create_publisher<luci_messages::msg::LuciImu>("luci/imu", QUEUE_SIZE);
+        this->imuPublisher =
+            this->create_publisher<luci_messages::msg::LuciImu>("luci/imu", QUEUE_SIZE);
 
         this->encoderPublisher =
             this->create_publisher<luci_messages::msg::LuciEncoders>("luci/encoders", QUEUE_SIZE);
@@ -131,14 +143,14 @@ class Interface : public rclcpp::Node
         this->irRearPublisher =
             this->create_publisher<sensor_msgs::msg::Image>("luci/ir_rear_camera", QUEUE_SIZE);
 
-        this->leftCameraInfoPublisher =
-            this->create_publisher<luci_messages::msg::LuciCameraInfo>("luci/left_camera_info", QUEUE_SIZE);
+        this->leftCameraInfoPublisher = this->create_publisher<luci_messages::msg::LuciCameraInfo>(
+            "luci/left_camera_info", QUEUE_SIZE);
 
-        this->rightCameraInfoPublisher =
-            this->create_publisher<luci_messages::msg::LuciCameraInfo>("luci/right_camera_info", QUEUE_SIZE);
+        this->rightCameraInfoPublisher = this->create_publisher<luci_messages::msg::LuciCameraInfo>(
+            "luci/right_camera_info", QUEUE_SIZE);
 
-        this->rearCameraInfoPublisher =
-            this->create_publisher<luci_messages::msg::LuciCameraInfo>("luci/rear_camera_info", QUEUE_SIZE);
+        this->rearCameraInfoPublisher = this->create_publisher<luci_messages::msg::LuciCameraInfo>(
+            "luci/rear_camera_info", QUEUE_SIZE);
 
         // TODO: clp Should the processing just be handled in the gRPC threads?
         // Spin up a single thread for every gRPC <-> ROS translation
@@ -173,7 +185,7 @@ class Interface : public rclcpp::Node
     rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr irLeftPublisher;
     rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr irRightPublisher;
     rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr irRearPublisher;
-    
+
     rclcpp::Publisher<luci_messages::msg::LuciCameraInfo>::SharedPtr leftCameraInfoPublisher;
     rclcpp::Publisher<luci_messages::msg::LuciCameraInfo>::SharedPtr rightCameraInfoPublisher;
     rclcpp::Publisher<luci_messages::msg::LuciCameraInfo>::SharedPtr rearCameraInfoPublisher;
