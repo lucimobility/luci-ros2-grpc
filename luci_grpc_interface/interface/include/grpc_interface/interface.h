@@ -152,6 +152,7 @@ class Interface : public rclcpp::Node
         this->rearCameraInfoPublisher = this->create_publisher<luci_messages::msg::LuciCameraInfo>(
             "luci/rear_camera_info", QUEUE_SIZE);
 
+
         // TODO: clp Should the processing just be handled in the gRPC threads?
         // Spin up a single thread for every gRPC <-> ROS translation
         grpcConverters.emplace_back(&Interface::processCameraData, this);
@@ -166,6 +167,8 @@ class Interface : public rclcpp::Node
         grpcConverters.emplace_back(&Interface::processLeftIrData, this);
         grpcConverters.emplace_back(&Interface::processRightIrData, this);
         grpcConverters.emplace_back(&Interface::processRearIrData, this);
+
+        RCLCPP_INFO(this->get_logger(), "IN interface public, setup works??");
     }
 
     /// Destructor
@@ -224,7 +227,7 @@ class Interface : public rclcpp::Node
     void processZoneScalingData();
     void processJoystickScalingData();
     void processJoystickPositionData();
-    void processAhrsData();
+    void processAhrsData();    
     void processImuData();
     void processEncoderData();
     void processLeftIrData();

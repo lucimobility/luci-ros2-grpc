@@ -29,11 +29,10 @@ service Sensors {
       returns (stream UltrasonicDistances); //
 
   rpc RadarStream(google.protobuf.Empty) returns (stream RadarPoints); //
-  rpc ImuStream(ImuCtrl) returns (stream ImuData); //
-  rpc JoystickStream(google.protobuf.Empty) returns (stream JoystickData); //
+  rpc ImuStream(ImuCtrl) returns (stream ImuData); // 
+  rpc DriveJoystickStream(google.protobuf.Empty) returns (stream JoystickData); //
 
-
-  rpc ScaledJoystickStream(google.protobuf.Empty) returns (stream JoystickData); //
+  rpc UserJoystickStream(google.protobuf.Empty) returns (stream JoystickData); //
   rpc AhrsStream(google.protobuf.Empty) returns (stream AhrsData); //
 
   rpc ScalingStream(google.protobuf.Empty) returns (stream NavigationScaling); //
@@ -183,11 +182,24 @@ message ImuData {
   Imu source = 28;
 }
 
+enum JoystickZone {
+  Front = 0;
+  FrontLeft = 1;
+  FrontRight = 2;
+  Left = 3;
+  Right = 4;
+  BackLeft = 5;
+  BackRight = 6;
+  Back = 7;
+  Origin = 8;
+}
+
 message JoystickData {
   int32 forward_back = 1;
   int32 left_right = 2;
-  string joystick_zone = 3;
-  google.protobuf.Timestamp timestamp = 4;
+  JoystickZone joystick_zone = 3;
+  InputSource source = 4;
+  google.protobuf.Timestamp timestamp = 5;
 }
 
 message EncoderData {
@@ -313,4 +325,16 @@ message RampMode {
 
 message FrameRate {
   uint32 rate = 1;
+}
+
+enum InputSource {
+RampAssist = 0;
+Remote = 1;
+WDI = 2;
+ChairVirtual = 3;
+ChairPhysical = 4;
+}
+
+message InputSourceRequest {
+InputSource source = 1;
 }

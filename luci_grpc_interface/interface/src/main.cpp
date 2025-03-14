@@ -21,6 +21,7 @@
 #include "client/client.h"
 #include "grpc_interface/interface.h"
 #include "tclap/CmdLine.h"
+#include "rclcpp/rclcpp.hpp"
 
 #include <iostream>
 
@@ -36,25 +37,29 @@ int main(int argc, char* argv[])
     std::string host;
     std::string port;
 
+    
     // Setup command line parser
     TCLAP::CmdLine cmd("LUCI ROS2 to gRPC interface", ' ', "---");
+    
 
     // Command to pass in chair ip address in gRPC mode
     TCLAP::ValueArg<std::string> hostArg("a", "host-address", "The host address. gRPC mode only.",
                                          true, "", "string");
+    
 
     // Command to pass in chair port in gRPC mode
     TCLAP::ValueArg<std::string> portArg("p", "gRPC-port", "Port number. gRPC mode only.", false,
                                          "50051", "string");
 
     // Command to pass in camera frame rate in gRPC mode
-    TCLAP::ValueArg<int> rateArg("f", "frame-rate", "IR Frame Rate gRPC mode only.", false, 0,
-                                 "int");
+    // TCLAP::ValueArg<int> rateArg("f", "frame-rate", "IR Frame Rate gRPC mode only.", false, 0,
+    //                              "int");
 
+    
     // Add the value arguments to the command line parser
     cmd.add(hostArg);
     cmd.add(portArg);
-    cmd.add(rateArg);
+    // cmd.add(rateArg);
 
     // Parse the argv array.
     cmd.parse(argc, argv);
@@ -62,7 +67,9 @@ int main(int argc, char* argv[])
     // Set the host and port values (if not set defaults used)
     host = hostArg.getValue();
     port = portArg.getValue();
-    int frameRate = rateArg.getValue();
+    // int frameRate = rateArg.getValue();
+
+    int frameRate = 0;
 
     // Initialize ROS stack and executor, Note: all argument parsing is handled externally by tclap
     rclcpp::init(0, nullptr);
@@ -113,14 +120,16 @@ int main(int argc, char* argv[])
         zoneScalingDataBuff, joystickScalingDataBuff, ahrsInfoDataBuff, imuDataBuff,
         encoderDataBuff, irDataBuffLeft, irDataBuffRight, irDataBuffRear, frameRate);
 
-    // ROS connection
+    // // ROS connection
     auto interface_node = std::make_shared<Interface>(
         luciInterface, cameraDataBuff, radarDataBuff, ultrasonicDataBuff, joystickDataBuff,
         zoneScalingDataBuff, joystickScalingDataBuff, ahrsInfoDataBuff, imuDataBuff,
         encoderDataBuff, irDataBuffLeft, irDataBuffRight, irDataBuffRear);
 
-    executor.add_node(interface_node);
+    // executor.add_node(interface_node);
     spdlog::debug("Running grpc interface");
+    
+    RCLCPP_INFO(rclcpp::get_logger("luci_interface"), "Running ROS2 executor...");
 
     executor.spin();
 

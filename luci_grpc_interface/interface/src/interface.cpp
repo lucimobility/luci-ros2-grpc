@@ -112,7 +112,8 @@ void Interface::processJoystickScalingData()
         luci_messages::msg::LuciJoystickScaling joystickScalingMsg;
         joystickScalingMsg.forward_back = joystickScalingData.forward_back;
         joystickScalingMsg.left_right = joystickScalingData.left_right;
-        joystickScalingMsg.joystick_zone = joystickScalingData.joystick_zone;
+        joystickScalingMsg.joystick_zone = static_cast<int>(joystickScalingData.joystick_zone);
+        joystickScalingMsg.input_source = static_cast<int>(joystickScalingData.input_source);
         this->joystickScalingPublisher->publish(joystickScalingMsg);
     }
 }
@@ -125,7 +126,8 @@ void Interface::processJoystickPositionData()
         luci_messages::msg::LuciJoystick joystickPositionMsg;
         joystickPositionMsg.forward_back = joystickPositionData.forward_back;
         joystickPositionMsg.left_right = joystickPositionData.left_right;
-        joystickPositionMsg.joystick_zone = joystickPositionData.joystick_zone;
+        joystickPositionMsg.joystick_zone = static_cast<int>(joystickPositionData.joystick_zone);
+        joystickPositionMsg.input_source = static_cast<int>(joystickPositionData.input_source);
         this->joystickPositionPublisher->publish(joystickPositionMsg);
     }
 }
