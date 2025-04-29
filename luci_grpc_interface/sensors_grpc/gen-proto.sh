@@ -1,8 +1,6 @@
 #!/bin/bash
 
-echo "A"
-set -e 
-echo "B"
+set -e
 
 USAGE="Usage: gen-proto.sh CMAKE_CURRENT_SOURCE_DIR CMAKE_BINARY_DIR CMAKE_CURRENT_BINARY_DIR"
 
@@ -28,7 +26,6 @@ if [[ -z ${3} ]]; then
     echo >&2 ${USAGE}
     exit 1
 fi
-echo "C"
 
 CMAKE_CURRENT_SOURCE_DIR=${1}
 CMAKE_BINARY_DIR=${2}
@@ -41,12 +38,9 @@ PROTOFILE_PATH=${CMAKE_CURRENT_SOURCE_DIR}/sensors.proto
 PROTOC=protoc
 CPP_PLUGIN=grpc_cpp_plugin
 
-echo "D"
-
 CONAN_PROTOC=${CMAKE_BINARY_DIR}/bin/${PROTOC}
 CONAN_CPP_PLUGIN=${CMAKE_BINARY_DIR}/bin/${CPP_PLUGIN}
 
-echo "E"
 if [[ -x ${CONAN_PROTOC} ]]; then
     PROTOC=${CONAN_PROTOC}
 fi
@@ -59,8 +53,6 @@ else
     CPP_PLUGIN=$(which ${CPP_PLUGIN})
     echo $CPP_PLUGIN
 fi
-
-echo "F"
 
 echo "PROTOC=${PROTOC}"
 echo "CPP_PLUGIN=${CPP_PLUGIN}"

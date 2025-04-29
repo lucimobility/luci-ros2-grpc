@@ -24,6 +24,8 @@ package sensors;
 service Sensors {
 
   rpc JsOverride(RemoteJsValues) returns (Response); //
+  rpc AddInputSource(InputSourceRequest) returns (Response);
+  rpc RemoveInputSource(InputSourceRequest) returns (Response);
   rpc SetDriveMode(ModeCtrl) returns (Response); //
   rpc UltrasonicStream(google.protobuf.Empty)
       returns (stream UltrasonicDistances); //
@@ -295,6 +297,7 @@ message IrFrame {
 message RemoteJsValues {
   int32 forward_back = 1;
   int32 left_right = 2;
+  InputSource source = 3;
 }
 
 // USER mode => luci nominal operations

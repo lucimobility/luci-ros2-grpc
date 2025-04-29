@@ -232,22 +232,59 @@ bool ClientGuide::activateAutoMode() const
     return true;
 }
 
-int ClientGuide::sendJS(int forwardBack, int leftRight)
+void ClientGuide::setInputSource(InputSource source) const
+{
+    ClientContext context;
+    sensors::InputSourceRequest request;
+    Response response;
+    
+    request.set_source(convertInputSourceToProto(source));
+
+    if (Status status = stub_->AddInputSource(&context, request, &response); status.ok())
+    {
+        spdlog::info("Setting input source to {}", static_cast<int>(source));
+    }
+    else
+    {
+        spdlog::error("Error communicating with server... pass in correct ip and port of chair");
+    }
+}
+
+void ClientGuide::removeInputSource(InputSource source) const
+{
+    ClientContext context;
+    sensors::InputSourceRequest request;
+    Response response;
+
+    request.set_source(convertInputSourceToProto(source));
+
+    if (Status status = stub_->RemoveInputSource(&context, request, &response); status.ok())
+    {
+        spdlog::info("Removing input source {}", static_cast<int>(source));
+    }
+    else
+    {
+        spdlog::error("Error communicating with server... pass in correct ip and port of chair");
+    }
+}
+
+int ClientGuide::sendJS(int forwardBack, int leftRight, InputSource source)
 {
     // The forwardBack and the leftRight should be between 0-200 (100 being zero)
     ClientContext context;
     Response response;
     RemoteJsValues request;
-
+    
     request.set_left_right(leftRight);
     request.set_forward_back(forwardBack);
+    request.set_source(convertInputSourceToProto(source));
 
     auto currentTime = std::chrono::high_resolution_clock::now();
 
     if (Status status = stub_->JsOverride(&context, request, &response); status.ok())
     {
-        spdlog::info("Sending remote call... values ({} {}) status: {}",
-                     std::to_string(forwardBack), std::to_string(leftRight), response.reply());
+        spdlog::info("Sending remote call... values ({} {} {}) status: {}",
+                     std::to_string(forwardBack), std::to_string(leftRight), std::to_string(static_cast<int>(source)), response.reply());
     }
     else
     {

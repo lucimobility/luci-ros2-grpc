@@ -29,7 +29,7 @@ void Interface::processCameraData()
         // Camera point cloud processing
         auto cameraPointCloud = this->cameraDataBuff->waitNext();
 
-        spdlog::info("Number of camera points: {}", cameraPointCloud.size());
+        // spdlog::info("Number of camera points: {}", cameraPointCloud.size());
         sensor_msgs::msg::PointCloud2 rosCameraPointCloud;
 
         pcl::toROSMsg(cameraPointCloud, rosCameraPointCloud);
@@ -378,9 +378,10 @@ void Interface::processRearIrData()
 void Interface::sendJsCallback(const luci_messages::msg::LuciJoystick::SharedPtr msg)
 {
     // Send the remote JS values over gRPC
-    spdlog::debug("Received js val: {} {}", msg->forward_back, msg->left_right);
+    auto inputSource = static_cast<InputSource>(msg->input_source);
+    spdlog::debug("Received js val: {} {} {}", msg->forward_back, msg->left_right, msg->input_source);
 
-    this->luciInterface->sendJS(msg->forward_back + 100, msg->left_right + 100);
+    this->luciInterface->sendJS(msg->forward_back + 100, msg->left_right + 100, inputSource);
 }
 
 void Interface::switchLuciModeCallback(const luci_messages::msg::LuciDriveMode::SharedPtr msg)
@@ -402,6 +403,14 @@ void Interface::switchLuciModeCallback(const luci_messages::msg::LuciDriveMode::
         spdlog::error("NOT A VALID MODE SELECTION");
         break;
     }
+}
+
+void Interface::setRemoteInputSource() {
+    this->luciInterface->setInputSource(InputSource::Remote);
+}
+
+void Interface::removeRemoteInputSource() {
+    this->luciInterface->removeInputSource(InputSource::Remote);
 }
 
 void Interface::updateIrFrameRate(int rate)

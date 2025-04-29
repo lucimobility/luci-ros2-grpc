@@ -126,7 +126,7 @@ int main(int argc, char* argv[])
         zoneScalingDataBuff, joystickScalingDataBuff, ahrsInfoDataBuff, imuDataBuff,
         encoderDataBuff, irDataBuffLeft, irDataBuffRight, irDataBuffRear);
 
-    // executor.add_node(interface_node);
+    executor.add_node(interface_node);
     spdlog::debug("Running grpc interface");
     
     RCLCPP_INFO(rclcpp::get_logger("luci_interface"), "Running ROS2 executor...");

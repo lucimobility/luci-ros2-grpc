@@ -40,6 +40,7 @@
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/point_cloud2.hpp>
 #include <tf2_ros/transform_broadcaster.h>
+#include <std_srvs/srv/empty.hpp>
 
 // LUCI ROS2 libraries
 #include <luci_messages/msg/luci_camera_info.hpp>
@@ -116,13 +117,31 @@ class Interface : public rclcpp::Node
         /// gRPC)
         this->remote_js_subscription_ = this->create_subscription<luci_messages::msg::LuciJoystick>(
             "luci/remote_joystick", QUEUE_SIZE,
-            [this](luci_messages::msg::LuciJoystick::SharedPtr msg) { this->sendJsCallback(msg); });
-
+            [this](luci_messages::msg::LuciJoystick::SharedPtr msg) { this->sendJsCallback(msg); });   
+     
         this->luci_mode_switch_subscription_ =
             this->create_subscription<luci_messages::msg::LuciDriveMode>(
                 "luci/drive_mode", QUEUE_SIZE,
                 [this](luci_messages::msg::LuciDriveMode::SharedPtr msg)
                 { this->switchLuciModeCallback(msg); });
+        
+        this->set_remote_input_service = this->create_service<std_srvs::srv::Empty>(
+            "luci/set_remote_input",
+            [this](const std::shared_ptr<rmw_request_id_t> request_header,
+                   const std::shared_ptr<std_srvs::srv::Empty::Request> request,
+                   const std::shared_ptr<std_srvs::srv::Empty::Response> response) {
+                RCLCPP_INFO(this->get_logger(), "Set remote input service called");
+                this->setRemoteInputSource();
+            });
+        
+        this->remove_remote_input_service = this->create_service<std_srvs::srv::Empty>(
+            "luci/remove_remote_input",
+            [this](const std::shared_ptr<rmw_request_id_t> request_header,
+                   const std::shared_ptr<std_srvs::srv::Empty::Request> request,
+                   const std::shared_ptr<std_srvs::srv::Empty::Response> response) {
+                RCLCPP_INFO(this->get_logger(), "Remove remote input service called");
+                this->removeRemoteInputSource();
+            });
 
         this->zoneScalingPublisher =
             this->create_publisher<luci_messages::msg::LuciZoneScaling>("luci/scaling", QUEUE_SIZE);
@@ -168,7 +187,6 @@ class Interface : public rclcpp::Node
         grpcConverters.emplace_back(&Interface::processRightIrData, this);
         grpcConverters.emplace_back(&Interface::processRearIrData, this);
 
-        RCLCPP_INFO(this->get_logger(), "IN interface public, setup works??");
     }
 
     /// Destructor
@@ -193,6 +211,14 @@ class Interface : public rclcpp::Node
     rclcpp::Publisher<luci_messages::msg::LuciCameraInfo>::SharedPtr rightCameraInfoPublisher;
     rclcpp::Publisher<luci_messages::msg::LuciCameraInfo>::SharedPtr rearCameraInfoPublisher;
 
+    /// Shared pointers to subscribers (convention in ROS2)
+    rclcpp::Subscription<luci_messages::msg::LuciJoystick>::SharedPtr remote_js_subscription_;
+    rclcpp::Subscription<luci_messages::msg::LuciDriveMode>::SharedPtr
+        luci_mode_switch_subscription_;
+
+    rclcpp::Service<std_srvs::srv::Empty>::SharedPtr set_remote_input_service;
+    rclcpp::Service<std_srvs::srv::Empty>::SharedPtr remove_remote_input_service;
+
     std::shared_ptr<tf2_ros::TransformBroadcaster> odomBroadcaster =
         std::make_shared<tf2_ros::TransformBroadcaster>(this);
 
@@ -215,11 +241,6 @@ class Interface : public rclcpp::Node
     std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData>> irDataBuffRight;
     std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData>> irDataBuffRear;
 
-    /// Shared pointers to subscribers (convention in ROS2)
-    rclcpp::Subscription<luci_messages::msg::LuciJoystick>::SharedPtr remote_js_subscription_;
-    rclcpp::Subscription<luci_messages::msg::LuciDriveMode>::SharedPtr
-        luci_mode_switch_subscription_;
-
     /// Functions to handle each unique data type and convert (each are ran on independent threads)
     void processCameraData();
     void processRadarData();
@@ -240,4 +261,6 @@ class Interface : public rclcpp::Node
     /// Subscriber callback ran in main thread
     void sendJsCallback(const luci_messages::msg::LuciJoystick::SharedPtr msg);
     void switchLuciModeCallback(const luci_messages::msg::LuciDriveMode::SharedPtr msg);
+    void setRemoteInputSource();
+    void removeRemoteInputSource();
 };

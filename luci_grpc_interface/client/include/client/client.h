@@ -150,13 +150,26 @@ class ClientGuide
     bool activateAutoMode() const;
 
     /**
+     * @brief Set the input source for the chair to remote
+     * 
+     */
+    void setInputSource(InputSource source) const;
+
+    /**
+     * @brief Remove the input source for the chair remote
+     * 
+     */
+    void removeInputSource(InputSource source) const;
+
+    /**
      * @brief Send JS values to luci sensors
      *
      * @param forwardBack
      * @param leftRight
+     * @param source
      * @return int success code (0-success, 1-failure)
      */
-    int sendJS(int forwardBack, int leftRight);
+    int sendJS(int forwardBack, int leftRight, InputSource source);
 
     /**
      * @brief Updates the IR frame rate while a stream is already active. This is used by clients
