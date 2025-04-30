@@ -92,7 +92,7 @@ sensors::JoystickZone convertJoystickZoneToProto(const JoystickZone zone)
         return sensors::JoystickZone::Back;
     case JoystickZone::Origin:
         return sensors::JoystickZone::Origin;
-    // default:
+        // default:
         // spdlog::error("Unexpected luci joystick zone {}, defaulting to origin", zone);
     }
     return sensors::JoystickZone::Origin;
@@ -120,7 +120,7 @@ JoystickZone convertProtoZone(const sensors::JoystickZone zone)
         return JoystickZone::Back;
     case sensors::JoystickZone::Origin:
         return JoystickZone::Origin;
-    // default:
+        // default:
         // spdlog::error("Unexpected sensors joystick zone {}, defaulting to origin", zone);
     }
     return JoystickZone::Origin;
@@ -140,9 +140,10 @@ sensors::InputSource convertInputSourceToProto(const InputSource inputSource)
         return sensors::InputSource::ChairVirtual;
     case InputSource::ChairPhysical:
         return sensors::InputSource::ChairPhysical;
-    // default:
-    //     spdlog::error("Unexpected luci input source {}, defaulting to chair virtual input source",
-    //                   inputSource);
+        // default:
+        //     spdlog::error("Unexpected luci input source {}, defaulting to chair virtual input
+        //     source",
+        //                   inputSource);
     }
     return sensors::InputSource::ChairVirtual;
 }
@@ -161,10 +162,10 @@ InputSource convertProtoInputSource(const sensors::InputSource inputSource)
         return InputSource::ChairVirtual;
     case sensors::InputSource::ChairPhysical:
         return InputSource::ChairPhysical;
-    // default:
-    //     spdlog::error(
-    //         "Unexpected sensors input source {}, defaulting to chair virtual input source",
-    //         inputSource);
+        // default:
+        //     spdlog::error(
+        //         "Unexpected sensors input source {}, defaulting to chair virtual input source",
+        //         inputSource);
     }
     return InputSource::ChairVirtual;
 }
@@ -237,7 +238,7 @@ void ClientGuide::setInputSource(InputSource source) const
     ClientContext context;
     sensors::InputSourceRequest request;
     Response response;
-    
+
     request.set_source(convertInputSourceToProto(source));
 
     if (Status status = stub_->AddInputSource(&context, request, &response); status.ok())
@@ -274,7 +275,7 @@ int ClientGuide::sendJS(int forwardBack, int leftRight, InputSource source)
     ClientContext context;
     Response response;
     RemoteJsValues request;
-    
+
     request.set_left_right(leftRight);
     request.set_forward_back(forwardBack);
     request.set_source(convertInputSourceToProto(source));
@@ -284,7 +285,8 @@ int ClientGuide::sendJS(int forwardBack, int leftRight, InputSource source)
     if (Status status = stub_->JsOverride(&context, request, &response); status.ok())
     {
         spdlog::info("Sending remote call... values ({} {} {}) status: {}",
-                     std::to_string(forwardBack), std::to_string(leftRight), std::to_string(static_cast<int>(source)), response.reply());
+                     std::to_string(forwardBack), std::to_string(leftRight),
+                     std::to_string(static_cast<int>(source)), response.reply());
     }
     else
     {
@@ -311,7 +313,8 @@ void ClientGuide::readJoystickPosition() const
     while (reader->Read(&response))
     {
         SystemJoystick joystickValues(response.forward_back(), response.left_right(),
-        convertProtoZone(response.joystick_zone()), convertProtoInputSource(response.source()));
+                                      convertProtoZone(response.joystick_zone()),
+                                      convertProtoInputSource(response.source()));
 
         this->joystickDataBuff->push(joystickValues);
     }
@@ -433,7 +436,8 @@ void ClientGuide::readJoystickScalingData() const
     while (reader->Read(&response))
     {
         SystemJoystick scalingValues(response.forward_back(), response.left_right(),
-        convertProtoZone(response.joystick_zone()), convertProtoInputSource(response.source()));
+                                     convertProtoZone(response.joystick_zone()),
+                                     convertProtoInputSource(response.source()));
 
         this->joystickScalingDataBuff->push(scalingValues);
     }

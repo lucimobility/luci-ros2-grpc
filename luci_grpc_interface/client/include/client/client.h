@@ -151,13 +151,13 @@ class ClientGuide
 
     /**
      * @brief Set the input source for the chair to remote
-     * 
+     *
      */
     void setInputSource(InputSource source) const;
 
     /**
      * @brief Remove the input source for the chair remote
-     * 
+     *
      */
     void removeInputSource(InputSource source) const;
 

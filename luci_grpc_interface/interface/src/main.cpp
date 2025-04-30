@@ -20,8 +20,8 @@
 
 #include "client/client.h"
 #include "grpc_interface/interface.h"
-#include "tclap/CmdLine.h"
 #include "rclcpp/rclcpp.hpp"
+#include "tclap/CmdLine.h"
 
 #include <iostream>
 
@@ -37,15 +37,12 @@ int main(int argc, char* argv[])
     std::string host;
     std::string port;
 
-    
     // Setup command line parser
     TCLAP::CmdLine cmd("LUCI ROS2 to gRPC interface", ' ', "---");
-    
 
     // Command to pass in chair ip address in gRPC mode
     TCLAP::ValueArg<std::string> hostArg("a", "host-address", "The host address. gRPC mode only.",
                                          true, "", "string");
-    
 
     // Command to pass in chair port in gRPC mode
     TCLAP::ValueArg<std::string> portArg("p", "gRPC-port", "Port number. gRPC mode only.", false,
@@ -55,7 +52,6 @@ int main(int argc, char* argv[])
     // TCLAP::ValueArg<int> rateArg("f", "frame-rate", "IR Frame Rate gRPC mode only.", false, 0,
     //                              "int");
 
-    
     // Add the value arguments to the command line parser
     cmd.add(hostArg);
     cmd.add(portArg);
@@ -128,7 +124,7 @@ int main(int argc, char* argv[])
 
     executor.add_node(interface_node);
     spdlog::debug("Running grpc interface");
-    
+
     RCLCPP_INFO(rclcpp::get_logger("luci_interface"), "Running ROS2 executor...");
 
     executor.spin();

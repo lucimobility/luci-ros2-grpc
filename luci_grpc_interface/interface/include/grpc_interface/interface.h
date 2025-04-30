@@ -39,8 +39,8 @@
 #include <nav_msgs/msg/odometry.hpp>
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/point_cloud2.hpp>
-#include <tf2_ros/transform_broadcaster.h>
 #include <std_srvs/srv/empty.hpp>
+#include <tf2_ros/transform_broadcaster.h>
 
 // LUCI ROS2 libraries
 #include <luci_messages/msg/luci_camera_info.hpp>
@@ -117,28 +117,30 @@ class Interface : public rclcpp::Node
         /// gRPC)
         this->remote_js_subscription_ = this->create_subscription<luci_messages::msg::LuciJoystick>(
             "luci/remote_joystick", QUEUE_SIZE,
-            [this](luci_messages::msg::LuciJoystick::SharedPtr msg) { this->sendJsCallback(msg); });   
-     
+            [this](luci_messages::msg::LuciJoystick::SharedPtr msg) { this->sendJsCallback(msg); });
+
         this->luci_mode_switch_subscription_ =
             this->create_subscription<luci_messages::msg::LuciDriveMode>(
                 "luci/drive_mode", QUEUE_SIZE,
                 [this](luci_messages::msg::LuciDriveMode::SharedPtr msg)
                 { this->switchLuciModeCallback(msg); });
-        
+
         this->set_remote_input_service = this->create_service<std_srvs::srv::Empty>(
             "luci/set_remote_input",
             [this](const std::shared_ptr<rmw_request_id_t> request_header,
                    const std::shared_ptr<std_srvs::srv::Empty::Request> request,
-                   const std::shared_ptr<std_srvs::srv::Empty::Response> response) {
+                   const std::shared_ptr<std_srvs::srv::Empty::Response> response)
+            {
                 RCLCPP_INFO(this->get_logger(), "Set remote input service called");
                 this->setRemoteInputSource();
             });
-        
+
         this->remove_remote_input_service = this->create_service<std_srvs::srv::Empty>(
             "luci/remove_remote_input",
             [this](const std::shared_ptr<rmw_request_id_t> request_header,
                    const std::shared_ptr<std_srvs::srv::Empty::Request> request,
-                   const std::shared_ptr<std_srvs::srv::Empty::Response> response) {
+                   const std::shared_ptr<std_srvs::srv::Empty::Response> response)
+            {
                 RCLCPP_INFO(this->get_logger(), "Remove remote input service called");
                 this->removeRemoteInputSource();
             });
@@ -171,7 +173,6 @@ class Interface : public rclcpp::Node
         this->rearCameraInfoPublisher = this->create_publisher<luci_messages::msg::LuciCameraInfo>(
             "luci/rear_camera_info", QUEUE_SIZE);
 
-
         // TODO: clp Should the processing just be handled in the gRPC threads?
         // Spin up a single thread for every gRPC <-> ROS translation
         grpcConverters.emplace_back(&Interface::processCameraData, this);
@@ -186,7 +187,6 @@ class Interface : public rclcpp::Node
         grpcConverters.emplace_back(&Interface::processLeftIrData, this);
         grpcConverters.emplace_back(&Interface::processRightIrData, this);
         grpcConverters.emplace_back(&Interface::processRearIrData, this);
-
     }
 
     /// Destructor
@@ -248,7 +248,7 @@ class Interface : public rclcpp::Node
     void processZoneScalingData();
     void processJoystickScalingData();
     void processJoystickPositionData();
-    void processAhrsData();    
+    void processAhrsData();
     void processImuData();
     void processEncoderData();
     void processLeftIrData();

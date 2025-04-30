@@ -24,24 +24,24 @@
 
 enum class JoystickZone
 {
-  Front = 0,
-  FrontLeft =1,
-  FrontRight =2,
-  Left =3,
-  Right=4,
-  BackLeft=5,
-  BackRight=6,
-  Back=7,
-  Origin=8,
+    Front = 0,
+    FrontLeft = 1,
+    FrontRight = 2,
+    Left = 3,
+    Right = 4,
+    BackLeft = 5,
+    BackRight = 6,
+    Back = 7,
+    Origin = 8,
 };
 
 enum class InputSource
 {
-        RampAssist =0 ,
-        Remote =1 ,
-        WDI =2,
-        ChairVirtual =3 ,
-        ChairPhysical =4 ,
+    RampAssist = 0,
+    Remote = 1,
+    WDI = 2,
+    ChairVirtual = 3,
+    ChairPhysical = 4,
 };
 
 /**
@@ -55,8 +55,10 @@ struct SystemJoystick
     JoystickZone joystick_zone;
     InputSource input_source;
 
-    inline SystemJoystick(int forward_back, int left_right, JoystickZone joystick_zone, InputSource input_source)
-        : forward_back(forward_back), left_right(left_right), joystick_zone(joystick_zone), input_source(input_source)
+    inline SystemJoystick(int forward_back, int left_right, JoystickZone joystick_zone,
+                          InputSource input_source)
+        : forward_back(forward_back), left_right(left_right), joystick_zone(joystick_zone),
+          input_source(input_source)
     {
     }
 };
@@ -196,7 +198,8 @@ struct EncoderData
     int edge_timestamp;
 
     inline EncoderData(float left_angle, float right_angle, float fl_caster_degrees,
-                       float bl_caster_degrees, float fr_caster_degrees, float br_caster_degrees, int edge_timestamp)
+                       float bl_caster_degrees, float fr_caster_degrees, float br_caster_degrees,
+                       int edge_timestamp)
         : left_angle(left_angle), right_angle(right_angle), fl_caster_degrees(fl_caster_degrees),
           bl_caster_degrees(bl_caster_degrees), fr_caster_degrees(fr_caster_degrees),
           br_caster_degrees(br_caster_degrees), edge_timestamp(edge_timestamp)

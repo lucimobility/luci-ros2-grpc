@@ -379,7 +379,8 @@ void Interface::sendJsCallback(const luci_messages::msg::LuciJoystick::SharedPtr
 {
     // Send the remote JS values over gRPC
     auto inputSource = static_cast<InputSource>(msg->input_source);
-    spdlog::debug("Received js val: {} {} {}", msg->forward_back, msg->left_right, msg->input_source);
+    spdlog::debug("Received js val: {} {} {}", msg->forward_back, msg->left_right,
+                  msg->input_source);
 
     this->luciInterface->sendJS(msg->forward_back + 100, msg->left_right + 100, inputSource);
 }
@@ -405,11 +406,10 @@ void Interface::switchLuciModeCallback(const luci_messages::msg::LuciDriveMode::
     }
 }
 
-void Interface::setRemoteInputSource() {
-    this->luciInterface->setInputSource(InputSource::Remote);
-}
+void Interface::setRemoteInputSource() { this->luciInterface->setInputSource(InputSource::Remote); }
 
-void Interface::removeRemoteInputSource() {
+void Interface::removeRemoteInputSource()
+{
     this->luciInterface->removeInputSource(InputSource::Remote);
 }
 
