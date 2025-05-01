@@ -129,35 +129,17 @@ class ClientGuide
     // Single calls over gRPC
 
     /**
-     * @brief Interface to turn on engaged mode at the msp level
+     * @brief Set the input source for the chair
      *
-     * @return bool success code (true-success, false-failure)
+     * @param source The input source to set
+     * @return int success code (0-success, 1-failure)
      */
-    bool activateEngagedMode() const;
+    int setInputSource(InputSource source) const;
 
     /**
-     * @brief Interface to turn on user mode at the msp level
+     * @brief Remove the input source for the chair
      *
-     * @return bool success code (true-success, false-failure)
-     */
-    bool activateUserMode() const;
-
-    /**
-     * @brief Interface to turn on auto mode at the msp level
-     *
-     * @return bool success code (true-success, false-failure)
-     */
-    bool activateAutoMode() const;
-
-    /**
-     * @brief Set the input source for the chair to remote
-     *
-     */
-    void setInputSource(InputSource source) const;
-
-    /**
-     * @brief Remove the input source for the chair remote
-     *
+     * @param source The input source to remove
      */
     void removeInputSource(InputSource source) const;
 

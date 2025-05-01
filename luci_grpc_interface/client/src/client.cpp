@@ -29,8 +29,6 @@ using grpc::Status;
 
 using Luci::ROS2::ClientGuide;
 
-using sensors::DriveMode;
-using sensors::ModeCtrl;
 using sensors::RemoteJsValues;
 using sensors::Response;
 
@@ -92,8 +90,8 @@ sensors::JoystickZone convertJoystickZoneToProto(const JoystickZone zone)
         return sensors::JoystickZone::Back;
     case JoystickZone::Origin:
         return sensors::JoystickZone::Origin;
-        // default:
-        // spdlog::error("Unexpected luci joystick zone {}, defaulting to origin", zone);
+    default:
+        spdlog::error("Unexpected luci joystick zone {}, defaulting to origin", static_cast<int>(zone));
     }
     return sensors::JoystickZone::Origin;
 }
@@ -120,8 +118,8 @@ JoystickZone convertProtoZone(const sensors::JoystickZone zone)
         return JoystickZone::Back;
     case sensors::JoystickZone::Origin:
         return JoystickZone::Origin;
-        // default:
-        // spdlog::error("Unexpected sensors joystick zone {}, defaulting to origin", zone);
+    default:
+        spdlog::error("Unexpected sensors joystick zone {}, defaulting to origin", zone);
     }
     return JoystickZone::Origin;
 }
@@ -140,10 +138,9 @@ sensors::InputSource convertInputSourceToProto(const InputSource inputSource)
         return sensors::InputSource::ChairVirtual;
     case InputSource::ChairPhysical:
         return sensors::InputSource::ChairPhysical;
-        // default:
-        //     spdlog::error("Unexpected luci input source {}, defaulting to chair virtual input
-        //     source",
-        //                   inputSource);
+    default:
+        spdlog::error("Unexpected luci input source {}, defaulting to chair virtual input source",
+                      static_cast<int>(inputSource));
     }
     return sensors::InputSource::ChairVirtual;
 }
@@ -162,10 +159,10 @@ InputSource convertProtoInputSource(const sensors::InputSource inputSource)
         return InputSource::ChairVirtual;
     case sensors::InputSource::ChairPhysical:
         return InputSource::ChairPhysical;
-        // default:
-        //     spdlog::error(
-        //         "Unexpected sensors input source {}, defaulting to chair virtual input source",
-        //         inputSource);
+    default:
+        spdlog::error(
+            "Unexpected sensors input source {}, defaulting to chair virtual input source",
+            inputSource);
     }
     return InputSource::ChairVirtual;
 }
@@ -179,61 +176,7 @@ ClientGuide::~ClientGuide()
     spdlog::debug("gRPC Ramp threads joined");
 }
 
-bool ClientGuide::activateEngagedMode() const
-{
-    ClientContext context;
-    Response response;
-    ModeCtrl request;
-    request.set_mode(DriveMode::ENGAGED);
-
-    if (Status status = stub_->SetDriveMode(&context, request, &response); status.ok())
-    {
-        spdlog::warn(response.reply());
-    }
-    else
-    {
-        return false;
-    }
-    return true;
-}
-
-bool ClientGuide::activateUserMode() const
-{
-    ClientContext context;
-    Response response;
-    ModeCtrl request;
-    request.set_mode(DriveMode::USER);
-
-    if (Status status = stub_->SetDriveMode(&context, request, &response); status.ok())
-    {
-        spdlog::warn(response.reply());
-    }
-    else
-    {
-        return false;
-    }
-    return true;
-}
-
-bool ClientGuide::activateAutoMode() const
-{
-    ClientContext context;
-    Response response;
-    ModeCtrl request;
-    request.set_mode(DriveMode::AUTONOMOUS);
-
-    if (Status status = stub_->SetDriveMode(&context, request, &response); status.ok())
-    {
-        spdlog::warn(response.reply());
-    }
-    else
-    {
-        return false;
-    }
-    return true;
-}
-
-void ClientGuide::setInputSource(InputSource source) const
+int ClientGuide::setInputSource(InputSource source) const
 {
     ClientContext context;
     sensors::InputSourceRequest request;
@@ -244,10 +187,12 @@ void ClientGuide::setInputSource(InputSource source) const
     if (Status status = stub_->AddInputSource(&context, request, &response); status.ok())
     {
         spdlog::info("Setting input source to {}", static_cast<int>(source));
+        return 0;
     }
     else
     {
         spdlog::error("Error communicating with server... pass in correct ip and port of chair");
+        return 1;
     }
 }
 

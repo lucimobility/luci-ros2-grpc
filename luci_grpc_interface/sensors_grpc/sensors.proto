@@ -26,7 +26,6 @@ service Sensors {
   rpc JsOverride(RemoteJsValues) returns (Response); //
   rpc AddInputSource(InputSourceRequest) returns (Response);
   rpc RemoveInputSource(InputSourceRequest) returns (Response);
-  rpc SetDriveMode(ModeCtrl) returns (Response); //
   rpc UltrasonicStream(google.protobuf.Empty)
       returns (stream UltrasonicDistances); //
 
@@ -298,20 +297,6 @@ message RemoteJsValues {
   int32 forward_back = 1;
   int32 left_right = 2;
   InputSource source = 3;
-}
-
-// USER mode => luci nominal operations
-// ENGAGED => Override JS values only when joystick engaged
-// AUTONOMOUS => Override Js values without joystick engaged
-enum DriveMode {
-  USER = 0;
-  ENGAGED = 1;
-  AUTONOMOUS = 2;
-  PLAYBACK = 3;
-}
-
-message ModeCtrl {
-  DriveMode mode = 1;
 }
 
 message ChairSpeed {

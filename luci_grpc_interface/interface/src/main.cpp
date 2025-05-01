@@ -49,13 +49,13 @@ int main(int argc, char* argv[])
                                          "50051", "string");
 
     // Command to pass in camera frame rate in gRPC mode
-    // TCLAP::ValueArg<int> rateArg("f", "frame-rate", "IR Frame Rate gRPC mode only.", false, 0,
-    //                              "int");
+    TCLAP::ValueArg<int> rateArg("f", "frame-rate", "IR Frame Rate gRPC mode only.", false, 0,
+                                 "int");
 
     // Add the value arguments to the command line parser
     cmd.add(hostArg);
     cmd.add(portArg);
-    // cmd.add(rateArg);
+    cmd.add(rateArg);
 
     // Parse the argv array.
     cmd.parse(argc, argv);
@@ -63,9 +63,7 @@ int main(int argc, char* argv[])
     // Set the host and port values (if not set defaults used)
     host = hostArg.getValue();
     port = portArg.getValue();
-    // int frameRate = rateArg.getValue();
-
-    int frameRate = 0;
+    int frameRate = rateArg.getValue();
 
     // Initialize ROS stack and executor, Note: all argument parsing is handled externally by tclap
     rclcpp::init(0, nullptr);

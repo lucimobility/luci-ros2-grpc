@@ -119,12 +119,6 @@ class Interface : public rclcpp::Node
             "luci/remote_joystick", QUEUE_SIZE,
             [this](luci_messages::msg::LuciJoystick::SharedPtr msg) { this->sendJsCallback(msg); });
 
-        this->luci_mode_switch_subscription_ =
-            this->create_subscription<luci_messages::msg::LuciDriveMode>(
-                "luci/drive_mode", QUEUE_SIZE,
-                [this](luci_messages::msg::LuciDriveMode::SharedPtr msg)
-                { this->switchLuciModeCallback(msg); });
-
         this->set_remote_input_service = this->create_service<std_srvs::srv::Empty>(
             "luci/set_remote_input",
             [this](const std::shared_ptr<rmw_request_id_t> request_header,
@@ -213,8 +207,6 @@ class Interface : public rclcpp::Node
 
     /// Shared pointers to subscribers (convention in ROS2)
     rclcpp::Subscription<luci_messages::msg::LuciJoystick>::SharedPtr remote_js_subscription_;
-    rclcpp::Subscription<luci_messages::msg::LuciDriveMode>::SharedPtr
-        luci_mode_switch_subscription_;
 
     rclcpp::Service<std_srvs::srv::Empty>::SharedPtr set_remote_input_service;
     rclcpp::Service<std_srvs::srv::Empty>::SharedPtr remove_remote_input_service;
@@ -260,7 +252,8 @@ class Interface : public rclcpp::Node
 
     /// Subscriber callback ran in main thread
     void sendJsCallback(const luci_messages::msg::LuciJoystick::SharedPtr msg);
-    void switchLuciModeCallback(const luci_messages::msg::LuciDriveMode::SharedPtr msg);
+
+    /// Service Callbacks ran in main thread for setting and removing the remote input source
     void setRemoteInputSource();
     void removeRemoteInputSource();
 };

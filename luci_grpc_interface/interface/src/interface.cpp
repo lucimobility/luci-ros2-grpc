@@ -29,7 +29,7 @@ void Interface::processCameraData()
         // Camera point cloud processing
         auto cameraPointCloud = this->cameraDataBuff->waitNext();
 
-        // spdlog::info("Number of camera points: {}", cameraPointCloud.size());
+        spdlog::info("Number of camera points: {}", cameraPointCloud.size());
         sensor_msgs::msg::PointCloud2 rosCameraPointCloud;
 
         pcl::toROSMsg(cameraPointCloud, rosCameraPointCloud);
@@ -385,28 +385,36 @@ void Interface::sendJsCallback(const luci_messages::msg::LuciJoystick::SharedPtr
     this->luciInterface->sendJS(msg->forward_back + 100, msg->left_right + 100, inputSource);
 }
 
-void Interface::switchLuciModeCallback(const luci_messages::msg::LuciDriveMode::SharedPtr msg)
+void Interface::setRemoteInputSource()
 {
-    // Send a mode switch over gRPC
-    spdlog::info("Received mode switch request");
-    switch (msg->mode)
+    int checker = this->luciInterface->setInputSource(InputSource::Remote);
+    std::chrono::milliseconds waitTime(100);
+    if (checker == 0)
     {
-    case luci_messages::msg::LuciDriveMode::USER:
-        this->luciInterface->activateUserMode();
-        break;
-    case luci_messages::msg::LuciDriveMode::ENGAGED:
-        this->luciInterface->activateEngagedMode();
-        break;
-    case luci_messages::msg::LuciDriveMode::AUTO:
-        this->luciInterface->activateAutoMode();
-        break;
-    default:
-        spdlog::error("NOT A VALID MODE SELECTION");
-        break;
+        this->luciInterface->sendJS(100, 100, InputSource::Remote);
+        while (true)
+        {
+            // Make sure that the joysick value is 0,0 before sending other values
+            // This is a behavior of LUCI and iss to prevent hangups when it thinks the joystick is
+            // not at 0,0
+            if (this->joystickDataBuff->waitNext(waitTime).has_value() == false ||
+                this->joystickDataBuff->getLatest().value().input_source != InputSource::Remote)
+            {
+                this->luciInterface->sendJS(100, 100, InputSource::Remote);
+            }
+            else
+            {
+                spdlog::info("Input source is remote");
+                break;
+            }
+            checker = 1;
+        }
+    }
+    else
+    {
+        spdlog::error("Error setting input source to remote");
     }
 }
-
-void Interface::setRemoteInputSource() { this->luciInterface->setInputSource(InputSource::Remote); }
 
 void Interface::removeRemoteInputSource()
 {
