@@ -1,5 +1,5 @@
 LUCI Messages
-Copyright 2024 LUCI Mobility, Inc.
+Copyright 2025 LUCI Mobility, Inc.
 
 This project uses code from the following third-party projects, listed here
 with the full text of their respective licenses.

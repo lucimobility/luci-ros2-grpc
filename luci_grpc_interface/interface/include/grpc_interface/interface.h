@@ -44,7 +44,6 @@
 
 // LUCI ROS2 libraries
 #include <luci_messages/msg/luci_camera_info.hpp>
-#include <luci_messages/msg/luci_drive_mode.hpp>
 #include <luci_messages/msg/luci_encoders.hpp>
 #include <luci_messages/msg/luci_imu.hpp>
 #include <luci_messages/msg/luci_joystick.hpp>
