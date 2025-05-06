@@ -1,6 +1,6 @@
 # luci_grpc_interface
 
-## summary:
+## Summary:
 
 This is the primary package used in the SDK. This package also allows for the bidirectional transfer of information between LUCI and the ROS ecosystem. This package's node allows for you to read sensor data as well as send remote joystick commands to the system.
 
@@ -18,8 +18,9 @@ Example of streaming at 5fps per camera `ros2 run luci_grpc_interface grpc_inter
 
 <b>Notes:</b>
 
-- The -f flag is optional and if nothing is passed in the IR frames will "stream" at 0 fps. You will still see the ros topic but no data will be shown.
+- The -f flag is optional and if nothing is passed in the IR frames and the camera info will "stream" at 0 fps. You will still see the ros topics but no data will be shown.
 - The best way to see the IR frames is with foxglove. See the main LUCI SDK docs for more information.
+- Camera info topic streams camera intrinsics, traslations and rotation and can be checked by performaing `ros2 topic echo /luci/<camera_name>_camera_info` where ros is sourced. 
 - The maximum frame rate that can be sent is 15fps. This is the rate LUCI cameras naturally stream at.
 - All requested frame rates are best effort requests. This means that LUCI will do its best to maintain the FPS but network and other factors may slow the actual observed rate. In addition any rate that is not cleanly divided into 15 will not be guaranteed.
   For example a rate request of 5 will be honored minus any network delay but a request of 7 will result in either 7 or 8 fps.
@@ -28,11 +29,12 @@ Example of streaming at 5fps per camera `ros2 run luci_grpc_interface grpc_inter
 | ------------------- | ------------------------ |
 | luci_grpc_interface | luci_grpc_interface_node |
 
-| Currently Implemented | Topics                 | Subscription / Publish | Message Type                       | Description                                                                                                                                                                                                        |
+| Currently Implemented | Topics                 | ROS2 Type | Message Type                       | Description                                                                                                                                                                                                        |
 | --------------------- | ---------------------- | ---------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| yes                   | luci/remote_joystick   | subscription           | luci_messages::msg::LuciJoystick   | Remote joystick values used to drive the chair (FB: xxx, LR: xxx). Value Range: [-100, 100]                                                                                                                        |
-| yes                   | luci/drive_mode        | subscription           | luci_messages::msg::LuciDriveMode  | Mode of chair for drive controls (USER = user drives with joystick, ENGAGED = remote command drive the chair if user is holding joystick forward, AUTO = remote commands drive chair no matter what user is doing) |
-| yes                   | luci/joystick_position | publisher              | luci_messages::msg::LuciJoystick   | Joystick values of the chair (FB:xxx, LR: xxx)                                                                                                                                                                     |
+| yes                   | luci/set_remote_input   | service           | std_srvs::srvs::Empty   | sets the input source to a remote source for joystick commands                                                                                                                        |
+| yes                   | luci/remove_remote_input   | service           | std_srvs::srvs::Empty   | removes the remote joystick input source and set it to default                                                                                                                  |
+| yes                   | luci/remote_joystick   | subscription           | luci_messages::msg::LuciJoystick   | Remote joystick values used to drive the chair (FB: xxx, LR: xxx, IS: y). xxx Range: [-100, 100], y range [0, 4]                                                                                                                        |
+| yes                   | luci/joystick_position | publisher              | luci_messages::msg::LuciJoystick   | Joystick values of the chair (front_back:xxx, left_right: xxx, joystick_zone: y, input_source: z). xxx range: [-100, 100], y range: [1, 8], input_source: [0, 5]                                                                                                                                                                     |
 | no                    | luci/chair_velocity    | publisher              | geometry_msgs::msg::Twist          | Linear and angular velocity of the chair according to onboard AHRS **Note: “linear velocity” will be speed not velocity**                                                                                          |
 | coming soon           | luci/all_sensor_points | publisher              | sensor_msgs::msg::PointCloud2      | Full pointcloud (All LUCI sensors)                                                                                                                                                                                 |
 | partially             | luci/odom              | publisher              | nav_msgs::msg::Odometry            | AHRS odom reading                                                                                                                                                                                                  |
@@ -48,4 +50,5 @@ Example of streaming at 5fps per camera `ros2 run luci_grpc_interface grpc_inter
 | yes                   | luci/ir_rear_camera    | publisher              | sensor_msgs::msg::Image            | Rear camera’s IR frame                                                                                                                                                                                             |
 | yes                   | luci/left_camera_info  | publisher              | luci_messages::msg::LuciCameraInfo | Left camera’s IR frame meta data                                                                                                                                                                                   |
 | yes                   | luci/right_camera_info | publisher              | luci_messages::msg::LuciCameraInfo | Right camera’s IR frame meta data                                                                                                                                                                                  |
-| yes                   | luci/rear_camera_info  | publisher              | luci_messages::msg::LuciCameraInfo | Rear camera’s IR frame meta data                                                                                                                                                                                   |
+| yes                   | luci/rear_camera_info  | publisher              | luci_messages::msg::LuciCameraInfo | Rear camera’s IR frame meta data                                                                                                                         |
+| removed                   | luci/drive_mode        | subscription           | luci_messages::msg::LuciDriveMode  | Mode of chair for drive controls (USER = user drives with joystick, ENGAGED = remote command drive the chair if user is holding joystick forward, AUTO = remote commands drive chair no matter what user is doing) |

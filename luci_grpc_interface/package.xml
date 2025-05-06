@@ -4,7 +4,7 @@
   <version>1.4.0</version>
   <description>The grpc_interface package</description>
 
-  <maintainer email="christian@luci.com">christian</maintainer>
+  <maintainer email="shail@luci.com">shail</maintainer>
 
   <license>Apache License 2.0</license>
 
