@@ -38,10 +38,11 @@ enum class JoystickZone
 enum class InputSource
 {
     RampAssist = 0,
-    Remote = 1,
+    AutonomousRemote = 1,
     WDI = 2,
     ChairVirtual = 3,
     ChairPhysical = 4,
+    SharedRemote = 5,
 };
 
 /**
@@ -64,7 +65,7 @@ struct SystemJoystick
 };
 
 /**
- * @brief LUCI scaling zones
+ * @brief LUCI zone scaling
  *
  */
 struct LuciZoneScaling
@@ -96,6 +97,29 @@ struct LuciZoneScaling
           front_left_rl(front_left_rl), right_fb(right_fb), right_rl(right_rl), left_fb(left_fb),
           left_rl(left_rl), back_right_fb(back_right_fb), back_right_rl(back_right_rl),
           back_left_fb(back_left_fb), back_left_rl(back_left_rl), back_fb(back_fb), back_rl(back_rl)
+    {
+    }
+};
+
+/**
+ * @brief LUCI joystick scaling
+ *
+ */
+struct LuciJoystickScaling
+{
+    int forward_back;
+    int left_right;
+    JoystickZone joystick_zone;
+    InputSource input_source;
+    float forward_back_scaling;
+    float left_right_scaling;
+
+    inline LuciJoystickScaling(int forward_back, int left_right, JoystickZone joystick_zone,
+                               InputSource input_source, float forward_back_scaling,
+                               float left_right_scaling)
+        : forward_back(forward_back), left_right(left_right), joystick_zone(joystick_zone),
+          input_source(input_source), forward_back_scaling(forward_back_scaling),
+          left_right_scaling(left_right_scaling)
     {
     }
 };

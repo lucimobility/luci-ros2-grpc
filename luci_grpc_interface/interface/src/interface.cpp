@@ -114,6 +114,8 @@ void Interface::processJoystickScalingData()
         joystickScalingMsg.left_right = joystickScalingData.left_right;
         joystickScalingMsg.joystick_zone = static_cast<int>(joystickScalingData.joystick_zone);
         joystickScalingMsg.input_source = static_cast<int>(joystickScalingData.input_source);
+        joystickScalingMsg.forward_back_scaling = joystickScalingData.forward_back_scaling;
+        joystickScalingMsg.left_right_scaling = joystickScalingData.left_right_scaling;
         this->joystickScalingPublisher->publish(joystickScalingMsg);
     }
 }
@@ -385,40 +387,24 @@ void Interface::sendJsCallback(const luci_messages::msg::LuciJoystick::SharedPtr
     this->luciInterface->sendJS(msg->forward_back + 100, msg->left_right + 100, inputSource);
 }
 
-void Interface::setRemoteInputSource()
+void Interface::setSharedRemoteInputSource()
 {
-    int checker = this->luciInterface->setInputSource(InputSource::Remote);
-    std::chrono::milliseconds waitTime(100);
-    if (checker == 0)
-    {
-        this->luciInterface->sendJS(100, 100, InputSource::Remote);
-        while (true)
-        {
-            // Make sure that the joysick value is 0,0 before sending other values
-            // This is a behavior of LUCI and iss to prevent hangups when it thinks the joystick is
-            // not at 0,0
-            if (this->joystickDataBuff->waitNext(waitTime).has_value() == false ||
-                this->joystickDataBuff->getLatest().value().input_source != InputSource::Remote)
-            {
-                this->luciInterface->sendJS(100, 100, InputSource::Remote);
-            }
-            else
-            {
-                spdlog::info("Input source is remote");
-                break;
-            }
-            checker = 1;
-        }
-    }
-    else
-    {
-        spdlog::error("Error setting input source to remote");
-    }
+    this->luciInterface->setInputSource(InputSource::SharedRemote);
 }
 
-void Interface::removeRemoteInputSource()
+void Interface::removeSharedRemoteInputSource()
 {
-    this->luciInterface->removeInputSource(InputSource::Remote);
+    this->luciInterface->removeInputSource(InputSource::SharedRemote);
+}
+
+void Interface::setAutoRemoteInputSource()
+{
+    this->luciInterface->setInputSource(InputSource::AutonomousRemote);
+}
+
+void Interface::removeAutoRemoteInputSource()
+{
+    this->luciInterface->removeInputSource(InputSource::AutonomousRemote);
 }
 
 void Interface::updateIrFrameRate(int rate)

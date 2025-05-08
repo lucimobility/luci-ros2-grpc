@@ -1,4 +1,4 @@
-# # Copyright (c) 2023 LUCI Mobility, Inc. All Rights Reserved.
+# Copyright (c) 2023 LUCI Mobility, Inc. All Rights Reserved.
 
 # Find all the needed libraries for ROS
 find_package(ament_cmake REQUIRED)

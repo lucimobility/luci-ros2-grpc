@@ -54,9 +54,6 @@ else
     echo $CPP_PLUGIN
 fi
 
-echo "PROTOC=${PROTOC}"
-echo "CPP_PLUGIN=${CPP_PLUGIN}"
-
 PLUGIN=protoc-gen-grpc=${CPP_PLUGIN}
 OUTPUT_DIR=${CMAKE_CURRENT_BINARY_DIR}/generated_code/sensors_grpc
 HASH_FILE=${OUTPUT_DIR}/proto-hash.md5

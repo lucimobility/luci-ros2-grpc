@@ -77,7 +77,7 @@ int main(int argc, char* argv[])
 
     auto zoneScalingDataBuff = std::make_shared<Luci::ROS2::DataBuffer<LuciZoneScaling>>();
 
-    auto joystickScalingDataBuff = std::make_shared<Luci::ROS2::DataBuffer<SystemJoystick>>();
+    auto joystickScalingDataBuff = std::make_shared<Luci::ROS2::DataBuffer<LuciJoystickScaling>>();
 
     auto ahrsInfoDataBuff = std::make_shared<Luci::ROS2::DataBuffer<AhrsInfo>>();
 
@@ -114,11 +114,11 @@ int main(int argc, char* argv[])
         zoneScalingDataBuff, joystickScalingDataBuff, ahrsInfoDataBuff, imuDataBuff,
         encoderDataBuff, irDataBuffLeft, irDataBuffRight, irDataBuffRear, frameRate);
 
-    // // ROS connection
+    // ROS connection
     auto interface_node = std::make_shared<Interface>(
         luciInterface, cameraDataBuff, radarDataBuff, ultrasonicDataBuff, joystickDataBuff,
         zoneScalingDataBuff, joystickScalingDataBuff, ahrsInfoDataBuff, imuDataBuff,
-        encoderDataBuff, irDataBuffLeft, irDataBuffRight, irDataBuffRear);
+        encoderDataBuff, irDataBuffLeft, irDataBuffRight, irDataBuffRear, frameRate);
 
     executor.add_node(interface_node);
     spdlog::debug("Running grpc interface");

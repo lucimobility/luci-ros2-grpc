@@ -42,6 +42,7 @@
 #include <thread>
 #include <vector>
 
+using sensors::ActiveScaling;
 using sensors::AhrsData;
 using sensors::CameraMetaData;
 using sensors::CameraPoints;
@@ -88,7 +89,7 @@ class ClientGuide
         std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> radarDataBuff,
         std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> ultrasonicDataBuff,
         std::shared_ptr<DataBuffer<LuciZoneScaling>> zoneScalingDataBuff,
-        std::shared_ptr<DataBuffer<SystemJoystick>> joystickScalingDataBuff,
+        std::shared_ptr<DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff,
         std::shared_ptr<DataBuffer<AhrsInfo>> ahrsInfoBuff,
         std::shared_ptr<DataBuffer<ImuData>> imuDataBuff,
         std::shared_ptr<DataBuffer<EncoderData>> encoderDataBuff,
@@ -114,7 +115,7 @@ class ClientGuide
     std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> radarDataBuff;
     std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> ultrasonicDataBuff;
     std::shared_ptr<DataBuffer<LuciZoneScaling>> zoneScalingDataBuff;
-    std::shared_ptr<DataBuffer<SystemJoystick>> joystickScalingDataBuff;
+    std::shared_ptr<DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff;
     std::shared_ptr<DataBuffer<SystemJoystick>> joystickDataBuff;
     std::shared_ptr<DataBuffer<AhrsInfo>> ahrsDataBuff;
     std::shared_ptr<DataBuffer<ImuData>> imuDataBuff;

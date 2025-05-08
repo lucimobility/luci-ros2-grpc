@@ -15,7 +15,6 @@
   <depend>geometry_msgs</depend>
   <depend>nav_msgs</depend>
   <depend>tf2_ros</depend>
-  <!-- Note not including the luci_message package here as its easier to build without it needing to be in rosdep -->
   <depend>luci_messages</depend>
 
   <export>

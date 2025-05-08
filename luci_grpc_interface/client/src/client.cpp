@@ -42,7 +42,7 @@ ClientGuide::ClientGuide(
     std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> radarDataBuff,
     std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> ultrasonicDataBuff,
     std::shared_ptr<DataBuffer<LuciZoneScaling>> zoneScalingDataBuff,
-    std::shared_ptr<DataBuffer<SystemJoystick>> joystickScalingDataBuff,
+    std::shared_ptr<DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff,
     std::shared_ptr<DataBuffer<AhrsInfo>> ahrsDataBuff,
     std::shared_ptr<DataBuffer<ImuData>> imuDataBuff,
     std::shared_ptr<DataBuffer<EncoderData>> encoderDataBuff,
@@ -91,7 +91,8 @@ sensors::JoystickZone convertJoystickZoneToProto(const JoystickZone zone)
     case JoystickZone::Origin:
         return sensors::JoystickZone::Origin;
     default:
-        spdlog::error("Unexpected luci joystick zone {}, defaulting to origin", static_cast<int>(zone));
+        spdlog::error("Unexpected luci joystick zone {}, defaulting to origin",
+                      static_cast<int>(zone));
     }
     return sensors::JoystickZone::Origin;
 }
@@ -130,14 +131,16 @@ sensors::InputSource convertInputSourceToProto(const InputSource inputSource)
     {
     case InputSource::RampAssist:
         return sensors::InputSource::RampAssist;
-    case InputSource::Remote:
-        return sensors::InputSource::Remote;
+    case InputSource::AutonomousRemote:
+        return sensors::InputSource::AutonomousRemote;
     case InputSource::WDI:
         return sensors::InputSource::WDI;
     case InputSource::ChairVirtual:
         return sensors::InputSource::ChairVirtual;
     case InputSource::ChairPhysical:
         return sensors::InputSource::ChairPhysical;
+    case InputSource::SharedRemote:
+        return sensors::InputSource::SharedRemote;
     default:
         spdlog::error("Unexpected luci input source {}, defaulting to chair virtual input source",
                       static_cast<int>(inputSource));
@@ -151,14 +154,16 @@ InputSource convertProtoInputSource(const sensors::InputSource inputSource)
     {
     case sensors::InputSource::RampAssist:
         return InputSource::RampAssist;
-    case sensors::InputSource::Remote:
-        return InputSource::Remote;
+    case sensors::InputSource::AutonomousRemote:
+        return InputSource::AutonomousRemote;
     case sensors::InputSource::WDI:
         return InputSource::WDI;
     case sensors::InputSource::ChairVirtual:
         return InputSource::ChairVirtual;
     case sensors::InputSource::ChairPhysical:
         return InputSource::ChairPhysical;
+    case sensors::InputSource::SharedRemote:
+        return InputSource::SharedRemote;
     default:
         spdlog::error(
             "Unexpected sensors input source {}, defaulting to chair virtual input source",
@@ -372,17 +377,19 @@ void ClientGuide::readJoystickScalingData() const
 {
     ClientContext context;
     const google::protobuf::Empty request;
-    JoystickData response;
+    ActiveScaling response;
 
-    std::unique_ptr<ClientReader<JoystickData>> reader(
-        stub_->DriveJoystickStream(&context, request));
+    std::unique_ptr<ClientReader<ActiveScaling>> reader(
+        stub_->ActiveScalingStream(&context, request));
     reader->Read(&response);
 
     while (reader->Read(&response))
     {
-        SystemJoystick scalingValues(response.forward_back(), response.left_right(),
-                                     convertProtoZone(response.joystick_zone()),
-                                     convertProtoInputSource(response.source()));
+        LuciJoystickScaling scalingValues(
+            response.joystick().forward_back(), response.joystick().left_right(),
+            convertProtoZone(response.joystick().joystick_zone()),
+            convertProtoInputSource(response.joystick().source()), response.forward_back_scaling(),
+            response.left_right_scaling());
 
         this->joystickScalingDataBuff->push(scalingValues);
     }

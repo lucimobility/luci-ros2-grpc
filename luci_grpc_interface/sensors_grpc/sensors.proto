@@ -37,6 +37,7 @@ service Sensors {
   rpc AhrsStream(google.protobuf.Empty) returns (stream AhrsData); //
 
   rpc ScalingStream(google.protobuf.Empty) returns (stream NavigationScaling); //
+  rpc ActiveScalingStream(google.protobuf.Empty) returns (stream ActiveScaling); //
 
   rpc DecimatedCameraStream(google.protobuf.Empty)
       returns (stream CameraPoints); //
@@ -86,6 +87,12 @@ message NavigationScaling {
   float back_rl = 16;
   uint32 max_js_scale_increase = 17;
   uint32 max_js_scale_decrease = 18;
+}
+
+message ActiveScaling {
+  JoystickData joystick = 1;
+  float forward_back_scaling = 2;
+  float left_right_scaling = 3;
 }
 
 message UltrasonicDistance {
@@ -317,10 +324,11 @@ message FrameRate {
 
 enum InputSource {
 RampAssist = 0;
-Remote = 1;
+AutonomousRemote = 1;
 WDI = 2;
 ChairVirtual = 3;
 ChairPhysical = 4;
+SharedRemote = 5;
 }
 
 message InputSourceRequest {
