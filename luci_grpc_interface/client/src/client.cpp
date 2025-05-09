@@ -29,8 +29,6 @@ using grpc::Status;
 
 using Luci::ROS2::ClientGuide;
 
-using sensors::DriveMode;
-using sensors::ModeCtrl;
 using sensors::RemoteJsValues;
 using sensors::Response;
 
@@ -44,7 +42,7 @@ ClientGuide::ClientGuide(
     std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> radarDataBuff,
     std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> ultrasonicDataBuff,
     std::shared_ptr<DataBuffer<LuciZoneScaling>> zoneScalingDataBuff,
-    std::shared_ptr<DataBuffer<SystemJoystick>> joystickScalingDataBuff,
+    std::shared_ptr<DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff,
     std::shared_ptr<DataBuffer<AhrsInfo>> ahrsDataBuff,
     std::shared_ptr<DataBuffer<ImuData>> imuDataBuff,
     std::shared_ptr<DataBuffer<EncoderData>> encoderDataBuff,
@@ -70,6 +68,110 @@ ClientGuide::ClientGuide(
     grpcThreads.emplace_back(&ClientGuide::readIrFrame, this, initialFrameRate);
 }
 
+sensors::JoystickZone convertJoystickZoneToProto(const JoystickZone zone)
+{
+    switch (zone)
+    {
+    case JoystickZone::Front:
+        return sensors::JoystickZone::Front;
+    case JoystickZone::FrontLeft:
+        return sensors::JoystickZone::FrontLeft;
+    case JoystickZone::FrontRight:
+        return sensors::JoystickZone::FrontRight;
+    case JoystickZone::Left:
+        return sensors::JoystickZone::Left;
+    case JoystickZone::Right:
+        return sensors::JoystickZone::Right;
+    case JoystickZone::BackLeft:
+        return sensors::JoystickZone::BackLeft;
+    case JoystickZone::BackRight:
+        return sensors::JoystickZone::BackRight;
+    case JoystickZone::Back:
+        return sensors::JoystickZone::Back;
+    case JoystickZone::Origin:
+        return sensors::JoystickZone::Origin;
+    default:
+        spdlog::error("Unexpected luci joystick zone {}, defaulting to origin",
+                      static_cast<int>(zone));
+    }
+    return sensors::JoystickZone::Origin;
+}
+
+JoystickZone convertProtoZone(const sensors::JoystickZone zone)
+{
+    switch (zone)
+    {
+    case sensors::JoystickZone::Front:
+        return JoystickZone::Front;
+    case sensors::JoystickZone::FrontLeft:
+        return JoystickZone::FrontLeft;
+    case sensors::JoystickZone::FrontRight:
+        return JoystickZone::FrontRight;
+    case sensors::JoystickZone::Left:
+        return JoystickZone::Left;
+    case sensors::JoystickZone::Right:
+        return JoystickZone::Right;
+    case sensors::JoystickZone::BackLeft:
+        return JoystickZone::BackLeft;
+    case sensors::JoystickZone::BackRight:
+        return JoystickZone::BackRight;
+    case sensors::JoystickZone::Back:
+        return JoystickZone::Back;
+    case sensors::JoystickZone::Origin:
+        return JoystickZone::Origin;
+    default:
+        spdlog::error("Unexpected sensors joystick zone {}, defaulting to origin", zone);
+    }
+    return JoystickZone::Origin;
+}
+
+sensors::InputSource convertInputSourceToProto(const InputSource inputSource)
+{
+    switch (inputSource)
+    {
+    case InputSource::RampAssist:
+        return sensors::InputSource::RampAssist;
+    case InputSource::AutonomousRemote:
+        return sensors::InputSource::AutonomousRemote;
+    case InputSource::WDI:
+        return sensors::InputSource::WDI;
+    case InputSource::ChairVirtual:
+        return sensors::InputSource::ChairVirtual;
+    case InputSource::ChairPhysical:
+        return sensors::InputSource::ChairPhysical;
+    case InputSource::SharedRemote:
+        return sensors::InputSource::SharedRemote;
+    default:
+        spdlog::error("Unexpected luci input source {}, defaulting to chair virtual input source",
+                      static_cast<int>(inputSource));
+    }
+    return sensors::InputSource::ChairVirtual;
+}
+
+InputSource convertProtoInputSource(const sensors::InputSource inputSource)
+{
+    switch (inputSource)
+    {
+    case sensors::InputSource::RampAssist:
+        return InputSource::RampAssist;
+    case sensors::InputSource::AutonomousRemote:
+        return InputSource::AutonomousRemote;
+    case sensors::InputSource::WDI:
+        return InputSource::WDI;
+    case sensors::InputSource::ChairVirtual:
+        return InputSource::ChairVirtual;
+    case sensors::InputSource::ChairPhysical:
+        return InputSource::ChairPhysical;
+    case sensors::InputSource::SharedRemote:
+        return InputSource::SharedRemote;
+    default:
+        spdlog::error(
+            "Unexpected sensors input source {}, defaulting to chair virtual input source",
+            inputSource);
+    }
+    return InputSource::ChairVirtual;
+}
+
 ClientGuide::~ClientGuide()
 {
     for (std::thread& grpcThread : this->grpcThreads)
@@ -79,61 +181,45 @@ ClientGuide::~ClientGuide()
     spdlog::debug("gRPC Ramp threads joined");
 }
 
-bool ClientGuide::activateEngagedMode() const
+int ClientGuide::setInputSource(InputSource source) const
 {
     ClientContext context;
+    sensors::InputSourceRequest request;
     Response response;
-    ModeCtrl request;
-    request.set_mode(DriveMode::ENGAGED);
 
-    if (Status status = stub_->SetDriveMode(&context, request, &response); status.ok())
+    request.set_source(convertInputSourceToProto(source));
+
+    if (Status status = stub_->AddInputSource(&context, request, &response); status.ok())
     {
-        spdlog::warn(response.reply());
+        spdlog::info("Setting input source to {}", static_cast<int>(source));
+        return 0;
     }
     else
     {
-        return false;
+        spdlog::error("Error communicating with server... pass in correct ip and port of chair");
+        return 1;
     }
-    return true;
 }
 
-bool ClientGuide::activateUserMode() const
+void ClientGuide::removeInputSource(InputSource source) const
 {
     ClientContext context;
+    sensors::InputSourceRequest request;
     Response response;
-    ModeCtrl request;
-    request.set_mode(DriveMode::USER);
 
-    if (Status status = stub_->SetDriveMode(&context, request, &response); status.ok())
+    request.set_source(convertInputSourceToProto(source));
+
+    if (Status status = stub_->RemoveInputSource(&context, request, &response); status.ok())
     {
-        spdlog::warn(response.reply());
+        spdlog::info("Removing input source {}", static_cast<int>(source));
     }
     else
     {
-        return false;
+        spdlog::error("Error communicating with server... pass in correct ip and port of chair");
     }
-    return true;
 }
 
-bool ClientGuide::activateAutoMode() const
-{
-    ClientContext context;
-    Response response;
-    ModeCtrl request;
-    request.set_mode(DriveMode::AUTONOMOUS);
-
-    if (Status status = stub_->SetDriveMode(&context, request, &response); status.ok())
-    {
-        spdlog::warn(response.reply());
-    }
-    else
-    {
-        return false;
-    }
-    return true;
-}
-
-int ClientGuide::sendJS(int forwardBack, int leftRight)
+int ClientGuide::sendJS(int forwardBack, int leftRight, InputSource source)
 {
     // The forwardBack and the leftRight should be between 0-200 (100 being zero)
     ClientContext context;
@@ -142,13 +228,15 @@ int ClientGuide::sendJS(int forwardBack, int leftRight)
 
     request.set_left_right(leftRight);
     request.set_forward_back(forwardBack);
+    request.set_source(convertInputSourceToProto(source));
 
     auto currentTime = std::chrono::high_resolution_clock::now();
 
     if (Status status = stub_->JsOverride(&context, request, &response); status.ok())
     {
-        spdlog::info("Sending remote call... values ({} {}) status: {}",
-                     std::to_string(forwardBack), std::to_string(leftRight), response.reply());
+        spdlog::info("Sending remote call... values ({} {} {}) status: {}",
+                     std::to_string(forwardBack), std::to_string(leftRight),
+                     std::to_string(static_cast<int>(source)), response.reply());
     }
     else
     {
@@ -169,13 +257,14 @@ void ClientGuide::readJoystickPosition() const
     sensors::JoystickData response;
 
     std::unique_ptr<ClientReader<sensors::JoystickData>> reader(
-        stub_->JoystickStream(&context, request));
+        stub_->UserJoystickStream(&context, request));
     reader->Read(&response);
 
     while (reader->Read(&response))
     {
         SystemJoystick joystickValues(response.forward_back(), response.left_right(),
-                                      response.joystick_zone());
+                                      convertProtoZone(response.joystick_zone()),
+                                      convertProtoInputSource(response.source()));
 
         this->joystickDataBuff->push(joystickValues);
     }
@@ -288,16 +377,19 @@ void ClientGuide::readJoystickScalingData() const
 {
     ClientContext context;
     const google::protobuf::Empty request;
-    JoystickData response;
+    ActiveScaling response;
 
-    std::unique_ptr<ClientReader<JoystickData>> reader(
-        stub_->ScaledJoystickStream(&context, request));
+    std::unique_ptr<ClientReader<ActiveScaling>> reader(
+        stub_->ActiveScalingStream(&context, request));
     reader->Read(&response);
 
     while (reader->Read(&response))
     {
-        SystemJoystick scalingValues(response.forward_back(), response.left_right(),
-                                     response.joystick_zone());
+        LuciJoystickScaling scalingValues(
+            response.joystick().forward_back(), response.joystick().left_right(),
+            convertProtoZone(response.joystick().joystick_zone()),
+            convertProtoInputSource(response.joystick().source()), response.forward_back_scaling(),
+            response.left_right_scaling());
 
         this->joystickScalingDataBuff->push(scalingValues);
     }

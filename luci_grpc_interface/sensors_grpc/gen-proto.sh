@@ -51,10 +51,8 @@ else
     # Protoc does not search the PATH when looking for plugins,
     # so we must provide the full path.
     CPP_PLUGIN=$(which ${CPP_PLUGIN})
+    echo $CPP_PLUGIN
 fi
-
-echo "PROTOC=${PROTOC}"
-echo "CPP_PLUGIN=${CPP_PLUGIN}"
 
 PLUGIN=protoc-gen-grpc=${CPP_PLUGIN}
 OUTPUT_DIR=${CMAKE_CURRENT_BINARY_DIR}/generated_code/sensors_grpc

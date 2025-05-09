@@ -42,6 +42,7 @@
 #include <thread>
 #include <vector>
 
+using sensors::ActiveScaling;
 using sensors::AhrsData;
 using sensors::CameraMetaData;
 using sensors::CameraPoints;
@@ -88,7 +89,7 @@ class ClientGuide
         std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> radarDataBuff,
         std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> ultrasonicDataBuff,
         std::shared_ptr<DataBuffer<LuciZoneScaling>> zoneScalingDataBuff,
-        std::shared_ptr<DataBuffer<SystemJoystick>> joystickScalingDataBuff,
+        std::shared_ptr<DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff,
         std::shared_ptr<DataBuffer<AhrsInfo>> ahrsInfoBuff,
         std::shared_ptr<DataBuffer<ImuData>> imuDataBuff,
         std::shared_ptr<DataBuffer<EncoderData>> encoderDataBuff,
@@ -114,7 +115,7 @@ class ClientGuide
     std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> radarDataBuff;
     std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> ultrasonicDataBuff;
     std::shared_ptr<DataBuffer<LuciZoneScaling>> zoneScalingDataBuff;
-    std::shared_ptr<DataBuffer<SystemJoystick>> joystickScalingDataBuff;
+    std::shared_ptr<DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff;
     std::shared_ptr<DataBuffer<SystemJoystick>> joystickDataBuff;
     std::shared_ptr<DataBuffer<AhrsInfo>> ahrsDataBuff;
     std::shared_ptr<DataBuffer<ImuData>> imuDataBuff;
@@ -129,34 +130,29 @@ class ClientGuide
     // Single calls over gRPC
 
     /**
-     * @brief Interface to turn on engaged mode at the msp level
+     * @brief Set the input source for the chair
      *
-     * @return bool success code (true-success, false-failure)
+     * @param source The input source to set
+     * @return int success code (0-success, 1-failure)
      */
-    bool activateEngagedMode() const;
+    int setInputSource(InputSource source) const;
 
     /**
-     * @brief Interface to turn on user mode at the msp level
+     * @brief Remove the input source for the chair
      *
-     * @return bool success code (true-success, false-failure)
+     * @param source The input source to remove
      */
-    bool activateUserMode() const;
-
-    /**
-     * @brief Interface to turn on auto mode at the msp level
-     *
-     * @return bool success code (true-success, false-failure)
-     */
-    bool activateAutoMode() const;
+    void removeInputSource(InputSource source) const;
 
     /**
      * @brief Send JS values to luci sensors
      *
      * @param forwardBack
      * @param leftRight
+     * @param source
      * @return int success code (0-success, 1-failure)
      */
-    int sendJS(int forwardBack, int leftRight);
+    int sendJS(int forwardBack, int leftRight, InputSource source);
 
     /**
      * @brief Updates the IR frame rate while a stream is already active. This is used by clients

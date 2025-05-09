@@ -112,7 +112,10 @@ void Interface::processJoystickScalingData()
         luci_messages::msg::LuciJoystickScaling joystickScalingMsg;
         joystickScalingMsg.forward_back = joystickScalingData.forward_back;
         joystickScalingMsg.left_right = joystickScalingData.left_right;
-        joystickScalingMsg.joystick_zone = joystickScalingData.joystick_zone;
+        joystickScalingMsg.joystick_zone = static_cast<int>(joystickScalingData.joystick_zone);
+        joystickScalingMsg.input_source = static_cast<int>(joystickScalingData.input_source);
+        joystickScalingMsg.forward_back_scaling = joystickScalingData.forward_back_scaling;
+        joystickScalingMsg.left_right_scaling = joystickScalingData.left_right_scaling;
         this->joystickScalingPublisher->publish(joystickScalingMsg);
     }
 }
@@ -125,7 +128,8 @@ void Interface::processJoystickPositionData()
         luci_messages::msg::LuciJoystick joystickPositionMsg;
         joystickPositionMsg.forward_back = joystickPositionData.forward_back;
         joystickPositionMsg.left_right = joystickPositionData.left_right;
-        joystickPositionMsg.joystick_zone = joystickPositionData.joystick_zone;
+        joystickPositionMsg.joystick_zone = static_cast<int>(joystickPositionData.joystick_zone);
+        joystickPositionMsg.input_source = static_cast<int>(joystickPositionData.input_source);
         this->joystickPositionPublisher->publish(joystickPositionMsg);
     }
 }
@@ -376,30 +380,31 @@ void Interface::processRearIrData()
 void Interface::sendJsCallback(const luci_messages::msg::LuciJoystick::SharedPtr msg)
 {
     // Send the remote JS values over gRPC
-    spdlog::debug("Received js val: {} {}", msg->forward_back, msg->left_right);
+    auto inputSource = static_cast<InputSource>(msg->input_source);
+    spdlog::debug("Received js val: {} {} {}", msg->forward_back, msg->left_right,
+                  msg->input_source);
 
-    this->luciInterface->sendJS(msg->forward_back + 100, msg->left_right + 100);
+    this->luciInterface->sendJS(msg->forward_back + 100, msg->left_right + 100, inputSource);
 }
 
-void Interface::switchLuciModeCallback(const luci_messages::msg::LuciDriveMode::SharedPtr msg)
+void Interface::setSharedRemoteInputSource()
 {
-    // Send a mode switch over gRPC
-    spdlog::info("Received mode switch request");
-    switch (msg->mode)
-    {
-    case luci_messages::msg::LuciDriveMode::USER:
-        this->luciInterface->activateUserMode();
-        break;
-    case luci_messages::msg::LuciDriveMode::ENGAGED:
-        this->luciInterface->activateEngagedMode();
-        break;
-    case luci_messages::msg::LuciDriveMode::AUTO:
-        this->luciInterface->activateAutoMode();
-        break;
-    default:
-        spdlog::error("NOT A VALID MODE SELECTION");
-        break;
-    }
+    this->luciInterface->setInputSource(InputSource::SharedRemote);
+}
+
+void Interface::removeSharedRemoteInputSource()
+{
+    this->luciInterface->removeInputSource(InputSource::SharedRemote);
+}
+
+void Interface::setAutoRemoteInputSource()
+{
+    this->luciInterface->setInputSource(InputSource::AutonomousRemote);
+}
+
+void Interface::removeAutoRemoteInputSource()
+{
+    this->luciInterface->removeInputSource(InputSource::AutonomousRemote);
 }
 
 void Interface::updateIrFrameRate(int rate)

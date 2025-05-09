@@ -9,6 +9,7 @@ find_package(geometry_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
 find_package(tf2_ros REQUIRED)
 find_package(luci_messages REQUIRED)
+find_package(std_srvs REQUIRED)
 
 # Make a gRPC<-> ROS2 library
 add_library(ROS2GrpcInterfaceNode
@@ -23,6 +24,7 @@ target_include_directories(ROS2GrpcInterfaceNode PUBLIC
     ${nav_msgs_INCLUDE_DIRS}
     ${tf2_ros_INCLUDE_DIRS}
     ${luci_messages_INCLUDE_DIRS}
+    ${std_srvs_INCLUDE_DIRS}
 )
 
 # Link all the libraries 
@@ -36,6 +38,7 @@ target_link_libraries(ROS2GrpcInterfaceNode PUBLIC
     ${geometry_msgs_LIBRARIES}
     ${tf2_ros_LIBRARIES}
     ${luci_messages_LIBRARIES}
+    ${std_srvs_LIBRARIES}
 )
 
 # Make the interface node executable

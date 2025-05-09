@@ -20,6 +20,7 @@
 
 #include "client/client.h"
 #include "grpc_interface/interface.h"
+#include "rclcpp/rclcpp.hpp"
 #include "tclap/CmdLine.h"
 
 #include <iostream>
@@ -76,7 +77,7 @@ int main(int argc, char* argv[])
 
     auto zoneScalingDataBuff = std::make_shared<Luci::ROS2::DataBuffer<LuciZoneScaling>>();
 
-    auto joystickScalingDataBuff = std::make_shared<Luci::ROS2::DataBuffer<SystemJoystick>>();
+    auto joystickScalingDataBuff = std::make_shared<Luci::ROS2::DataBuffer<LuciJoystickScaling>>();
 
     auto ahrsInfoDataBuff = std::make_shared<Luci::ROS2::DataBuffer<AhrsInfo>>();
 
@@ -117,10 +118,12 @@ int main(int argc, char* argv[])
     auto interface_node = std::make_shared<Interface>(
         luciInterface, cameraDataBuff, radarDataBuff, ultrasonicDataBuff, joystickDataBuff,
         zoneScalingDataBuff, joystickScalingDataBuff, ahrsInfoDataBuff, imuDataBuff,
-        encoderDataBuff, irDataBuffLeft, irDataBuffRight, irDataBuffRear);
+        encoderDataBuff, irDataBuffLeft, irDataBuffRight, irDataBuffRear, frameRate);
 
     executor.add_node(interface_node);
     spdlog::debug("Running grpc interface");
+
+    RCLCPP_INFO(rclcpp::get_logger("luci_interface"), "Running ROS2 executor...");
 
     executor.spin();
 

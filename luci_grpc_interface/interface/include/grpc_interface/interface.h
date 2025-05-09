@@ -39,6 +39,7 @@
 #include <nav_msgs/msg/odometry.hpp>
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/point_cloud2.hpp>
+#include <std_srvs/srv/empty.hpp>
 #include <tf2_ros/transform_broadcaster.h>
 
 // LUCI ROS2 libraries
@@ -78,20 +79,20 @@ class Interface : public rclcpp::Node
         std::shared_ptr<Luci::ROS2::DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> ultrasonicDataBuff,
         std::shared_ptr<Luci::ROS2::DataBuffer<SystemJoystick>> joystickDataBuff,
         std::shared_ptr<Luci::ROS2::DataBuffer<LuciZoneScaling>> zoneScalingDataBuff,
-        std::shared_ptr<Luci::ROS2::DataBuffer<SystemJoystick>> joystickScalingDataBuff,
+        std::shared_ptr<Luci::ROS2::DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff,
         std::shared_ptr<Luci::ROS2::DataBuffer<AhrsInfo>> ahrsInfoDataBuff,
         std::shared_ptr<Luci::ROS2::DataBuffer<ImuData>> imuDataBuff,
         std::shared_ptr<Luci::ROS2::DataBuffer<EncoderData>> encoderDataBuff,
         std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData>> irDataBuffLeft,
         std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData>> irDataBuffRight,
-        std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData>> irDataBuffRear)
+        std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData>> irDataBuffRear, int initialFrameRate)
         : Node("interface"), luciInterface(luciInterface), cameraDataBuff(cameraDataBuff),
           radarDataBuff(radarDataBuff), ultrasonicDataBuff(ultrasonicDataBuff),
           joystickDataBuff(joystickDataBuff), zoneScalingDataBuff(zoneScalingDataBuff),
           joystickScalingDataBuff(joystickScalingDataBuff), ahrsInfoDataBuff(ahrsInfoDataBuff),
           imuDataBuff(imuDataBuff), encoderDataBuff(encoderDataBuff),
           irDataBuffLeft(irDataBuffLeft), irDataBuffRight(irDataBuffRight),
-          irDataBuffRear(irDataBuffRear)
+          irDataBuffRear(irDataBuffRear), initialFrameRate(initialFrameRate)
     {
         /// ROS publishers (sends the LUCI gRPC data to ROS on the specified topic)
         this->cameraPublisher =
@@ -118,11 +119,45 @@ class Interface : public rclcpp::Node
             "luci/remote_joystick", QUEUE_SIZE,
             [this](luci_messages::msg::LuciJoystick::SharedPtr msg) { this->sendJsCallback(msg); });
 
-        this->luci_mode_switch_subscription_ =
-            this->create_subscription<luci_messages::msg::LuciDriveMode>(
-                "luci/drive_mode", QUEUE_SIZE,
-                [this](luci_messages::msg::LuciDriveMode::SharedPtr msg)
-                { this->switchLuciModeCallback(msg); });
+        this->set_shared_remote_input_service = this->create_service<std_srvs::srv::Empty>(
+            "luci/set_shared_remote_input",
+            [this](const std::shared_ptr<rmw_request_id_t> request_header,
+                   const std::shared_ptr<std_srvs::srv::Empty::Request> request,
+                   const std::shared_ptr<std_srvs::srv::Empty::Response> response)
+            {
+                RCLCPP_INFO(this->get_logger(), "Set remote input service called");
+                this->setSharedRemoteInputSource();
+            });
+
+        this->remove_shared_remote_input_service = this->create_service<std_srvs::srv::Empty>(
+            "luci/remove_shared_remote_input",
+            [this](const std::shared_ptr<rmw_request_id_t> request_header,
+                   const std::shared_ptr<std_srvs::srv::Empty::Request> request,
+                   const std::shared_ptr<std_srvs::srv::Empty::Response> response)
+            {
+                RCLCPP_INFO(this->get_logger(), "Remove remote input service called");
+                this->removeSharedRemoteInputSource();
+            });
+
+        this->set_auto_remote_input_service = this->create_service<std_srvs::srv::Empty>(
+            "luci/set_auto_remote_input",
+            [this](const std::shared_ptr<rmw_request_id_t> request_header,
+                   const std::shared_ptr<std_srvs::srv::Empty::Request> request,
+                   const std::shared_ptr<std_srvs::srv::Empty::Response> response)
+            {
+                RCLCPP_INFO(this->get_logger(), "Set auto remote input service called");
+                this->setAutoRemoteInputSource();
+            });
+
+        this->remove_auto_remote_input_service = this->create_service<std_srvs::srv::Empty>(
+            "luci/remove_auto_remote_input",
+            [this](const std::shared_ptr<rmw_request_id_t> request_header,
+                   const std::shared_ptr<std_srvs::srv::Empty::Request> request,
+                   const std::shared_ptr<std_srvs::srv::Empty::Response> response)
+            {
+                RCLCPP_INFO(this->get_logger(), "Remove auto remote input service called");
+                this->removeAutoRemoteInputSource();
+            });
 
         this->zoneScalingPublisher =
             this->create_publisher<luci_messages::msg::LuciZoneScaling>("luci/scaling", QUEUE_SIZE);
@@ -134,23 +169,30 @@ class Interface : public rclcpp::Node
         this->joystickPositionPublisher = this->create_publisher<luci_messages::msg::LuciJoystick>(
             "luci/joystick_position", QUEUE_SIZE);
 
-        this->irLeftPublisher =
-            this->create_publisher<sensor_msgs::msg::Image>("luci/ir_left_camera", QUEUE_SIZE);
+        // get the camera frame rate from the gRPC interface
+        if (this->initialFrameRate != 0)
+        {
+            this->irLeftPublisher =
+                this->create_publisher<sensor_msgs::msg::Image>("luci/ir_left_camera", QUEUE_SIZE);
 
-        this->irRightPublisher =
-            this->create_publisher<sensor_msgs::msg::Image>("luci/ir_right_camera", QUEUE_SIZE);
+            this->irRightPublisher =
+                this->create_publisher<sensor_msgs::msg::Image>("luci/ir_right_camera", QUEUE_SIZE);
 
-        this->irRearPublisher =
-            this->create_publisher<sensor_msgs::msg::Image>("luci/ir_rear_camera", QUEUE_SIZE);
+            this->irRearPublisher =
+                this->create_publisher<sensor_msgs::msg::Image>("luci/ir_rear_camera", QUEUE_SIZE);
 
-        this->leftCameraInfoPublisher = this->create_publisher<luci_messages::msg::LuciCameraInfo>(
-            "luci/left_camera_info", QUEUE_SIZE);
+            this->leftCameraInfoPublisher =
+                this->create_publisher<luci_messages::msg::LuciCameraInfo>("luci/left_camera_info",
+                                                                           QUEUE_SIZE);
 
-        this->rightCameraInfoPublisher = this->create_publisher<luci_messages::msg::LuciCameraInfo>(
-            "luci/right_camera_info", QUEUE_SIZE);
+            this->rightCameraInfoPublisher =
+                this->create_publisher<luci_messages::msg::LuciCameraInfo>("luci/right_camera_info",
+                                                                           QUEUE_SIZE);
 
-        this->rearCameraInfoPublisher = this->create_publisher<luci_messages::msg::LuciCameraInfo>(
-            "luci/rear_camera_info", QUEUE_SIZE);
+            this->rearCameraInfoPublisher =
+                this->create_publisher<luci_messages::msg::LuciCameraInfo>("luci/rear_camera_info",
+                                                                           QUEUE_SIZE);
+        }
 
         // TODO: clp Should the processing just be handled in the gRPC threads?
         // Spin up a single thread for every gRPC <-> ROS translation
@@ -190,6 +232,15 @@ class Interface : public rclcpp::Node
     rclcpp::Publisher<luci_messages::msg::LuciCameraInfo>::SharedPtr rightCameraInfoPublisher;
     rclcpp::Publisher<luci_messages::msg::LuciCameraInfo>::SharedPtr rearCameraInfoPublisher;
 
+    /// Shared pointers to subscribers (convention in ROS2)
+    rclcpp::Subscription<luci_messages::msg::LuciJoystick>::SharedPtr remote_js_subscription_;
+
+    /// Shared pointers to services (convention in ROS2)
+    rclcpp::Service<std_srvs::srv::Empty>::SharedPtr set_shared_remote_input_service;
+    rclcpp::Service<std_srvs::srv::Empty>::SharedPtr remove_shared_remote_input_service;
+    rclcpp::Service<std_srvs::srv::Empty>::SharedPtr set_auto_remote_input_service;
+    rclcpp::Service<std_srvs::srv::Empty>::SharedPtr remove_auto_remote_input_service;
+
     std::shared_ptr<tf2_ros::TransformBroadcaster> odomBroadcaster =
         std::make_shared<tf2_ros::TransformBroadcaster>(this);
 
@@ -203,7 +254,7 @@ class Interface : public rclcpp::Node
     std::shared_ptr<Luci::ROS2::DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> radarDataBuff;
     std::shared_ptr<Luci::ROS2::DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> ultrasonicDataBuff;
     std::shared_ptr<Luci::ROS2::DataBuffer<LuciZoneScaling>> zoneScalingDataBuff;
-    std::shared_ptr<Luci::ROS2::DataBuffer<SystemJoystick>> joystickScalingDataBuff;
+    std::shared_ptr<Luci::ROS2::DataBuffer<LuciJoystickScaling>> joystickScalingDataBuff;
     std::shared_ptr<Luci::ROS2::DataBuffer<SystemJoystick>> joystickDataBuff;
     std::shared_ptr<Luci::ROS2::DataBuffer<AhrsInfo>> ahrsInfoDataBuff;
     std::shared_ptr<Luci::ROS2::DataBuffer<ImuData>> imuDataBuff;
@@ -211,11 +262,7 @@ class Interface : public rclcpp::Node
     std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData>> irDataBuffLeft;
     std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData>> irDataBuffRight;
     std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData>> irDataBuffRear;
-
-    /// Shared pointers to subscribers (convention in ROS2)
-    rclcpp::Subscription<luci_messages::msg::LuciJoystick>::SharedPtr remote_js_subscription_;
-    rclcpp::Subscription<luci_messages::msg::LuciDriveMode>::SharedPtr
-        luci_mode_switch_subscription_;
+    int initialFrameRate;
 
     /// Functions to handle each unique data type and convert (each are ran on independent threads)
     void processCameraData();
@@ -236,5 +283,10 @@ class Interface : public rclcpp::Node
 
     /// Subscriber callback ran in main thread
     void sendJsCallback(const luci_messages::msg::LuciJoystick::SharedPtr msg);
-    void switchLuciModeCallback(const luci_messages::msg::LuciDriveMode::SharedPtr msg);
+
+    /// Service Callbacks ran in main thread for setting and removing the Shared and Autonomous remote input source
+    void setSharedRemoteInputSource();
+    void removeSharedRemoteInputSource();
+    void setAutoRemoteInputSource();
+    void removeAutoRemoteInputSource();
 };

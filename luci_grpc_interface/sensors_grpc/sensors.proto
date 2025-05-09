@@ -24,19 +24,20 @@ package sensors;
 service Sensors {
 
   rpc JsOverride(RemoteJsValues) returns (Response); //
-  rpc SetDriveMode(ModeCtrl) returns (Response); //
+  rpc AddInputSource(InputSourceRequest) returns (Response);
+  rpc RemoveInputSource(InputSourceRequest) returns (Response);
   rpc UltrasonicStream(google.protobuf.Empty)
       returns (stream UltrasonicDistances); //
 
   rpc RadarStream(google.protobuf.Empty) returns (stream RadarPoints); //
-  rpc ImuStream(ImuCtrl) returns (stream ImuData); //
-  rpc JoystickStream(google.protobuf.Empty) returns (stream JoystickData); //
+  rpc ImuStream(ImuCtrl) returns (stream ImuData); // 
+  rpc DriveJoystickStream(google.protobuf.Empty) returns (stream JoystickData); //
 
-
-  rpc ScaledJoystickStream(google.protobuf.Empty) returns (stream JoystickData); //
+  rpc UserJoystickStream(google.protobuf.Empty) returns (stream JoystickData); //
   rpc AhrsStream(google.protobuf.Empty) returns (stream AhrsData); //
 
   rpc ScalingStream(google.protobuf.Empty) returns (stream NavigationScaling); //
+  rpc ActiveScalingStream(google.protobuf.Empty) returns (stream ActiveScaling); //
 
   rpc DecimatedCameraStream(google.protobuf.Empty)
       returns (stream CameraPoints); //
@@ -86,6 +87,12 @@ message NavigationScaling {
   float back_rl = 16;
   uint32 max_js_scale_increase = 17;
   uint32 max_js_scale_decrease = 18;
+}
+
+message ActiveScaling {
+  JoystickData joystick = 1;
+  float forward_back_scaling = 2;
+  float left_right_scaling = 3;
 }
 
 message UltrasonicDistance {
@@ -183,11 +190,24 @@ message ImuData {
   Imu source = 28;
 }
 
+enum JoystickZone {
+  Front = 0;
+  FrontLeft = 1;
+  FrontRight = 2;
+  Left = 3;
+  Right = 4;
+  BackLeft = 5;
+  BackRight = 6;
+  Back = 7;
+  Origin = 8;
+}
+
 message JoystickData {
   int32 forward_back = 1;
   int32 left_right = 2;
-  string joystick_zone = 3;
-  google.protobuf.Timestamp timestamp = 4;
+  JoystickZone joystick_zone = 3;
+  InputSource source = 4;
+  google.protobuf.Timestamp timestamp = 5;
 }
 
 message EncoderData {
@@ -283,20 +303,7 @@ message IrFrame {
 message RemoteJsValues {
   int32 forward_back = 1;
   int32 left_right = 2;
-}
-
-// USER mode => luci nominal operations
-// ENGAGED => Override JS values only when joystick engaged
-// AUTONOMOUS => Override Js values without joystick engaged
-enum DriveMode {
-  USER = 0;
-  ENGAGED = 1;
-  AUTONOMOUS = 2;
-  PLAYBACK = 3;
-}
-
-message ModeCtrl {
-  DriveMode mode = 1;
+  InputSource source = 3;
 }
 
 message ChairSpeed {
@@ -313,4 +320,17 @@ message RampMode {
 
 message FrameRate {
   uint32 rate = 1;
+}
+
+enum InputSource {
+RampAssist = 0;
+AutonomousRemote = 1;
+WDI = 2;
+ChairVirtual = 3;
+ChairPhysical = 4;
+SharedRemote = 5;
+}
+
+message InputSourceRequest {
+InputSource source = 1;
 }
