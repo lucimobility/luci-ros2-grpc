@@ -1,9 +1,9 @@
 /**
  * @file luci_grpc_types.h
+ * 
  * @brief Struct definitions of LUCI standard data types
- * @date 2023-08-10
  *
- * @copyright Copyright 2024 LUCI Mobility, Inc
+ * @copyright Copyright 2025 LUCI Mobility, Inc
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.

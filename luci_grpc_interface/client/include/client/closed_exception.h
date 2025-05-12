@@ -1,9 +1,9 @@
 /**
  * @file closed_exception.h
  *
- * Exception indicating one of the buffer structures has been closed.
+ * @brief Exception indicating one of the buffer structures has been closed.
  *
- * @copyright Copyright 2024 LUCI Mobility, Inc
+ * @copyright Copyright 2025 LUCI Mobility, Inc
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
