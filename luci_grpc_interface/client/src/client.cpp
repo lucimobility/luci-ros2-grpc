@@ -1,7 +1,7 @@
 /**
  * @file client.cpp
  *
- * @copyright Copyright 2024 LUCI Mobility, Inc
+ * @copyright Copyright 2025 LUCI Mobility, Inc
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -91,8 +91,10 @@ sensors::JoystickZone convertJoystickZoneToProto(const JoystickZone zone)
     case JoystickZone::Origin:
         return sensors::JoystickZone::Origin;
     default:
-        spdlog::error("Unexpected luci joystick zone {}, defaulting to origin",
-                      static_cast<int>(zone));
+        RCLCPP_ERROR(
+            rclcpp::get_logger("luci_interface"),
+            "Unexpected luci joystick zone %d, defaulting to origin",
+            static_cast<int>(zone));
     }
     return sensors::JoystickZone::Origin;
 }
@@ -120,7 +122,10 @@ JoystickZone convertProtoZone(const sensors::JoystickZone zone)
     case sensors::JoystickZone::Origin:
         return JoystickZone::Origin;
     default:
-        spdlog::error("Unexpected sensors joystick zone {}, defaulting to origin", zone);
+        RCLCPP_ERROR(
+            rclcpp::get_logger("luci_interface"),
+            "Unexpected sensors joystick zone %d, defaulting to origin",
+            static_cast<int>(zone));
     }
     return JoystickZone::Origin;
 }
@@ -142,8 +147,10 @@ sensors::InputSource convertInputSourceToProto(const InputSource inputSource)
     case InputSource::SharedRemote:
         return sensors::InputSource::SharedRemote;
     default:
-        spdlog::error("Unexpected luci input source {}, defaulting to chair virtual input source",
-                      static_cast<int>(inputSource));
+        RCLCPP_ERROR(
+            rclcpp::get_logger("luci_interface"),
+            "Unexpected luci input source %d, defaulting to chair virtual input source",
+            static_cast<int>(inputSource));
     }
     return sensors::InputSource::ChairVirtual;
 }
@@ -165,9 +172,10 @@ InputSource convertProtoInputSource(const sensors::InputSource inputSource)
     case sensors::InputSource::SharedRemote:
         return InputSource::SharedRemote;
     default:
-        spdlog::error(
-            "Unexpected sensors input source {}, defaulting to chair virtual input source",
-            inputSource);
+        RCLCPP_ERROR(
+            rclcpp::get_logger("luci_interface"),
+            "Unexpected sensors input source %d, defaulting to chair virtual input source",
+            static_cast<int>(inputSource));
     }
     return InputSource::ChairVirtual;
 }
@@ -178,7 +186,8 @@ ClientGuide::~ClientGuide()
     {
         grpcThread.join();
     }
-    spdlog::debug("gRPC Ramp threads joined");
+    RCLCPP_INFO(
+        rclcpp::get_logger("luci_interface"), "gRPC Ramp threads joined");
 }
 
 int ClientGuide::setInputSource(InputSource source) const
@@ -191,12 +200,16 @@ int ClientGuide::setInputSource(InputSource source) const
 
     if (Status status = stub_->AddInputSource(&context, request, &response); status.ok())
     {
-        spdlog::info("Setting input source to {}", static_cast<int>(source));
+        RCLCPP_INFO(
+            rclcpp::get_logger("luci_interface"),
+            "Setting input source to %d", static_cast<int>(source));
         return 0;
     }
     else
     {
-        spdlog::error("Error communicating with server... pass in correct ip and port of chair");
+        RCLCPP_ERROR(
+            rclcpp::get_logger("luci_interface"),
+            "Error communicating with server... pass in correct ip and port of chair");
         return 1;
     }
 }
@@ -211,11 +224,15 @@ void ClientGuide::removeInputSource(InputSource source) const
 
     if (Status status = stub_->RemoveInputSource(&context, request, &response); status.ok())
     {
-        spdlog::info("Removing input source {}", static_cast<int>(source));
+        RCLCPP_INFO(
+            rclcpp::get_logger("luci_interface"),
+            "Removing input source %d", static_cast<int>(source));
     }
     else
     {
-        spdlog::error("Error communicating with server... pass in correct ip and port of chair");
+        RCLCPP_ERROR(
+            rclcpp::get_logger("luci_interface"),
+            "Error communicating with server... pass in correct ip and port of chair");
     }
 }
 
@@ -234,17 +251,21 @@ int ClientGuide::sendJS(int forwardBack, int leftRight, InputSource source)
 
     if (Status status = stub_->JsOverride(&context, request, &response); status.ok())
     {
-        spdlog::info("Sending remote call... values ({} {} {}) status: {}",
-                     std::to_string(forwardBack), std::to_string(leftRight),
-                     std::to_string(static_cast<int>(source)), response.reply());
+        RCLCPP_INFO(
+            rclcpp::get_logger("luci_interface"),
+            "Sending remote call... values (%d %d %d) status: %s",
+            forwardBack, leftRight, static_cast<int>(source), response.reply().c_str());
     }
     else
     {
-        spdlog::error("Error communicating with server... pass in correct ip and port of chair");
+        RCLCPP_ERROR(
+            rclcpp::get_logger("luci_interface"),
+            "Error communicating with server... pass in correct ip and port of chair");
         return 1;
     }
-    spdlog::debug(
-        "SEND JS: {}",
+    RCLCPP_DEBUG(
+        rclcpp::get_logger("luci_interface"),
+        "SEND JS: %ld",
         std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - lastJSTime).count());
     lastJSTime = currentTime;
     return 0;
@@ -268,7 +289,8 @@ void ClientGuide::readJoystickPosition() const
 
         this->joystickDataBuff->push(joystickValues);
     }
-    spdlog::debug("joystick data buff closed");
+    RCLCPP_INFO(
+        rclcpp::get_logger("luci_interface"), "joystick data buff closed");
     this->joystickDataBuff->close();
 }
 
@@ -481,7 +503,7 @@ void ClientGuide::readIrFrame(int initialRate)
     requestedRate.set_rate(initialRate);
     if (!stream->Write(requestedRate))
     {
-        spdlog::error("Failed to set initial rate");
+        RCLCPP_ERROR(rclcpp::get_logger("luci_interface"), "Failed to set initial rate");
         return;
     }
 
@@ -509,7 +531,8 @@ void ClientGuide::readIrFrame(int initialRate)
                     // Based on how the writer below works the new rate will only take into effect
                     // once a frame has been set from the old rate. So at most the frame rate will
                     // need to wait 1 second before changing
-                    spdlog::debug("IR Rate Sending: {}", requestedRate.rate());
+                    RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "IR Rate Sending: %d",
+                                  requestedRate.rate());
 
                     if (!stream->Write(requestedRate))
                     {
@@ -557,7 +580,8 @@ void ClientGuide::readIrFrame(int initialRate)
             break;
 
         default:
-            spdlog::error("IR rotation type not valid defaulting to radians");
+            RCLCPP_ERROR(rclcpp::get_logger("luci_interface"),
+                          "IR rotation type not valid defaulting to radians");
             break;
         }
 
@@ -578,9 +602,11 @@ void ClientGuide::readIrFrame(int initialRate)
             }
         }
 
-        spdlog::debug("IR MESSAGE SIZE: {}", response.ByteSizeLong());
+        RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "IR MESSAGE SIZE: %ld",
+                      response.ByteSizeLong());
     }
-    spdlog::debug("IR data buff closed");
+
+    RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "IR data buff closed");
     this->irDataBuffLeft->close();
     this->irDataBuffRight->close();
     this->irDataBuffRear->close();

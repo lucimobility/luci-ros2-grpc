@@ -1,9 +1,10 @@
 /**
  * @file data_buffer.h
+ * 
  * @brief Definition of the sharable data buffers, each stream from client connection gets its own
  * data buffer
  *
- * @copyright Copyright 2024 LUCI Mobility, Inc
+ * @copyright Copyright 2025 LUCI Mobility, Inc
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,8 +27,6 @@
 #include <list>
 #include <mutex>
 #include <optional>
-
-#include <spdlog/spdlog.h>
 
 namespace Luci::ROS2
 {

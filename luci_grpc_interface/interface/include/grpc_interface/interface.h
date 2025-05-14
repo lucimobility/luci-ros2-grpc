@@ -1,9 +1,9 @@
 /**
  * @file interface.h
+ * 
  * @brief The public interface that is exposed to ROS2
- * @date 2023-08-10
  *
- * @copyright Copyright 2024 LUCI Mobility, Inc
+ * @copyright Copyright 2025 LUCI Mobility, Inc
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -125,7 +125,7 @@ class Interface : public rclcpp::Node
                    const std::shared_ptr<std_srvs::srv::Empty::Request> request,
                    const std::shared_ptr<std_srvs::srv::Empty::Response> response)
             {
-                RCLCPP_INFO(this->get_logger(), "Set remote input service called");
+                RCLCPP_INFO(rclcpp::get_logger("luci_interface"), "Set remote input service called");
                 this->setSharedRemoteInputSource();
             });
 
@@ -135,7 +135,7 @@ class Interface : public rclcpp::Node
                    const std::shared_ptr<std_srvs::srv::Empty::Request> request,
                    const std::shared_ptr<std_srvs::srv::Empty::Response> response)
             {
-                RCLCPP_INFO(this->get_logger(), "Remove remote input service called");
+                RCLCPP_INFO(rclcpp::get_logger("luci_interface"), "Remove remote input service called");
                 this->removeSharedRemoteInputSource();
             });
 
@@ -145,7 +145,7 @@ class Interface : public rclcpp::Node
                    const std::shared_ptr<std_srvs::srv::Empty::Request> request,
                    const std::shared_ptr<std_srvs::srv::Empty::Response> response)
             {
-                RCLCPP_INFO(this->get_logger(), "Set auto remote input service called");
+                RCLCPP_INFO(rclcpp::get_logger("luci_interface"), "Set auto remote input service called");
                 this->setAutoRemoteInputSource();
             });
 
@@ -155,7 +155,7 @@ class Interface : public rclcpp::Node
                    const std::shared_ptr<std_srvs::srv::Empty::Request> request,
                    const std::shared_ptr<std_srvs::srv::Empty::Response> response)
             {
-                RCLCPP_INFO(this->get_logger(), "Remove auto remote input service called");
+                RCLCPP_INFO(rclcpp::get_logger("luci_interface"), "Remove auto remote input service called");
                 this->removeAutoRemoteInputSource();
             });
 

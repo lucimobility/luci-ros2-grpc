@@ -1,9 +1,9 @@
 /**
  * @file main.cpp
+ * 
  * @brief The main executable file for the interface node
- * @date 2023-08-10
  *
- * @copyright Copyright 2024 LUCI Mobility, Inc
+ * @copyright Copyright 2025 LUCI Mobility, Inc
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@
 #include "client/client.h"
 #include "grpc_interface/interface.h"
 #include "rclcpp/rclcpp.hpp"
+#include "rclcpp/logger.hpp"
 #include "tclap/CmdLine.h"
 
 #include <iostream>
@@ -36,6 +37,7 @@ int main(int argc, char* argv[])
 
     std::string host;
     std::string port;
+    std::string logLevel;
 
     // Setup command line parser
     TCLAP::CmdLine cmd("LUCI ROS2 to gRPC interface", ' ', "---");
@@ -51,11 +53,16 @@ int main(int argc, char* argv[])
     // Command to pass in camera frame rate in gRPC mode
     TCLAP::ValueArg<int> rateArg("f", "frame-rate", "IR Frame Rate gRPC mode only.", false, 0,
                                  "int");
+        
+    // Command to pass in logging level
+    TCLAP::ValueArg<std::string> logLevelArg("l", "log-level", "Logging level", false,
+                                             "info", "string");
 
     // Add the value arguments to the command line parser
     cmd.add(hostArg);
     cmd.add(portArg);
     cmd.add(rateArg);
+    cmd.add(logLevelArg);
 
     // Parse the argv array.
     cmd.parse(argc, argv);
@@ -63,10 +70,28 @@ int main(int argc, char* argv[])
     // Set the host and port values (if not set defaults used)
     host = hostArg.getValue();
     port = portArg.getValue();
+    logLevel = logLevelArg.getValue();
     int frameRate = rateArg.getValue();
 
     // Initialize ROS stack and executor, Note: all argument parsing is handled externally by tclap
-    rclcpp::init(0, nullptr);
+    rclcpp::init(0, nullptr);    
+    if (logLevel == "debug")
+    {
+        rclcpp::get_logger("luci_interface").set_level(rclcpp::Logger::Level::Debug);
+    }
+    else if (logLevel == "info")
+    {
+        rclcpp::get_logger("luci_interface").set_level(rclcpp::Logger::Level::Info);
+    }
+    else if (logLevel == "error")
+    {
+        rclcpp::get_logger("luci_interface").set_level(rclcpp::Logger::Level::Error);
+    }
+    else
+    {
+        rclcpp::get_logger("luci_interface").set_level(rclcpp::Logger::Level::Info);
+    }
+
     rclcpp::executors::SingleThreadedExecutor executor;
 
     // gRPC timeout
@@ -104,7 +129,8 @@ int main(int argc, char* argv[])
     bool connected = grpcChannel->WaitForConnected(deadline);
     if (!connected)
     {
-        spdlog::error("grpc server NOT connected");
+        RCLCPP_ERROR(rclcpp::get_logger("luci_interface"),
+                     "gRPC server NOT connected, check host and port");
         return 1;
     }
 
@@ -121,8 +147,6 @@ int main(int argc, char* argv[])
         encoderDataBuff, irDataBuffLeft, irDataBuffRight, irDataBuffRear, frameRate);
 
     executor.add_node(interface_node);
-    spdlog::debug("Running grpc interface");
-
     RCLCPP_INFO(rclcpp::get_logger("luci_interface"), "Running ROS2 executor...");
 
     executor.spin();

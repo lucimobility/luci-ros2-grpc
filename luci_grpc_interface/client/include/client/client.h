@@ -1,9 +1,9 @@
 /**
  * @file client.h
  *
- * The main connection point to the Luci safety system
+ * @brief The main connection point to the Luci safety system
  *
- * @copyright Copyright 2024 LUCI Mobility, Inc
+ * @copyright Copyright 2025 LUCI Mobility, Inc
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@
 #include <chrono>
 #include <condition_variable>
 #include <pcl/io/pcd_io.h>
-#include <spdlog/spdlog.h>
+#include <rclcpp/rclcpp.hpp>
 #include <stdexcept>
 #include <thread>
 #include <vector>

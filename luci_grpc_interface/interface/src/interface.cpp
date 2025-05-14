@@ -1,10 +1,9 @@
 /**
  * @file interface.cpp
+ * 
  * @brief Main interface node to connect ROS2 and gRPC
- * @version 0.1
- * @date 2023-08-10
  *
- * @copyright Copyright 2024 LUCI Mobility, Inc
+ * @copyright Copyright 2025 LUCI Mobility, Inc
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +28,7 @@ void Interface::processCameraData()
         // Camera point cloud processing
         auto cameraPointCloud = this->cameraDataBuff->waitNext();
 
-        spdlog::info("Number of camera points: {}", cameraPointCloud.size());
+        RCLCPP_INFO(rclcpp::get_logger("luci_interface"), "Number of camera points: %ld", cameraPointCloud.size());
         sensor_msgs::msg::PointCloud2 rosCameraPointCloud;
 
         pcl::toROSMsg(cameraPointCloud, rosCameraPointCloud);
@@ -47,7 +46,7 @@ void Interface::processRadarData()
     while (true)
     {
         auto radarPointCloud = this->radarDataBuff->waitNext();
-        spdlog::debug("Number of radar points: {}", radarPointCloud.size());
+        RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "Number of radar points: %ld", radarPointCloud.size());
         sensor_msgs::msg::PointCloud2 rosRadarPointCloud;
         pcl::toROSMsg(radarPointCloud, rosRadarPointCloud);
         std_msgs::msg::Header radarHeader;
@@ -64,7 +63,7 @@ void Interface::processUltrasonicData()
     while (true)
     {
         auto ultrasonicPointCloud = this->ultrasonicDataBuff->waitNext();
-        spdlog::debug("Number of ultrasonic points: {}", ultrasonicPointCloud.size());
+        RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "Number of ultrasonic points: %ld", ultrasonicPointCloud.size());
         sensor_msgs::msg::PointCloud2 rosUltrasonicPointCloud;
         pcl::toROSMsg(ultrasonicPointCloud, rosUltrasonicPointCloud);
         std_msgs::msg::Header ultrasonicHeader;
@@ -381,8 +380,8 @@ void Interface::sendJsCallback(const luci_messages::msg::LuciJoystick::SharedPtr
 {
     // Send the remote JS values over gRPC
     auto inputSource = static_cast<InputSource>(msg->input_source);
-    spdlog::debug("Received js val: {} {} {}", msg->forward_back, msg->left_right,
-                  msg->input_source);
+    RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "Received js val: %d %d %d", msg->forward_back, msg->left_right,
+                 msg->input_source);
 
     this->luciInterface->sendJS(msg->forward_back + 100, msg->left_right + 100, inputSource);
 }
@@ -410,6 +409,6 @@ void Interface::removeAutoRemoteInputSource()
 void Interface::updateIrFrameRate(int rate)
 {
     // Send the new rate request over gRPC to LUCI
-    spdlog::debug("Received rate val: {}", rate);
+    RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "Received rate val: %d", rate);
     this->luciInterface->updateFrameRate(rate);
 }
