@@ -125,7 +125,8 @@ int main(int argc, char* argv[])
     auto irDataBuffRear = std::make_shared<Luci::ROS2::DataBuffer<CameraIrData>>();
 
     auto grpcChannel =
-        grpc::CreateChannel(fmt::format("{}:{}", host, port), grpc::InsecureChannelCredentials());
+        grpc::CreateChannel(static_cast<grpc::string>(host + ":" + port), grpc::InsecureChannelCredentials());
+
     bool connected = grpcChannel->WaitForConnected(deadline);
     if (!connected)
     {
