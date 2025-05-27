@@ -50,6 +50,7 @@ jobs:
       - name: Build the msg package
         run: |
           cd ${{env.MESSAGE_REPO}}
+          source /opt/ros/humble/setup.bash
           colcon build
         shell: bash
 
