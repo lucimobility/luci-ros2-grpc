@@ -7,9 +7,7 @@ on:
 
 env:
   REPO: ${{github.event.repository.name}}
-  # Credentials for Jfrog artifactory
-  JF_URL: ${{ secrets.JF_URL }}
-  JF_ACCESS_TOKEN: ${{ secrets.ARTIFACTORY_TOKEN}}
+  MESSAGE_REPO : luci-ros2-msgs 
 
 jobs:
   package:
@@ -18,6 +16,18 @@ jobs:
     steps:
       #Sets up jfrog cli access for the actions
       - uses: jfrog/setup-jfrog-cli@v3
+        env:
+          # Credentials for Jfrog artifactory
+            JF_URL: ${{ secrets.JF_URL }}
+            JF_ACCESS_TOKEN: ${{ secrets.ARTIFACTORY_TOKEN}}
+
+      - name: Checkout LUCI Messages Branch
+        uses: actions/checkout@v3
+        with:
+          repository: lucimobility/luci-ros2-msgs
+          ref: main
+          path: ${{env.MESSAGE_REPO}}
+          token: ${{ secrets.ACCESS_TOKEN }}
 
       - name: Checkout GRPC Branch
         uses: actions/checkout@v3
@@ -31,12 +41,23 @@ jobs:
         with:
           # Sets private key to import
           gpg_private_key: ${{ secrets.GPG_SIGNING_KEY }}
+          # Sets passphrase to use for the private key
+          passphrase: ${{ secrets.GPG_PASSPHRASE }}
           # Says we trust it 100%
           trust_level: 5
 
+      # cd into the message repo and run ITS build-package script
+      - name: Build the msg package
+        run: |
+          cd ${{env.MESSAGE_REPO}}
+          colcon build
+        shell: bash
+
       - name: Build the gRPC package
         run: |
-          cd ${{env.REPO}}/luci_grpc_interface
+          cd ${{env.MESSAGE_REPO}}
+          source install/setup.bash
+          cd ../${{env.REPO}}/luci_grpc_interface
           ./build-package.sh
         shell: bash
 
