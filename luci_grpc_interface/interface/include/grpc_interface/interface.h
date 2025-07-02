@@ -41,6 +41,7 @@
 #include <sensor_msgs/msg/point_cloud2.hpp>
 #include <std_srvs/srv/empty.hpp>
 #include <tf2_ros/transform_broadcaster.h>
+#include <std_msgs/msg/int32.hpp>
 
 // LUCI ROS2 libraries
 #include <luci_messages/msg/luci_camera_info.hpp>
@@ -84,14 +85,17 @@ class Interface : public rclcpp::Node
         std::shared_ptr<Luci::ROS2::DataBuffer<EncoderData>> encoderDataBuff,
         std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData>> irDataBuffLeft,
         std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData>> irDataBuffRight,
-        std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData>> irDataBuffRear, int initialFrameRate)
+        std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData>> irDataBuffRear, int initialFrameRate,
+        std::shared_ptr<Luci::ROS2::DataBuffer<ChairProfile>> chairProfileDataBuff,
+        std::shared_ptr<Luci::ROS2::DataBuffer<SpeedSetting>> speedSettingDataBuff)
         : Node("interface"), luciInterface(luciInterface), cameraDataBuff(cameraDataBuff),
           radarDataBuff(radarDataBuff), ultrasonicDataBuff(ultrasonicDataBuff),
           joystickDataBuff(joystickDataBuff), zoneScalingDataBuff(zoneScalingDataBuff),
           joystickScalingDataBuff(joystickScalingDataBuff), ahrsInfoDataBuff(ahrsInfoDataBuff),
           imuDataBuff(imuDataBuff), encoderDataBuff(encoderDataBuff),
           irDataBuffLeft(irDataBuffLeft), irDataBuffRight(irDataBuffRight),
-          irDataBuffRear(irDataBuffRear), initialFrameRate(initialFrameRate)
+          irDataBuffRear(irDataBuffRear), initialFrameRate(initialFrameRate), chairProfileDataBuff(chairProfileDataBuff),
+          speedSettingDataBuff(speedSettingDataBuff)
     {
         /// ROS publishers (sends the LUCI gRPC data to ROS on the specified topic)
         this->cameraPublisher =
@@ -111,6 +115,18 @@ class Interface : public rclcpp::Node
 
         this->encoderPublisher =
             this->create_publisher<luci_messages::msg::LuciEncoders>("luci/encoders", QUEUE_SIZE);
+        
+        // Making a QOS profile that is transient local, so that the messages are not lost
+        // when the subscriber is not connected. This is useful for topics that are not
+        // continuously published
+        rclcpp::QoS qos(QUEUE_SIZE);
+        qos.transient_local();
+        
+        this->chairProfilePublisher =
+            this->create_publisher<std_msgs::msg::Int32>("luci/chair_profile", qos);
+        
+        this->speedSettingPublisher =
+            this->create_publisher<std_msgs::msg::Int32>("luci/speed_setting", qos);
 
         /// ROS subscribers (takes data sent to it from other ROS nodes and sends it to LUCI over
         /// gRPC)
@@ -207,6 +223,8 @@ class Interface : public rclcpp::Node
         grpcConverters.emplace_back(&Interface::processLeftIrData, this);
         grpcConverters.emplace_back(&Interface::processRightIrData, this);
         grpcConverters.emplace_back(&Interface::processRearIrData, this);
+        grpcConverters.emplace_back(&Interface::processChairProfileData, this);
+        grpcConverters.emplace_back(&Interface::processSpeedSettingData, this);
     }
 
     /// Destructor
@@ -226,6 +244,8 @@ class Interface : public rclcpp::Node
     rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr irLeftPublisher;
     rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr irRightPublisher;
     rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr irRearPublisher;
+    rclcpp::Publisher<std_msgs::msg::Int32>::SharedPtr chairProfilePublisher;
+    rclcpp::Publisher<std_msgs::msg::Int32>::SharedPtr speedSettingPublisher;
 
     rclcpp::Publisher<luci_messages::msg::LuciCameraInfo>::SharedPtr leftCameraInfoPublisher;
     rclcpp::Publisher<luci_messages::msg::LuciCameraInfo>::SharedPtr rightCameraInfoPublisher;
@@ -261,6 +281,8 @@ class Interface : public rclcpp::Node
     std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData>> irDataBuffLeft;
     std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData>> irDataBuffRight;
     std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData>> irDataBuffRear;
+    std::shared_ptr<Luci::ROS2::DataBuffer<ChairProfile>> chairProfileDataBuff;
+    std::shared_ptr<Luci::ROS2::DataBuffer<SpeedSetting>> speedSettingDataBuff;
     int initialFrameRate;
 
     /// Functions to handle each unique data type and convert (each are ran on independent threads)
@@ -276,6 +298,8 @@ class Interface : public rclcpp::Node
     void processLeftIrData();
     void processRightIrData();
     void processRearIrData();
+    void processChairProfileData();
+    void processSpeedSettingData();
 
     /// Update the IR frame rate
     void updateIrFrameRate(int rate);

@@ -95,7 +95,9 @@ class ClientGuide
         std::shared_ptr<DataBuffer<EncoderData>> encoderDataBuff,
         std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffLeft,
         std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffRight,
-        std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffRear, int initialFrameRate);
+        std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffRear, int initialFrameRate, 
+        std::shared_ptr<DataBuffer<ChairProfile>> chairProfileDataBuff, 
+        std::shared_ptr<DataBuffer<SpeedSetting>> speedSettingDataBuff);
 
     /**
      * @brief Destroy the Client Guide object
@@ -123,6 +125,8 @@ class ClientGuide
     std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffLeft;
     std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffRight;
     std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffRear;
+    std::shared_ptr<DataBuffer<ChairProfile>> chairProfileDataBuff;
+    std::shared_ptr<DataBuffer<SpeedSetting>> speedSettingDataBuff;
 
     /// Data Buffer for thread safe updates to the IR frame a given client is getting sent
     DataBuffer<int> irFrameRateDataBuff;
@@ -227,6 +231,18 @@ class ClientGuide
      * @param initialRate The rate used at client connection start. Defaults to 1.
      */
     void readIrFrame(int initialRate = 1);
+
+    /**
+     * @brief Read the chair profile data
+     *
+     */
+    void readChairProfile() const;
+
+    /**
+     * @brief Read the speed setting data
+     *
+     */
+    void readSpeedSetting() const;
 
   private:
     /// Threads for each endpoint

@@ -48,13 +48,16 @@ ClientGuide::ClientGuide(
     std::shared_ptr<DataBuffer<EncoderData>> encoderDataBuff,
     std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffLeft,
     std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffRight,
-    std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffRear, int initialFrameRate)
+    std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffRear, int initialFrameRate, 
+    std::shared_ptr<DataBuffer<ChairProfile>> chairProfileDataBuff,
+    std::shared_ptr<DataBuffer<SpeedSetting>> speedSettingDataBuff)
     : stub_(sensors::Sensors::NewStub(channel)), joystickDataBuff(joystickDataBuff),
       cameraDataBuff(cameraDataBuff), radarDataBuff(radarDataBuff),
       ultrasonicDataBuff(ultrasonicDataBuff), zoneScalingDataBuff(zoneScalingDataBuff),
       joystickScalingDataBuff(joystickScalingDataBuff), ahrsDataBuff(ahrsDataBuff),
       imuDataBuff(imuDataBuff), encoderDataBuff(encoderDataBuff), irDataBuffLeft(irDataBuffLeft),
-      irDataBuffRight(irDataBuffRight), irDataBuffRear(irDataBuffRear)
+      irDataBuffRight(irDataBuffRight), irDataBuffRear(irDataBuffRear), chairProfileDataBuff(chairProfileDataBuff),
+      speedSettingDataBuff(speedSettingDataBuff)
 {
     grpcThreads.emplace_back(&ClientGuide::readJoystickPosition, this);
     grpcThreads.emplace_back(&ClientGuide::readCameraData, this);
@@ -66,6 +69,8 @@ ClientGuide::ClientGuide(
     grpcThreads.emplace_back(&ClientGuide::readImuData, this);
     grpcThreads.emplace_back(&ClientGuide::readEncoderData, this);
     grpcThreads.emplace_back(&ClientGuide::readIrFrame, this, initialFrameRate);
+    grpcThreads.emplace_back(&ClientGuide::readChairProfile, this);
+    grpcThreads.emplace_back(&ClientGuide::readSpeedSetting, this);
 }
 
 sensors::JoystickZone convertJoystickZoneToProto(const JoystickZone zone)
@@ -614,4 +619,40 @@ void ClientGuide::readIrFrame(int initialRate)
     // When the stream goes down sets the atomic to terminate this thread
     shutdown = true;
     rateReaderPublisher.join();
+}
+
+void ClientGuide::readChairProfile() const
+{
+    ClientContext context;
+    const google::protobuf::Empty request;
+    sensors::ChairProfile response;
+
+    std::unique_ptr<ClientReader<sensors::ChairProfile>> reader(
+        stub_->ChairProfileStream(&context, request));
+
+    while (reader->Read(&response))
+    {
+        ChairProfile chairProfile(response.profile());
+        RCLCPP_DEBUG(
+            rclcpp::get_logger("luci_interface"), "Chair profile: %d", chairProfile.profile);
+        this->chairProfileDataBuff->push(chairProfile);
+    }
+}
+
+void ClientGuide::readSpeedSetting() const
+{
+    ClientContext context;
+    const google::protobuf::Empty request;
+    sensors::SpeedSetting response;
+
+    std::unique_ptr<ClientReader<sensors::SpeedSetting>> reader(
+        stub_->SpeedSettingStream(&context, request));
+
+    while (reader->Read(&response))
+    {
+        SpeedSetting speedSetting(response.speed_setting());
+        RCLCPP_DEBUG(
+            rclcpp::get_logger("luci_interface"), "Speed setting: %d", speedSetting.speed_setting);
+        this->speedSettingDataBuff->push(speedSetting);
+    }
 }

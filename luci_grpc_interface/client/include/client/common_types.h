@@ -270,3 +270,32 @@ struct CameraIrData
     {
     }
 };
+
+/**
+ * @brief LUCI Chair Profile Data
+ * 
+ */
+struct ChairProfile
+{
+    int profile;
+
+    inline ChairProfile(int profile)
+        : profile(profile)
+    {
+    }
+};
+
+/**
+ * @brief LUCI Speed Setting Data
+ * 
+ */
+struct SpeedSetting
+{
+    int speed_setting;
+
+    inline SpeedSetting(int speed_setting)
+        : speed_setting(speed_setting)
+    {
+    }
+};
+
