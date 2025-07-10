@@ -78,9 +78,10 @@ ClientGuide::ClientGuide(
       ultrasonicDataBuff(ultrasonicDataBuff), zoneScalingDataBuff(zoneScalingDataBuff),
       joystickScalingDataBuff(joystickScalingDataBuff), ahrsDataBuff(ahrsDataBuff),
       imuDataBuff(imuDataBuff), encoderDataBuff(encoderDataBuff), irDataBuffLeft(irDataBuffLeft),
-      irDataBuffRight(irDataBuffRight), irDataBuffRear(irDataBuffRear), chairProfileDataBuff(chairProfileDataBuff),
-      speedSettingDataBuff(speedSettingDataBuff), depthDataBuffLeft(depthDataBuffLeft),
-      depthDataBuffRight(depthDataBuffRight), depthDataBuffRear(depthDataBuffRear), overrideButtonDataBuff(overrideButtonDataBuff),
+      irDataBuffRight(irDataBuffRight), irDataBuffRear(irDataBuffRear),
+      chairProfileDataBuff(chairProfileDataBuff), speedSettingDataBuff(speedSettingDataBuff), depthDataBuffLeft(depthDataBuffLeft),
+      depthDataBuffRight(depthDataBuffRight), depthDataBuffRear(depthDataBuffRear),
+      overrideButtonDataBuff(overrideButtonDataBuff),
       overrideButtonPressCountDataBuff(overrideButtonPressCountDataBuff)
 {
     grpcThreads.emplace_back(&ClientGuide::readJoystickPosition, this);
@@ -125,10 +126,9 @@ sensors::JoystickZone convertJoystickZoneToProto(const JoystickZone zone)
     case JoystickZone::Origin:
         return sensors::JoystickZone::Origin;
     default:
-        RCLCPP_ERROR(
-            rclcpp::get_logger("luci_interface"),
-            "Unexpected luci joystick zone %d, defaulting to origin",
-            static_cast<int>(zone));
+        RCLCPP_ERROR(rclcpp::get_logger("luci_interface"),
+                     "Unexpected luci joystick zone %d, defaulting to origin",
+                     static_cast<int>(zone));
     }
     return sensors::JoystickZone::Origin;
 }
@@ -156,10 +156,9 @@ JoystickZone convertProtoZone(const sensors::JoystickZone zone)
     case sensors::JoystickZone::Origin:
         return JoystickZone::Origin;
     default:
-        RCLCPP_ERROR(
-            rclcpp::get_logger("luci_interface"),
-            "Unexpected sensors joystick zone %d, defaulting to origin",
-            static_cast<int>(zone));
+        RCLCPP_ERROR(rclcpp::get_logger("luci_interface"),
+                     "Unexpected sensors joystick zone %d, defaulting to origin",
+                     static_cast<int>(zone));
     }
     return JoystickZone::Origin;
 }
@@ -181,10 +180,9 @@ sensors::InputSource convertInputSourceToProto(const InputSource inputSource)
     case InputSource::SharedRemote:
         return sensors::InputSource::SharedRemote;
     default:
-        RCLCPP_ERROR(
-            rclcpp::get_logger("luci_interface"),
-            "Unexpected luci input source %d, defaulting to chair virtual input source",
-            static_cast<int>(inputSource));
+        RCLCPP_ERROR(rclcpp::get_logger("luci_interface"),
+                     "Unexpected luci input source %d, defaulting to chair virtual input source",
+                     static_cast<int>(inputSource));
     }
     return sensors::InputSource::ChairVirtual;
 }
@@ -206,10 +204,9 @@ InputSource convertProtoInputSource(const sensors::InputSource inputSource)
     case sensors::InputSource::SharedRemote:
         return InputSource::SharedRemote;
     default:
-        RCLCPP_ERROR(
-            rclcpp::get_logger("luci_interface"),
-            "Unexpected sensors input source %d, defaulting to chair virtual input source",
-            static_cast<int>(inputSource));
+        RCLCPP_ERROR(rclcpp::get_logger("luci_interface"),
+                     "Unexpected sensors input source %d, defaulting to chair virtual input source",
+                     static_cast<int>(inputSource));
     }
     return InputSource::ChairVirtual;
 }
@@ -266,8 +263,7 @@ ClientGuide::~ClientGuide()
     {
         grpcThread.join();
     }
-    RCLCPP_INFO(
-        rclcpp::get_logger("luci_interface"), "gRPC Ramp threads joined");
+    RCLCPP_INFO(rclcpp::get_logger("luci_interface"), "gRPC Ramp threads joined");
 }
 
 int ClientGuide::setInputSource(InputSource source) const
@@ -280,16 +276,14 @@ int ClientGuide::setInputSource(InputSource source) const
 
     if (Status status = stub_->AddInputSource(&context, request, &response); status.ok())
     {
-        RCLCPP_INFO(
-            rclcpp::get_logger("luci_interface"),
-            "Setting input source to %d", static_cast<int>(source));
+        RCLCPP_INFO(rclcpp::get_logger("luci_interface"), "Setting input source to %d",
+                    static_cast<int>(source));
         return 0;
     }
     else
     {
-        RCLCPP_ERROR(
-            rclcpp::get_logger("luci_interface"),
-            "Error communicating with server... pass in correct ip and port of chair");
+        RCLCPP_ERROR(rclcpp::get_logger("luci_interface"),
+                     "Error communicating with server... pass in correct ip and port of chair");
         return 1;
     }
 }
@@ -304,9 +298,51 @@ void ClientGuide::removeInputSource(InputSource source) const
 
     if (Status status = stub_->RemoveInputSource(&context, request, &response); status.ok())
     {
+        RCLCPP_INFO(rclcpp::get_logger("luci_interface"), "Removing input source %d",
+                    static_cast<int>(source));
+    }
+    else
+    {
+        RCLCPP_ERROR(rclcpp::get_logger("luci_interface"),
+                     "Error communicating with server... pass in correct ip and port of chair");
+    }
+}
+
+void ClientGuide::disableRadarFilter(RadarFilter filter) const
+{
+    ClientContext context;
+    sensors::RadarFilter request;
+    Response response;
+
+    request.set_filter(convertRadarFilterToProto(filter));
+
+    if (Status status = stub_->DisableRadarFilter(&context, request, &response); status.ok())
+    {
         RCLCPP_INFO(
             rclcpp::get_logger("luci_interface"),
-            "Removing input source %d", static_cast<int>(source));
+            "Disabling radar filter %d", static_cast<int>(filter));
+    }
+    else
+    {
+        RCLCPP_ERROR(
+            rclcpp::get_logger("luci_interface"),
+            "Error communicating with server... pass in correct ip and port of chair");
+    }
+}
+
+void ClientGuide::enableRadarFilter(RadarFilter filter) const
+{
+    ClientContext context;
+    sensors::RadarFilter request;
+    Response response;
+
+    request.set_filter(convertRadarFilterToProto(filter));
+
+    if (Status status = stub_->EnableRadarFilter(&context, request, &response); status.ok())
+    {
+        RCLCPP_INFO(
+            rclcpp::get_logger("luci_interface"),
+            "Enabling radar filter %d", static_cast<int>(filter));
     }
     else
     {
@@ -375,21 +411,18 @@ int ClientGuide::sendJS(int forwardBack, int leftRight, InputSource source)
 
     if (Status status = stub_->JsOverride(&context, request, &response); status.ok())
     {
-        RCLCPP_INFO(
-            rclcpp::get_logger("luci_interface"),
-            "Sending remote call... values (%d %d %d) status: %s",
-            forwardBack, leftRight, static_cast<int>(source), response.reply().c_str());
+        RCLCPP_INFO(rclcpp::get_logger("luci_interface"),
+                    "Sending remote call... values (%d %d %d) status: %s", forwardBack, leftRight,
+                    static_cast<int>(source), response.reply().c_str());
     }
     else
     {
-        RCLCPP_ERROR(
-            rclcpp::get_logger("luci_interface"),
-            "Error communicating with server... pass in correct ip and port of chair");
+        RCLCPP_ERROR(rclcpp::get_logger("luci_interface"),
+                     "Error communicating with server... pass in correct ip and port of chair");
         return 1;
     }
     RCLCPP_DEBUG(
-        rclcpp::get_logger("luci_interface"),
-        "SEND JS: %ld",
+        rclcpp::get_logger("luci_interface"), "SEND JS: %ld",
         std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - lastJSTime).count());
     lastJSTime = currentTime;
     return 0;
@@ -413,8 +446,7 @@ void ClientGuide::readJoystickPosition() const
 
         this->joystickDataBuff->push(joystickValues);
     }
-    RCLCPP_INFO(
-        rclcpp::get_logger("luci_interface"), "joystick data buff closed");
+    RCLCPP_INFO(rclcpp::get_logger("luci_interface"), "joystick data buff closed");
     this->joystickDataBuff->close();
 }
 
@@ -708,7 +740,7 @@ void ClientGuide::readIrFrame(int initialRate)
                     // once a frame has been set from the old rate. So at most the frame rate will
                     // need to wait 1 second before changing
                     RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "IR Rate Sending: %d",
-                                  requestedRate.rate());
+                                 requestedRate.rate());
 
                     if (!stream->Write(requestedRate))
                     {
@@ -757,7 +789,7 @@ void ClientGuide::readIrFrame(int initialRate)
 
         default:
             RCLCPP_ERROR(rclcpp::get_logger("luci_interface"),
-                          "IR rotation type not valid defaulting to radians");
+                         "IR rotation type not valid defaulting to radians");
             break;
         }
 
@@ -779,7 +811,7 @@ void ClientGuide::readIrFrame(int initialRate)
         }
 
         RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "IR MESSAGE SIZE: %ld",
-                      response.ByteSizeLong());
+                     response.ByteSizeLong());
     }
 
     RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "IR data buff closed");
@@ -840,8 +872,8 @@ void ClientGuide::readChairProfile() const
     while (reader->Read(&response))
     {
         ChairProfile chairProfile(response.profile());
-        RCLCPP_DEBUG(
-            rclcpp::get_logger("luci_interface"), "Chair profile: %d", chairProfile.profile);
+        RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "Chair profile: %d",
+                     chairProfile.profile);
         this->chairProfileDataBuff->push(chairProfile);
     }
 }
@@ -858,8 +890,8 @@ void ClientGuide::readSpeedSetting() const
     while (reader->Read(&response))
     {
         SpeedSetting speedSetting(response.speed_setting());
-        RCLCPP_DEBUG(
-            rclcpp::get_logger("luci_interface"), "Speed setting: %d", speedSetting.speed_setting);
+        RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "Speed setting: %d",
+                     speedSetting.speed_setting);
         this->speedSettingDataBuff->push(speedSetting);
     }
 }
@@ -876,8 +908,8 @@ void ClientGuide::readOverrideButtonData() const
     while (reader->Read(&response))
     {
         int overrideButtonData(response.button_state());
-        RCLCPP_DEBUG(
-            rclcpp::get_logger("luci_interface"), "Override button data: %d", overrideButtonData);
+        RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "Override button data: %d",
+                     overrideButtonData);
         this->overrideButtonDataBuff->push(overrideButtonData);
     }
 }
@@ -894,8 +926,8 @@ void ClientGuide::readOverrideButtonPressCountData() const
     while (reader->Read(&response))
     {
         int overrideButtonPressCount(response.press_count());
-        RCLCPP_DEBUG(
-            rclcpp::get_logger("luci_interface"), "Override button press count: %d", overrideButtonPressCount);
+        RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "Override button press count: %d",
+                     overrideButtonPressCount);
         this->overrideButtonPressCountDataBuff->push(overrideButtonPressCount);
     }
 }

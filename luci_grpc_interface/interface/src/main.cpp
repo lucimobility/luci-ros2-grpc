@@ -1,6 +1,6 @@
 /**
  * @file main.cpp
- * 
+ *
  * @brief The main executable file for the interface node
  *
  * @copyright Copyright 2025 LUCI Mobility, Inc
@@ -20,8 +20,8 @@
 
 #include "client/client.h"
 #include "grpc_interface/interface.h"
-#include "rclcpp/rclcpp.hpp"
 #include "rclcpp/logger.hpp"
+#include "rclcpp/rclcpp.hpp"
 #include "tclap/CmdLine.h"
 
 #include <iostream>
@@ -53,10 +53,10 @@ int main(int argc, char* argv[])
     // Command to pass in camera frame rate in gRPC mode
     TCLAP::ValueArg<int> rateArg("f", "frame-rate", "IR Frame Rate gRPC mode only.", false, 0,
                                  "int");
-        
+
     // Command to pass in logging level
-    TCLAP::ValueArg<std::string> logLevelArg("l", "log-level", "Logging level", false,
-                                             "info", "string");
+    TCLAP::ValueArg<std::string> logLevelArg("l", "log-level", "Logging level", false, "info",
+                                             "string");
 
     // Add the value arguments to the command line parser
     cmd.add(hostArg);
@@ -74,7 +74,7 @@ int main(int argc, char* argv[])
     int frameRate = rateArg.getValue();
 
     // Initialize ROS stack and executor, Note: all argument parsing is handled externally by tclap
-    rclcpp::init(0, nullptr);    
+    rclcpp::init(0, nullptr);
     if (logLevel == "debug")
     {
         rclcpp::get_logger("luci_interface").set_level(rclcpp::Logger::Level::Debug);
@@ -136,20 +136,22 @@ int main(int argc, char* argv[])
 
     auto depthDataBuffRear = std::make_shared<Luci::ROS2::DataBuffer<CameraDepthData>>();
 
-    auto chairProfileDataBuff =
-        std::make_shared<Luci::ROS2::DataBuffer<ChairProfile>>();
+    auto depthDataBuffLeft = std::make_shared<Luci::ROS2::DataBuffer<CameraDepthData>>();
 
-    auto speedSettingDataBuff =
-        std::make_shared<Luci::ROS2::DataBuffer<SpeedSetting>>();
+    auto depthDataBuffRight = std::make_shared<Luci::ROS2::DataBuffer<CameraDepthData>>();
 
-    auto overrideButtonDataBuff =
-        std::make_shared<Luci::ROS2::DataBuffer<int>>();
-    
-    auto overrideButtonPressCountDataBuff =
-        std::make_shared<Luci::ROS2::DataBuffer<int>>();
+    auto depthDataBuffRear = std::make_shared<Luci::ROS2::DataBuffer<CameraDepthData>>();
 
-    auto grpcChannel =
-        grpc::CreateChannel(static_cast<grpc::string>(host + ":" + port), grpc::InsecureChannelCredentials());
+    auto chairProfileDataBuff = std::make_shared<Luci::ROS2::DataBuffer<ChairProfile>>();
+
+    auto speedSettingDataBuff = std::make_shared<Luci::ROS2::DataBuffer<SpeedSetting>>();
+
+    auto overrideButtonDataBuff = std::make_shared<Luci::ROS2::DataBuffer<int>>();
+
+    auto overrideButtonPressCountDataBuff = std::make_shared<Luci::ROS2::DataBuffer<int>>();
+
+    auto grpcChannel = grpc::CreateChannel(static_cast<grpc::string>(host + ":" + port),
+                                           grpc::InsecureChannelCredentials());
 
     bool connected = grpcChannel->WaitForConnected(deadline);
     if (!connected)
