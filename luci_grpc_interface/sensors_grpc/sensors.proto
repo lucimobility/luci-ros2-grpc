@@ -45,6 +45,9 @@ service Sensors {
   rpc IrStream(stream FrameRate) returns (stream IrFrame); //
 
   rpc EncoderStream(google.protobuf.Empty) returns (stream EncoderData); //
+
+  rpc ChairProfileStream(google.protobuf.Empty) returns (stream ChairProfile); //
+  rpc SpeedSettingStream(google.protobuf.Empty) returns (stream SpeedSetting); //
 }
 
 message Response {
@@ -306,11 +309,6 @@ message RemoteJsValues {
   InputSource source = 3;
 }
 
-message ChairSpeed {
-  double speed_m_p_s = 1;
-  google.protobuf.Timestamp timestamp = 2;
-}
-
 message RampMode {
   bool ramp_active = 1;
   bool override_dropoff = 2;
@@ -323,14 +321,22 @@ message FrameRate {
 }
 
 enum InputSource {
-RampAssist = 0;
-AutonomousRemote = 1;
-WDI = 2;
-ChairVirtual = 3;
-ChairPhysical = 4;
-SharedRemote = 5;
+  RampAssist = 0;
+  AutonomousRemote = 1;
+  WDI = 2;
+  ChairVirtual = 3;
+  ChairPhysical = 4;
+  SharedRemote = 5;
 }
 
 message InputSourceRequest {
-InputSource source = 1;
+  InputSource source = 1;
+}
+
+message ChairProfile {
+  int32 profile = 1;
+}
+
+message SpeedSetting {
+  uint32 speed_setting = 1;
 }

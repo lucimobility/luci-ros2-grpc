@@ -376,6 +376,43 @@ void Interface::processRearIrData()
     }
 }
 
+void Interface::processChairProfileData()
+{
+    auto chairProfileData = this->chairProfileDataBuff->getLatest();
+    std_msgs::msg::Int32 chairProfileMsg;
+    if (chairProfileData.has_value())
+    {
+        chairProfileMsg.data = chairProfileData->profile;
+        this->chairProfilePublisher->publish(chairProfileMsg);
+    }
+    while (true)
+    {
+        auto chairProfileData = this->chairProfileDataBuff->waitNext();
+        std_msgs::msg::Int32 chairProfileMsg;
+        chairProfileMsg.data = chairProfileData.profile;
+        this->chairProfilePublisher->publish(chairProfileMsg);
+    }
+}
+
+void Interface::processSpeedSettingData()
+{
+    auto speedSettingData = this->speedSettingDataBuff->getLatest();
+    std_msgs::msg::Int32 speedSettingMsg;
+    if (speedSettingData.has_value())
+    {
+        speedSettingMsg.data = speedSettingData->speed_setting;
+        this->speedSettingPublisher->publish(speedSettingMsg);
+    }
+
+    while (true)
+    {
+        auto speedSettingData = this->speedSettingDataBuff->waitNext();
+        std_msgs::msg::Int32 speedSettingMsg;
+        speedSettingMsg.data = speedSettingData.speed_setting;
+        this->speedSettingPublisher->publish(speedSettingMsg);
+    }
+}
+
 void Interface::sendJsCallback(const luci_messages::msg::LuciJoystick::SharedPtr msg)
 {
     // Send the remote JS values over gRPC
