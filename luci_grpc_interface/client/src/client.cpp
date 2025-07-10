@@ -62,11 +62,10 @@ ClientGuide::ClientGuide(
     std::shared_ptr<DataBuffer<EncoderData>> encoderDataBuff,
     std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffLeft,
     std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffRight,
-    std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffRear, 
+    std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffRear,
     std::shared_ptr<DataBuffer<CameraDepthData>> depthDataBuffLeft,
     std::shared_ptr<DataBuffer<CameraDepthData>> depthDataBuffRight,
-    std::shared_ptr<DataBuffer<CameraDepthData>> depthDataBuffRear,
-    int initialFrameRate,
+    std::shared_ptr<DataBuffer<CameraDepthData>> depthDataBuffRear, int initialFrameRate,
     std::shared_ptr<DataBuffer<ChairProfile>> chairProfileDataBuff,
     std::shared_ptr<DataBuffer<SpeedSetting>> speedSettingDataBuff,
     std::shared_ptr<DataBuffer<int>> overrideButtonDataBuff,
@@ -77,9 +76,10 @@ ClientGuide::ClientGuide(
       ultrasonicDataBuff(ultrasonicDataBuff), zoneScalingDataBuff(zoneScalingDataBuff),
       joystickScalingDataBuff(joystickScalingDataBuff), ahrsDataBuff(ahrsDataBuff),
       imuDataBuff(imuDataBuff), encoderDataBuff(encoderDataBuff), irDataBuffLeft(irDataBuffLeft),
-      irDataBuffRight(irDataBuffRight), irDataBuffRear(irDataBuffRear), chairProfileDataBuff(chairProfileDataBuff),
-      speedSettingDataBuff(speedSettingDataBuff), depthDataBuffLeft(depthDataBuffLeft),
-      depthDataBuffRight(depthDataBuffRight), depthDataBuffRear(depthDataBuffRear), overrideButtonDataBuff(overrideButtonDataBuff),
+      irDataBuffRight(irDataBuffRight), irDataBuffRear(irDataBuffRear),
+      chairProfileDataBuff(chairProfileDataBuff), speedSettingDataBuff(speedSettingDataBuff),
+      depthDataBuffLeft(depthDataBuffLeft), depthDataBuffRight(depthDataBuffRight),
+      depthDataBuffRear(depthDataBuffRear), overrideButtonDataBuff(overrideButtonDataBuff),
       overrideButtonPressCountDataBuff(overrideButtonPressCountDataBuff)
 {
     grpcThreads.emplace_back(&ClientGuide::readJoystickPosition, this);
@@ -697,8 +697,9 @@ void ClientGuide::readDepthFrame()
         stub_->DepthImageStream(&context, google::protobuf::Empty()));
     reader->Read(&response);
 
-    while (reader->Read(&response)){
-        CameraDepthData cameraDepthData (
+    while (reader->Read(&response))
+    {
+        CameraDepthData cameraDepthData(
             response.width(), response.height(),
             std::vector<uint8_t>(response.frame().begin(), response.frame().end()));
         if (response.camera() == "left")
@@ -713,10 +714,10 @@ void ClientGuide::readDepthFrame()
         {
             this->depthDataBuffRear->push(cameraDepthData);
         }
-        
+
         RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "Depth MESSAGE SIZE: %ld",
-                      response.ByteSizeLong());
-    } 
+                     response.ByteSizeLong());
+    }
     RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "Depth data buff closed");
     this->depthDataBuffLeft->close();
     this->depthDataBuffRight->close();

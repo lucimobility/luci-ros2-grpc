@@ -87,7 +87,7 @@ class Interface : public rclcpp::Node
         std::shared_ptr<Luci::ROS2::DataBuffer<EncoderData>> encoderDataBuff,
         std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData>> irDataBuffLeft,
         std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData>> irDataBuffRight,
-        std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData>> irDataBuffRear, 
+        std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData>> irDataBuffRear,
         std::shared_ptr<Luci::ROS2::DataBuffer<CameraDepthData>> depthDataBuffLeft,
         std::shared_ptr<Luci::ROS2::DataBuffer<CameraDepthData>> depthDataBuffRight,
         std::shared_ptr<Luci::ROS2::DataBuffer<CameraDepthData>> depthDataBuffRear,
@@ -104,21 +104,21 @@ class Interface : public rclcpp::Node
           imuDataBuff(imuDataBuff), encoderDataBuff(encoderDataBuff),
           irDataBuffLeft(irDataBuffLeft), irDataBuffRight(irDataBuffRight),
           irDataBuffRear(irDataBuffRear), depthDataBuffLeft(depthDataBuffLeft),
-          depthDataBuffRight(depthDataBuffRight), depthDataBuffRear(depthDataBuffRear), 
-          initialFrameRate(initialFrameRate),
-          chairProfileDataBuff(chairProfileDataBuff), speedSettingDataBuff(speedSettingDataBuff),
+          depthDataBuffRight(depthDataBuffRight), depthDataBuffRear(depthDataBuffRear),
+          initialFrameRate(initialFrameRate), chairProfileDataBuff(chairProfileDataBuff),
+          speedSettingDataBuff(speedSettingDataBuff),
           overrideButtonDataBuff(overrideButtonDataBuff),
           overrideButtonPressCountDataBuff(overrideButtonPressCountDataBuff)
     {
         /// ROS publishers (sends the LUCI gRPC data to ROS on the specified topic)
         this->cameraPublisher =
             this->create_publisher<sensor_msgs::msg::PointCloud2>("luci/camera_points", QUEUE_SIZE);
-        
-        this->collisionPointsPublisher =
-            this->create_publisher<sensor_msgs::msg::PointCloud2>("luci/collision_points", QUEUE_SIZE);
-        
-        this->dropoffPointsPublisher =
-            this->create_publisher<sensor_msgs::msg::PointCloud2>("luci/dropoff_points", QUEUE_SIZE);
+
+        this->collisionPointsPublisher = this->create_publisher<sensor_msgs::msg::PointCloud2>(
+            "luci/collision_points", QUEUE_SIZE);
+
+        this->dropoffPointsPublisher = this->create_publisher<sensor_msgs::msg::PointCloud2>(
+            "luci/dropoff_points", QUEUE_SIZE);
 
         this->radarPublisher =
             this->create_publisher<sensor_msgs::msg::PointCloud2>("luci/radar_points", QUEUE_SIZE);

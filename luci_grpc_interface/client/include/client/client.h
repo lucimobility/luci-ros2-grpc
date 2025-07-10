@@ -42,7 +42,6 @@
 #include <thread>
 #include <vector>
 
-
 namespace Luci::ROS2
 {
 
@@ -61,6 +60,8 @@ class ClientGuide
      * @param channel
      * @param joystickDataBuff
      * @param cameraDataBuff
+     * @param collisionDataBuff
+     * @param dropoffDataBuff
      * @param radarDataBuff
      * @param ultrasonicDataBuff
      * @param zoneScalingDataBuff
@@ -74,7 +75,11 @@ class ClientGuide
      * @param depthDataBuffLeft
      * @param depthDataBuffRight
      * @param depthDataBuffRear
-    * @param initialFrameRate
+     * @param initialFrameRate
+     * @param chairProfileDataBuff
+     * @param speedSettingDataBuff
+     * @param overrideButtonDataBuff
+     * @param overrideButtonPressCountDataBuff
 
      */
     explicit ClientGuide(
@@ -92,11 +97,10 @@ class ClientGuide
         std::shared_ptr<DataBuffer<EncoderData>> encoderDataBuff,
         std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffLeft,
         std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffRight,
-        std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffRear, 
+        std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffRear,
         std::shared_ptr<DataBuffer<CameraDepthData>> depthDataBuffLeft,
         std::shared_ptr<DataBuffer<CameraDepthData>> depthDataBuffRight,
-        std::shared_ptr<DataBuffer<CameraDepthData>> depthDataBuffRear,
-        int initialFrameRate,
+        std::shared_ptr<DataBuffer<CameraDepthData>> depthDataBuffRear, int initialFrameRate,
         std::shared_ptr<DataBuffer<ChairProfile>> chairProfileDataBuff,
         std::shared_ptr<DataBuffer<SpeedSetting>> speedSettingDataBuff,
         std::shared_ptr<DataBuffer<int>> overrideButtonDataBuff,
