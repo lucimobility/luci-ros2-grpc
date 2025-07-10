@@ -98,7 +98,9 @@ class ClientGuide
         std::shared_ptr<DataBuffer<CameraDepthData>> depthDataBuffRear,
         int initialFrameRate, 
         std::shared_ptr<DataBuffer<ChairProfile>> chairProfileDataBuff, 
-        std::shared_ptr<DataBuffer<SpeedSetting>> speedSettingDataBuff);
+        std::shared_ptr<DataBuffer<SpeedSetting>> speedSettingDataBuff,
+        std::shared_ptr<DataBuffer<int>> overrideButtonDataBuff,
+        std::shared_ptr<DataBuffer<int>> overrideButtonPressCountDataBuff);
 
     /**
      * @brief Destroy the Client Guide object
@@ -133,6 +135,8 @@ class ClientGuide
     std::shared_ptr<DataBuffer<CameraDepthData>> depthDataBuffRear;
     std::shared_ptr<DataBuffer<ChairProfile>> chairProfileDataBuff;
     std::shared_ptr<DataBuffer<SpeedSetting>> speedSettingDataBuff;
+    std::shared_ptr<DataBuffer<int>> overrideButtonDataBuff;
+    std::shared_ptr<DataBuffer<int>> overrideButtonPressCountDataBuff;
 
     /// Data Buffer for thread safe updates to the IR frame a given client is getting sent
     DataBuffer<int> irFrameRateDataBuff;
@@ -279,6 +283,18 @@ class ClientGuide
      *
      */
     void readSpeedSetting() const;
+
+    /**
+     * @brief Read the override button data
+     *
+     */
+    void readOverrideButtonData() const;
+
+    /**
+     * @brief Read the override button press count data
+     *
+     */
+    void readOverrideButtonPressCountData() const;
 
   private:
     /// Threads for each endpoint

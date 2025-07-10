@@ -526,6 +526,44 @@ void Interface::processSpeedSettingData()
     }
 }
 
+void Interface::processOverrideButtonData()
+{
+    auto overrideButtonData = this->overrideButtonDataBuff->getLatest();
+    std_msgs::msg::Int32 overrideButtonMsg;
+    if (overrideButtonData.has_value())
+    {
+        overrideButtonMsg.data = overrideButtonData.value();
+        this->overrideButtonDataPublisher->publish(overrideButtonMsg);
+    }
+
+    while (true)
+    {
+        auto overrideButtonData = this->overrideButtonDataBuff->waitNext();
+        std_msgs::msg::Int32 overrideButtonMsg;
+        overrideButtonMsg.data = overrideButtonData;
+        this->overrideButtonDataPublisher->publish(overrideButtonMsg);
+    }
+}
+
+void Interface::processOverrideButtonPressCountData()
+{
+    auto overrideButtonPressCountData = this->overrideButtonPressCountDataBuff->getLatest();
+    std_msgs::msg::Int32 overrideButtonPressCountMsg;
+    if (overrideButtonPressCountData.has_value())
+    {
+        overrideButtonPressCountMsg.data = overrideButtonPressCountData.value();
+        this->overrideButtonPressCountDataPublisher->publish(overrideButtonPressCountMsg);
+    }
+
+    while (true)
+    {
+        auto overrideButtonPressCountData = this->overrideButtonPressCountDataBuff->waitNext();
+        std_msgs::msg::Int32 overrideButtonPressCountMsg;
+        overrideButtonPressCountMsg.data = overrideButtonPressCountData;
+        this->overrideButtonPressCountDataPublisher->publish(overrideButtonPressCountMsg);
+    }
+}
+
 void Interface::sendJsCallback(const luci_messages::msg::LuciJoystick::SharedPtr msg)
 {
     // Send the remote JS values over gRPC
