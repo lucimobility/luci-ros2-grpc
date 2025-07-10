@@ -41,6 +41,40 @@ void Interface::processCameraData()
     }
 }
 
+void Interface::processCollisionData()
+{
+    // Wait on new collision data from gRPC and then send out converted ROS2 message
+    while (true)
+    {
+        auto collisionPointCloud = this->collisionDataBuff->waitNext();
+        RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "Number of collision points: %ld", collisionPointCloud.size());
+        sensor_msgs::msg::PointCloud2 rosCollisionPointCloud;
+        pcl::toROSMsg(collisionPointCloud, rosCollisionPointCloud);
+        std_msgs::msg::Header collisionHeader;
+        collisionHeader.frame_id = "base_camera";
+        collisionHeader.stamp = this->get_clock()->now();
+        rosCollisionPointCloud.header = collisionHeader;
+        this->collisionPointsPublisher->publish(rosCollisionPointCloud);
+    }
+}
+
+void Interface::processDropoffData()
+{
+    // Wait on new dropoff data from gRPC and then send out converted ROS2 message
+    while (true)
+    {
+        auto dropoffPointCloud = this->dropoffDataBuff->waitNext();
+        RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "Number of dropoff points: %ld", dropoffPointCloud.size());
+        sensor_msgs::msg::PointCloud2 rosDropoffPointCloud;
+        pcl::toROSMsg(dropoffPointCloud, rosDropoffPointCloud);
+        std_msgs::msg::Header dropoffHeader;
+        dropoffHeader.frame_id = "base_camera";
+        dropoffHeader.stamp = this->get_clock()->now();
+        rosDropoffPointCloud.header = dropoffHeader;
+        this->dropoffPointsPublisher->publish(rosDropoffPointCloud);
+    }
+}
+
 void Interface::processRadarData()
 {
     // Wait on new radar data from gRPC and then send out converted ROS2 message
@@ -376,6 +410,85 @@ void Interface::processRearIrData()
 
         this->irRearPublisher->publish(rosIrMsg);
         this->rearCameraInfoPublisher->publish(cameraInfoMsg);
+    }
+}
+
+void Interface::processLeftDepthData()
+{
+    // Wait on new left depth data from gRPC and then send out conveted ROS2 message
+    while (true)
+    {
+        auto leftDepthData = this->depthDataBuffLeft->waitNext();
+
+        sensor_msgs::msg::Image depthMsg;
+
+        depthMsg.header.frame_id = "left_depth_camera";
+        depthMsg.header.stamp = this->get_clock()->now();
+
+        depthMsg.height = leftDepthData.height;
+        depthMsg.width = leftDepthData.width;
+
+        depthMsg.data = leftDepthData.data;
+
+        depthMsg.encoding = "16UC1";
+        depthMsg.step = leftDepthData.width * sizeof(uint16_t);
+
+        RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "depthMsg.data size %ld", depthMsg.data.size());
+
+
+        this->depthLeftPublisher->publish(depthMsg);
+    }
+}
+
+void Interface::processRightDepthData()
+{
+    // Wait on new right depth data from gRPC and then send out conveted ROS2 message
+    while (true)
+    {
+        auto rightDepthData = this->depthDataBuffRight->waitNext();
+
+        sensor_msgs::msg::Image depthMsg;
+
+        depthMsg.header.frame_id = "right_depth_camera";
+        depthMsg.header.stamp = this->get_clock()->now();
+
+        depthMsg.height = rightDepthData.height;
+        depthMsg.width = rightDepthData.width;
+
+        depthMsg.data = rightDepthData.data;
+
+        depthMsg.encoding = "16UC1";
+        depthMsg.step = rightDepthData.width * sizeof(uint16_t);
+
+        RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "depthMsg.data size %ld", depthMsg.data.size());
+
+        this->depthRightPublisher->publish(depthMsg);
+    }
+}
+
+void Interface::processRearDepthData()
+{
+    // Wait on new rear depth data from gRPC and then send out conveted ROS2 message
+    while (true)
+    {
+        auto rearDepthData = this->depthDataBuffRear->waitNext();
+
+        sensor_msgs::msg::Image depthMsg;
+
+        depthMsg.header.frame_id = "rear_depth_camera";
+        depthMsg.header.stamp = this->get_clock()->now();
+
+        depthMsg.height = rearDepthData.height;
+        depthMsg.width = rearDepthData.width;
+
+        depthMsg.data = rearDepthData.data;
+
+        depthMsg.encoding = "16UC1";
+        depthMsg.step = rearDepthData.width * sizeof(uint16_t);
+
+        RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "depthMsg.data size %ld", depthMsg.data.size());
+
+        this->depthRearPublisher->publish(depthMsg);
     }
 }
 

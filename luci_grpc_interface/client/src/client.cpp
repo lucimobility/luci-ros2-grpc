@@ -32,13 +32,27 @@ using Luci::ROS2::ClientGuide;
 using sensors::RemoteJsValues;
 using sensors::Response;
 
+using sensors::ActiveScaling;
+using sensors::AhrsData;
+using sensors::CameraMetaData;
+using sensors::CameraPoints;
+using sensors::CameraPoints2D;
+using sensors::JoystickData;
+using sensors::NavigationScaling;
+using sensors::RadarPoints;
+using sensors::UltrasonicDistances;
+
 pcl::PointCloud<pcl::PointXYZ> cameraPointCloud;
+pcl::PointCloud<pcl::PointXYZ> collisionPointCloud;
+pcl::PointCloud<pcl::PointXYZ> dropoffPointCloud;
 pcl::PointCloud<pcl::PointXYZ> ultrasonicPointCloud;
 pcl::PointCloud<pcl::PointXYZ> radarPointCloud;
 
 ClientGuide::ClientGuide(
     std::shared_ptr<Channel> channel, std::shared_ptr<DataBuffer<SystemJoystick>> joystickDataBuff,
     std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> cameraDataBuff,
+    std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> collisionDataBuff,
+    std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> dropoffDataBuff,
     std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> radarDataBuff,
     std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> ultrasonicDataBuff,
     std::shared_ptr<DataBuffer<LuciZoneScaling>> zoneScalingDataBuff,
@@ -48,23 +62,30 @@ ClientGuide::ClientGuide(
     std::shared_ptr<DataBuffer<EncoderData>> encoderDataBuff,
     std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffLeft,
     std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffRight,
-    std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffRear, int initialFrameRate,
+    std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffRear, 
+    std::shared_ptr<DataBuffer<CameraDepthData>> depthDataBuffLeft,
+    std::shared_ptr<DataBuffer<CameraDepthData>> depthDataBuffRight,
+    std::shared_ptr<DataBuffer<CameraDepthData>> depthDataBuffRear,
+    int initialFrameRate,
     std::shared_ptr<DataBuffer<ChairProfile>> chairProfileDataBuff,
     std::shared_ptr<DataBuffer<SpeedSetting>> speedSettingDataBuff,
     std::shared_ptr<DataBuffer<int>> overrideButtonDataBuff,
     std::shared_ptr<DataBuffer<int>> overrideButtonPressCountDataBuff)
     : stub_(sensors::Sensors::NewStub(channel)), joystickDataBuff(joystickDataBuff),
-      cameraDataBuff(cameraDataBuff), radarDataBuff(radarDataBuff),
+      cameraDataBuff(cameraDataBuff), collisionDataBuff(collisionDataBuff),
+      dropoffDataBuff(dropoffDataBuff), radarDataBuff(radarDataBuff),
       ultrasonicDataBuff(ultrasonicDataBuff), zoneScalingDataBuff(zoneScalingDataBuff),
       joystickScalingDataBuff(joystickScalingDataBuff), ahrsDataBuff(ahrsDataBuff),
       imuDataBuff(imuDataBuff), encoderDataBuff(encoderDataBuff), irDataBuffLeft(irDataBuffLeft),
-      irDataBuffRight(irDataBuffRight), irDataBuffRear(irDataBuffRear),
-      chairProfileDataBuff(chairProfileDataBuff), speedSettingDataBuff(speedSettingDataBuff),
-      overrideButtonDataBuff(overrideButtonDataBuff),
+      irDataBuffRight(irDataBuffRight), irDataBuffRear(irDataBuffRear), chairProfileDataBuff(chairProfileDataBuff),
+      speedSettingDataBuff(speedSettingDataBuff), depthDataBuffLeft(depthDataBuffLeft),
+      depthDataBuffRight(depthDataBuffRight), depthDataBuffRear(depthDataBuffRear), overrideButtonDataBuff(overrideButtonDataBuff),
       overrideButtonPressCountDataBuff(overrideButtonPressCountDataBuff)
 {
     grpcThreads.emplace_back(&ClientGuide::readJoystickPosition, this);
     grpcThreads.emplace_back(&ClientGuide::readCameraData, this);
+    grpcThreads.emplace_back(&ClientGuide::readCollisionData, this);
+    grpcThreads.emplace_back(&ClientGuide::readDropoffData, this);
     grpcThreads.emplace_back(&ClientGuide::readRadarData, this);
     grpcThreads.emplace_back(&ClientGuide::readUltrasonicData, this);
     grpcThreads.emplace_back(&ClientGuide::readZoneScalingData, this);
@@ -73,6 +94,7 @@ ClientGuide::ClientGuide(
     grpcThreads.emplace_back(&ClientGuide::readImuData, this);
     grpcThreads.emplace_back(&ClientGuide::readEncoderData, this);
     grpcThreads.emplace_back(&ClientGuide::readIrFrame, this, initialFrameRate);
+    grpcThreads.emplace_back(&ClientGuide::readDepthFrame, this);
     grpcThreads.emplace_back(&ClientGuide::readChairProfile, this);
     grpcThreads.emplace_back(&ClientGuide::readSpeedSetting, this);
     grpcThreads.emplace_back(&ClientGuide::readOverrideButtonData, this);
@@ -315,6 +337,58 @@ void ClientGuide::readCameraData() const
             cameraPointCloud.push_back(pclPoint);
         }
         this->cameraDataBuff->push(cameraPointCloud);
+    }
+}
+
+void ClientGuide::readCollisionData() const
+{
+    ClientContext context;
+    const google::protobuf::Empty request;
+    CameraPoints2D response;
+
+    std::unique_ptr<ClientReader<CameraPoints2D>> reader(
+        stub_->FlatCameraStream(&context, request));
+    reader->Read(&response);
+
+    while (reader->Read(&response))
+    {
+        collisionPointCloud.clear();
+
+        for (auto point : response.points())
+        {
+            pcl::PointXYZ pclPoint;
+            pclPoint.x = point.x();
+            pclPoint.y = point.y();
+            pclPoint.z = 0.0;
+            collisionPointCloud.push_back(pclPoint);
+        }
+        this->collisionDataBuff->push(collisionPointCloud);
+    }
+}
+
+void ClientGuide::readDropoffData() const
+{
+    ClientContext context;
+    const google::protobuf::Empty request;
+    CameraPoints response;
+
+    std::unique_ptr<ClientReader<CameraPoints>> reader(
+        stub_->DropoffCameraStream(&context, request));
+    reader->Read(&response);
+
+    while (reader->Read(&response))
+    {
+        dropoffPointCloud.clear();
+
+        for (auto point : response.points())
+        {
+            pcl::PointXYZ pclPoint;
+            pclPoint.x = point.x();
+            pclPoint.y = point.y();
+            pclPoint.z = point.z();
+            dropoffPointCloud.push_back(pclPoint);
+        }
+        this->dropoffDataBuff->push(dropoffPointCloud);
     }
 }
 
@@ -612,6 +686,42 @@ void ClientGuide::readIrFrame(int initialRate)
     // When the stream goes down sets the atomic to terminate this thread
     shutdown = true;
     rateReaderPublisher.join();
+}
+
+void ClientGuide::readDepthFrame()
+{
+    ClientContext context;
+    sensors::DepthFrame response;
+
+    std::unique_ptr<ClientReader<sensors::DepthFrame>> reader(
+        stub_->DepthImageStream(&context, google::protobuf::Empty()));
+    reader->Read(&response);
+
+    while (reader->Read(&response)){
+        CameraDepthData cameraDepthData (
+            response.width(), response.height(),
+            std::vector<uint8_t>(response.frame().begin(), response.frame().end()));
+        if (response.camera() == "left")
+        {
+            this->depthDataBuffLeft->push(cameraDepthData);
+        }
+        else if (response.camera() == "right")
+        {
+            this->depthDataBuffRight->push(cameraDepthData);
+        }
+        else if (response.camera() == "rear")
+        {
+            this->depthDataBuffRear->push(cameraDepthData);
+        }
+        
+        RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "Depth MESSAGE SIZE: %ld",
+                      response.ByteSizeLong());
+    } 
+    RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "Depth data buff closed");
+    this->depthDataBuffLeft->close();
+    this->depthDataBuffRight->close();
+    this->depthDataBuffRear->close();
+    RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "Depth data buff closed");
 }
 
 void ClientGuide::readChairProfile() const
