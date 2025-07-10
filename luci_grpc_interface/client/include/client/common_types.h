@@ -1,6 +1,6 @@
 /**
  * @file luci_grpc_types.h
- * 
+ *
  * @brief Struct definitions of LUCI standard data types
  *
  * @copyright Copyright 2025 LUCI Mobility, Inc
@@ -273,56 +273,44 @@ struct CameraIrData
 
 /**
  * @brief LUCI Chair Profile Data
- * 
+ *
  */
 struct ChairProfile
 {
     int profile;
 
-    inline ChairProfile(int profile)
-        : profile(profile)
-    {
-    }
+    inline ChairProfile(int profile) : profile(profile) {}
 };
 
 /**
  * @brief LUCI Speed Setting Data
- * 
+ *
  */
 struct SpeedSetting
 {
     int speed_setting;
 
-    inline SpeedSetting(int speed_setting)
-        : speed_setting(speed_setting)
-    {
-    }
+    inline SpeedSetting(int speed_setting) : speed_setting(speed_setting) {}
 };
 
 /**
  * @brief Override button stream data
- * 
+ *
  */
 struct OverrideButtonData
 {
     int button_status;
 
-    inline OverrideButtonData(int button_status)
-        : button_status(button_status)
-    {
-    }
+    inline OverrideButtonData(int button_status) : button_status(button_status) {}
 };
 
 /**
  * @brief Override button press count data
- * 
+ *
  */
 struct OverrideButtonPressCountData
 {
     int press_count;
 
-    inline OverrideButtonPressCountData(int press_count)
-        : press_count(press_count)
-    {
-    }
+    inline OverrideButtonPressCountData(int press_count) : press_count(press_count) {}
 };

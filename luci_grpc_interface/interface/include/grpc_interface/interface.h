@@ -1,6 +1,6 @@
 /**
  * @file interface.h
- * 
+ *
  * @brief The public interface that is exposed to ROS2
  *
  * @copyright Copyright 2025 LUCI Mobility, Inc
@@ -39,9 +39,9 @@
 #include <nav_msgs/msg/odometry.hpp>
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/point_cloud2.hpp>
+#include <std_msgs/msg/int32.hpp>
 #include <std_srvs/srv/empty.hpp>
 #include <tf2_ros/transform_broadcaster.h>
-#include <std_msgs/msg/int32.hpp>
 
 // LUCI ROS2 libraries
 #include <luci_messages/msg/luci_camera_info.hpp>
@@ -96,8 +96,9 @@ class Interface : public rclcpp::Node
           joystickScalingDataBuff(joystickScalingDataBuff), ahrsInfoDataBuff(ahrsInfoDataBuff),
           imuDataBuff(imuDataBuff), encoderDataBuff(encoderDataBuff),
           irDataBuffLeft(irDataBuffLeft), irDataBuffRight(irDataBuffRight),
-          irDataBuffRear(irDataBuffRear), initialFrameRate(initialFrameRate), chairProfileDataBuff(chairProfileDataBuff),
-          speedSettingDataBuff(speedSettingDataBuff), overrideButtonDataBuff(overrideButtonDataBuff),
+          irDataBuffRear(irDataBuffRear), initialFrameRate(initialFrameRate),
+          chairProfileDataBuff(chairProfileDataBuff), speedSettingDataBuff(speedSettingDataBuff),
+          overrideButtonDataBuff(overrideButtonDataBuff),
           overrideButtonPressCountDataBuff(overrideButtonPressCountDataBuff)
     {
         /// ROS publishers (sends the LUCI gRPC data to ROS on the specified topic)
@@ -118,16 +119,16 @@ class Interface : public rclcpp::Node
 
         this->encoderPublisher =
             this->create_publisher<luci_messages::msg::LuciEncoders>("luci/encoders", QUEUE_SIZE);
-        
+
         // Making a QOS profile that is transient local, so that the messages are not lost
         // when the subscriber is not connected. This is useful for topics that are not
         // continuously published
         rclcpp::QoS qos(QUEUE_SIZE);
         qos.transient_local();
-        
+
         this->chairProfilePublisher =
             this->create_publisher<std_msgs::msg::Int32>("luci/chair_profile", qos);
-        
+
         this->speedSettingPublisher =
             this->create_publisher<std_msgs::msg::Int32>("luci/speed_setting", qos);
 
@@ -143,7 +144,8 @@ class Interface : public rclcpp::Node
                    const std::shared_ptr<std_srvs::srv::Empty::Request> request,
                    const std::shared_ptr<std_srvs::srv::Empty::Response> response)
             {
-                RCLCPP_INFO(rclcpp::get_logger("luci_interface"), "Set remote input service called");
+                RCLCPP_INFO(rclcpp::get_logger("luci_interface"),
+                            "Set remote input service called");
                 this->setSharedRemoteInputSource();
             });
 
@@ -153,7 +155,8 @@ class Interface : public rclcpp::Node
                    const std::shared_ptr<std_srvs::srv::Empty::Request> request,
                    const std::shared_ptr<std_srvs::srv::Empty::Response> response)
             {
-                RCLCPP_INFO(rclcpp::get_logger("luci_interface"), "Remove remote input service called");
+                RCLCPP_INFO(rclcpp::get_logger("luci_interface"),
+                            "Remove remote input service called");
                 this->removeSharedRemoteInputSource();
             });
 
@@ -163,7 +166,8 @@ class Interface : public rclcpp::Node
                    const std::shared_ptr<std_srvs::srv::Empty::Request> request,
                    const std::shared_ptr<std_srvs::srv::Empty::Response> response)
             {
-                RCLCPP_INFO(rclcpp::get_logger("luci_interface"), "Set auto remote input service called");
+                RCLCPP_INFO(rclcpp::get_logger("luci_interface"),
+                            "Set auto remote input service called");
                 this->setAutoRemoteInputSource();
             });
 
@@ -173,7 +177,8 @@ class Interface : public rclcpp::Node
                    const std::shared_ptr<std_srvs::srv::Empty::Request> request,
                    const std::shared_ptr<std_srvs::srv::Empty::Response> response)
             {
-                RCLCPP_INFO(rclcpp::get_logger("luci_interface"), "Remove auto remote input service called");
+                RCLCPP_INFO(rclcpp::get_logger("luci_interface"),
+                            "Remove auto remote input service called");
                 this->removeAutoRemoteInputSource();
             });
 
@@ -186,12 +191,12 @@ class Interface : public rclcpp::Node
 
         this->joystickPositionPublisher = this->create_publisher<luci_messages::msg::LuciJoystick>(
             "luci/joystick_position", QUEUE_SIZE);
-        
+
         this->overrideButtonDataPublisher =
             this->create_publisher<std_msgs::msg::Int32>("luci/override_button_data", qos);
 
-        this->overrideButtonPressCountDataPublisher =
-            this->create_publisher<std_msgs::msg::Int32>("luci/override_button_press_count_data", qos);
+        this->overrideButtonPressCountDataPublisher = this->create_publisher<std_msgs::msg::Int32>(
+            "luci/override_button_press_count_data", qos);
 
         // get the camera frame rate from the gRPC interface
         if (this->initialFrameRate != 0)
@@ -324,7 +329,8 @@ class Interface : public rclcpp::Node
     /// Subscriber callback ran in main thread
     void sendJsCallback(const luci_messages::msg::LuciJoystick::SharedPtr msg);
 
-    /// Service Callbacks ran in main thread for setting and removing the Shared and Autonomous remote input source
+    /// Service Callbacks ran in main thread for setting and removing the Shared and Autonomous
+    /// remote input source
     void setSharedRemoteInputSource();
     void removeSharedRemoteInputSource();
     void setAutoRemoteInputSource();
