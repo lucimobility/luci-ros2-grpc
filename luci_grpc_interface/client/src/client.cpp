@@ -50,14 +50,17 @@ ClientGuide::ClientGuide(
     std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffRight,
     std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffRear, int initialFrameRate, 
     std::shared_ptr<DataBuffer<ChairProfile>> chairProfileDataBuff,
-    std::shared_ptr<DataBuffer<SpeedSetting>> speedSettingDataBuff)
+    std::shared_ptr<DataBuffer<SpeedSetting>> speedSettingDataBuff,
+    std::shared_ptr<DataBuffer<int>> overrideButtonDataBuff,
+    std::shared_ptr<DataBuffer<int>> overrideButtonPressCountDataBuff)
     : stub_(sensors::Sensors::NewStub(channel)), joystickDataBuff(joystickDataBuff),
       cameraDataBuff(cameraDataBuff), radarDataBuff(radarDataBuff),
       ultrasonicDataBuff(ultrasonicDataBuff), zoneScalingDataBuff(zoneScalingDataBuff),
       joystickScalingDataBuff(joystickScalingDataBuff), ahrsDataBuff(ahrsDataBuff),
       imuDataBuff(imuDataBuff), encoderDataBuff(encoderDataBuff), irDataBuffLeft(irDataBuffLeft),
       irDataBuffRight(irDataBuffRight), irDataBuffRear(irDataBuffRear), chairProfileDataBuff(chairProfileDataBuff),
-      speedSettingDataBuff(speedSettingDataBuff)
+      speedSettingDataBuff(speedSettingDataBuff), overrideButtonDataBuff(overrideButtonDataBuff),
+      overrideButtonPressCountDataBuff(overrideButtonPressCountDataBuff)
 {
     grpcThreads.emplace_back(&ClientGuide::readJoystickPosition, this);
     grpcThreads.emplace_back(&ClientGuide::readCameraData, this);
@@ -71,6 +74,8 @@ ClientGuide::ClientGuide(
     grpcThreads.emplace_back(&ClientGuide::readIrFrame, this, initialFrameRate);
     grpcThreads.emplace_back(&ClientGuide::readChairProfile, this);
     grpcThreads.emplace_back(&ClientGuide::readSpeedSetting, this);
+    grpcThreads.emplace_back(&ClientGuide::readOverrideButtonData, this);
+    grpcThreads.emplace_back(&ClientGuide::readOverrideButtonPressCountData, this);
 }
 
 sensors::JoystickZone convertJoystickZoneToProto(const JoystickZone zone)
@@ -654,5 +659,41 @@ void ClientGuide::readSpeedSetting() const
         RCLCPP_DEBUG(
             rclcpp::get_logger("luci_interface"), "Speed setting: %d", speedSetting.speed_setting);
         this->speedSettingDataBuff->push(speedSetting);
+    }
+}
+
+void ClientGuide::readOverrideButtonData() const
+{
+    ClientContext context;
+    const google::protobuf::Empty request;
+    sensors::HmiStreamData response;
+
+    std::unique_ptr<ClientReader<sensors::HmiStreamData>> reader(
+        stub_->HmiStream(&context, request));
+
+    while (reader->Read(&response))
+    {
+        int overrideButtonData(response.button_state());
+        RCLCPP_DEBUG(
+            rclcpp::get_logger("luci_interface"), "Override button data: %d", overrideButtonData);
+        this->overrideButtonDataBuff->push(overrideButtonData);
+    }
+}
+
+void ClientGuide::readOverrideButtonPressCountData() const
+{
+    ClientContext context;
+    const google::protobuf::Empty request;
+    sensors::PressCountStreamData response;
+
+    std::unique_ptr<ClientReader<sensors::PressCountStreamData>> reader(
+        stub_->PressCountStream(&context, request));
+
+    while (reader->Read(&response))
+    {
+        int overrideButtonPressCount(response.press_count());
+        RCLCPP_DEBUG(
+            rclcpp::get_logger("luci_interface"), "Override button press count: %d", overrideButtonPressCount);
+        this->overrideButtonPressCountDataBuff->push(overrideButtonPressCount);
     }
 }

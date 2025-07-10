@@ -48,6 +48,9 @@ service Sensors {
 
   rpc ChairProfileStream(google.protobuf.Empty) returns (stream ChairProfile); //
   rpc SpeedSettingStream(google.protobuf.Empty) returns (stream SpeedSetting); //
+
+  rpc HmiStream(google.protobuf.Empty) returns (stream HmiStreamData); //
+  rpc PressCountStream(google.protobuf.Empty) returns (stream PressCountStreamData); //
 }
 
 message Response {
@@ -339,4 +342,16 @@ message ChairProfile {
 
 message SpeedSetting {
   uint32 speed_setting = 1;
+}
+
+message HmiStreamData {
+  enum ButtonState {
+    PRESSED = 0;
+    RELEASED = 1;
+  }
+  ButtonState button_state = 2;
+}
+
+message PressCountStreamData {
+  int32 press_count = 1;
 }

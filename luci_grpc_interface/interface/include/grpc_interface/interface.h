@@ -87,7 +87,9 @@ class Interface : public rclcpp::Node
         std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData>> irDataBuffRight,
         std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData>> irDataBuffRear, int initialFrameRate,
         std::shared_ptr<Luci::ROS2::DataBuffer<ChairProfile>> chairProfileDataBuff,
-        std::shared_ptr<Luci::ROS2::DataBuffer<SpeedSetting>> speedSettingDataBuff)
+        std::shared_ptr<Luci::ROS2::DataBuffer<SpeedSetting>> speedSettingDataBuff,
+        std::shared_ptr<Luci::ROS2::DataBuffer<int>> overrideButtonDataBuff,
+        std::shared_ptr<Luci::ROS2::DataBuffer<int>> overrideButtonPressCountDataBuff)
         : Node("interface"), luciInterface(luciInterface), cameraDataBuff(cameraDataBuff),
           radarDataBuff(radarDataBuff), ultrasonicDataBuff(ultrasonicDataBuff),
           joystickDataBuff(joystickDataBuff), zoneScalingDataBuff(zoneScalingDataBuff),
@@ -95,7 +97,8 @@ class Interface : public rclcpp::Node
           imuDataBuff(imuDataBuff), encoderDataBuff(encoderDataBuff),
           irDataBuffLeft(irDataBuffLeft), irDataBuffRight(irDataBuffRight),
           irDataBuffRear(irDataBuffRear), initialFrameRate(initialFrameRate), chairProfileDataBuff(chairProfileDataBuff),
-          speedSettingDataBuff(speedSettingDataBuff)
+          speedSettingDataBuff(speedSettingDataBuff), overrideButtonDataBuff(overrideButtonDataBuff),
+          overrideButtonPressCountDataBuff(overrideButtonPressCountDataBuff)
     {
         /// ROS publishers (sends the LUCI gRPC data to ROS on the specified topic)
         this->cameraPublisher =
@@ -183,6 +186,12 @@ class Interface : public rclcpp::Node
 
         this->joystickPositionPublisher = this->create_publisher<luci_messages::msg::LuciJoystick>(
             "luci/joystick_position", QUEUE_SIZE);
+        
+        this->overrideButtonDataPublisher =
+            this->create_publisher<std_msgs::msg::Int32>("luci/override_button_data", qos);
+
+        this->overrideButtonPressCountDataPublisher =
+            this->create_publisher<std_msgs::msg::Int32>("luci/override_button_press_count_data", qos);
 
         // get the camera frame rate from the gRPC interface
         if (this->initialFrameRate != 0)
@@ -225,6 +234,8 @@ class Interface : public rclcpp::Node
         grpcConverters.emplace_back(&Interface::processRearIrData, this);
         grpcConverters.emplace_back(&Interface::processChairProfileData, this);
         grpcConverters.emplace_back(&Interface::processSpeedSettingData, this);
+        grpcConverters.emplace_back(&Interface::processOverrideButtonData, this);
+        grpcConverters.emplace_back(&Interface::processOverrideButtonPressCountData, this);
     }
 
     /// Destructor
@@ -246,6 +257,8 @@ class Interface : public rclcpp::Node
     rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr irRearPublisher;
     rclcpp::Publisher<std_msgs::msg::Int32>::SharedPtr chairProfilePublisher;
     rclcpp::Publisher<std_msgs::msg::Int32>::SharedPtr speedSettingPublisher;
+    rclcpp::Publisher<std_msgs::msg::Int32>::SharedPtr overrideButtonDataPublisher;
+    rclcpp::Publisher<std_msgs::msg::Int32>::SharedPtr overrideButtonPressCountDataPublisher;
 
     rclcpp::Publisher<luci_messages::msg::LuciCameraInfo>::SharedPtr leftCameraInfoPublisher;
     rclcpp::Publisher<luci_messages::msg::LuciCameraInfo>::SharedPtr rightCameraInfoPublisher;
@@ -284,6 +297,8 @@ class Interface : public rclcpp::Node
     std::shared_ptr<Luci::ROS2::DataBuffer<ChairProfile>> chairProfileDataBuff;
     std::shared_ptr<Luci::ROS2::DataBuffer<SpeedSetting>> speedSettingDataBuff;
     int initialFrameRate;
+    std::shared_ptr<Luci::ROS2::DataBuffer<int>> overrideButtonDataBuff;
+    std::shared_ptr<Luci::ROS2::DataBuffer<int>> overrideButtonPressCountDataBuff;
 
     /// Functions to handle each unique data type and convert (each are ran on independent threads)
     void processCameraData();
@@ -300,6 +315,8 @@ class Interface : public rclcpp::Node
     void processRearIrData();
     void processChairProfileData();
     void processSpeedSettingData();
+    void processOverrideButtonData();
+    void processOverrideButtonPressCountData();
 
     /// Update the IR frame rate
     void updateIrFrameRate(int rate);

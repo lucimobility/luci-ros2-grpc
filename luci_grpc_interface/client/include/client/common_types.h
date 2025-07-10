@@ -299,3 +299,30 @@ struct SpeedSetting
     }
 };
 
+/**
+ * @brief Override button stream data
+ * 
+ */
+struct OverrideButtonData
+{
+    int button_status;
+
+    inline OverrideButtonData(int button_status)
+        : button_status(button_status)
+    {
+    }
+};
+
+/**
+ * @brief Override button press count data
+ * 
+ */
+struct OverrideButtonPressCountData
+{
+    int press_count;
+
+    inline OverrideButtonPressCountData(int press_count)
+        : press_count(press_count)
+    {
+    }
+};
