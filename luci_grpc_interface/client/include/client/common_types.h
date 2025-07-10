@@ -272,6 +272,22 @@ struct CameraIrData
 };
 
 /**
+ * @brief LUCI Depth Camera Data
+ * 
+ */
+struct CameraDepthData
+{
+    int width;
+    int height;
+    std::vector<uint8_t> data;
+
+    inline CameraDepthData(int width, int height, std::vector<uint8_t> data)
+        : width(width), height(height), data(data)
+    {
+    }
+};
+
+/**
  * @brief LUCI Chair Profile Data
  * 
  */
@@ -298,4 +314,3 @@ struct SpeedSetting
     {
     }
 };
-
