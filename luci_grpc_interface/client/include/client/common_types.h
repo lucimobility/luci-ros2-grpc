@@ -331,7 +331,6 @@ struct OverrideButtonData
 
     inline OverrideButtonData(int button_status) : button_status(button_status) {}
 };
-
 /**
  * @brief Override button press count data
  *

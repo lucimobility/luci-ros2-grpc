@@ -136,13 +136,8 @@ int main(int argc, char* argv[])
 
     auto depthDataBuffRear = std::make_shared<Luci::ROS2::DataBuffer<CameraDepthData>>();
 
-    auto depthDataBuffLeft = std::make_shared<Luci::ROS2::DataBuffer<CameraDepthData>>();
-
-    auto depthDataBuffRight = std::make_shared<Luci::ROS2::DataBuffer<CameraDepthData>>();
-
-    auto depthDataBuffRear = std::make_shared<Luci::ROS2::DataBuffer<CameraDepthData>>();
-
-    auto chairProfileDataBuff = std::make_shared<Luci::ROS2::DataBuffer<ChairProfile>>();
+    auto chairProfileDataBuff =
+        std::make_shared<Luci::ROS2::DataBuffer<ChairProfile>>();
 
     auto speedSettingDataBuff = std::make_shared<Luci::ROS2::DataBuffer<SpeedSetting>>();
 
@@ -166,16 +161,18 @@ int main(int argc, char* argv[])
         grpcChannel, joystickDataBuff, cameraDataBuff, collisionDataBuff, dropoffDataBuff,
         radarDataBuff, ultrasonicDataBuff, zoneScalingDataBuff, joystickScalingDataBuff, 
         ahrsInfoDataBuff, imuDataBuff, encoderDataBuff, irDataBuffLeft, irDataBuffRight, 
-        irDataBuffRear, depthDataBuffLeft, depthDataBuffRight, depthDataBuffRear, frameRate, chairProfileDataBuff,
-        speedSettingDataBuff, overrideButtonDataBuff, overrideButtonPressCountDataBuff);
+        irDataBuffRear, depthDataBuffLeft, depthDataBuffRight, depthDataBuffRear, frameRate,
+        chairProfileDataBuff, speedSettingDataBuff, overrideButtonDataBuff,
+        overrideButtonPressCountDataBuff);
 
     // ROS connection
     auto interface_node = std::make_shared<Interface>(
         luciInterface, cameraDataBuff, collisionDataBuff, dropoffDataBuff, 
         radarDataBuff, ultrasonicDataBuff, joystickDataBuff, zoneScalingDataBuff, 
         joystickScalingDataBuff, ahrsInfoDataBuff, imuDataBuff, encoderDataBuff, 
-        irDataBuffLeft, irDataBuffRight, irDataBuffRear, depthDataBuffLeft, depthDataBuffRight, depthDataBuffRear, frameRate, chairProfileDataBuff, speedSettingDataBuff,
-        overrideButtonDataBuff, overrideButtonPressCountDataBuff);
+        irDataBuffLeft, irDataBuffRight, irDataBuffRear, depthDataBuffLeft, depthDataBuffRight, depthDataBuffRear, frameRate,
+        chairProfileDataBuff, speedSettingDataBuff, overrideButtonDataBuff,
+        overrideButtonPressCountDataBuff);
 
     executor.add_node(interface_node);
     RCLCPP_INFO(rclcpp::get_logger("luci_interface"), "Running ROS2 executor...");

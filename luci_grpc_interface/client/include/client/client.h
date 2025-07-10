@@ -96,8 +96,8 @@ class ClientGuide
         std::shared_ptr<DataBuffer<CameraDepthData>> depthDataBuffLeft,
         std::shared_ptr<DataBuffer<CameraDepthData>> depthDataBuffRight,
         std::shared_ptr<DataBuffer<CameraDepthData>> depthDataBuffRear,
-        int initialFrameRate, 
-        std::shared_ptr<DataBuffer<ChairProfile>> chairProfileDataBuff, 
+        int initialFrameRate,
+        std::shared_ptr<DataBuffer<ChairProfile>> chairProfileDataBuff,
         std::shared_ptr<DataBuffer<SpeedSetting>> speedSettingDataBuff,
         std::shared_ptr<DataBuffer<int>> overrideButtonDataBuff,
         std::shared_ptr<DataBuffer<int>> overrideButtonPressCountDataBuff);

@@ -103,10 +103,10 @@ class Interface : public rclcpp::Node
           joystickScalingDataBuff(joystickScalingDataBuff), ahrsInfoDataBuff(ahrsInfoDataBuff),
           imuDataBuff(imuDataBuff), encoderDataBuff(encoderDataBuff),
           irDataBuffLeft(irDataBuffLeft), irDataBuffRight(irDataBuffRight),
-          depthDataBuffLeft(depthDataBuffLeft),
+          irDataBuffRear(irDataBuffRear), depthDataBuffLeft(depthDataBuffLeft),
           depthDataBuffRight(depthDataBuffRight), depthDataBuffRear(depthDataBuffRear), 
-          initialFrameRate(initialFrameRate), chairProfileDataBuff(chairProfileDataBuff),
-          speedSettingDataBuff(speedSettingDataBuff), irDataBuffRear(irDataBuffRear),
+          initialFrameRate(initialFrameRate),
+          chairProfileDataBuff(chairProfileDataBuff), speedSettingDataBuff(speedSettingDataBuff),
           overrideButtonDataBuff(overrideButtonDataBuff),
           overrideButtonPressCountDataBuff(overrideButtonPressCountDataBuff)
     {
