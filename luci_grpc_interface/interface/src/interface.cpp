@@ -47,7 +47,8 @@ void Interface::processCollisionData()
     while (true)
     {
         auto collisionPointCloud = this->collisionDataBuff->waitNext();
-        RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "Number of collision points: %ld", collisionPointCloud.size());
+        RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "Number of collision points: %ld",
+                     collisionPointCloud.size());
         sensor_msgs::msg::PointCloud2 rosCollisionPointCloud;
         pcl::toROSMsg(collisionPointCloud, rosCollisionPointCloud);
         std_msgs::msg::Header collisionHeader;
@@ -64,7 +65,8 @@ void Interface::processDropoffData()
     while (true)
     {
         auto dropoffPointCloud = this->dropoffDataBuff->waitNext();
-        RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "Number of dropoff points: %ld", dropoffPointCloud.size());
+        RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "Number of dropoff points: %ld",
+                     dropoffPointCloud.size());
         sensor_msgs::msg::PointCloud2 rosDropoffPointCloud;
         pcl::toROSMsg(dropoffPointCloud, rosDropoffPointCloud);
         std_msgs::msg::Header dropoffHeader;
@@ -433,8 +435,8 @@ void Interface::processLeftDepthData()
         depthMsg.encoding = "16UC1";
         depthMsg.step = leftDepthData.width * sizeof(uint16_t);
 
-        RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "depthMsg.data size %ld", depthMsg.data.size());
-
+        RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "depthMsg.data size %ld",
+                     depthMsg.data.size());
 
         this->depthLeftPublisher->publish(depthMsg);
     }
@@ -460,7 +462,8 @@ void Interface::processRightDepthData()
         depthMsg.encoding = "16UC1";
         depthMsg.step = rightDepthData.width * sizeof(uint16_t);
 
-        RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "depthMsg.data size %ld", depthMsg.data.size());
+        RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "depthMsg.data size %ld",
+                     depthMsg.data.size());
 
         this->depthRightPublisher->publish(depthMsg);
     }
@@ -486,7 +489,8 @@ void Interface::processRearDepthData()
         depthMsg.encoding = "16UC1";
         depthMsg.step = rearDepthData.width * sizeof(uint16_t);
 
-        RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "depthMsg.data size %ld", depthMsg.data.size());
+        RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "depthMsg.data size %ld",
+                     depthMsg.data.size());
 
         this->depthRearPublisher->publish(depthMsg);
     }

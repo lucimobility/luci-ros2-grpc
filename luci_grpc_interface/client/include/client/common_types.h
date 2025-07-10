@@ -285,7 +285,7 @@ struct CameraIrData
 
 /**
  * @brief LUCI Depth Camera Data
- * 
+ *
  */
 struct CameraDepthData
 {
