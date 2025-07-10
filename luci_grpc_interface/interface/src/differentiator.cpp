@@ -1,6 +1,6 @@
 /**
  * @file differentiator.cpp
- * 
+ *
  * @brief Math class to differentiate values for speed calculations
  *
  * @copyright Copyright 2025 LUCI Mobility, Inc

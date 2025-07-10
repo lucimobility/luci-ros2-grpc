@@ -1,6 +1,6 @@
 /**
  * @file interface.cpp
- * 
+ *
  * @brief Main interface node to connect ROS2 and gRPC
  *
  * @copyright Copyright 2025 LUCI Mobility, Inc
@@ -28,7 +28,8 @@ void Interface::processCameraData()
         // Camera point cloud processing
         auto cameraPointCloud = this->cameraDataBuff->waitNext();
 
-        RCLCPP_INFO(rclcpp::get_logger("luci_interface"), "Number of camera points: %ld", cameraPointCloud.size());
+        RCLCPP_INFO(rclcpp::get_logger("luci_interface"), "Number of camera points: %ld",
+                    cameraPointCloud.size());
         sensor_msgs::msg::PointCloud2 rosCameraPointCloud;
 
         pcl::toROSMsg(cameraPointCloud, rosCameraPointCloud);
@@ -46,7 +47,8 @@ void Interface::processRadarData()
     while (true)
     {
         auto radarPointCloud = this->radarDataBuff->waitNext();
-        RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "Number of radar points: %ld", radarPointCloud.size());
+        RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "Number of radar points: %ld",
+                     radarPointCloud.size());
         sensor_msgs::msg::PointCloud2 rosRadarPointCloud;
         pcl::toROSMsg(radarPointCloud, rosRadarPointCloud);
         std_msgs::msg::Header radarHeader;
@@ -63,7 +65,8 @@ void Interface::processUltrasonicData()
     while (true)
     {
         auto ultrasonicPointCloud = this->ultrasonicDataBuff->waitNext();
-        RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "Number of ultrasonic points: %ld", ultrasonicPointCloud.size());
+        RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "Number of ultrasonic points: %ld",
+                     ultrasonicPointCloud.size());
         sensor_msgs::msg::PointCloud2 rosUltrasonicPointCloud;
         pcl::toROSMsg(ultrasonicPointCloud, rosUltrasonicPointCloud);
         std_msgs::msg::Header ultrasonicHeader;
@@ -413,12 +416,50 @@ void Interface::processSpeedSettingData()
     }
 }
 
+void Interface::processOverrideButtonData()
+{
+    auto overrideButtonData = this->overrideButtonDataBuff->getLatest();
+    std_msgs::msg::Int32 overrideButtonMsg;
+    if (overrideButtonData.has_value())
+    {
+        overrideButtonMsg.data = overrideButtonData.value();
+        this->overrideButtonDataPublisher->publish(overrideButtonMsg);
+    }
+
+    while (true)
+    {
+        auto overrideButtonData = this->overrideButtonDataBuff->waitNext();
+        std_msgs::msg::Int32 overrideButtonMsg;
+        overrideButtonMsg.data = overrideButtonData;
+        this->overrideButtonDataPublisher->publish(overrideButtonMsg);
+    }
+}
+
+void Interface::processOverrideButtonPressCountData()
+{
+    auto overrideButtonPressCountData = this->overrideButtonPressCountDataBuff->getLatest();
+    std_msgs::msg::Int32 overrideButtonPressCountMsg;
+    if (overrideButtonPressCountData.has_value())
+    {
+        overrideButtonPressCountMsg.data = overrideButtonPressCountData.value();
+        this->overrideButtonPressCountDataPublisher->publish(overrideButtonPressCountMsg);
+    }
+
+    while (true)
+    {
+        auto overrideButtonPressCountData = this->overrideButtonPressCountDataBuff->waitNext();
+        std_msgs::msg::Int32 overrideButtonPressCountMsg;
+        overrideButtonPressCountMsg.data = overrideButtonPressCountData;
+        this->overrideButtonPressCountDataPublisher->publish(overrideButtonPressCountMsg);
+    }
+}
+
 void Interface::sendJsCallback(const luci_messages::msg::LuciJoystick::SharedPtr msg)
 {
     // Send the remote JS values over gRPC
     auto inputSource = static_cast<InputSource>(msg->input_source);
-    RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "Received js val: %d %d %d", msg->forward_back, msg->left_right,
-                 msg->input_source);
+    RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "Received js val: %d %d %d",
+                 msg->forward_back, msg->left_right, msg->input_source);
 
     this->luciInterface->sendJS(msg->forward_back + 100, msg->left_right + 100, inputSource);
 }

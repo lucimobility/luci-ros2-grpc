@@ -1,6 +1,6 @@
 /**
  * @file data_buffer.h
- * 
+ *
  * @brief Definition of the sharable data buffers, each stream from client connection gets its own
  * data buffer
  *
