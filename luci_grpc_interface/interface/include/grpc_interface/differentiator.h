@@ -1,6 +1,6 @@
 /**
  * @file differentiator.h
- * 
+ *
  * @brief Math helper to differentiate values
  *
  * @copyright Copyright 2025 LUCI Mobility, Inc
