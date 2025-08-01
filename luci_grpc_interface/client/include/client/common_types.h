@@ -35,6 +35,18 @@ enum class JoystickZone
     Origin = 8,
 };
 
+enum class RadarFilter
+{
+    RANGE_CHOP = 0,
+    ORIGIN = 1,
+    FOV = 2,
+    PEAK = 3,
+    STICKY = 4,
+    EXTRA_STICKY = 5,
+    TRANSFORMS = 6,
+    ADAM = 7,
+};
+
 enum class InputSource
 {
     RampAssist = 0,

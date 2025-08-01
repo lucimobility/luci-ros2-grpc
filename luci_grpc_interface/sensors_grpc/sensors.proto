@@ -52,6 +52,9 @@ service Sensors {
 
   rpc ChairProfileStream(google.protobuf.Empty) returns (stream ChairProfile); //
   rpc SpeedSettingStream(google.protobuf.Empty) returns (stream SpeedSetting); //
+
+  rpc EnableRadarFilter(RadarFilter) returns (Response) {}; //
+  rpc DisableRadarFilter(RadarFilter) returns (Response) {}; //
 }
 
 message Response {
@@ -356,4 +359,18 @@ message ChairProfile {
 
 message SpeedSetting {
   uint32 speed_setting = 1;
+}
+
+message RadarFilter {
+  enum Filter {
+    RANGE_CHOP = 0;
+    ORIGIN = 1;
+    FOV = 2;
+    PEAK = 3;
+    STICKY = 4;
+    EXTRA_STICKY = 5;
+    TRANSFORMS = 6;
+    ADAM = 7;
+  }
+  Filter filter = 1;
 }

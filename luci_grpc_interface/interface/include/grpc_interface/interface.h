@@ -188,6 +188,26 @@ class Interface : public rclcpp::Node
                 RCLCPP_INFO(rclcpp::get_logger("luci_interface"), "Remove auto remote input service called");
                 this->removeAutoRemoteInputSource();
             });
+        
+        this->disable_radar_filter_service = this->create_service<std_srvs::srv::Empty>(
+            "luci/disable_radar_filter",
+            [this](const std::shared_ptr<rmw_request_id_t> request_header,
+                   const std::shared_ptr<std_srvs::srv::Empty::Request> request,
+                   const std::shared_ptr<std_srvs::srv::Empty::Response> response)
+            {
+                RCLCPP_INFO(rclcpp::get_logger("luci_interface"), "Disable radar filter service called");
+                this->disableRadarFilter();
+            });
+        
+        this->enable_radar_filter_service = this->create_service<std_srvs::srv::Empty>(
+            "luci/enable_radar_filter",
+            [this](const std::shared_ptr<rmw_request_id_t> request_header,
+                   const std::shared_ptr<std_srvs::srv::Empty::Request> request,
+                   const std::shared_ptr<std_srvs::srv::Empty::Response> response)
+            {
+                RCLCPP_INFO(rclcpp::get_logger("luci_interface"), "Enable radar filter service called");
+                this->enableRadarFilter();
+            });
 
         this->zoneScalingPublisher =
             this->create_publisher<luci_messages::msg::LuciZoneScaling>("luci/scaling", QUEUE_SIZE);
@@ -291,6 +311,8 @@ class Interface : public rclcpp::Node
     rclcpp::Service<std_srvs::srv::Empty>::SharedPtr remove_shared_remote_input_service;
     rclcpp::Service<std_srvs::srv::Empty>::SharedPtr set_auto_remote_input_service;
     rclcpp::Service<std_srvs::srv::Empty>::SharedPtr remove_auto_remote_input_service;
+    rclcpp::Service<std_srvs::srv::Empty>::SharedPtr disable_radar_filter_service;
+    rclcpp::Service<std_srvs::srv::Empty>::SharedPtr enable_radar_filter_service;
 
     std::shared_ptr<tf2_ros::TransformBroadcaster> odomBroadcaster =
         std::make_shared<tf2_ros::TransformBroadcaster>(this);
@@ -354,4 +376,6 @@ class Interface : public rclcpp::Node
     void removeSharedRemoteInputSource();
     void setAutoRemoteInputSource();
     void removeAutoRemoteInputSource();
+    void disableRadarFilter();
+    void enableRadarFilter();
 };

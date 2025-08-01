@@ -41,6 +41,7 @@ using sensors::JoystickData;
 using sensors::NavigationScaling;
 using sensors::RadarPoints;
 using sensors::UltrasonicDistances;
+// using sensors::RadarFilter;
 
 pcl::PointCloud<pcl::PointXYZ> cameraPointCloud;
 pcl::PointCloud<pcl::PointXYZ> collisionPointCloud;
@@ -208,6 +209,52 @@ InputSource convertProtoInputSource(const sensors::InputSource inputSource)
     return InputSource::ChairVirtual;
 }
 
+RadarFilter convertProtoRadarFilter(const sensors::RadarFilter_Filter filter)
+{
+    switch (filter)
+    {
+    case sensors::RadarFilter_Filter::RadarFilter_Filter_RANGE_CHOP:
+        return RadarFilter::RANGE_CHOP;
+    case sensors::RadarFilter_Filter::RadarFilter_Filter_ORIGIN:
+        return RadarFilter::ORIGIN;
+    case sensors::RadarFilter_Filter::RadarFilter_Filter_FOV:
+        return RadarFilter::FOV;
+    case sensors::RadarFilter_Filter::RadarFilter_Filter_PEAK:
+        return RadarFilter::PEAK;
+    case sensors::RadarFilter_Filter::RadarFilter_Filter_STICKY:
+        return RadarFilter::STICKY;
+    case sensors::RadarFilter_Filter::RadarFilter_Filter_EXTRA_STICKY:
+        return RadarFilter::EXTRA_STICKY;
+    case sensors::RadarFilter_Filter::RadarFilter_Filter_TRANSFORMS:
+        return RadarFilter::TRANSFORMS;
+    case sensors::RadarFilter_Filter::RadarFilter_Filter_ADAM:
+        return RadarFilter::ADAM;
+    }
+}
+
+sensors::RadarFilter_Filter convertRadarFilterToProto(const RadarFilter filter)
+{
+    switch (filter)
+    {
+    case RadarFilter::RANGE_CHOP:
+        return sensors::RadarFilter_Filter::RadarFilter_Filter_RANGE_CHOP;
+    case RadarFilter::ORIGIN:
+        return sensors::RadarFilter_Filter::RadarFilter_Filter_ORIGIN;
+    case RadarFilter::FOV:
+        return sensors::RadarFilter_Filter::RadarFilter_Filter_FOV;
+    case RadarFilter::PEAK:
+        return sensors::RadarFilter_Filter::RadarFilter_Filter_PEAK;
+    case RadarFilter::STICKY:
+        return sensors::RadarFilter_Filter::RadarFilter_Filter_STICKY;
+    case RadarFilter::EXTRA_STICKY:
+        return sensors::RadarFilter_Filter::RadarFilter_Filter_EXTRA_STICKY;
+    case RadarFilter::TRANSFORMS:
+        return sensors::RadarFilter_Filter::RadarFilter_Filter_TRANSFORMS;
+    case RadarFilter::ADAM:
+        return sensors::RadarFilter_Filter::RadarFilter_Filter_ADAM;
+    }   
+}
+
 ClientGuide::~ClientGuide()
 {
     for (std::thread& grpcThread : this->grpcThreads)
@@ -255,6 +302,50 @@ void ClientGuide::removeInputSource(InputSource source) const
         RCLCPP_INFO(
             rclcpp::get_logger("luci_interface"),
             "Removing input source %d", static_cast<int>(source));
+    }
+    else
+    {
+        RCLCPP_ERROR(
+            rclcpp::get_logger("luci_interface"),
+            "Error communicating with server... pass in correct ip and port of chair");
+    }
+}
+
+void ClientGuide::disableRadarFilter(RadarFilter filter) const
+{
+    ClientContext context;
+    sensors::RadarFilter request;
+    Response response;
+
+    request.set_filter(convertRadarFilterToProto(filter));
+
+    if (Status status = stub_->DisableRadarFilter(&context, request, &response); status.ok())
+    {
+        RCLCPP_INFO(
+            rclcpp::get_logger("luci_interface"),
+            "Disabling radar filter %d", static_cast<int>(filter));
+    }
+    else
+    {
+        RCLCPP_ERROR(
+            rclcpp::get_logger("luci_interface"),
+            "Error communicating with server... pass in correct ip and port of chair");
+    }
+}
+
+void ClientGuide::enableRadarFilter(RadarFilter filter) const
+{
+    ClientContext context;
+    sensors::RadarFilter request;
+    Response response;
+
+    request.set_filter(convertRadarFilterToProto(filter));
+
+    if (Status status = stub_->EnableRadarFilter(&context, request, &response); status.ok())
+    {
+        RCLCPP_INFO(
+            rclcpp::get_logger("luci_interface"),
+            "Enabling radar filter %d", static_cast<int>(filter));
     }
     else
     {

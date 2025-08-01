@@ -556,6 +556,34 @@ void Interface::removeAutoRemoteInputSource()
     this->luciInterface->removeInputSource(InputSource::AutonomousRemote);
 }
 
+void Interface::disableRadarFilter()
+{
+    // Disable the radar filter
+    RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "Disabling radar filter");
+    this->luciInterface->disableRadarFilter(RadarFilter::RANGE_CHOP);
+    // this->luciInterface->disableRadarFilter(RadarFilter::ORIGIN);
+    // this->luciInterface->disableRadarFilter(RadarFilter::FOV);
+    // this->luciInterface->disableRadarFilter(RadarFilter::PEAK);
+    this->luciInterface->disableRadarFilter(RadarFilter::STICKY);
+    this->luciInterface->disableRadarFilter(RadarFilter::EXTRA_STICKY);
+    // this->luciInterface->disableRadarFilter(RadarFilter::TRANSFORMS);
+    this->luciInterface->disableRadarFilter(RadarFilter::ADAM);
+}
+
+void Interface::enableRadarFilter()
+{
+    // Enable the radar filter
+    RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "Enabling radar filter");
+    this->luciInterface->enableRadarFilter(RadarFilter::RANGE_CHOP);
+    // this->luciInterface->enableRadarFilter(RadarFilter::ORIGIN);
+    // this->luciInterface->enableRadarFilter(RadarFilter::FOV);
+    // this->luciInterface->enableRadarFilter(RadarFilter::PEAK);
+    this->luciInterface->enableRadarFilter(RadarFilter::STICKY);
+    this->luciInterface->enableRadarFilter(RadarFilter::EXTRA_STICKY);
+    // this->luciInterface->enableRadarFilter(RadarFilter::TRANSFORMS);
+    this->luciInterface->enableRadarFilter(RadarFilter::ADAM);
+}
+
 void Interface::updateIrFrameRate(int rate)
 {
     // Send the new rate request over gRPC to LUCI
