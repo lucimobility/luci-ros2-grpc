@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="3">
   <name>luci_grpc_interface</name>
-  <version>2.0.0</version>
+  <version>2.0.1</version>
   <description>The grpc_interface package</description>
 
   <maintainer email="shail@luci.com">shail</maintainer>
