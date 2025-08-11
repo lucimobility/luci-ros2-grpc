@@ -42,15 +42,6 @@
 #include <thread>
 #include <vector>
 
-using sensors::ActiveScaling;
-using sensors::AhrsData;
-using sensors::CameraMetaData;
-using sensors::CameraPoints;
-using sensors::JoystickData;
-using sensors::NavigationScaling;
-using sensors::RadarPoints;
-using sensors::UltrasonicDistances;
-
 namespace Luci::ROS2
 {
 
@@ -69,6 +60,8 @@ class ClientGuide
      * @param channel
      * @param joystickDataBuff
      * @param cameraDataBuff
+     * @param collisionDataBuff
+     * @param dropoffDataBuff
      * @param radarDataBuff
      * @param ultrasonicDataBuff
      * @param zoneScalingDataBuff
@@ -79,13 +72,22 @@ class ClientGuide
      * @param irDataBuffLeft
      * @param irDataBuffRight
      * @param irDataBuffRear
-    * @param initialFrameRate
+     * @param depthDataBuffLeft
+     * @param depthDataBuffRight
+     * @param depthDataBuffRear
+     * @param initialFrameRate
+     * @param chairProfileDataBuff
+     * @param speedSettingDataBuff
+     * @param overrideButtonDataBuff
+     * @param overrideButtonPressCountDataBuff
 
      */
     explicit ClientGuide(
         std::shared_ptr<grpc::Channel> channel,
         std::shared_ptr<DataBuffer<SystemJoystick>> joystickDataBuff,
         std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> cameraDataBuff,
+        std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> collisionDataBuff,
+        std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> dropoffDataBuff,
         std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> radarDataBuff,
         std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> ultrasonicDataBuff,
         std::shared_ptr<DataBuffer<LuciZoneScaling>> zoneScalingDataBuff,
@@ -95,7 +97,10 @@ class ClientGuide
         std::shared_ptr<DataBuffer<EncoderData>> encoderDataBuff,
         std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffLeft,
         std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffRight,
-        std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffRear, int initialFrameRate,
+        std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffRear,
+        std::shared_ptr<DataBuffer<CameraDepthData>> depthDataBuffLeft,
+        std::shared_ptr<DataBuffer<CameraDepthData>> depthDataBuffRight,
+        std::shared_ptr<DataBuffer<CameraDepthData>> depthDataBuffRear, int initialFrameRate,
         std::shared_ptr<DataBuffer<ChairProfile>> chairProfileDataBuff,
         std::shared_ptr<DataBuffer<SpeedSetting>> speedSettingDataBuff,
         std::shared_ptr<DataBuffer<int>> overrideButtonDataBuff,
@@ -116,6 +121,8 @@ class ClientGuide
         std::chrono::high_resolution_clock::now();
     /// Data Buffers for the transmission of data to upper level modules
     std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> cameraDataBuff;
+    std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> collisionDataBuff;
+    std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> dropoffDataBuff;
     std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> radarDataBuff;
     std::shared_ptr<DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> ultrasonicDataBuff;
     std::shared_ptr<DataBuffer<LuciZoneScaling>> zoneScalingDataBuff;
@@ -127,6 +134,9 @@ class ClientGuide
     std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffLeft;
     std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffRight;
     std::shared_ptr<DataBuffer<CameraIrData>> irDataBuffRear;
+    std::shared_ptr<DataBuffer<CameraDepthData>> depthDataBuffLeft;
+    std::shared_ptr<DataBuffer<CameraDepthData>> depthDataBuffRight;
+    std::shared_ptr<DataBuffer<CameraDepthData>> depthDataBuffRear;
     std::shared_ptr<DataBuffer<ChairProfile>> chairProfileDataBuff;
     std::shared_ptr<DataBuffer<SpeedSetting>> speedSettingDataBuff;
     std::shared_ptr<DataBuffer<int>> overrideButtonDataBuff;
@@ -193,6 +203,18 @@ class ClientGuide
     void readCameraData() const;
 
     /**
+     * @brief Read the chairs collision data
+     *
+     */
+    void readCollisionData() const;
+
+    /**
+     * @brief Read the chairs dropoff data
+     *
+     */
+    void readDropoffData() const;
+
+    /**
      * @brief Read the chairs ultrasonic data
      *
      */
@@ -235,6 +257,12 @@ class ClientGuide
      * @param initialRate The rate used at client connection start. Defaults to 1.
      */
     void readIrFrame(int initialRate = 1);
+
+    /**
+     * @brief Read the depth frame from both front cameras and the rear camera.
+     *
+     */
+    void readDepthFrame();
 
     /**
      * @brief Read the chair profile data

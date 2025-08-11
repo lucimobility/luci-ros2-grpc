@@ -41,8 +41,12 @@ service Sensors {
 
   rpc DecimatedCameraStream(google.protobuf.Empty)
       returns (stream CameraPoints); //
+  rpc FlatCameraStream(google.protobuf.Empty) returns (stream CameraPoints2D); //
+  rpc DropoffCameraStream(google.protobuf.Empty) returns (stream CameraPoints); //
 
   rpc IrStream(stream FrameRate) returns (stream IrFrame); //
+
+  rpc DepthImageStream(google.protobuf.Empty) returns (stream DepthFrame); //
 
   rpc EncoderStream(google.protobuf.Empty) returns (stream EncoderData); //
 
@@ -58,6 +62,16 @@ message Response {
   int32 return_code = 2;
 }
 
+message CameraPoints2D {
+  repeated Point2D points = 1;
+  google.protobuf.Timestamp timestamp = 2;
+}
+
+message Point2D {
+  float x = 1;
+  float y = 2;
+}
+
 message CameraPoints {
   repeated Point3D points = 1;
   google.protobuf.Timestamp timestamp = 2;
@@ -67,11 +81,6 @@ message Point3D {
   float x = 1;
   float y = 2;
   float z = 3;
-}
-
-message Point2D {
-  float x = 1;
-  float y = 2;
 }
 
 message NavigationScaling {
@@ -303,6 +312,14 @@ message IrFrame {
   int32 height = 3;
   string camera = 4;
   CameraMetaData meta_data = 5;
+  google.protobuf.Timestamp timestamp = 6;
+}
+
+message DepthFrame {
+  bytes frame = 1;
+  int32 width = 2;
+  int32 height = 3;
+  string camera = 4;
   google.protobuf.Timestamp timestamp = 6;
 }
 

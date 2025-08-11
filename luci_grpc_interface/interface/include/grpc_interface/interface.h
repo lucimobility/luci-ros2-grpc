@@ -75,6 +75,8 @@ class Interface : public rclcpp::Node
     Interface(
         std::shared_ptr<Luci::ROS2::ClientGuide> luciInterface,
         std::shared_ptr<Luci::ROS2::DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> cameraDataBuff,
+        std::shared_ptr<Luci::ROS2::DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> collisionDataBuff,
+        std::shared_ptr<Luci::ROS2::DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> dropoffDataBuff,
         std::shared_ptr<Luci::ROS2::DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> radarDataBuff,
         std::shared_ptr<Luci::ROS2::DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> ultrasonicDataBuff,
         std::shared_ptr<Luci::ROS2::DataBuffer<SystemJoystick>> joystickDataBuff,
@@ -85,25 +87,38 @@ class Interface : public rclcpp::Node
         std::shared_ptr<Luci::ROS2::DataBuffer<EncoderData>> encoderDataBuff,
         std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData>> irDataBuffLeft,
         std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData>> irDataBuffRight,
-        std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData>> irDataBuffRear, int initialFrameRate,
+        std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData>> irDataBuffRear,
+        std::shared_ptr<Luci::ROS2::DataBuffer<CameraDepthData>> depthDataBuffLeft,
+        std::shared_ptr<Luci::ROS2::DataBuffer<CameraDepthData>> depthDataBuffRight,
+        std::shared_ptr<Luci::ROS2::DataBuffer<CameraDepthData>> depthDataBuffRear,
+        int initialFrameRate,
         std::shared_ptr<Luci::ROS2::DataBuffer<ChairProfile>> chairProfileDataBuff,
         std::shared_ptr<Luci::ROS2::DataBuffer<SpeedSetting>> speedSettingDataBuff,
         std::shared_ptr<Luci::ROS2::DataBuffer<int>> overrideButtonDataBuff,
         std::shared_ptr<Luci::ROS2::DataBuffer<int>> overrideButtonPressCountDataBuff)
         : Node("interface"), luciInterface(luciInterface), cameraDataBuff(cameraDataBuff),
+          collisionDataBuff(collisionDataBuff), dropoffDataBuff(dropoffDataBuff),
           radarDataBuff(radarDataBuff), ultrasonicDataBuff(ultrasonicDataBuff),
           joystickDataBuff(joystickDataBuff), zoneScalingDataBuff(zoneScalingDataBuff),
           joystickScalingDataBuff(joystickScalingDataBuff), ahrsInfoDataBuff(ahrsInfoDataBuff),
           imuDataBuff(imuDataBuff), encoderDataBuff(encoderDataBuff),
           irDataBuffLeft(irDataBuffLeft), irDataBuffRight(irDataBuffRight),
-          irDataBuffRear(irDataBuffRear), initialFrameRate(initialFrameRate),
-          chairProfileDataBuff(chairProfileDataBuff), speedSettingDataBuff(speedSettingDataBuff),
+          irDataBuffRear(irDataBuffRear), depthDataBuffLeft(depthDataBuffLeft),
+          depthDataBuffRight(depthDataBuffRight), depthDataBuffRear(depthDataBuffRear),
+          initialFrameRate(initialFrameRate), chairProfileDataBuff(chairProfileDataBuff),
+          speedSettingDataBuff(speedSettingDataBuff),
           overrideButtonDataBuff(overrideButtonDataBuff),
           overrideButtonPressCountDataBuff(overrideButtonPressCountDataBuff)
     {
         /// ROS publishers (sends the LUCI gRPC data to ROS on the specified topic)
         this->cameraPublisher =
             this->create_publisher<sensor_msgs::msg::PointCloud2>("luci/camera_points", QUEUE_SIZE);
+
+        this->collisionPointsPublisher = this->create_publisher<sensor_msgs::msg::PointCloud2>(
+            "luci/collision_points", QUEUE_SIZE);
+
+        this->dropoffPointsPublisher = this->create_publisher<sensor_msgs::msg::PointCloud2>(
+            "luci/dropoff_points", QUEUE_SIZE);
 
         this->radarPublisher =
             this->create_publisher<sensor_msgs::msg::PointCloud2>("luci/radar_points", QUEUE_SIZE);
@@ -223,9 +238,18 @@ class Interface : public rclcpp::Node
                                                                            QUEUE_SIZE);
         }
 
+        this->depthLeftPublisher =
+            this->create_publisher<sensor_msgs::msg::Image>("luci/depth_left_camera", QUEUE_SIZE);
+        this->depthRightPublisher =
+            this->create_publisher<sensor_msgs::msg::Image>("luci/depth_right_camera", QUEUE_SIZE);
+        this->depthRearPublisher =
+            this->create_publisher<sensor_msgs::msg::Image>("luci/depth_rear_camera", QUEUE_SIZE);
+
         // TODO: clp Should the processing just be handled in the gRPC threads?
         // Spin up a single thread for every gRPC <-> ROS translation
         grpcConverters.emplace_back(&Interface::processCameraData, this);
+        grpcConverters.emplace_back(&Interface::processCollisionData, this);
+        grpcConverters.emplace_back(&Interface::processDropoffData, this);
         grpcConverters.emplace_back(&Interface::processRadarData, this);
         grpcConverters.emplace_back(&Interface::processUltrasonicData, this);
         grpcConverters.emplace_back(&Interface::processZoneScalingData, this);
@@ -237,6 +261,9 @@ class Interface : public rclcpp::Node
         grpcConverters.emplace_back(&Interface::processLeftIrData, this);
         grpcConverters.emplace_back(&Interface::processRightIrData, this);
         grpcConverters.emplace_back(&Interface::processRearIrData, this);
+        grpcConverters.emplace_back(&Interface::processLeftDepthData, this);
+        grpcConverters.emplace_back(&Interface::processRightDepthData, this);
+        grpcConverters.emplace_back(&Interface::processRearDepthData, this);
         grpcConverters.emplace_back(&Interface::processChairProfileData, this);
         grpcConverters.emplace_back(&Interface::processSpeedSettingData, this);
         grpcConverters.emplace_back(&Interface::processOverrideButtonData, this);
@@ -249,6 +276,8 @@ class Interface : public rclcpp::Node
   private:
     /// Shared pointers to publishers (convention in ROS2)
     rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr cameraPublisher;
+    rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr collisionPointsPublisher;
+    rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr dropoffPointsPublisher;
     rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr radarPublisher;
     rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr ultrasonicPublisher;
     rclcpp::Publisher<luci_messages::msg::LuciZoneScaling>::SharedPtr zoneScalingPublisher;
@@ -260,6 +289,9 @@ class Interface : public rclcpp::Node
     rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr irLeftPublisher;
     rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr irRightPublisher;
     rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr irRearPublisher;
+    rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr depthLeftPublisher;
+    rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr depthRightPublisher;
+    rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr depthRearPublisher;
     rclcpp::Publisher<std_msgs::msg::Int32>::SharedPtr chairProfilePublisher;
     rclcpp::Publisher<std_msgs::msg::Int32>::SharedPtr speedSettingPublisher;
     rclcpp::Publisher<std_msgs::msg::Int32>::SharedPtr overrideButtonDataPublisher;
@@ -288,6 +320,8 @@ class Interface : public rclcpp::Node
     // dependency chain
     std::shared_ptr<Luci::ROS2::ClientGuide> luciInterface;
     std::shared_ptr<Luci::ROS2::DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> cameraDataBuff;
+    std::shared_ptr<Luci::ROS2::DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> collisionDataBuff;
+    std::shared_ptr<Luci::ROS2::DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> dropoffDataBuff;
     std::shared_ptr<Luci::ROS2::DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> radarDataBuff;
     std::shared_ptr<Luci::ROS2::DataBuffer<pcl::PointCloud<pcl::PointXYZ>>> ultrasonicDataBuff;
     std::shared_ptr<Luci::ROS2::DataBuffer<LuciZoneScaling>> zoneScalingDataBuff;
@@ -299,6 +333,9 @@ class Interface : public rclcpp::Node
     std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData>> irDataBuffLeft;
     std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData>> irDataBuffRight;
     std::shared_ptr<Luci::ROS2::DataBuffer<CameraIrData>> irDataBuffRear;
+    std::shared_ptr<Luci::ROS2::DataBuffer<CameraDepthData>> depthDataBuffLeft;
+    std::shared_ptr<Luci::ROS2::DataBuffer<CameraDepthData>> depthDataBuffRight;
+    std::shared_ptr<Luci::ROS2::DataBuffer<CameraDepthData>> depthDataBuffRear;
     std::shared_ptr<Luci::ROS2::DataBuffer<ChairProfile>> chairProfileDataBuff;
     std::shared_ptr<Luci::ROS2::DataBuffer<SpeedSetting>> speedSettingDataBuff;
     int initialFrameRate;
@@ -307,6 +344,8 @@ class Interface : public rclcpp::Node
 
     /// Functions to handle each unique data type and convert (each are ran on independent threads)
     void processCameraData();
+    void processCollisionData();
+    void processDropoffData();
     void processRadarData();
     void processUltrasonicData();
     void processZoneScalingData();
@@ -318,6 +357,9 @@ class Interface : public rclcpp::Node
     void processLeftIrData();
     void processRightIrData();
     void processRearIrData();
+    void processLeftDepthData();
+    void processRightDepthData();
+    void processRearDepthData();
     void processChairProfileData();
     void processSpeedSettingData();
     void processOverrideButtonData();
