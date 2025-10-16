@@ -19,6 +19,8 @@
 
 #include "client/client.h"
 
+#include <unordered_map>
+
 using namespace std::chrono_literals;
 using grpc::Channel;
 using grpc::ClientContext;
@@ -398,15 +400,19 @@ void ClientGuide::readUltrasonicData() const
     const google::protobuf::Empty request;
     UltrasonicDistances response;
 
+    std::unordered_map<std::string, pcl::PointCloud<pcl::PointXYZ>> ultrasonicPointCloudMap;
+
     std::unique_ptr<ClientReader<UltrasonicDistances>> reader(
         stub_->UltrasonicStream(&context, request));
     reader->Read(&response);
 
     while (reader->Read(&response))
     {
-        ultrasonicPointCloud.clear();
         for (auto distance : response.distances())
         {
+
+            pcl::PointCloud<pcl::PointXYZ> ultrasonicPointCloud;
+
             for (auto point : distance.arc_points())
             {
                 pcl::PointXYZ pclPoint;
@@ -415,6 +421,18 @@ void ClientGuide::readUltrasonicData() const
                 pclPoint.z = point.z();
                 ultrasonicPointCloud.points.push_back(pclPoint);
             }
+
+            auto usId = distance.board() + "," + std::to_string(distance.spi_id()) + "," +
+                        std::to_string(distance.address());
+
+            ultrasonicPointCloudMap.insert_or_assign(usId, ultrasonicPointCloud);
+        }
+
+        pcl::PointCloud<pcl::PointXYZ> ultrasonicPointCloud;
+        for (auto [id, points] : ultrasonicPointCloudMap)
+        {
+            ultrasonicPointCloud.points.insert(ultrasonicPointCloud.points.end(), points.begin(),
+                                               points.end());
         }
         this->ultrasonicDataBuff->push(ultrasonicPointCloud);
     }
@@ -425,12 +443,14 @@ void ClientGuide::readRadarData() const
     const google::protobuf::Empty request;
     RadarPoints response;
 
+    std::unordered_map<int, std::vector<pcl::PointXYZ>> radarPointCloudMap;
+
     std::unique_ptr<ClientReader<RadarPoints>> reader(stub_->RadarStream(&context, request));
     reader->Read(&response);
 
     while (reader->Read(&response))
     {
-        radarPointCloud.clear();
+        std::vector<pcl::PointXYZ> radarPointCloud;
 
         for (auto point : response.points())
         {
@@ -438,9 +458,19 @@ void ClientGuide::readRadarData() const
             pclPoint.x = point.x();
             pclPoint.y = point.y();
             pclPoint.z = point.z();
-            radarPointCloud.points.push_back(pclPoint);
+            radarPointCloud.push_back(pclPoint);
         }
-        this->radarDataBuff->push(radarPointCloud);
+
+        radarPointCloudMap.insert_or_assign(response.source(), radarPointCloud);
+
+        pcl::PointCloud<pcl::PointXYZ> radarPointCloudPub;
+        for (auto [id, points] : radarPointCloudMap)
+        {
+            radarPointCloudPub.points.insert(radarPointCloudPub.points.end(), points.begin(),
+                                             points.end());
+        }
+
+        this->radarDataBuff->push(radarPointCloudPub);
     }
 }
 
