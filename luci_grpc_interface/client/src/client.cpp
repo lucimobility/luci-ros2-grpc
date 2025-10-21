@@ -209,6 +209,26 @@ InputSource convertProtoInputSource(const sensors::InputSource inputSource)
     return InputSource::ChairVirtual;
 }
 
+RadarFilter convertProtoRadarFilter(const sensors::RadarFilter_Filter filter)
+{
+    switch (filter)
+    {
+    case sensors::RadarFilter_Filter::RadarFilter_Filter_RANGE_CHOP:
+        return RadarFilter::RANGE_CHOP;
+    }
+}
+
+sensors::RadarFilter_Filter convertRadarFilterToProto(const RadarFilter filter)
+{
+    switch (filter)
+    {
+    case RadarFilter::RANGE_CHOP:
+        return sensors::RadarFilter_Filter::RadarFilter_Filter_RANGE_CHOP;
+    }   
+}
+
+
+
 ClientGuide::~ClientGuide()
 {
     for (std::thread& grpcThread : this->grpcThreads)
@@ -259,6 +279,51 @@ void ClientGuide::removeInputSource(InputSource source) const
                      "Error communicating with server... pass in correct ip and port of chair");
     }
 }
+
+void ClientGuide::disableRadarFilter(RadarFilter filter) const
+{
+    ClientContext context;
+    sensors::RadarFilter request;
+    Response response;
+
+    request.set_filter(convertRadarFilterToProto(filter));
+
+    if (Status status = stub_->DisableRadarFilter(&context, request, &response); status.ok())
+    {
+        RCLCPP_INFO(
+            rclcpp::get_logger("luci_interface"),
+            "Disabling radar filter %d", static_cast<int>(filter));
+    }
+    else
+    {
+        RCLCPP_ERROR(
+            rclcpp::get_logger("luci_interface"),
+            "Error communicating with server... pass in correct ip and port of chair");
+    }
+}
+
+void ClientGuide::enableRadarFilter(RadarFilter filter) const
+{
+    ClientContext context;
+    sensors::RadarFilter request;
+    Response response;
+
+    request.set_filter(convertRadarFilterToProto(filter));
+
+    if (Status status = stub_->EnableRadarFilter(&context, request, &response); status.ok())
+    {
+        RCLCPP_INFO(
+            rclcpp::get_logger("luci_interface"),
+            "Enabling radar filter %d", static_cast<int>(filter));
+    }
+    else
+    {
+        RCLCPP_ERROR(
+            rclcpp::get_logger("luci_interface"),
+            "Error communicating with server... pass in correct ip and port of chair");
+     }
+ }
+
 
 int ClientGuide::sendJS(int forwardBack, int leftRight, InputSource source)
 {

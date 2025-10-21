@@ -601,6 +601,21 @@ void Interface::removeAutoRemoteInputSource()
     this->luciInterface->removeInputSource(InputSource::AutonomousRemote);
 }
 
+void Interface::disableRadarFilter()
+{
+    // Disable the radar filter
+    RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "Disabling radar filter");
+    this->luciInterface->disableRadarFilter(RadarFilter::RANGE_CHOP);
+}
+
+void Interface::enableRadarFilter()
+{
+    // Enable the radar filter
+    RCLCPP_DEBUG(rclcpp::get_logger("luci_interface"), "Enabling radar filter");
+    this->luciInterface->enableRadarFilter(RadarFilter::RANGE_CHOP);
+}
+
+
 void Interface::updateIrFrameRate(int rate)
 {
     // Send the new rate request over gRPC to LUCI
