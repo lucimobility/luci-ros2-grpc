@@ -55,6 +55,9 @@ service Sensors {
 
   rpc HmiStream(google.protobuf.Empty) returns (stream HmiStreamData); //
   rpc PressCountStream(google.protobuf.Empty) returns (stream PressCountStreamData); //
+
+  rpc EnableRadarFilter(RadarFilter) returns (Response) {}; //
+  rpc DisableRadarFilter(RadarFilter) returns (Response) {}; //
 }
 
 message Response {
@@ -371,4 +374,11 @@ message HmiStreamData {
 
 message PressCountStreamData {
   int32 press_count = 1;
+}
+
+message RadarFilter {
+  enum Filter {
+    RANGE_CHOP = 0;
+   }
+  Filter filter = 1;
 }

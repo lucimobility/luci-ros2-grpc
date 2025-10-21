@@ -163,6 +163,18 @@ class ClientGuide
     void removeInputSource(InputSource source) const;
 
     /**
+     * @brief Disable the radar filter
+     *
+     */
+    void disableRadarFilter(RadarFilter filter) const;
+
+    /**
+     * @brief Enable the radar filter
+     *
+     */
+    void enableRadarFilter(RadarFilter filter) const;
+
+    /**
      * @brief Send JS values to luci sensors
      *
      * @param forwardBack
