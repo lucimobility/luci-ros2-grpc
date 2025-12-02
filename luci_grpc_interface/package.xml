@@ -15,7 +15,6 @@
   <depend>geometry_msgs</depend>
   <depend>nav_msgs</depend>
   <depend>tf2_ros</depend>
-  <depend>luci_messages</depend>
 
   <export>
     <build_type>ament_cmake</build_type>
