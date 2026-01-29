@@ -7,14 +7,25 @@ on:
 
 env:
   REPO: ${{github.event.repository.name}}
-  MESSAGE_REPO : luci-ros2-msgs 
+  MESSAGE_REPO: luci-ros2-msgs
 
 jobs:
   package:
     runs-on: ubuntu-latest
     container: luci.jfrog.io/ros2-sdk-docker-local/luci-sdk-development-image:latest
     steps:
-      #Sets up jfrog cli access for the actions
+      # Generate GitHub App token
+      - name: Generate token from GitHub App
+        id: generate-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          repositories: |
+            luci-ros2-msgs
+            luci-ros2-grpc
+
+      # Sets up jfrog cli access for the actions
       - uses: jfrog/setup-jfrog-cli@v3
         env:
           # Credentials for Jfrog artifactory
@@ -27,13 +38,14 @@ jobs:
           repository: lucimobility/luci-ros2-msgs
           ref: main
           path: ${{env.MESSAGE_REPO}}
-          token: ${{ secrets.ACCESS_TOKEN }}
+          token: ${{ steps.generate-token.outputs.token }}
 
       - name: Checkout GRPC Branch
         uses: actions/checkout@v3
         with:
           ref: ${{ github.ref }}
           path: ${{env.REPO}}
+          token: ${{ steps.generate-token.outputs.token }}
       
       - name: gpg import
         id: "import"
