@@ -302,7 +302,7 @@ void Interface::processLeftIrData()
         // Header
         std_msgs::msg::Header irHeader;
         irHeader.frame_id = "left_camera";
-        irHeader.stamp = this->get_clock()->now();
+        irHeader.stamp = rclcpp::Time(leftIrData.timestamp_sec, leftIrData.timestamp_nsec);
 
         rosIrMsg.header = irHeader;
         cameraInfoMsg.header = irHeader;
@@ -344,7 +344,7 @@ void Interface::processRightIrData()
         // Header
         std_msgs::msg::Header irHeader;
         irHeader.frame_id = "right_camera";
-        irHeader.stamp = this->get_clock()->now();
+        irHeader.stamp = rclcpp::Time(rightIrData.timestamp_sec, rightIrData.timestamp_nsec);
 
         rosIrMsg.header = irHeader;
         cameraInfoMsg.header = irHeader;
@@ -386,7 +386,7 @@ void Interface::processRearIrData()
         // Header
         std_msgs::msg::Header irHeader;
         irHeader.frame_id = "rear_camera";
-        irHeader.stamp = this->get_clock()->now();
+        irHeader.stamp = rclcpp::Time(rearIrData.timestamp_sec, rearIrData.timestamp_nsec);
 
         rosIrMsg.header = irHeader;
         cameraInfoMsg.header = irHeader;
@@ -425,7 +425,7 @@ void Interface::processLeftDepthData()
         sensor_msgs::msg::Image depthMsg;
 
         depthMsg.header.frame_id = "left_depth_camera";
-        depthMsg.header.stamp = this->get_clock()->now();
+        depthMsg.header.stamp = rclcpp::Time(leftDepthData.timestamp_sec, leftDepthData.timestamp_nsec);
 
         depthMsg.height = leftDepthData.height;
         depthMsg.width = leftDepthData.width;
@@ -452,7 +452,7 @@ void Interface::processRightDepthData()
         sensor_msgs::msg::Image depthMsg;
 
         depthMsg.header.frame_id = "right_depth_camera";
-        depthMsg.header.stamp = this->get_clock()->now();
+        depthMsg.header.stamp = rclcpp::Time(rightDepthData.timestamp_sec, rightDepthData.timestamp_nsec);
 
         depthMsg.height = rightDepthData.height;
         depthMsg.width = rightDepthData.width;
@@ -479,7 +479,7 @@ void Interface::processRearDepthData()
         sensor_msgs::msg::Image depthMsg;
 
         depthMsg.header.frame_id = "rear_depth_camera";
-        depthMsg.header.stamp = this->get_clock()->now();
+        depthMsg.header.stamp = rclcpp::Time(rearDepthData.timestamp_sec, rearDepthData.timestamp_nsec);
 
         depthMsg.height = rearDepthData.height;
         depthMsg.width = rearDepthData.width;

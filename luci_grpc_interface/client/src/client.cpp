@@ -753,7 +753,9 @@ void ClientGuide::readIrFrame(int initialRate)
         }
 
         CameraIrData cameraIrData =
-            CameraIrData(response.width(), response.height(), intrinsics, transform, type, bytes);
+            CameraIrData(response.width(), response.height(), intrinsics, transform, type, bytes,
+                         response.timestamp().seconds(),
+                         static_cast<uint32_t>(response.timestamp().nanos()));
         {
             if (response.camera() == "left")
             {
@@ -796,7 +798,9 @@ void ClientGuide::readDepthFrame()
     {
         CameraDepthData cameraDepthData(
             response.width(), response.height(),
-            std::vector<uint8_t>(response.frame().begin(), response.frame().end()));
+            std::vector<uint8_t>(response.frame().begin(), response.frame().end()),
+            response.timestamp().seconds(),
+            static_cast<uint32_t>(response.timestamp().nanos()));
         if (response.camera() == "left")
         {
             this->depthDataBuffLeft->push(cameraDepthData);
