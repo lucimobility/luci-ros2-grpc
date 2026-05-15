@@ -267,11 +267,15 @@ struct CameraIrData
     CameraTransform transform;
     std::vector<uint8_t> data;
     int rotationType;
+    int32_t timestamp_sec;
+    uint32_t timestamp_nsec;
 
     inline CameraIrData(int width, int height, CameraIntrinsics intrinsics,
-                        CameraTransform transform, int rotationType, std::vector<uint8_t> data)
+                        CameraTransform transform, int rotationType, std::vector<uint8_t> data,
+                        int32_t timestamp_sec, uint32_t timestamp_nsec)
         : width(width), height(height), intrinsics(intrinsics), transform(transform),
-          rotationType(rotationType), data(data)
+          rotationType(rotationType), data(data), timestamp_sec(timestamp_sec),
+          timestamp_nsec(timestamp_nsec)
     {
     }
 };
@@ -285,9 +289,13 @@ struct CameraDepthData
     int width;
     int height;
     std::vector<uint8_t> data;
+    int32_t timestamp_sec;
+    uint32_t timestamp_nsec;
 
-    inline CameraDepthData(int width, int height, std::vector<uint8_t> data)
-        : width(width), height(height), data(data)
+    inline CameraDepthData(int width, int height, std::vector<uint8_t> data,
+                           int32_t timestamp_sec, uint32_t timestamp_nsec)
+        : width(width), height(height), data(data), timestamp_sec(timestamp_sec),
+          timestamp_nsec(timestamp_nsec)
     {
     }
 };
