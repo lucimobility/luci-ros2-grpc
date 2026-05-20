@@ -7,8 +7,8 @@ This is the main interface between gRPC on the LUCI system and the ROS2 system f
 - Follow the documentation on the SDK repository on [github](https://github.com/lucimobility/luci-ros2-sdk/tree/main/development) for manual setup in docker. 
 
 ### Native setup
-- Follow the steps on the [luci-sdk](https://lucimobility.github.io/luci-sdk-docs/next/ROS2%20SDK/How-To/Installation/dependencies) repository main readme to install all the dependencies.
-- You have two ways to install the SDK, one by using the provided debians and other by just cloning and buiding the repositories. These methods are explained in detail in the [installation](https://lucimobility.github.io/luci-sdk-docs/ROS2%20SDK/How-To/Installation/luci-ros2-sdk-install) steps.
+- Follow the steps on the installations tab on [luci-sdk](https://lucimobility.github.io/luci-sdk-docs/) main webpage. 
+- You have two ways to install the SDK, one by using the provided debians and other by just cloning and buiding the repositories. These methods are explained in detail in the [quick start](https://lucimobility.github.io/luci-sdk-docs/Installation/Quick-Start/) and [manual installation](https://lucimobility.github.io/luci-sdk-docs/Installation/manual-installation) steps respectively.
 
 ### File structure to follow
 ```bash
