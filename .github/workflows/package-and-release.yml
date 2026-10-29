@@ -12,7 +12,7 @@ env:
 jobs:
   package:
     runs-on: ubuntu-latest
-    container: luci.jfrog.io/ros2-sdk-docker-local/luci-sdk-development-image:latest
+    container: ghcr.io/lucimobility/luci-sdk-development-image:latest
     steps:
       # Generate GitHub App token
       - name: Generate token from GitHub App
@@ -24,13 +24,6 @@ jobs:
           repositories: |
             luci-ros2-msgs
             luci-ros2-grpc
-
-      # Sets up jfrog cli access for the actions
-      - uses: jfrog/setup-jfrog-cli@v3
-        env:
-          # Credentials for Jfrog artifactory
-            JF_URL: ${{ secrets.JF_URL }}
-            JF_ACCESS_TOKEN: ${{ secrets.ARTIFACTORY_TOKEN}}
 
       - name: Checkout LUCI Messages Branch
         uses: actions/checkout@v3
@@ -83,8 +76,50 @@ jobs:
         env:
           KEY_ID: ${{steps.import.outputs.keyid}}
 
-      - name: Deploy the package
+      # build-package.sh writes the .deb next to the package directory
+      - name: Upload the package
+        uses: actions/upload-artifact@v4
+        with:
+          name: package
+          path: ${{env.REPO}}/*.deb
+          if-no-files-found: error
+
+  # Runs on the runner itself, since the development image has no AWS CLI.
+  publish:
+    needs: package
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Download the package
+        uses: actions/download-artifact@v4
+        with:
+          name: package
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: us-east-2
+
+      - name: Add the package to the apt pool
         run: |
-          cd ${{env.REPO}}/luci_grpc_interface
-          ./deploy-package.sh
+          for deb in *.deb; do
+            package=$(dpkg-deb --field "$deb" Package)
+            aws s3 cp --only-show-errors "$deb" "s3://${{ vars.SDK_SITE_BUCKET }}/ros2/apt/pool/main/$package/$deb"
+          done
         shell: bash
+
+      # The index is rebuilt in luci-ros2-sdk, which signs it with the archive key
+      - name: Generate token from GitHub App
+        id: generate-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          repositories: luci-ros2-sdk
+
+      - name: Rebuild the apt index
+        run: gh workflow run publish-apt.yml --repo lucimobility/luci-ros2-sdk
+        env:
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
