@@ -10,8 +10,8 @@ This is the main interface between gRPC on the LUCI system and the ROS2 system f
 
 ### Native setup
 
-- Follow the steps on the installation tab on [luci-sdk](https://sdk.luci-guci.com/ros2/docs/) main webpage.
-- You have two ways to install the SDK, one by using the provided .deb packages and the other by just cloning and building the repositories. These methods are explained in detail in the [quick start](https://sdk.luci-guci.com/ros2/docs/Installation/Quick-Start/) and [manual installation](https://sdk.luci-guci.com/ros2/docs/Installation/manual-installation) steps respectively.
+- Follow the steps on the installation tab on [luci-sdk](https://sdk.luci.com/ros2/docs/) main webpage.
+- You have two ways to install the SDK, one by using the provided .deb packages and the other by just cloning and building the repositories. These methods are explained in detail in the [quick start](https://sdk.luci.com/ros2/docs/Installation/Quick-Start/) and [manual installation](https://sdk.luci.com/ros2/docs/Installation/manual-installation) steps respectively.
 
 ### File structure to follow
 
