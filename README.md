@@ -10,8 +10,8 @@ This is the main interface between gRPC on the LUCI system and the ROS2 system f
 
 ### Native setup
 
-- Follow the steps on the installation tab on [luci-sdk](https://lucimobility.github.io/luci-sdk-docs/) main webpage.
-- You have two ways to install the SDK, one by using the provided .deb packages and the other by just cloning and building the repositories. These methods are explained in detail in the [quick start](https://lucimobility.github.io/luci-sdk-docs/Installation/Quick-Start/) and [manual installation](https://lucimobility.github.io/luci-sdk-docs/Installation/manual-installation) steps respectively.
+- Follow the steps on the installation tab on [luci-sdk](https://sdk.luci-guci.com/ros2/docs/) main webpage.
+- You have two ways to install the SDK, one by using the provided .deb packages and the other by just cloning and building the repositories. These methods are explained in detail in the [quick start](https://sdk.luci-guci.com/ros2/docs/Installation/Quick-Start/) and [manual installation](https://sdk.luci-guci.com/ros2/docs/Installation/manual-installation) steps respectively.
 
 ### File structure to follow
 
@@ -36,7 +36,7 @@ When a new version of this package is ready to be released, there are a couple o
     - LUCI follows [semver](https://semver.org/) style versioning, so MAJOR.MINOR.PATCH versions are expected.
     - It is okay to not put out versions until multiple changes have happened to the code.
 2. Once the version increment is merged, you simply need to create an official release in GitHub. Make sure you make the release version the same as what is now in `package.xml`. We have chosen to keep the GitHub release and package version in sync.
-    - This should trigger an action to auto run called `Create and Sign Package`, which you can monitor in the GitHub Actions panel. This should grab the released code, build it, make an installable .deb file, GPG sign it, and push it to JFrog Artifactory.
+    - This should trigger an action to auto run called `Create and Sign Package`, which you can monitor in the GitHub Actions panel. This should grab the released code, build it, make an installable .deb file, GPG sign it, and publish it to the LUCI apt repository.
 
 If everything went smoothly, congratulations — the new package will be released and publicly distributable.
 

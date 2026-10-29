@@ -36,23 +36,10 @@ PROTO_PATH=${CMAKE_CURRENT_SOURCE_DIR}
 PROTOFILE_PATH=${CMAKE_CURRENT_SOURCE_DIR}/sensors.proto
 
 PROTOC=protoc
-CPP_PLUGIN=grpc_cpp_plugin
-
-CONAN_PROTOC=${CMAKE_BINARY_DIR}/bin/${PROTOC}
-CONAN_CPP_PLUGIN=${CMAKE_BINARY_DIR}/bin/${CPP_PLUGIN}
-
-if [[ -x ${CONAN_PROTOC} ]]; then
-    PROTOC=${CONAN_PROTOC}
-fi
-
-if [[ -x ${CONAN_CPP_PLUGIN} ]]; then
-    CPP_PLUGIN=${CONAN_CPP_PLUGIN}
-else
-    # Protoc does not search the PATH when looking for plugins,
-    # so we must provide the full path.
-    CPP_PLUGIN=$(which ${CPP_PLUGIN})
-    echo $CPP_PLUGIN
-fi
+# Protoc does not search the PATH when looking for plugins,
+# so we must provide the full path.
+CPP_PLUGIN=$(which grpc_cpp_plugin)
+echo $CPP_PLUGIN
 
 PLUGIN=protoc-gen-grpc=${CPP_PLUGIN}
 OUTPUT_DIR=${CMAKE_CURRENT_BINARY_DIR}/generated_code/sensors_grpc
